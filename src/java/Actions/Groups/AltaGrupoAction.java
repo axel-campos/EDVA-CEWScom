@@ -43,10 +43,11 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
         if(submit.equals("Crear")){
             DateFormat dateFormat = new SimpleDateFormat("ddMMyy");
             Date date = new Date();
+            token +=  abecedario[(int) Math.round(Math.random() * 25 )];
             token += nombre.charAt(0) + "" + nombre.charAt(nombre.length()-1);
             token += dateFormat.format(date);
 
-            for(int x = 0; x < 3; x++){
+            for(int x = 0; x < 2; x++){
                 token +=  abecedario[(int) Math.round(Math.random() * 25 )];
             }
         }else{
