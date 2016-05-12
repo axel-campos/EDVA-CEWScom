@@ -25,7 +25,7 @@ public abstract class ConexionDAO<T extends EDVADB> {
 	private final String driver = "com.mysql.jdbc.Driver";
 	private final String database = "jdbc:mysql://localhost/edvadb";
 	private final String user = "root";
-	private final String pass = "D@nHv94";
+	private final String pass = "root";
 	protected Connection conn = null;
 	
 	/**
