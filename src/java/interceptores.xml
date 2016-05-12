@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="interceptores" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="AuthInterceptor" class="interceptor.AuthInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="AuthInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+                    <result name="login" type="redirect">/loginform.action</result>
+		</global-results>
+		<action name="index">
+			<result>/WEB-INF/index.jsp</result>
+		</action>
+		<action name="logout" class="Actions.LoginAction" method="logout">
+			<result>/WEB-INF/login.jsp</result>
+		</action>
+        <action name="modInformacion" method="">
+            <result>/WEB-INF/modInfoPersonal.jsp</result>
+        </action>
+		<action name="ListGroup" class="Actions.Groups.ListarGrupos">
+			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
+		</action>
+		<action name="AltaGroup">
+			<result>/WEB-INF/grupos/altaGrupo.jsp</result>
+		</action>
+		<action name="BajaGroup" class="Actions.Groups.BajaGrupo">
+			<result name="success" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">3</param>
+			</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">4</param>
+			</result>
+		</action>
+		<action name="SalirGroup" class="Actions.Groups.BajaGrupo" method="baja">
+			<result name="success" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">5</param>
+			</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">6</param>
+			</result>
+		</action>
+		<action name="altaGrupo" class="Actions.Groups.AltaGrupoAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">1</param>
+			</result>
+            <!--result name="success">/WEB-INF/index.jsp
+			</result-->
+			<result name="modificar" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">2</param>
+			</result>
+			<result name="input">/WEB-INF/grupos/altaGrupo.jsp</result>
+			<result name="error">/WEB-INF/grupos/altaGrupo.jsp</result>
+		</action>
+        <action name="modUsuario" class="Actions.ModUsuarioAction">
+            <result name="success">/WEB-INF/index.jsp</result>
+            <result name="input">/WEB-INF/modInfoPersonal.jsp</result>
+            <result name="error">/WEB-INF/modInfoPersonal.jsp</result>
+        </action>
+        <action name="modPwd" class="Actions.ModPwdAction">
+            <result name="success">/WEB-INF/index.jsp</result>
+            <result name="input">/WEB-INF/modContrasena.jsp</result>
+            <result name="error">/WEB-INF/modContrasena.jsp</result>
+        </action>
+        <action name="ListRoles" class="">
+            
+        </action>
+	</package>
+</struts>
