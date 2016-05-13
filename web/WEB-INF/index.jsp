@@ -18,16 +18,7 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
-        <script>
-            function cambiarContenidos(pagina, target){
-                var destino = target;
-                if(pagina !== "#"){
-                    $(destino).load(pagina,function(){
-                        $(".button").button();
-                    });
-                }
-            }
-        </script>
+        <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
         <title>Página Principal</title>
     </head>
     <body role="document">
