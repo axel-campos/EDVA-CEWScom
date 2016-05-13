@@ -51,7 +51,7 @@
                         <td><s:property value="%{#resultado[2]}" /></td>
                         <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Editar</a></td>
                         <td><s:if test="%{#resultado[4] != 1}" >
-                            <a onclick="cambiarContenidos('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
+                            <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
                         </s:if></td>
                         <td><s:if test="%{#resultado[4] == 1}" >
                                 <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
