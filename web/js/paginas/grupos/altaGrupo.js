@@ -34,24 +34,14 @@ $(document).ready(function(){
                         message: 'La cantidad máxima de letras para el nombre es de 40'
                     },
                     callback: {
+                        message: 'El nombre del grupo debe iniciar y terminar con una letra o un número',
                         callback: function(value, validator, $field){
                             var valueLength = value.length;
                             var letras = "abcdefghijklmnopqrstuvwxyz";
                             var numeros = "1234567890";
                             var letraInicial = value.charAt(0).toLowerCase();
                             var letraFinal = value.charAt(valueLength - 1).toLowerCase();
-                            if(letras.indexOf(letraInicial) !== -1 || numeros.indexOf(letraInicial) !== -1){
-                                return{
-                                    valid: false,
-                                    message: 'El nombre del grupo debe iniciar en letra o número'
-                                };
-                            }
-                            if(letras.indexOf(letraFinal) !== -1 || numeros.indexOf(letraFinal) !== -1){
-                                return{
-                                    valid: false,
-                                    message: 'El nombre del grupo debe terminar en letra o número'
-                                };
-                            }
+                            return (letras.indexOf(letraInicial) !== -1 || numeros.indexOf(letraInicial) !== -1) && (letras.indexOf(letraFinal) !== -1 || numeros.indexOf(letraFinal) !== -1);
                         }
                     }
                 }
