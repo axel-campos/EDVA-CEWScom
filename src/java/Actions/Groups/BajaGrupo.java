@@ -34,18 +34,20 @@ public class BajaGrupo extends ActionSupport implements interceptor.Authenticate
 
     public String baja() throws Exception{
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
+        GrupoDAO grupoDAO = new GrupoDAO();
         
         try{
             usuarioGrupoDAO.conectar();
             usuarioGrupoDAO.eliminar(new UsuarioGrupo().setCorreo(usuario.getCorreo()).setToken(token));
             usuarioGrupoDAO.desconectar();
             
-            //Despues de darse de baja el profesor, reducimos la cantidad de profesores dentro del grupo
-            UsuarioGrupoDAO usuarioGrupoDAO2 = new UsuarioGrupoDAO();
-            String sql = "UPDATE grupo SET totalProfesores = totalProfesores - 1 WHERE token = '" + token + "'";
-            System.out.println(sql);
-            usuarioGrupoDAO2.consultaGenerica(sql);
-            usuarioGrupoDAO2.desconectar();
+            grupoDAO.conectar();
+            Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+            grupoDAO.modificar(grupo, new Grupo().setToken(token)
+                                                 .setNombre(grupo.getNombre())
+                                                 .setDescripcion(grupo.getDescripcion())
+                                                 .setTotalProfesores(grupo.getTotalProfesores() - 1));
+            grupoDAO.desconectar();
         }catch(RuntimeException e){
             return ERROR;
         }

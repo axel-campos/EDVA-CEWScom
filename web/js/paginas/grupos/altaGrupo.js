@@ -32,6 +32,17 @@ $(document).ready(function(){
                     stringLength:{
                         max: 40,
                         message: 'La cantidad máxima de letras para el nombre es de 40'
+                    },
+                    callback: {
+                        message: 'El nombre del grupo debe iniciar y terminar con una letra o un número',
+                        callback: function(value, validator, $field){
+                            var valueLength = value.length;
+                            var letras = "abcdefghijklmnopqrstuvwxyz";
+                            var numeros = "1234567890";
+                            var letraInicial = value.charAt(0).toLowerCase();
+                            var letraFinal = value.charAt(valueLength - 1).toLowerCase();
+                            return (letras.indexOf(letraInicial) !== -1 || numeros.indexOf(letraInicial) !== -1) && (letras.indexOf(letraFinal) !== -1 || numeros.indexOf(letraFinal) !== -1);
+                        }
                     }
                 }
             },

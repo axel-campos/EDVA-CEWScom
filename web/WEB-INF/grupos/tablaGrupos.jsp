@@ -7,19 +7,21 @@
 <%@page import="modelo.dao.UsuarioGrupoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="sj" uri="/struts-jquery-tags"%>
+
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
    String cabeceras[] = {"Nombre","Descripción","Rol","Editar","Salir","Eliminar"}; 
 %>
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaGrupos.js"></script>
+            <script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaGrupos.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
-		<s:if test="%{#respuesta == 1}" >
+	<s:if test="%{#respuesta == 1}" >
                
         </s:if>
         <s:if test="hasActionMessages()">
@@ -32,7 +34,8 @@
                 <s:actionerror />
             </div>
         </s:if>
-        <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo</a>
+        <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
+        <a onclick="cambiarContenidos('enviarSolicitudGrupo','#contenido')" class="btn btn-link">Solicitar entrada a grupo</a>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -54,12 +57,13 @@
                             <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
                         </s:if></td>
                         <td><s:if test="%{#resultado[4] == 1}" >
-                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
+                            <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
                         </s:if></td>
                     </tr>
                 </s:iterator>
             </tbody>
         </table>
-		<div id="contenidos_invisibles" style="display: none"></div>
+        <div id="contenidos_invisibles" style="display: none"></div>
     </body>
 </html>
+
