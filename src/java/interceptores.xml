@@ -81,7 +81,7 @@
         </action>
         
         <action name="enviarSolicitudGrupo">
-            <result>/WEB-INF/grupos/acessoGrupo.jsp</result>
+            <result>/WEB-INF/grupos/accesoGrupo.jsp</result>
         </action>
         
         

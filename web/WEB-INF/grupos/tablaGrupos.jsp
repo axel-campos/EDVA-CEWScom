@@ -34,7 +34,7 @@
                 <s:actionerror />
             </div>
         </s:if>
-        <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo</a>
+        <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
         <a onclick="cambiarContenidos('enviarSolicitudGrupo','#contenido')" class="btn btn-link">Solicitar entrada a grupo</a>
         <table class="table table-hover">
             <thead>
