@@ -1,9 +1,11 @@
 function verificarGrupoVacio(token){
-    var controlador = "verificarRelacionesGrupo.action";
-    $.post(controlador, {"token": token}).done(function(data) {
+    var action_ajax = "verificarRelacionesGrupo.action";
+    $.post(action_ajax, {"token": token}).done(function(data) 
+    {
         if (data.toString().indexOf("Error:") === -1) {/*En caso de que no hay error*/ 
             $('#contenidos_invisibles').html(data);
-            if("Si" === data.toString().substring(0, 2)){
+            if("Si" === data.toString().substring(0, 2))
+            {
                 BootstrapDialog.show({
                     title: 'Alert',
                     message: 'Este grupo tiene datos asociados, Está seguro de eliminarlo?',
@@ -22,7 +24,9 @@ function verificarGrupoVacio(token){
                         }
                     }]
                 });
-            }else{
+            }
+            else
+            {
                 estasSeguro("BajaGroup?token="+token,'#contenido');
             }
        }
