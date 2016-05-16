@@ -21,9 +21,24 @@ function ModificarRoles(){
     cancelar_button.type = "button";
     cancelar_button.value = "Cancelar";
     cancelar_button.className = "btn btn-danger";
+    cancelar_button.onclick = cancel_operation;
     document.getElementById("button-group").replaceChild(cancelar_button, new_coordinator_button);
 }
 
 function NuevoCoordinador(){
-    
+    var numRows = $("#numMiembros").val();
+    $("#colCoordinador").show();
+}
+
+function cancel_operation(){
+    var numRows = $("#numMiembros").val();
+    $("#colEliminar").hide();
+    $("#colCoordinador").hide();
+    for(x = 0; x < numRows; x++){
+        document.getElementsByName("txt_result_" + x).item(0).disabled = true;
+        document.getElementsByName("txt_result_" + x).item(1).disabled = true;
+        document.getElementsByName("txt_result_" + x).item(2).disabled = true;
+        $("#rowEliminar_" + x).hide();
+        $("#rowCoordinador_" + x).hide();
+    }
 }
