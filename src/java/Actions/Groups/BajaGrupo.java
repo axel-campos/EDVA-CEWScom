@@ -34,15 +34,24 @@ public class BajaGrupo extends ActionSupport implements interceptor.Authenticate
 
     public String baja() throws Exception{
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
+        GrupoDAO grupoDAO = new GrupoDAO();
         
         try{
             usuarioGrupoDAO.conectar();
             usuarioGrupoDAO.eliminar(new UsuarioGrupo().setCorreo(usuario.getCorreo()).setToken(token));
             usuarioGrupoDAO.desconectar();
+            
+            grupoDAO.conectar();
+            Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+            grupoDAO.modificar(grupo, new Grupo().setToken(token)
+                                                 .setNombre(grupo.getNombre())
+                                                 .setDescripcion(grupo.getDescripcion())
+                                                 .setTotalProfesores(grupo.getTotalProfesores() - 1));
+            grupoDAO.desconectar();
         }catch(RuntimeException e){
             return ERROR;
         }
-        
+       
         return SUCCESS;
     }
     
