@@ -83,6 +83,9 @@
         <action name="enviarSolicitudGrupo">
             <result>/WEB-INF/grupos/accesoGrupo.jsp</result>
         </action>
+        <action name="modifyRoles" class="Actions.Groups.CambiaRolesAction">
+            
+        </action>
         
         
 	</package>

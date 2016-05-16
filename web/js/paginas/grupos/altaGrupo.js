@@ -61,7 +61,6 @@ $(document).ready(function(){
         e.preventDefault();
         //Use Ajax to submit form data
         var datos = $(form).serialize();
-        $("#orale").show();
         $.ajax({
             type: "POST",
             url: action,
