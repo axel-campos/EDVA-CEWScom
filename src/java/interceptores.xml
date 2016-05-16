@@ -52,13 +52,12 @@
 				<param name="exito">6</param>
 			</result>
 		</action>
+                
 		<action name="altaGrupo" class="Actions.Groups.AltaGrupoAction">
 			<result name="success" type="redirectAction">
 				<param name="actionName">/ListGroup</param>
 				<param name="exito">1</param>
 			</result>
-            <!--result name="success">/WEB-INF/index.jsp
-			</result-->
 			<result name="modificar" type="redirectAction">
 				<param name="actionName">/ListGroup</param>
 				<param name="exito">2</param>
@@ -66,6 +65,7 @@
 			<result name="input">/WEB-INF/grupos/altaGrupo.jsp</result>
 			<result name="error">/WEB-INF/grupos/altaGrupo.jsp</result>
 		</action>
+                
         <action name="modUsuario" class="Actions.ModUsuarioAction">
             <result name="success">/WEB-INF/index.jsp</result>
             <result name="input">/WEB-INF/modInfoPersonal.jsp</result>
@@ -79,5 +79,11 @@
         <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
             <result>/WEB-INF/grupos/tablaRoles.jsp</result>
         </action>
+        
+        <action name="enviarSolicitudGrupo">
+            <result>/WEB-INF/grupos/acessoGrupo.jsp</result>
+        </action>
+        
+        
 	</package>
 </struts>
