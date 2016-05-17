@@ -24,8 +24,7 @@
                             <label class="col-md-2 control-label" for="token_group">Token de grupo</label>
                             <div class="col-md-4">
                                 <input id="token" type="text" class="form-control" id="correo" name="correo" placeholder="AAA000000AAA(0)" />
-                            </div>
-                            
+                            </div>    
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
@@ -34,9 +33,12 @@
                         </div>     
                     </form>
                 </div>
+                
+                <div id="contenidos_invisibles" style="display: none"> </div>
+                
                 <s:if test="hasActionErrors()">
                     <div class="alert alert-danger">
-                            <s:actionerror />
+                        <s:actionerror />
                     </div>
                 </s:if>
             </div>

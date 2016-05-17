@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-function verificarGrupoVacio(token){
+function verificarGrupoVacio(token)
+{
     var action_ajax = "verificarRelacionesGrupo.action";
     $.post(action_ajax, {"token": token}).done(function(data) 
     {
