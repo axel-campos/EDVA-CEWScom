@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-function verificarGrupoVacio(token)
+function buscarPorToken()
 {
-    var action_ajax = "verificarRelacionesGrupo.action";
+    var token = document.getElementById("token").value;
+    var action_ajax = "Actions.Groups.AccesoGrupoAction";
     $.post(action_ajax, {"token": token}).done(function(data) 
     {
         if (data.toString().indexOf("Error:") === -1) {/*En caso de que no hay error*/ 

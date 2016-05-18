@@ -16,7 +16,7 @@
         
         <div class="container">
             <div class="panel panel-default">
-                <div class="panel-heading">Modificar Información personal</div>
+                <div class="panel-heading">Buscar grupo</div>
                 <div class="panel-body">
                     El Token debe de ser proporcionada por el administrador del gurpo a traves de cualquier red social.
                     <form id="modificarfrm" method="POST" class="form-horizontal" action="modUsuario">             
@@ -28,7 +28,7 @@
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                <input id="search_button" type="button" class="btn btn-success" value="Modificar" onclick="buscarGrupoPorToken()">
+                                <input id="search_button" type="button" class="btn btn-success" value="Buscar" onclick="buscarGrupoPorToken()">
                             </div>
                         </div>     
                     </form>
