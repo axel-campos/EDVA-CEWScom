@@ -23,6 +23,7 @@ import modelo.pojo.UsuarioGrupo;
 public class AccesoGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser{
     private Usuario usuario;
     private String token;
+    private List<Grupo> grupos;  
     
     
     public AccesoGrupoAction() {
@@ -30,8 +31,10 @@ public class AccesoGrupoAction extends ActionSupport implements interceptor.Auth
         GrupoDAO grupoDAO = new GrupoDAO(); 
         grupoDAO.conectar();
         
-        Grupo grupo_token = new Grupo();
-        
+        Grupo grupo_token = new Grupo().setToken(token);
+        grupos = grupoDAO.buscarTodos().stream().filter(
+        p -> p.getToken().equals(token)).collect(Collectors.toList());
+        grupoDAO.buscar(grupo_token);
     }
     
     public String execute() throws Exception {
