@@ -66,6 +66,15 @@
 			<result name="error">/WEB-INF/grupos/altaGrupo.jsp</result>
 		</action>
                 
+                <action name="accesoGrupo" class="Actions.Groups.AccesoGrupoAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">1</param>
+			</result>
+			<result name="input">/WEB-INF/grupos/accesoGrupo.jsp</result>
+			<result name="error">/WEB-INF/grupos/accesoGrupo.jsp</result>
+		</action>
+                
         <action name="modUsuario" class="Actions.ModUsuarioAction">
             <result name="success">/WEB-INF/index.jsp</result>
             <result name="input">/WEB-INF/modInfoPersonal.jsp</result>
