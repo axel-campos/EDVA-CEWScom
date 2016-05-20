@@ -14,6 +14,7 @@ function ModificarRoles(){
     submit_button.type = "button";
     submit_button.value = "Guardar";
     submit_button.className = "btn btn-success";
+    submit_button.onclick = guardarCambiosRoles;
     document.getElementById("button-group").replaceChild(submit_button, modify_button);
     
     var cancelar_button = document.createElement("input");
@@ -100,7 +101,7 @@ function cancel_operation(){
 function guardarCambiosRoles(){
     //Mandamos datos por ajax
     var form = "#frmRoles";
-    var action = "";
+    var action = "modifyRoles";
     
     var datos = $(form).serialize();
     $.ajax({

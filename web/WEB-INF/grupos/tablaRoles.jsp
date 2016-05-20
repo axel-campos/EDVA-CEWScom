@@ -34,14 +34,28 @@
                     </tbody>
                 </table>
                 <input type="hidden" name="numMiembros" id="numMiembros" value="<%= x%>"/>
+                <input type="hidden" name="token" id="token" value="<s:property value='token'/>"/>
                 <div class="form-group">
                     <div class="col-md-5" id="button-group">
+                        <% if(x > 0){%>
                         <input type="button" value="Modificar Roles" class="btn btn-success" onclick="ModificarRoles()" id="modify_button"/>
                         <input type="button" value="Nuevo Coordinador" class="btn btn-primary" onclick="NuevoCoordinador()" id="new_coordinator_button"/>
+                        <% }%>
                     </div>
                 </div>
             </form>
         </div>
+        <br>
+        <s:if test="hasActionMessages()">
+            <div class="alert alert-success">
+                <s:actionmessage />
+            </div>
+        </s:if>
+        <s:if test="hasActionErrors()">
+            <div class="alert alert-danger">
+                <s:actionerror />
+            </div>
+        </s:if>
     </body>
     <script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaRoles.js"></script>
 </html>

@@ -84,7 +84,14 @@
             <result>/WEB-INF/grupos/accesoGrupo.jsp</result>
         </action>
         <action name="modifyRoles" class="Actions.Groups.CambiaRolesAction">
-            
+            <result name="success" type="redirectAction">
+                <param name="actionName">/ListRoles</param>
+                <param name="mensaje">1</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">/ListRoles</param>
+                <param name="mensaje">2</param>
+            </result>
         </action>
         
         
