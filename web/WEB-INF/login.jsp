@@ -18,7 +18,6 @@
 	<script>
 		// This is called with the results from from FB.getLoginStatus().
 		function statusChangeCallback(response) {      
-			console.log('statusChangeCallback');
 			console.log(response);
 			// The response object is returned with a status field that lets the
 			// app know the current login status of the person.
@@ -43,15 +42,21 @@
 		// Button.  See the onlogin handler attached to it in the sample
 		// code below.
 		function checkLoginState() {
-			FB.getLoginStatus(function(response) {
-			  statusChangeCallback(response);
-			});
+            FB.login(statusChangeCallback, {scope:'user_birthday, email'});
 		}
 
 		// Here we run a very simple test of the Graph API after login is
 		// successful.  See statusChangeCallback() for when this call is made.
 		function testAPI() {
-			window.open("index","_self");
+			FB.api(
+                '/me',
+                'GET',
+                {"fields":"id,first_name,last_name,email,birthday"},
+                function(response) {
+                    // Insert your code here
+                    inicioSesionFacebook(response['email'], response['first_name'], response['last_name'], response['birthday']);
+                }
+              );
 		}
 	</script>
     </head>
@@ -80,6 +85,7 @@
                                 <input type="submit" class="btn btn-primary" value="Entrar"/>
                                 <a href="registrarseform" class="btn btn-link">¿Aún no tienes una cuenta? Regístrate aquí</a>
                             </div>
+                            <label for="error" style="margin:100px auto 60px auto;color:Red; line-height:40px;font-size:medium;display:none">Un error ha ocurrido en su solicitud</label>
                         </div>
                     </form>
                     <div class="form-group">
@@ -95,7 +101,7 @@
                                       }(document, 'script', 'facebook-jssdk'));
                             </script>
                             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();"></div>
-                            <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+                            <!--div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div-->
                             <div id="status"></div>
                         </div>
                     </div>
