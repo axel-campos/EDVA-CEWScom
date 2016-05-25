@@ -43,18 +43,33 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
             resultados.add(aux);
         }
         
-        if(!exito.isEmpty() && exito.equals("1")){
-            addActionMessage("El grupo se ha registrado");
-        }else if(!exito.isEmpty() && exito.equals("2")){
-            addActionMessage("El grupo se ha modificado");
-        }else if(!exito.isEmpty() && exito.equals("3")){
-            addActionMessage("El grupo se ha eliminado");
-        }else if(!exito.isEmpty() && exito.equals("4")){
-            addActionError("Ha ocurrido un error al eliminar el grupo");
-        }else if(!exito.isEmpty() && exito.equals("5")){
-            addActionMessage("Se ha dado de baja exitosamente del grupo");
-        }else if(!exito.isEmpty() && exito.equals("6")){
-            addActionError("Ha ocurrido un error al tratar de darse de baja del grupo");
+        if(!exito.isEmpty()){
+            switch(exito){
+                case "1":
+                    addActionMessage("El grupo se ha registrado");
+                    break;
+                case "2":
+                    addActionMessage("El grupo se ha modificado");
+                    break;
+                case "3":
+                    addActionMessage("El grupo se ha eliminado");
+                    break;
+                case "4":
+                    addActionError("Ha ocurrido un error al eliminar el grupo");
+                    break;
+                case "5":
+                    addActionMessage("Se ha dado de baja exitosamente del grupo");
+                    break;
+                case "6":
+                    addActionError("Ha ocurrido un error al tratar de darse de baja del grupo");
+                    break;
+                case "7":
+                    addActionMessage("El rol de administrador fue cambiado con éxito.");
+                    break;
+                case "8":
+                    addActionError("No se pudo cambiar de rol de administrador.");
+                    break;
+            }
         }
         usuarioGrupoDAO.desconectar();
         return SUCCESS;

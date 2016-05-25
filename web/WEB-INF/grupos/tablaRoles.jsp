@@ -23,11 +23,11 @@
                     <tbody>
                     <s:iterator value="results" var="result">
                         <tr>
-                            <td><s:property value="%{#result[0]}"/><input type="hidden" name="txt_correo_<%=x %>" value="<s:property value='%{#result[1]}'/>" /></td>
+                            <td><s:property value="%{#result[0]}"/><input type="hidden" name="txt_correo_<%=x %>" id="txt_correo_<%=x %>" value="<s:property value='%{#result[1]}'/>" /></td>
                             <td style="text-align:center;display: none;" id="rowCoordinador_<%= x%>"><input type="radio" id="txt_result_<%= x%>" name="txt_result_<%= x%>" value="1" disabled/></td>
                             <td style="text-align: center;"><input type="radio" id="txt_result_<%= x%>" name="txt_result_<%= x%>" value="2" <s:property value='%{#result[2]}'/> disabled/></td>              
                             <td style="text-align: center;"><input type="radio" id="txt_result_<%= x%>" name="txt_result_<%= x%>" value="3" <s:property value='%{#result[3]}'/> disabled/></td>
-                            <td style="display:none; text-align: center;" id="rowEliminar_<%= x%>"><a onclick="eliminarMiembro(this)" class="btn btn-link">Eliminar</a></td>
+                            <td style="display:none; text-align: center;" id="rowEliminar_<%= x%>"><a onclick="eliminarMiembro('<%= x %>')" class="btn btn-link">Eliminar</a></td>
                         </tr>    
                         <% x += 1;%>
                     </s:iterator>

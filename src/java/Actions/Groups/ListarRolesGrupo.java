@@ -54,6 +54,12 @@ public class ListarRolesGrupo extends ActionSupport implements interceptor.Authe
                 case "2":
                     addActionError("Los roles del grupo no se han podido cambiar.");
                     break;
+                case "3":
+                    addActionMessage("Profesor eliminado con éxito.");
+                    break;
+                case "4":
+                    addActionError("El profesor no pudo ser eliminado con éxito.");
+                    break;    
             }
         }
         return SUCCESS;
