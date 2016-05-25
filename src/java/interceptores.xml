@@ -102,7 +102,26 @@
                 <param name="mensaje">2</param>
             </result>
         </action>
-        
+        <action name="setCoordinadorAction" class="Actions.Groups.CambiaRolesAction" method="establecerNuevoCoordinador">
+            <result name="success" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">7</param>
+			</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">/ListGroup</param>
+				<param name="exito">8</param>
+			</result>
+        </action>
+        <action name="eliminarMiembroAction" class="Actions.Groups.CambiaRolesAction" method="eliminaMiembro">
+            <result name="success" type="redirectAction">
+				<param name="actionName">/ListRoles</param>
+				<param name="mensaje">3</param>
+			</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">/ListRoles</param>
+				<param name="mensaje">4</param>
+			</result>
+        </action>
         
 	</package>
 </struts>
