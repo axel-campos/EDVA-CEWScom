@@ -63,7 +63,6 @@
                 </s:iterator>
             </tbody>
         </table>
-        <div id="contenidos_invisibles" style="display: none"></div>
     </body>
 </html>
 
