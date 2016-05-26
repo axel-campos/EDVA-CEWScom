@@ -35,13 +35,13 @@
                 </table>
                 <input type="hidden" name="numMiembros" id="numMiembros" value="<%= x%>"/>
                 <input type="hidden" name="token" id="token" value="<s:property value='token'/>"/>
-                <div class="form-group">
-                    <div class="col-md-5" id="button-group">
-                        <% if(x > 0){%>
+                <div class="form-group" >
+                    <% if(x > 0){%>
+                    <div class="col-md-4" id="button-group">
                         <input type="button" value="Modificar Roles" class="btn btn-success" onclick="ModificarRoles()" id="modify_button"/>
                         <input type="button" value="Nuevo Coordinador" class="btn btn-primary" onclick="NuevoCoordinador()" id="new_coordinator_button"/>
-                        <% }%>
                     </div>
+                    <% }%>
                 </div>
             </form>
         </div>
