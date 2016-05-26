@@ -122,6 +122,8 @@
 				<param name="mensaje">4</param>
 			</result>
         </action>
-        
+        <action name="homeGrupos">
+            <result>/WEB-INF/grupos/homeGrupos.jsp</result>
+        </action>
 	</package>
 </struts>
