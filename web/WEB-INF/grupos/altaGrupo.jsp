@@ -63,6 +63,7 @@ if(request.getParameter("token") != null){
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2">
                                 <input type='submit' value='<%= opcion %>' class='btn btn-success' disabled/>
+                                <a onclick="cambiarContenidos('ListGroup','#contenido')" class="btn btn-danger">Regresar</a>
                                 <input type="hidden" id="submit" name="submit" value="<%= opcion%>">
                             </div>
                         </div>

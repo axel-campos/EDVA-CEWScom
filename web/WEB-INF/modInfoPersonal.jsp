@@ -4,10 +4,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificar información personal</title>
+        <title>Modificar información personal</title> 
+        <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
     </head>
     <body>
-         <div class="container">
+        <div class="container">
             <div class="panel panel-default">
                 <div class="panel-heading">Modificar Información personal</div>
                 <div class="panel-body">
@@ -48,9 +49,7 @@
                             <div class="col-md-4">
                                 <input disabled type="text" class="form-control" id="fechaN" name="fechaN" placeholder="Tu fecha de nacimiento" value="${session.usuario.fechaNacimiento}"/>
                             </div>
-                        </div>
-                        
-                            
+                        </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
                                 <input id="modify_button" type="button" class="btn btn-success" value="Modificar" onclick="habilitarEdicion()">
@@ -67,5 +66,4 @@
             </div>
         </div>
     </body>
-    <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
 </html>

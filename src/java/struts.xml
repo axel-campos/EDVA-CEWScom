@@ -13,6 +13,9 @@
         <action name="loginform">
             <result>/WEB-INF/login.jsp</result>
         </action>
+        <action name="indexFacebook">
+            <result>/WEB-INF/index.jsp</result>
+        </action>
         <action name="registrarse" class="Actions.RegistrarAction">
             <result name="success" type="redirect">/index.action</result>
             <result name="input">/WEB-INF/registrarse.jsp</result>
@@ -30,7 +33,9 @@
     	<action name="verificarRelacionesGrupo" class="Actions.VerificarRelacionesAction">
             <result type="json">/WEB-INF/grupos/tablaGrupos.jsp</result>
         </action>
-
+        <action name="verificarUsuarioFacebook" class="Actions.VerificarUsuarioFacebookAction">
+            <result type="json">/WEB-INF/login.jsp</result>
+        </action>
     </package>
 	
 	<include file="interceptores.xml" />

@@ -23,6 +23,7 @@
         <div class="embed-responsive embed-responsive-16by9" id="contenido">
             
         </div>
+        <div id="contenidos_invisibles" style="display: none"></div>
     </body>
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    

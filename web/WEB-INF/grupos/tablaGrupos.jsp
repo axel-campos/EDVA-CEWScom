@@ -36,34 +36,36 @@
         </s:if>
         <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
         <a onclick="cambiarContenidos('enviarSolicitudGrupo','#contenido')" class="btn btn-link">Solicitar entrada a grupo</a>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                <%
-                    for(int x = 0; x < cabeceras.length; x++){
-                        out.println("<th>"+cabeceras[x]+"</th>");
-                    }
-                %>
-                </tr>
-            </thead>
-            <tbody>
-                <s:iterator value="resultados" var="resultado">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td><a onclick="cambiarContenidos('ListRoles?token=<s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
-                        <td><s:property value="%{#resultado[1]}" /></td>
-                        <td><s:property value="%{#resultado[2]}" /></td>
-                        <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Editar</a></td>
-                        <td><s:if test="%{#resultado[4] != 1}" >
-                            <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
-                        </s:if></td>
-                        <td><s:if test="%{#resultado[4] == 1}" >
-                            <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
-                        </s:if></td>
+                    <%
+                        for(int x = 0; x < cabeceras.length; x++){
+                            out.println("<th>"+cabeceras[x]+"</th>");
+                        }
+                    %>
                     </tr>
-                </s:iterator>
-            </tbody>
-        </table>
-        <div id="contenidos_invisibles" style="display: none"></div>
+                </thead>
+                <tbody>
+                    <s:iterator value="resultados" var="resultado">
+                        <tr>
+                            <!--td><a onclick="cambiarContenidos('ListRoles?token=<!s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td-->
+                            <td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
+                            <td><s:property value="%{#resultado[1]}" /></td>
+                            <td><s:property value="%{#resultado[2]}" /></td>
+                            <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Editar</a></td>
+                            <td><s:if test="%{#resultado[4] != 1}" >
+                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
+                            </s:if></td>
+                            <td><s:if test="%{#resultado[4] == 1}" >
+                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
+                            </s:if></td>
+                        </tr>
+                    </s:iterator>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
 
