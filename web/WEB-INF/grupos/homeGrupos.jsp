@@ -36,15 +36,23 @@
         </style>
     </head>
     <body>
-        <div class="embed-responsive embed-responsive-16by9" style="border: 3px solid #8AC007;">
-            <div class="menu1">
-                <h1>INFO 1</h1>
-            </div>
-            <div class="menu2">
-                <h1>INFO 2</h1>
-            </div>
-            <div class="contenido">
-                <h1>contenido</h1>
+        <div class="container container-fluid" style="width: 100%;border: 3px solid #003399">
+            <div class="row-fluid">
+                <div class="col-sm-2 well">
+                    <div class="well">
+                        INFO 1
+                    </div>
+                    <div class="well">
+                        INFO 2
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            Contenido
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

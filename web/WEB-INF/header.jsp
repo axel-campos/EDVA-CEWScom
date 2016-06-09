@@ -42,9 +42,13 @@
                         }
                         submenuDAO.desconectar();
                     }
+                    String nombre = user.getNombre() + " " + user.getAPaterno() + " " + user.getAMaterno();
                     menuDAO.desconectar();
                 %>
                 <li><a href="logout.action">Cerrar Sesión</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= nombre%></a></li>
             </ul>
         </div>
     </div>

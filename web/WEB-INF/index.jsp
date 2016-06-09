@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
@@ -21,7 +21,6 @@
     <body role="document">
         <%@include file="header.jsp" %>
         <div class="embed-responsive embed-responsive-16by9" id="contenido">
-            
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
     </body>
