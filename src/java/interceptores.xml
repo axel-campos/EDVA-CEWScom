@@ -125,5 +125,8 @@
         <action name="homeGrupos">
             <result>/WEB-INF/grupos/homeGrupos.jsp</result>
         </action>
+        <action name="consultaTokenAction" class="Actions.Groups.AccesoGrupoAction" method="">
+            
+        </action>
 	</package>
 </struts>
