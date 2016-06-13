@@ -8,25 +8,25 @@
     </head>
     <body>
         
-        <div class="container">
+        <div class="container-fluid">
             <div class="panel panel-default">
-                <div class="panel-heading">Buscar grupo</div>
+                <!--div class="panel-heading">Buscar grupo</div-->
                 <div class="panel-body" style="">
                     Ingrese el token para buscar el grupo al que desea ingresar.
                     <form id="accesofrm" name="accesofrm" class="form-horizontal">             
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="token">Token de grupo</label>
+                            <label class="col-md-3 control-label" for="token">Token de grupo</label>
                             <div class="col-md-4">
                                 <input id="token" name="token" type="text" class="form-control" placeholder="El token del grupo" />
                             </div>    
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                <input id="search_button" type="submit" class="btn btn-success" value="Buscar">
+                                <input id="search_button" type="submit" class="btn btn-primary" value="Buscar">
                             </div>
                         </div>     
                     </form>
-                    <div class="form-group" style="width: 49%;margin: initial">
+                    <div class="form-group" style="width: 80%;margin: initial">
                         <div class="panel panel-success" id="correcto" style="display:none;">
                             <div class="panel-heading" style="text-align: center">Datos del grupo</div>
                             <div class="panel-body">
@@ -36,13 +36,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-danger" id="incorrecto" style="display:none;">
+                        <!--div class="panel panel-danger" id="incorrecto" style="display:none;">
                             <div class="panel-heading" style="text-align: center">Token incorrecto</div>
                             <div class="panel-body">No hay grupo con ese token.</div>
+                        </div-->
+                        <div class="alert alert-danger" id="incorrecto" style="display: none;">
+                            <span class="glyphicon glyphicon-alert"></span>  No existe grupo con el token que ingreso.
                         </div>
+                    </div>
                 </div>
-                </div>
-                
+                <s:if test="%{#parameters.resp[0] == 1}">
+                    <div class="alert alert-success">
+                        <span class="glyphicon glyphicon-alert"></span>  La solicitud se envío con éxito.
+                    </div>
+                </s:if>
+                <s:elseif test="%{#parameters.resp[0] == 2}">
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-alert"></span>  <b>¡Error!</b> No se pudo enviar la solicitud.
+                    </div>
+                </s:elseif>
+                <s:elseif test="%{#parameters.resp[0] == 3}">
+                    <div class="alert alert-info">
+                        <span class="glyphicon glyphicon-alert"></span>  Ya se había enviado un solicitud previa. Por favor, espere su respuesta.
+                    </div>
+                </s:elseif>
                 
                 
             </div>

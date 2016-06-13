@@ -27,7 +27,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
         usuarioGrupoDAO.conectar();
         
         grupos = usuarioGrupoDAO.buscarTodos().stream().filter(
-        p -> p.getCorreo().equals(usuario.getCorreo())).collect(Collectors.toList());
+        p -> p.getCorreo().equals(usuario.getCorreo())).filter(p -> p.getAceptado()).collect(Collectors.toList());
         
         for(int i = 0; i < grupos.size(); i++){
             List<String> aux = new ArrayList<>();

@@ -18,7 +18,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaGrupos.js"></script>
-        <title>JSP Page</title>
+        <title>JSP Page</title>      
     </head>
     <body>
 	<s:if test="%{#respuesta == 1}" >
@@ -35,7 +35,7 @@
             </div>
         </s:if>
         <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
-        <a onclick="cambiarContenidos('enviarSolicitudGrupo','#contenido')" class="btn btn-link">Solicitar entrada a grupo</a>
+        <a onclick="solicitarIngreso()" class="btn btn-link">Solicitar entrada a grupo</a>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
