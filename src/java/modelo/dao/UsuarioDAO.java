@@ -15,7 +15,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
 	@Override
 	public void registrar(Usuario registro) {
-		String sql = "INSERT INTO Usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getCorreo());
@@ -26,6 +26,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 			stmt.setInt(6, registro.getTipo());
 			stmt.setDate(7, registro.getFechaNacimiento());
 			stmt.setString(8, registro.getPassword());
+            stmt.setDate(9, registro.getUltimaConexion());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -35,7 +36,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 	@Override
 	public void modificar(Usuario viejo, Usuario nuevo) {
 		String sql = "UPDATE Usuario SET correo = ?, nombre = ?, aPaterno = ?, aMaterno = ?, "
-			+ "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ? WHERE correo = ?";
+			+ "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ?, ultimaConexion = ? WHERE correo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, nuevo.getCorreo());
@@ -81,7 +82,8 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 						.setCedula(rs.getString("cedula"))
 						.setTipo(rs.getInt("tipoUsuario"))
 						.setFechaNacimiento(rs.getDate("fechaNacimiento"))
-						.setPassword(rs.getString("password"));
+						.setPassword(rs.getString("password"))
+                        .setUltimaConexion(rs.getDate("ultimaConexion"));
 				} else
 					return null;
 			}
@@ -108,7 +110,8 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 					.setCedula(rs.getString("cedula"))
 					.setTipo(rs.getInt("tipoUsuario"))
 					.setFechaNacimiento(rs.getDate("fechaNacimiento"))
-					.setPassword(rs.getString("password")));
+					.setPassword(rs.getString("password"))
+                    .setUltimaConexion(rs.getDate("ultimaConexion")));
 			}
 			
 			return lista;
@@ -134,7 +137,8 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
                         .setCedula(rs.getString("cedula"))
                         .setTipo(rs.getInt("tipoUsuario"))
                         .setFechaNacimiento(rs.getDate("fechaNacimiento"))
-                        .setPassword(rs.getString("password")));
+                        .setPassword(rs.getString("password"))
+                        .setUltimaConexion(rs.getDate("ultimaConexion")));
                 }
 
                 return lista;
