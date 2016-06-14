@@ -61,7 +61,8 @@
     <body role="document">
         <%@include file="header.jsp" %>
         <div class="embed-responsive embed-responsive-16by9" id="contenido">
-        </div>
+            <div class="menu1">
+            </div>
             <div class="menu2">
                 <h4>Solicitudes de entrada</h4>
                 <br/>
