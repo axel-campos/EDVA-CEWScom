@@ -50,44 +50,14 @@ $(document).ready(function(){
     }); 
 });
 
-
-
-/*function buscarPorToken()
-{
-    var token = document.getElementById("token").value;
-    $("#contenidos_invisibles").html(token);
-    var action_ajax = "Actions.Groups.AccesoGrupoAction";
-    $.post(action_ajax, {"token": token}).done(function(data) 
-    {
-        if (data.toString().indexOf("Error:") === -1) {//En caso de que no hay error
-            $('#contenidos_invisibles').html(data);
-            if("Si" === data.toString().substring(0, 2))
-            {
-                BootstrapDialog.show({
-                    title: 'Alert',
-                    message: 'Este grupo tiene datos asociados, Está seguro de eliminarlo?',
-                    buttons: [{
-                        label: 'Sí',
-                        cssClass: 'btn-primary',
-                        action: function(dialogItself) {
-                            dialogItself.close();
-                            cambiarContenidos("BajaGroup?token="+token,'#contenido');
-                        }
-                    }, {
-                        label: 'No',
-                        cssClass: 'btn-warning',
-                        action: function(dialogItself){
-                            dialogItself.close();
-                        }
-                    }]
-                });
-            }
-            else
-            {
-                estasSeguro("BajaGroup?token="+token,'#contenido');
-            }
-       }
-    }); 
-}*/
-
-
+function mandarSolicitud(token){
+    var action = "mandarSolicitudAction";
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: {"token" : token},
+        success: function(data){
+            $("#ventana").html(data);
+        }
+    });
+}

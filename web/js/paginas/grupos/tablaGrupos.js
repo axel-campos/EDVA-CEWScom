@@ -33,6 +33,10 @@ function verificarGrupoVacio(token){
     });   
 }
 
-
+function solicitarIngreso(){
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("enviarSolicitudGrupo")
+    });
+}
 
 
