@@ -18,7 +18,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Buscar grupo</div>
                 <div class="panel-body">
-                    El Token debe de ser proporcionada por el administrador del gurpo a traves de cualquier red social.
+                    El token debe de ser proporcionado por el administrador del grupo a través de cualquier red social.
                     <form id="modificarfrm" method="POST" class="form-horizontal" action="modUsuario">             
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="token_group">Token de grupo</label>
