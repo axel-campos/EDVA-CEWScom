@@ -1,20 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Actions.Groups;
 
-/**
- *
- * @author Christian Campos
- */
-
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import modelo.dao.GrupoDAO;
 import modelo.dao.UsuarioGrupoDAO;
 import modelo.pojo.Grupo;
 import modelo.pojo.Usuario;
@@ -23,23 +10,35 @@ import modelo.pojo.UsuarioGrupo;
 public class AccesoGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser{
     private Usuario usuario;
     private String token;
-    private List<Grupo> grupos;  
     
     
-    public AccesoGrupoAction() {
-        
-        GrupoDAO grupoDAO = new GrupoDAO(); 
-        grupoDAO.conectar();
-        
-        Grupo grupo_token = new Grupo().setToken(token);
-        grupos = grupoDAO.buscarTodos().stream().filter(
-        p -> p.getToken().equals(token)).collect(Collectors.toList());
-        grupoDAO.buscar(grupo_token);
+    public AccesoGrupoAction() {        
     }
-    
+    @Override
     public String execute() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Primero buscamos que no tenga ya una solicitud.
+        UsuarioGrupoDAO usuariogrupoDAO = new UsuarioGrupoDAO();
+        try{
+            usuariogrupoDAO.conectar();
+            UsuarioGrupo usuariogrupo = usuariogrupoDAO.buscar(new UsuarioGrupo().setToken(token).setCorreo(usuario.getCorreo()));
+            if(usuariogrupo == null){//No se tiene registro de que ya se hizo una solicitud.
+                usuariogrupoDAO.registrar(new UsuarioGrupo().setToken(token).setCorreo(usuario.getCorreo()).setAceptado(false).setIdTipoUsuarioGrupo(3));
+                addActionMessage("Éxito al enviar la solicitud. Por favor, espere la respuesta a su solicitud.");
+                usuariogrupoDAO.desconectar();                
+            }else{//Si se tiene registro.
+                usuariogrupoDAO.desconectar();
+                addActionMessage("Usted ya había envíado una solicitud previa para ingresar a este grupo. Por favor, espere la respuesta de su solicitud.");
+                return INPUT;
+            }
+        }catch(RuntimeException e){
+            addActionError("No se pudo enviar solicitud. Intente de nuevo.");
+            usuariogrupoDAO.desconectar();
+            return ERROR;
+        }
+        return SUCCESS;
     }
+    
+   
     
     @Override
     public void setUsuario(Usuario usuario) {
@@ -53,5 +52,9 @@ public class AccesoGrupoAction extends ActionSupport implements interceptor.Auth
     public void setToken(String token) {
         this.token = token;
     }
+
+    
+    
+    
     
 }
