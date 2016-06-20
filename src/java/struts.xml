@@ -29,14 +29,17 @@
     </package>
 	
 	<package name="peticiones" namespace="/" extends="json-default">
-    	<action name="verificarRelacionesGrupo" class="Actions.VerificarRelacionesAction">
+    	<action name="verificarRelacionesGrupo" class="Actions.JSON.VerificarRelacionesAction">
             <result type="json">/WEB-INF/grupos/tablaGrupos.jsp</result>
         </action>
-        <action name="verificarUsuarioFacebook" class="Actions.VerificarUsuarioFacebookAction">
+        <action name="verificarUsuarioFacebook" class="Actions.JSON.VerificarUsuarioFacebookAction">
             <result type="json">/WEB-INF/login.jsp</result>
         </action>
-        <action name="verificarTokenAcceso" class="Actions.Groups.verificaTokenAccesoAction">
+        <action name="verificarTokenAcceso" class="Actions.JSON.verificaTokenAccesoAction">
             <result type="json">/WEB-INF/grupos/accesoGrupo.jsp</result>
+        </action>
+        <action name="responderSolicitudGrupo" class="Actions.JSON.ResponderSolicitudGrupoAction">
+            <result type="json">/WEB-INF/principal.jsp</result>
         </action>
     </package>
 	

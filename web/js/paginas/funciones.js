@@ -28,4 +28,26 @@ function estasSeguro(pagina,target){
     });
 }
 
+/**
+* Permite mostrar un mensaje con BootstrapDialog, de diferentes tipos
+* 
+* @param {String} mensaje El mensaje a mostrar
+* @param {int} tipo 0 = DEFAULT, 1 = INFO, 2 = PRIMARY, 3 = SUCCESS, 4 = WARNING, 5 = DANGER
+* @return La referencia a este contenido-etapa.
+*/
+function mensajes(mensaje, tipo){
+    var types = [BootstrapDialog.TYPE_DEFAULT, 
+                     BootstrapDialog.TYPE_INFO, 
+                     BootstrapDialog.TYPE_PRIMARY, 
+                     BootstrapDialog.TYPE_SUCCESS, 
+                     BootstrapDialog.TYPE_WARNING, 
+                     BootstrapDialog.TYPE_DANGER];
+                     
+    BootstrapDialog.show({
+        type: types[tipo],
+        title: 'Mensaje: ',
+        message: mensaje
+    });     
+}
+
 

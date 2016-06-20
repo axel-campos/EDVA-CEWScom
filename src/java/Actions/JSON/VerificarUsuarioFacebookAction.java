@@ -1,4 +1,4 @@
-package Actions;
+package Actions.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;
@@ -61,7 +61,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
             HttpServletResponse response = ServletActionContext.getResponse();
             //Se pone el try para que el PrintWriter se cierre solito.
             try(PrintWriter out = response.getWriter()) {
-                out.println("Error");
+                out.println("Error: Hubo un error al procesar la solicitud");
                 out.flush();
             }
             return ERROR;
