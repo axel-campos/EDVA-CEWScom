@@ -50,23 +50,26 @@
               height: auto;
             }
         </style>
-        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-        
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <title>Página Principal</title>
+        <style>
+            @media (max-height: 500px){}
+        </style>
     </head>
     <body role="document">
         <%@include file="header.jsp" %>
         <div class="embed-responsive embed-responsive-16by9" id="contenido">
         </div>
-            <div class="menu2">
+            <!--div class="menu2">
                 <h4>Solicitudes de entrada</h4>
                 <br/>
                 <div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="width: 100%; height:100%;">
-                    <!-- Wrapper for slides -->
+                    <!-- Wrapper for slides >
                     <div class="row">
                         <div class="col-xs-offset-3 col-xs-6">
                             <div class="carousel-inner">
@@ -96,7 +99,7 @@
                         </div>
                     </div>
                     <!-- Controls --> 
-                    <a class="left carousel-control" href="#text-carousel" data-slide="prev">
+                    <!--a class="left carousel-control" href="#text-carousel" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     <a class="right carousel-control" href="#text-carousel" data-slide="next">
@@ -104,12 +107,13 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div-->
         <div id="contenidos_invisibles" style="display: none"></div>
     </body>
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>   
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>

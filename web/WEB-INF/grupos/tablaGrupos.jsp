@@ -10,7 +10,7 @@
 
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
-   String cabeceras[] = {"Nombre","Descripción","Rol","Editar","Salir","Eliminar"}; 
+   String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar"}; 
 %>
 
  <!DOCTYPE html>
@@ -21,9 +21,10 @@
         <title>JSP Page</title>      
     </head>
     <body>
-	<s:if test="%{#respuesta == 1}" >
+	<!--s:if test="%{#respuesta == 1}" >
                
-        </s:if>
+        <!/s:if-->
+    <div id="contenedor1" class="container-fluid">
         <s:if test="hasActionMessages()">
             <div class="alert alert-success">
                 <s:actionmessage />
@@ -36,13 +37,16 @@
         </s:if>
         <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
         <a onclick="solicitarIngreso()" class="btn btn-link">Solicitar entrada a grupo</a>
-        <div class="table-responsive">
-            <table class="table table-hover">
+    </div>
+        <div class="table-responsive" id='div1'>
+            <!table class="table table-hover">
+            <table id="tabla">
                 <thead>
                     <tr>
                     <%
                         for(int x = 0; x < cabeceras.length; x++){
-                            out.println("<th>"+cabeceras[x]+"</th>");
+                            out.println("<th data-sortable='true' data-field='"+cabeceras[x]+"'>"+cabeceras[x]+"</th>");
+                            
                         }
                     %>
                     </tr>
@@ -50,7 +54,8 @@
                 <tbody>
                     <s:iterator value="resultados" var="resultado">
                         <tr>
-                            <!--td><a onclick="cambiarContenidos('ListRoles?token=<!s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td-->
+                            <!--td><a onclick="cambiarContenidos('ListRoles?token=<!s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td>
+                            <!--td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td-->
                             <td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
@@ -66,6 +71,12 @@
                 </tbody>
             </table>
         </div>
+        
     </body>
+    <script>
+        
+    
+    
+    </script>
 </html>
 

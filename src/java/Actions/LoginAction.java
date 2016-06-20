@@ -45,6 +45,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			return INPUT;
         }catch(RuntimeException e){
 			usuariodao.desconectar();
+            e.printStackTrace();
 			addActionError("Ocurrió un error al buscar al usuario.");
             return ERROR;
         }
