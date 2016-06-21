@@ -1,3 +1,13 @@
+// Tipos de mensajes a mostrar
+var TIPO_MENSAJE = {
+    DEFAULT: 0,
+    INFO: 1,
+    PRIMARY: 2,
+    SUCCESS: 3,
+    WARNING: 4,
+    DANGER: 5
+};
+
 function cambiarContenidos(pagina, target){
     var destino = target;
     if(pagina !== "#"){
@@ -50,4 +60,5 @@ function mensajes(mensaje, tipo){
     });     
 }
 
-
+// Así mandas a llamar a la funcion, Vic.
+//mensajes("Putos todos", TIPO_MENSAJE.SUCCESS);

@@ -54,7 +54,7 @@
                 <tbody>
                     <s:iterator value="resultados" var="resultado">
                         <tr>
-                            <!--td><a onclick="cambiarContenidos('ListRoles?token=<!s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td>
+                            <!--td><a onclick="cambiarContenidos('ListRoles?token=<s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td-->
                             <!--td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td-->
                             <td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
