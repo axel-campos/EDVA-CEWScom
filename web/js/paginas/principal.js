@@ -9,6 +9,7 @@ function responderSolicitud(token, correo, tipo, div){
         }else{
             mensajes(data,5);
         }    
-    });  
+    });
+    //Vamos a quitar el item de la lista
 }
 

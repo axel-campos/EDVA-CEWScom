@@ -72,9 +72,14 @@
                                     "WHERE ug.token IN (SELECT ug2.token FROM usuariogrupo AS ug2 WHERE ug2.correo = 'edva.escom@gmail.com' ) " +
                                     "AND aceptado = 0 AND idtipoUsuarioGrupo = 3;";
                                 List<Map<String, Object>> tabla = usuarioGrupoDAO.consultaGenerica(sql);
-                                for(int i = 0; i < tabla.size(); i++){
+                                int i = 0;
+                                for(i = 0; i < tabla.size(); i++){
                                     Map<String, Object> columna = tabla.get(i);
-                                    out.println("<div class='item active' id='item"+ i +"'>");
+                                    if(i == 0){
+                                        out.println("<div class='item active' id='item"+ i +"'>");
+                                    }else{
+                                        out.println("<div class='item' id='item"+ i +"'>");
+                                    }
                                     out.println("<div class='carousel-content'>");
                                     out.println("<div>");
                                     out.println("<p style='font-family: verdana; font-size: 10px'>Hay una solicitud del usuario: <br/> " + columna.get("NombreCompleto") +
@@ -100,6 +105,7 @@
                                     out.println("</div>");
                                     out.println("</div>");
                                 }
+                                out.println("<input type='hidden' id='noItems' name='noItems' value='" + i +"'>");
                             %>
                         </div>
                     </div>
