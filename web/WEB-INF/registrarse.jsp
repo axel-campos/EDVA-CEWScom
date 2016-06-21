@@ -1,9 +1,3 @@
-<%-- 
-    Document   : registrarse
-    Created on : 24/01/2016, 07:55:56 PM
-    Author     : DanHv
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
