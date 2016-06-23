@@ -15,7 +15,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
 	@Override
 	public void registrar(Usuario registro) {
-		String sql = "INSERT INTO Usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getCorreo());
@@ -27,6 +27,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 			stmt.setDate(7, registro.getFechaNacimiento());
 			stmt.setString(8, registro.getPassword());
             stmt.setDate(9, registro.getUltimaConexion());
+            stmt.setInt(10, registro.getFacebook());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -36,7 +37,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 	@Override
 	public void modificar(Usuario viejo, Usuario nuevo) {
 		String sql = "UPDATE Usuario SET correo = ?, nombre = ?, aPaterno = ?, aMaterno = ?, "
-			+ "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ?, ultimaConexion = ? WHERE correo = ?";
+			+ "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ?, ultimaConexion = ?, facebook = ? WHERE correo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, nuevo.getCorreo());
@@ -48,6 +49,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 			stmt.setDate(7, nuevo.getFechaNacimiento());
 			stmt.setString(8, nuevo.getPassword());
 			stmt.setString(9, viejo.getCorreo());
+            stmt.setInt(6, nuevo.getFacebook());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -83,7 +85,8 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 						.setTipo(rs.getInt("tipoUsuario"))
 						.setFechaNacimiento(rs.getDate("fechaNacimiento"))
 						.setPassword(rs.getString("password"))
-                        .setUltimaConexion(rs.getDate("ultimaConexion"));
+                        .setUltimaConexion(rs.getDate("ultimaConexion"))
+                        .setFacebook(rs.getInt("facebook"));
 				} else
 					return null;
 			}
@@ -111,7 +114,8 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 					.setTipo(rs.getInt("tipoUsuario"))
 					.setFechaNacimiento(rs.getDate("fechaNacimiento"))
 					.setPassword(rs.getString("password"))
-                    .setUltimaConexion(rs.getDate("ultimaConexion")));
+                    .setUltimaConexion(rs.getDate("ultimaConexion"))
+                    .setFacebook(rs.getInt("facebook")));
 			}
 			
 			return lista;
@@ -138,7 +142,8 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
                         .setTipo(rs.getInt("tipoUsuario"))
                         .setFechaNacimiento(rs.getDate("fechaNacimiento"))
                         .setPassword(rs.getString("password"))
-                        .setUltimaConexion(rs.getDate("ultimaConexion")));
+                        .setUltimaConexion(rs.getDate("ultimaConexion"))
+                        .setFacebook(rs.getInt("facebook")));
                 }
 
                 return lista;

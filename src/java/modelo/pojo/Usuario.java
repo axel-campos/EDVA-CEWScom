@@ -19,6 +19,7 @@ public class Usuario implements EDVADB {
 	private Date fechaNacimiento;
 	private String password;
     private Date ultimaConexion;
+    private int facebook;
 	
 	/**
 	 * Regresa el correo de este usuario.
@@ -196,6 +197,26 @@ public class Usuario implements EDVADB {
 	 */
 	public Usuario setUltimaConexion(Date ultimaConexion) {
 		this.ultimaConexion = ultimaConexion;
+		return this;
+	}
+    
+    /**
+	 * Regresa si el usuario se registro con Facebook
+	 * 
+	 * @return 1 = Se registro con Facebook
+	 */
+	public int getFacebook() {
+		return facebook;
+	}
+	
+	/**
+	 * Se asigna si el usuario se registro con Facebook
+	 * 
+	 * @param facebook 1 = Se registro con Facebook
+	 * @return La referencia a este usuario.
+	 */
+	public Usuario setFacebook(int facebook) {
+		this.facebook = facebook;
 		return this;
 	}
 }

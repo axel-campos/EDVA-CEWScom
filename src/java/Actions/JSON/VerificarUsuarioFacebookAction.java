@@ -40,6 +40,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
                         .setAPaterno(apellido)
                         .setFechaNacimiento(new java.sql.Date(fechaNacimiento.getTime()))
                         .setTipo(2)
+                        .setFacebook(1)
                         .setPassword("asdasdasd"));
             }
 
