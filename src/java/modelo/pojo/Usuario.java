@@ -18,7 +18,6 @@ public class Usuario implements EDVADB {
 	private int tipo;
 	private Date fechaNacimiento;
 	private String password;
-    private Date ultimaConexion;
     private int facebook;
 	
 	/**
@@ -178,25 +177,6 @@ public class Usuario implements EDVADB {
 	 */
 	public Usuario setPassword(String password) {
 		this.password = password;
-		return this;
-	}
-    /**
-	 * Regresa la contraseña de este usuario.
-	 * 
-	 * @return La contraseña del usuario.
-	 */
-	public Date getUltimaConexion() {
-		return ultimaConexion;
-	}
-	
-	/**
-	 * Asigna una nueva contraseña a este usuario.
-	 * 
-	 * @param password La nueva contraseña.
-	 * @return La referencia a este objeto.
-	 */
-	public Usuario setUltimaConexion(Date ultimaConexion) {
-		this.ultimaConexion = ultimaConexion;
 		return this;
 	}
     

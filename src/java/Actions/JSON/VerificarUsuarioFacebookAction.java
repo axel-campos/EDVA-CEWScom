@@ -44,7 +44,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
                         .setPassword("asdasdasd"));
             }
 
-            //Vamos a obtener al usuario para darlo de alta en la sesión, lo hacemos de nuevo en caso de que haya sido null la primera vez
+            //Vamos a obtener al usuario para darlo de alta en la sesión, lo buscamos de nuevo en caso de que haya sido null la primera vez
             usuario = usuarioDAO.buscar(new Usuario().setCorreo(correo));
             usuarioDAO.desconectar();
             

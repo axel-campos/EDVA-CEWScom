@@ -54,6 +54,31 @@
     <body>
         <div class="menu1">
             <h4>Actualizaciones grupos</h4>
+            <ul class="list-group">
+            <%
+                Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+                UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
+                usuarioGrupoDAO.conectar();
+                String consulta = "SELECT ugl.*, g.nombre FROM usuariogrupo_log ugl " +
+                                   "INNER JOIN grupo AS g ON g.token = ugl.token "+
+                                   "WHERE ugl.correo = '" + usuario.getCorreo() + "'LIMIT 10;";
+                List<Map<String, Object>> tabla1 = usuarioGrupoDAO.consultaGenerica(consulta);
+                for(int i = 0; i < tabla1.size(); i++){
+                    out.println("<li class='list-group-item' class='clearfix'><p style='font-family: verdana; font-size: 8px'>");
+                    Map<String, Object> columna = tabla1.get(i);
+                    if(columna.get("aceptado_nuevo") == null){
+                        out.println("Se ha enviado tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                    }
+                    out.println("</p></li>");
+                }
+                
+                if(tabla1.size() == 0){
+                    out.println("<li class='list-group-item' class='clearfix'><p style='font-family: verdana; font-size: 10px'>");
+                    out.println("Únete a un grupo de trabajo para recibir notificaciones");
+                    out.println("</p></li>");
+                }
+                %>
+            </ul>
         </div>
         <div class="menu2">
             <h4>Solicitudes de entrada</h4>
@@ -64,14 +89,11 @@
                     <div class="col-xs-offset-3 col-xs-6">
                         <div class="carousel-inner">
                             <%
-                                Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
-                                UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
-                                usuarioGrupoDAO.conectar();
                                 String sql = "SELECT ug.correo, CONCAT_WS(' ',u.nombre,u.aPaterno,u.aMaterno) AS NombreCompleto, ug.token, g.nombre " +
                                     "FROM usuariogrupo AS ug " +
                                     "INNER JOIN usuario AS u ON ug.correo = u.correo " +
                                     "INNER JOIN grupo AS g ON ug.token = g.token " +
-                                    "WHERE ug.token IN (SELECT ug2.token FROM usuariogrupo AS ug2 WHERE ug2.correo = '"+ usuario.getCorreo() +"' ) " +
+                                    "WHERE ug.token IN (SELECT ug2.token FROM usuariogrupo AS ug2 WHERE ug2.correo = '"+ usuario.getCorreo() +"'  AND ug2.idtipoUsuarioGrupo = 1) " +
                                     "AND aceptado = 0 AND idtipoUsuarioGrupo = 3;";
                                 List<Map<String, Object>> tabla = usuarioGrupoDAO.consultaGenerica(sql);
                                 int i = 0;
