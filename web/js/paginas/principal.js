@@ -13,6 +13,7 @@ function responderSolicitud(token, correo, tipo, div){
     var noItems = $("#noItems").val();
     //Vamos a quitar el item de la lista
     $( "#item"+div ).remove();
+    $("#noItems").val(noItems--);
     if(noItems == 1){
         $(".carousel-inner").append("<div class='item active'>"+
                                     "<div class='carousel-content'>"+

@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -56,6 +57,7 @@
             <h4>Actualizaciones grupos</h4>
             <ul class="list-group">
             <%
+                List<String> tipo = Arrays.asList("","Coordinador","Administrador","Colaborador");
                 Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
                 UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
                 usuarioGrupoDAO.conectar();
@@ -67,7 +69,16 @@
                     out.println("<li class='list-group-item' class='clearfix'><p style='font-family: verdana; font-size: 8px'>");
                     Map<String, Object> columna = tabla1.get(i);
                     if(columna.get("aceptado_nuevo") == null){
-                        out.println("Se ha enviado tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                        out.println("Se rechazó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                    }else if(columna.get("aceptado_anterior") == null){
+                        out.println("Se envió tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                    }else{
+                        if(columna.get("aceptado_anterior") != columna.get("aceptado_nuevo")){
+                            out.println("Se aceptó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                        }else{
+                            out.println("Se rol en el grupo " + columna.get("nombre") + "(" + columna.get("token") + ") ha sido cambiado de: ");
+                            out.println("" + tipo.get((int)columna.get("idtipoUsuarioGrupo_anterior")) + " a " + tipo.get((int)columna.get("idtipoUsuarioGrupo_nuevo")));
+                        }
                     }
                     out.println("</p></li>");
                 }
