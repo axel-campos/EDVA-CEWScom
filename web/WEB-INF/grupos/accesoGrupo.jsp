@@ -22,16 +22,17 @@
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                <input id="search_button" type="submit" class="btn btn-primary" value="Buscar">
+                                <!--input id="search_button" type="submit" class="btn btn-primary" value="Buscar"-->
+                                <button type="submit" id="search_button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
                             </div>
                         </div>     
                     </form>
-                    <div class="form-group" style="width: 80%;margin: initial">
+                    <div class="form-inline" style="width: 80%;margin-left: auto;margin-right: auto">
                         <div class="panel panel-success" id="correcto" style="display:none;">
                             <div class="panel-heading" style="text-align: center">Datos del grupo</div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table id="tb_grupo" style="width:100%">                                        
+                                    <table id="tb_grupo" style="width:100%;">                                        
                                     </table>
                                 </div>
                             </div>

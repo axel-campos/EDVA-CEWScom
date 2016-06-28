@@ -35,7 +35,7 @@
                 <s:actionerror />
             </div>
         </s:if>
-        <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
+        <a onclick="crearGrupo()" class="btn btn-link">Crear Nuevo Grupo </a>
         <a onclick="solicitarIngreso()" class="btn btn-link">Solicitar entrada a grupo</a>
     </div>
         <div class="table-responsive" id='div1'>
@@ -45,7 +45,7 @@
                     <tr>
                     <%
                         for(int x = 0; x < cabeceras.length; x++){
-                            out.println("<th data-sortable='true' data-field='"+cabeceras[x]+"'>"+cabeceras[x]+"</th>");
+                            out.println("<th data-sortable='true' data-field='"+cabeceras[x]+"' data-align='center'>"+cabeceras[x]+"</th>");
                             
                         }
                     %>
@@ -59,12 +59,16 @@
                             <td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
-                            <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Editar</a></td>
+                            <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">
+                                    <span class="glyphicon glyphicon-pencil" style="min-width: 20px; min-height: 20px"></span></a>
+                            </td>
                             <td><s:if test="%{#resultado[4] != 1}" >
-                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
+                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">
+                                <span class="glyphicon glyphicon-log-out" style="min-width: 20px; min-height: 20px"></span></a>    
                             </s:if></td>
                             <td><s:if test="%{#resultado[4] == 1}" >
-                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
+                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">
+                                <span class="glyphicon glyphicon-trash" style="min-width: 20px; min-height: 20px"></span></a>    
                             </s:if></td>
                         </tr>
                     </s:iterator>
@@ -73,10 +77,5 @@
         </div>
         
     </body>
-    <script>
-        
-    
-    
-    </script>
 </html>
 

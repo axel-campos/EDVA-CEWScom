@@ -68,21 +68,24 @@
                 <div class="panel-heading">Iniciar Sesión</div>
                 <div class="panel-body">
                     <form id="loginfrm" method="POST" action="login" class="form-horizontal">
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="correo">Correo Electrónico</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" id="correo" name="correo" placeholder="mi_correo@example.com"/>
+                                <i class="glyphicon glyphicon-user form-control-feedback"></i>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="password">Contraseña</label>
                             <div class="col-md-4">
                                 <input type="password" class="form-control" id="password" name="password"/>
+                                <i class="glyphicon glyphicon-inbox form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2">
-                                <input type="submit" class="btn btn-primary" value="Entrar"/>
+                                <!--input type="submit" class="btn btn-primary" value="Entrar"/-->
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span>  Entrar</button>
                                 <a href="registrarseform" class="btn btn-link">¿Aún no tienes una cuenta? Regístrate aquí</a>
                             </div>
                             <label for="error" style="margin:100px auto 60px auto;color:Red; line-height:40px;font-size:medium;display:none">Un error ha ocurrido en su solicitud</label>
@@ -112,10 +115,10 @@
                         </div>
                 </s:if>
             </div>
-        </div>       
-        <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
-        <script src="${pageContext.request.contextPath}/js/paginas/login.js"></script>
+        </div>   
     </body>
+    <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+    <script src="${pageContext.request.contextPath}/js/paginas/login.js"></script>
 </html>
