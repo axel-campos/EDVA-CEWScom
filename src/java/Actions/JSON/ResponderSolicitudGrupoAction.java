@@ -3,7 +3,9 @@ package Actions.JSON;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
+import modelo.dao.GrupoDAO;
 import modelo.dao.UsuarioGrupoDAO;
+import modelo.pojo.Grupo;
 import modelo.pojo.UsuarioGrupo;
 import org.apache.struts2.ServletActionContext;
 
@@ -18,20 +20,34 @@ public class ResponderSolicitudGrupoAction extends ActionSupport {
     
     public String execute() throws Exception {
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
-        UsuarioGrupo usuarioGrupo;
-        usuarioGrupo = usuarioGrupoDAO.buscar(new UsuarioGrupo()
-                                                .setCorreo(correo)
-                                                .setToken(token));
         
         HttpServletResponse response = ServletActionContext.getResponse();
         try(PrintWriter out = response.getWriter()) {
             try{    
                 usuarioGrupoDAO.conectar();
-                if(tipo == 1){
+                UsuarioGrupo usuarioGrupo;
+                usuarioGrupo = usuarioGrupoDAO.buscar(new UsuarioGrupo()
+                                                        .setCorreo(correo)
+                                                        .setToken(token));
+                if(tipo == 0){
                     usuarioGrupoDAO.modificar(usuarioGrupo, new UsuarioGrupo().setCorreo(correo)
                                                                               .setToken(token)
                                                                               .setAceptado(true)
                                                                               .setIdTipoUsuarioGrupo(usuarioGrupo.getIdTipoUsuarioGrupo()));
+                    GrupoDAO grupoDAO = new GrupoDAO();
+                    try{
+                        grupoDAO.conectar();
+                        Grupo viejo = grupoDAO.buscar(new Grupo().setToken(token));
+                        grupoDAO.modificar(viejo, new Grupo().setToken(token)
+                                                    .setDescripcion(viejo.getDescripcion())
+                                                    .setNombre(viejo.getNombre())
+                                                    .setTotalProfesores(viejo.getTotalProfesores() + 1));
+                        grupoDAO.desconectar();
+                    }catch(RuntimeException e){
+                        grupoDAO.desconectar();
+                        out.println("Error: Hubo un error al procesar la solicitud");
+                        out.flush();
+                    }
                     out.println("Se ha aceptado al usuario en el grupo");
                 }else{
                     usuarioGrupoDAO.eliminar(usuarioGrupo);     //Se elimina la solicitud del usuario si se rechaza

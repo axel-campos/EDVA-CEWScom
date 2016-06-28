@@ -15,7 +15,7 @@
 		</interceptors>
 		<default-interceptor-ref name="secureStack" />
 		<global-results>
-                    <result name="login" type="redirect">/loginform.action</result>
+            <result name="login" type="redirect">/loginform.action</result>
 		</global-results>
 		<action name="index">
 			<result>/WEB-INF/index.jsp</result>
