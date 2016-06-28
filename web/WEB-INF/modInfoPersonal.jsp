@@ -1,3 +1,4 @@
+<%@page import="modelo.pojo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
@@ -53,7 +54,14 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
                                 <input id="modify_button" type="button" class="btn btn-success" value="Modificar" onclick="habilitarEdicion()">
+                                <%
+                                    Usuario usuario = (Usuario)session.getAttribute("usuario");
+                                    if(usuario.getFacebook() != 1){
+                                    %>
                                 <input id="pwd_modify_button" type="button" class="btn btn-primary" value="Cambiar Contraseña" onclick="modificarContrasenia()">
+                                <%
+                                    }
+                                    %>
                             </div>
                         </div>     
                     </form>
