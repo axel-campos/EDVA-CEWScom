@@ -35,7 +35,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>   
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>

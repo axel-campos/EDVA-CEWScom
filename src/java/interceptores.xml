@@ -30,10 +30,15 @@
         <action name="indexAction" method="">
             <result>/WEB-INF/principal.jsp</result>
         </action>
-        
-		<action name="ListGroup" class="Actions.Groups.ListarGrupos">
+        <action name="ListGroup">
 			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
 		</action>
+        <action name="SearchGroups" class="Actions.Groups.ListarGrupos">
+            <result name="success">/WEB-INF/grupos/tablaGrupos.jsp</result>            
+        </action>
+		<!--action name="ListGroup" class="Actions.Groups.ListarGrupos">
+			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
+		</action-->
 		<action name="AltaGroup">
 			<result>/WEB-INF/grupos/altaGrupo.jsp</result>
 		</action>

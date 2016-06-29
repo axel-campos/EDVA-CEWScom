@@ -20,7 +20,21 @@ $(document).ready(function(){
         formatNoMatches: function(){
             return "Ningún registro coincide con la búsqueda";
         }
-    });    
+    });
+    var form = "#frmFiltros";
+    var action = "SearchGroups";
+    $(form).submit(function(event){
+       event.preventDefault();
+       var datos = $(form).serialize();
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: datos,
+            success: function(data){
+                $("#contenido").html(data);
+            }
+        });
+    });
 });
 
 function getHeight(){
