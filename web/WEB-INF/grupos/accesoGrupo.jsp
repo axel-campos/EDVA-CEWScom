@@ -48,7 +48,7 @@
                 </div>
                 <s:if test="%{#parameters.resp[0] == 1}">
                     <div class="alert alert-success">
-                        <span class="glyphicon glyphicon-alert"></span>  La solicitud se envío con éxito.
+                        <span class="glyphicon glyphicon-ok"></span>  La solicitud se envío con éxito.
                     </div>
                 </s:if>
                 <s:elseif test="%{#parameters.resp[0] == 2}">
@@ -58,7 +58,12 @@
                 </s:elseif>
                 <s:elseif test="%{#parameters.resp[0] == 3}">
                     <div class="alert alert-info">
-                        <span class="glyphicon glyphicon-alert"></span>  Ya se había enviado un solicitud previa. Por favor, espere su respuesta.
+                        <span class="glyphicon glyphicon-info-sign"></span>  Ya se había enviado un solicitud previa. Por favor, espere su respuesta.
+                    </div>
+                </s:elseif>
+                <s:elseif test="%{#parameters.resp[0] == 4}">
+                    <div class="alert alert-info">
+                        <span class="glyphicon glyphicon-info-sign"></span>  Usted ya es miembro de este grupo.
                     </div>
                 </s:elseif>
                 

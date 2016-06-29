@@ -59,7 +59,7 @@
                             <td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
-                            <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">
+                            <td><a onclick="modificarGrupo('<s:property value="%{#resultado[3]}" />')" style="cursor:pointer;">
                                     <span class="glyphicon glyphicon-pencil" style="min-width: 20px; min-height: 20px"></span></a>
                             </td>
                             <td><s:if test="%{#resultado[4] != 1}" >

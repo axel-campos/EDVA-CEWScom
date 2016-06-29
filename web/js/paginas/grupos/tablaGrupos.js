@@ -103,3 +103,20 @@ function crearGrupo(){
         }]
     });
 }
+
+function modificarGrupo(token){
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("AltaGroup?token=" + token),
+        title: "Modificar datos grupo",
+        buttons: [{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    });
+}

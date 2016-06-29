@@ -42,8 +42,8 @@ if(request.getParameter("token") != null){
                     
                         <% if(request.getParameter("token") != null){ %>
                         <div class="form-group">
-                            <label for="nombre" class="col-md-3 control-label">Token:</label>
-                            <div class="col-md-4">
+                            <label for="nombre" class="col-md-4 control-label">Token:</label>
+                            <div class="col-md-6">
                                 <input type="text" id="nombre" name="nombre" disabled="disabled" class="form-control" value="<%= token %>"/>
                             </div>
                         </div>
