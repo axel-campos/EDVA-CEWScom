@@ -1,5 +1,13 @@
+<%@page import="modelo.pojo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%
+    String hidden = "";
+    Usuario usuario = (Usuario)session.getAttribute("usuario");
+    if(usuario.getFacebook() != 1){
+        hidden = "display: none;";
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,10 +66,10 @@
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                <!--input id="modify_button" type="button" class="btn btn-success" value="Modificar" onclick="habilitarEdicion()">
-                                <input id="pwd_modify_button" type="button" class="btn btn-primary" value="Cambiar Contraseña" onclick="modificarContrasenia()"-->
+                                
+                                
                                 <button id="modify_button" type="button" class="btn btn-success" onclick="habilitarEdicion()"><span class="glyphicon glyphicon-pencil"></span>  Modificar</button>
-                                <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>   Cambiar Contraseña</button>
+                                <button id="pwd_modify_button" type="button" class="btn btn-primary" style="<%= hidden%>" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>   Cambiar Contraseña</button>
                                 <button id="submit_button" type="submit" class="btn btn-success" style="display:none"><span class="glyphicon glyphicon-ok"></span>  Aceptar</button>
                                 <button id="cancel_button" type="button" class="btn btn-danger" style="display:none" onclick="cancelOperation()"><span class="glyphicon glyphicon-repeat"></span>  Cancelar</button>
                             </div>
