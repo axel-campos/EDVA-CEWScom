@@ -4,7 +4,7 @@
 <%
     String hidden = "";
     Usuario usuario = (Usuario)session.getAttribute("usuario");
-    if(usuario.getFacebook() != 1){
+    if(usuario.getFacebook() == 1){
         hidden = "display: none;";
     }
 %>
