@@ -1,8 +1,11 @@
+<%@page import="modelo.dao.TipoUsuarioGrupoDAO"%>
+<%@page import="java.util.Map"%>
 <%@page import="modelo.pojo.Grupo"%>
 <%@page import="modelo.dao.GrupoDAO"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="modelo.pojo.UsuarioGrupo"%>
+<%@page import="modelo.pojo.TipoUsuarioGrupo"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.dao.UsuarioGrupoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +13,19 @@
 
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
-   String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar"}; 
+    String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar"}; 
+    TipoUsuarioGrupoDAO rolDAO = new TipoUsuarioGrupoDAO();
+    rolDAO.conectar();
+    List<TipoUsuarioGrupo>roles = rolDAO.buscarTodos();
+    String nombre = "";
+    int idRol = 0;
+    if(session.getAttribute("nombre") != null){
+        nombre = session.getAttribute("nombre").toString();
+        session.removeAttribute("nombre");
+    }if(session.getAttribute("rol") != null){
+        idRol = Integer.parseInt(session.getAttribute("rol").toString());
+        session.removeAttribute("rol");
+    }
 %>
 
  <!DOCTYPE html>
@@ -21,9 +36,6 @@
         <title>JSP Page</title>      
     </head>
     <body>
-	<!--s:if test="%{#respuesta == 1}" >
-               
-        <!/s:if-->
     <div id="contenedor1" class="container-fluid">
         <s:if test="hasActionMessages()">
             <div class="alert alert-success">
@@ -35,18 +47,47 @@
                 <s:actionerror />
             </div>
         </s:if>
-        <a onclick="cambiarContenidos('AltaGroup','#contenido')" class="btn btn-link">Crear Nuevo Grupo </a>
+        <a onclick="crearGrupo()" class="btn btn-link">Crear Nuevo Grupo </a>
         <a onclick="solicitarIngreso()" class="btn btn-link">Solicitar entrada a grupo</a>
     </div>
-        <div class="table-responsive" id='div1'>
-            <!table class="table table-hover">
+    <div id="filtros" class="container-fluid">
+        <form id="frmFiltros" name="frmFiltros" class="form-inline">
+            <!--fieldset class="form-group">
+                <legend align="center">Filtros</legend-->
+                <div class="form-group" style="width: 30%">
+                    <label for="nombre">Nombre del Grupo:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" value="<%= nombre%>">
+                </div>
+                <div class="form-group" style="width: 30%">
+                    <label for="rol">Rol:</label>
+                    <select class="form-control" id="rol" name="rol" style="width:50%">
+                        <option value="0">Todos los roles</option>
+                        <%
+                        for(TipoUsuarioGrupo rol : roles){
+                            String s = "";
+                            if(idRol == rol.getIdTipoUsuarioGrupo()){
+                                s = "selected";
+                            }
+                        %>
+                        <option value="<%= rol.getIdTipoUsuarioGrupo()%>" <%= s%>><%= rol.getNombre()%></option>
+                        <%
+                        }    
+                        %>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+            <!--/fieldset-->
+        </form>
+    </div>
+    <div class="table-responsive" id='div1'>
+        <s:if test="%{resultados.size > 0}">
             <table id="tabla">
                 <thead>
                     <tr>
                     <%
                         for(int x = 0; x < cabeceras.length; x++){
-                            out.println("<th data-sortable='true' data-field='"+cabeceras[x]+"'>"+cabeceras[x]+"</th>");
-                            
+                            out.println("<th data-sortable='true' data-field='"+cabeceras[x]+"' data-align='center'>"+cabeceras[x]+"</th>");
+
                         }
                     %>
                     </tr>
@@ -59,24 +100,24 @@
                             <td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
-                            <td><a onclick="cambiarContenidos('AltaGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Editar</a></td>
+                            <td><a onclick="modificarGrupo('<s:property value="%{#resultado[3]}" />')" style="cursor:pointer;">
+                                    <span class="glyphicon glyphicon-pencil" style="min-width: 20px; min-height: 20px"></span></a>
+                            </td>
                             <td><s:if test="%{#resultado[4] != 1}" >
-                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">Salir</a>    
+                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">
+                                <span class="glyphicon glyphicon-log-out" style="min-width: 20px; min-height: 20px"></span></a>    
                             </s:if></td>
                             <td><s:if test="%{#resultado[4] == 1}" >
-                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">Eliminar</a>    
+                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">
+                                <span class="glyphicon glyphicon-trash" style="min-width: 20px; min-height: 20px"></span></a>    
                             </s:if></td>
                         </tr>
                     </s:iterator>
                 </tbody>
-            </table>
-        </div>
+            </table>        
+        </s:if>
+    </div>
         
     </body>
-    <script>
-        
-    
-    
-    </script>
 </html>
 

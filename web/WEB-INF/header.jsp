@@ -44,11 +44,19 @@
                     }
                     String nombre = user.getNombre() + " " + user.getAPaterno() + " " + user.getAMaterno();
                     menuDAO.desconectar();
-                %>           
-                <li><a href="logout.action">Cerrar Sesión</a></li>
+                %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= nombre%></a></li>
+                <!--li><a href="#"><span class="glyphicon glyphicon-user"></span> <!%= nombre%></a></li-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
+                        <span class="glyphicon glyphicon-user"></span> <%= nombre%> <span class='caret'></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>
+                        <li><a href="logout.action">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

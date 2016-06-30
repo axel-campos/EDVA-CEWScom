@@ -4,8 +4,7 @@ $(document).ready(function(){
         sortName: 'Item ID',
         pageList: [10, 25, 50, 100, 'All'],
         sortable: true,
-        pagination: true,          
-        showToggle: true,
+        pagination: true,
         pageNumber: true,
         search: true,
         minimumCountColumns: 2,
@@ -21,7 +20,21 @@ $(document).ready(function(){
         formatNoMatches: function(){
             return "Ningún registro coincide con la búsqueda";
         }
-    });    
+    });
+    var form = "#frmFiltros";
+    var action = "SearchGroups";
+    $(form).submit(function(event){
+       event.preventDefault();
+       var datos = $(form).serialize();
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: datos,
+            success: function(data){
+                $("#contenido").html(data);
+            }
+        });
+    });
 });
 
 function getHeight(){
@@ -73,8 +86,51 @@ function verificarGrupoVacio(token){
 
 function solicitarIngreso(){
     BootstrapDialog.show({
-        message: $('<div id="ventana"></div>').load("enviarSolicitudGrupo")
+        message: $('<div id="ventana"></div>').load("enviarSolicitudGrupo"),
+        title: "Solicitar Ingreso a Grupo",
+        buttons: [{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
     });
 }
 
+function crearGrupo(){
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("AltaGroup"),
+        title: "Crear nuevo grupo",
+        buttons: [{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    });
+}
 
+function modificarGrupo(token){
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("AltaGroup?token=" + token),
+        title: "Modificar datos grupo",
+        buttons: [{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    });
+}

@@ -30,10 +30,15 @@
         <action name="indexAction" method="">
             <result>/WEB-INF/principal.jsp</result>
         </action>
-        
-		<action name="ListGroup" class="Actions.Groups.ListarGrupos">
+        <action name="ListGroup">
 			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
 		</action>
+        <action name="SearchGroups" class="Actions.Groups.ListarGrupos">
+            <result name="success">/WEB-INF/grupos/tablaGrupos.jsp</result>            
+        </action>
+		<!--action name="ListGroup" class="Actions.Groups.ListarGrupos">
+			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
+		</action-->
 		<action name="AltaGroup">
 			<result>/WEB-INF/grupos/altaGrupo.jsp</result>
 		</action>
@@ -142,6 +147,10 @@
             <result name="input" type="redirectAction">
                 <param name="actionName">enviarSolicitudGrupo</param>
                 <param name="resp">3</param>
+            </result>
+            <result name="sameinput" type="redirectAction">
+                <param name="actionName">enviarSolicitudGrupo</param>
+                <param name="resp">4</param>
             </result>
         </action>
 	</package>

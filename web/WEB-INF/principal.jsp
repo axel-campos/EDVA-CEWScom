@@ -17,7 +17,6 @@
                 display:flex;
                 align-items:center;
             }
-
             #text-carousel {
               width: 100%;
               height: auto;
@@ -57,7 +56,6 @@
                                 }
                                 out.println("</p></li>");
                             }
-
                             if(tabla1.size() == 0){
                                 out.println("<li class='list-group-item' class='clearfix'><p style='font-family: verdana; font-size: 10px'>");
                                 out.println("Únete a un grupo de trabajo para recibir notificaciones");
@@ -105,7 +103,6 @@
                                                 out.println("</div>");
                                                 out.println("</div>");
                                             }
-
                                             if(tabla.size() == 0){
                                                 out.println("<div class='item-active'>");
                                                 out.println("<div class='carousel-content'>");

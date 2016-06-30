@@ -22,16 +22,17 @@
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                <input id="search_button" type="submit" class="btn btn-primary" value="Buscar">
+                                <!--input id="search_button" type="submit" class="btn btn-primary" value="Buscar"-->
+                                <button type="submit" id="search_button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
                             </div>
                         </div>     
                     </form>
-                    <div class="form-group" style="width: 80%;margin: initial">
+                    <div class="form-inline" style="width: 80%;margin-left: auto;margin-right: auto">
                         <div class="panel panel-success" id="correcto" style="display:none;">
                             <div class="panel-heading" style="text-align: center">Datos del grupo</div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table id="tb_grupo" style="width:100%">                                        
+                                    <table id="tb_grupo" style="width:100%;">                                        
                                     </table>
                                 </div>
                             </div>
@@ -47,7 +48,7 @@
                 </div>
                 <s:if test="%{#parameters.resp[0] == 1}">
                     <div class="alert alert-success">
-                        <span class="glyphicon glyphicon-alert"></span>  La solicitud se envío con éxito.
+                        <span class="glyphicon glyphicon-ok"></span>  La solicitud se envío con éxito.
                     </div>
                 </s:if>
                 <s:elseif test="%{#parameters.resp[0] == 2}">
@@ -57,7 +58,12 @@
                 </s:elseif>
                 <s:elseif test="%{#parameters.resp[0] == 3}">
                     <div class="alert alert-info">
-                        <span class="glyphicon glyphicon-alert"></span>  Ya se había enviado un solicitud previa. Por favor, espere su respuesta.
+                        <span class="glyphicon glyphicon-info-sign"></span>  Ya se había enviado un solicitud previa. Por favor, espere su respuesta.
+                    </div>
+                </s:elseif>
+                <s:elseif test="%{#parameters.resp[0] == 4}">
+                    <div class="alert alert-info">
+                        <span class="glyphicon glyphicon-info-sign"></span>  Usted ya es miembro de este grupo.
                     </div>
                 </s:elseif>
                 

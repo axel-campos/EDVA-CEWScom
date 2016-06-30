@@ -26,7 +26,8 @@
     </head>
     <body role="document">
         <%@include file="header.jsp" %>
-        <div class="embed-responsive embed-responsive-16by9" id="contenido">
+        <!--div class="embed-responsive embed-responsive-16by9" id="contenido" style="min-height: 500px"-->
+        <div id="contenido" class="container-fluid">
             <%@include file="principal.jsp"%>
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
@@ -34,7 +35,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>   
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
