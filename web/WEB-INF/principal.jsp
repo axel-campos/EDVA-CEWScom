@@ -133,34 +133,50 @@
                         <div class="panel-body">
                             <div class = "panel panel-primary">
                                 <div class = "panel-heading">
-                                   <h3 class = "panel-title">Panel title</h3>
+                                    <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                                 <div class = "panel-body">
-                                   This is a Basic panel
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                              </div>
                             <div class = "panel panel-primary">
                                 <div class = "panel-heading">
-                                   <h3 class = "panel-title">Panel title</h3>
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                                 <div class = "panel-body">
-                                   This is a Basic panel
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                              </div>
                             <div class = "panel panel-primary">
                                 <div class = "panel-heading">
-                                   <h3 class = "panel-title">Panel title</h3>
+                                  <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                                 <div class = "panel-body">
-                                   This is a Basic panel
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                              </div>
                             <div class = "panel panel-primary">
                                 <div class = "panel-heading">
-                                   <h3 class = "panel-title">Panel title</h3>
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                                 <div class = "panel-body">
-                                   This is a Basic panel
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
+                                </div>
+                             </div>
+                            <div class = "panel panel-primary">
+                                <div class = "panel-heading">
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
+                                </div>
+                                <div class = "panel-body">
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
+                                </div>
+                             </div>
+                            <div class = "panel panel-primary">
+                                <div class = "panel-heading">
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
+                                </div>
+                                <div class = "panel-body">
+                                   <p style='font-family: verdana; font-size: 11px'>asd</p>
                                 </div>
                              </div>
                         </div>

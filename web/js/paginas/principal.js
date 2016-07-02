@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('#contenidoPrincipal').height($(window).height()*0.7);
+});
+
 function responderSolicitud(token, correo, tipo, div){
     //Tipo 0 = aceptar, 1 = rechazar
     var action_ajax = "responderSolicitudGrupo.action";
