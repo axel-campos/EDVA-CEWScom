@@ -14,17 +14,27 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
     String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar"}; 
+    String cabeceraMExito = "<div class='alert alert-success'><span class='glyphicon glyphicon-ok'></span>  ";
+    String cabeceraMError = "<div class='alert alert-danger'><span class='glyphicon glyphicon-alert'></span>  ";
+    String cierreM = "</div>";
     TipoUsuarioGrupoDAO rolDAO = new TipoUsuarioGrupoDAO();
     rolDAO.conectar();
     List<TipoUsuarioGrupo>roles = rolDAO.buscarTodos();
-    String nombre = "";
+    String nombre = "", token = "";
     int idRol = 0;
+    boolean busco = false;
     if(session.getAttribute("nombre") != null){
         nombre = session.getAttribute("nombre").toString();
         session.removeAttribute("nombre");
     }if(session.getAttribute("rol") != null){
         idRol = Integer.parseInt(session.getAttribute("rol").toString());
         session.removeAttribute("rol");
+    }if(session.getAttribute("token") != null){
+        token = session.getAttribute("token").toString();
+        session.removeAttribute("token");
+    }if(session.getAttribute("busco") != null){
+        busco = (Boolean)session.getAttribute("busco");
+        session.removeAttribute("busco");
     }
 %>
 
@@ -52,14 +62,16 @@
     </div>
     <div id="filtros" class="container-fluid">
         <form id="frmFiltros" name="frmFiltros" class="form-inline">
-            <!--fieldset class="form-group">
-                <legend align="center">Filtros</legend-->
-                <div class="form-group" style="width: 30%">
-                    <label for="nombre">Nombre del Grupo:</label>
+            <div class="form-group col-md-3">
+                <label for="token">Token:</label>
+                    <input type="text" id="token" name="token" class="form-control" value="<%= token%>">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nombre">Nombre del Grupo:</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" value="<%= nombre%>">
-                </div>
-                <div class="form-group" style="width: 30%">
-                    <label for="rol">Rol:</label>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="rol">Rol:</label>
                     <select class="form-control" id="rol" name="rol" style="width:50%">
                         <option value="0">Todos los roles</option>
                         <%
@@ -74,13 +86,15 @@
                         }    
                         %>
                     </select>
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
-            <!--/fieldset-->
+            </div>
+            <div class="form-group col-md-1">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+            </div>
         </form>
     </div>
     <div class="table-responsive" id='div1'>
-        <s:if test="%{resultados.size > 0}">
+        <!--s:if test="%{resultados.size > 0}"-->
+        <% if(busco){%>
             <table id="tabla">
                 <thead>
                     <tr>
@@ -115,7 +129,8 @@
                     </s:iterator>
                 </tbody>
             </table>        
-        </s:if>
+        <!--/s:if-->
+        <% }%>
     </div>
         
     </body>

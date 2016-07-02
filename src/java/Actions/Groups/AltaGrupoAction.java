@@ -55,6 +55,10 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
         }
         
         GrupoDAO grupoDAO = new GrupoDAO();
+        String accion = "crear", nombreGrupo = "";
+        if(submit.equals("Crear")){
+            accion = "modificar";
+        }
         try{
             grupoDAO.conectar();
             if(submit.equals("Crear")){
@@ -64,15 +68,17 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
             Grupo grupo = new Grupo()
                     .setToken(token)
                     .setNombre(nombre)
-                    .setDescripcion(descripcion)
-                    .setTotalProfesores(1);
-            
+                    .setDescripcion(descripcion);
+            nombreGrupo = grupo.getNombre();
             if(submit.equals("Crear")){
+                grupo.setTotalProfesores(1);//Solo el creador es registrado
                 grupoDAO.registrar(grupo);
-                addActionMessage("<b>¡Éxito!</b> El grupo " + grupo.getNombre() + " ha sido registrado.");
+                addActionMessage("El grupo " + grupo.getNombre() + " ha sido registrado con éxito.");
             }else{
-                Grupo viejo = new Grupo().setToken(token);
+                Grupo viejo = grupoDAO.buscar(new Grupo().setToken(token));
+                grupo.setTotalProfesores(viejo.getTotalProfesores());//Se busca el numero de profesores que tenía antes de modificar
                 grupoDAO.modificar(viejo, grupo);
+                addActionMessage("El grupo " + grupo.getNombre() + " ha sido modificado con éxito");
             }
             grupoDAO.desconectar();
             /*Esto es para agregar al usuario como profesor coordinador.*/
@@ -92,7 +98,7 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
             return "modificar";
         }catch(RuntimeException e) {
             grupoDAO.desconectar();
-            addActionError("Ocurrió un error al registrar al nuevo grupo.");
+            addActionError("Ocurrió un error al " + accion + " el grupo " + nombreGrupo);
             return ERROR;
         }
     }

@@ -22,6 +22,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
     private String exito = "";
     private String nombre;
     private String rol;
+    private String token;
     
 	@Override
     public String execute() throws Exception {
@@ -31,7 +32,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
         //Vamos a obtener solo los grupos del usuario que tiene activa la sesión
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO(); 
         usuarioGrupoDAO.conectar();
-        if(nombre.trim().isEmpty() && rol.equals("0")){//No hubo filtros
+        if(token.trim().isEmpty() && nombre.trim().isEmpty() && rol.equals("0")){//No hubo filtros
             grupos = usuarioGrupoDAO.buscarTodos().stream().filter(
             p -> p.getCorreo().equals(usuario.getCorreo())).filter(p -> p.getAceptado()).collect(Collectors.toList());
             for(int i = 0; i < grupos.size(); i++){
@@ -49,11 +50,13 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
             }
         }else{//Hubo mínimo un filtro
             String where = "";
-            if(!nombre.trim().isEmpty()){ 
-                where += "AND g.nombre LIKE '%" + nombre + "%'";
+            if(!token.trim().isEmpty()){
+                where += "AND g.token LIKE '%" + token + "%' ";
+                userSession.put("token", token);
+            }if(!nombre.trim().isEmpty()){ 
+                where += "AND g.nombre LIKE '%" + nombre + "%' ";
                 userSession.put("nombre", nombre);
-            }
-            if(!rol.equals("0")){
+            }if(!rol.equals("0")){
                 where += "AND idtipoUsuarioGrupo = " + rol;
                 userSession.put("rol", rol);
             }
@@ -72,24 +75,6 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
         }       
         if(!exito.isEmpty()){
             switch(exito){
-                case "1":
-                    addActionMessage("El grupo se ha registrado");
-                    break;
-                case "2":
-                    addActionMessage("El grupo se ha modificado");
-                    break;
-                case "3":
-                    addActionMessage("El grupo se ha eliminado");
-                    break;
-                case "4":
-                    addActionError("Ha ocurrido un error al eliminar el grupo");
-                    break;
-                case "5":
-                    addActionMessage("Se ha dado de baja exitosamente del grupo");
-                    break;
-                case "6":
-                    addActionError("Ha ocurrido un error al tratar de darse de baja del grupo");
-                    break;
                 case "7":
                     addActionMessage("El rol de administrador fue cambiado con éxito.");
                     break;
@@ -99,6 +84,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
             }
         }
         usuarioGrupoDAO.desconectar();
+        userSession.put("busco", true);
         return SUCCESS;
     }
 
@@ -145,6 +131,14 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

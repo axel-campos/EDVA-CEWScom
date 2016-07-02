@@ -63,7 +63,7 @@
     <body>
         <h1>EDVA CWEScom</h1>
 		<br>
-        <div class="container">
+        <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">Iniciar Sesión</div>
                 <div class="panel-body">
