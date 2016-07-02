@@ -16,26 +16,29 @@ public class BajaGrupo extends ActionSupport implements interceptor.Authenticate
     
     public BajaGrupo() {
     }
-    
+    @Override
     public String execute() throws Exception{
         
         GrupoDAO grupoDAO = new GrupoDAO();
-        
+        String nombreGrupo = "";
         try{
             grupoDAO.conectar();
-            grupoDAO.eliminar(new Grupo().setToken(token));
+            Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+            nombreGrupo = grupo.getNombre();
+            grupoDAO.eliminar(grupo);
             grupoDAO.desconectar();
         }catch(RuntimeException e){
+            addActionError("El grupo " + nombreGrupo + " no se pudo eliminar.");
             return ERROR;
         }
-        
+        addActionMessage("El grupo " + nombreGrupo + " se eliminó con éxito.");
         return SUCCESS;
     }
 
     public String baja() throws Exception{
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
         GrupoDAO grupoDAO = new GrupoDAO();
-        
+        String nombreGrupo = "";
         try{
             usuarioGrupoDAO.conectar();
             usuarioGrupoDAO.eliminar(new UsuarioGrupo().setCorreo(usuario.getCorreo()).setToken(token));
@@ -43,15 +46,17 @@ public class BajaGrupo extends ActionSupport implements interceptor.Authenticate
             
             grupoDAO.conectar();
             Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+            nombreGrupo = grupo.getNombre();
             grupoDAO.modificar(grupo, new Grupo().setToken(token)
                                                  .setNombre(grupo.getNombre())
                                                  .setDescripcion(grupo.getDescripcion())
                                                  .setTotalProfesores(grupo.getTotalProfesores() - 1));
             grupoDAO.desconectar();
         }catch(RuntimeException e){
+            addActionError("Usted no ha podido salir del grupo " + nombreGrupo);
             return ERROR;
         }
-       
+        addActionMessage("Usted ha salido de manera exitosa del grupo " + nombreGrupo);
         return SUCCESS;
     }
     

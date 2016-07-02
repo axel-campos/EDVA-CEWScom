@@ -66,17 +66,22 @@ if(request.getParameter("token") != null){
                             <div class="col-md-10 col-md-offset-4">
                                 <!--input type='submit' value='<!%= opcion %>' class='btn btn-success' disabled/-->
                                 <button type="submit" class="btn btn-success" disabled><span class="glyphicon glyphicon-ok"></span>  <%=opcion%></button>
-                                <a onclick="cambiarContenidos('ListGroup','#contenido')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Regresar</a>
+                                <!--a onclick="cambiarContenidos('ListGroup','#contenido')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Regresar</a-->
                                 <input type="hidden" id="submit" name="submit" value="<%= opcion%>">
                             </div>
                         </div>
                         
                         <%= hiddenToken %>
                     </form>
-                </div>                
+                </div>
+                <s:if test="hasActionMessages()">
+                        <div class="alert alert-success">
+                            <!--span class="glyphicon glyphicon-ok"></span-->  <s:actionmessage />
+                        </div>
+                </s:if>
                 <s:if test="hasActionErrors()">
                         <div class="alert alert-danger">
-                            <s:actionerror />
+                            <!--span class="glyphicon glyphicon-alert"></span-->  <s:actionerror />
                         </div>
                 </s:if>
                 
