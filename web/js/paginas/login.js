@@ -1,4 +1,27 @@
- 
+$(document).ready(function(){
+    var form = "#loginfrm";
+    $(form).bootstrapValidator({
+        fields:{
+            correo:{
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor, ingrese su correo electrónico'
+                    },
+                    emailAddress: {
+                        message: 'El formato del correo no es correcto'
+                    }
+                }
+            },
+            password: {
+                validators:{
+                    notEmpty: {
+                        message: 'Por favor, ingrese su contraseña'
+                    }
+                }
+            }
+       }
+   });
+});
 
 function inicioSesionFacebook(correo, nombre, apellido, fecha){
     var action_ajax = "verificarUsuarioFacebook.action";

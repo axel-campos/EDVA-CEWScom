@@ -8,13 +8,45 @@ var TIPO_MENSAJE = {
     DANGER: 5
 };
 
-function cambiarContenidos(pagina, target){
-    var destino = target;
+var TIPO_ESTATUS = {
+    SUCCESS: 'complete',
+    ERROR: 'error'
+};
+
+function cambiarContenidos(pagina, target){    
+    var progress1 = loading(10)
     if(pagina !== "#"){
-        $(destino).load(pagina,function(){
+        $(target).load(pagina,function(response, status, xhr){
+            if(status === "success"){
+                finished(progress1, TIPO_ESTATUS.SUCCESS);
+            }
             $(".button").button();
         });
     }
+}
+
+function loading(tiempo){
+    $("#progressBar").show();
+    return $("#progressBar").progressTimer({
+        timeLimit: tiempo,
+        onFinish: function () {
+        }
+    });
+}
+
+function finished(progress, tipo){
+    var mensaje = "";
+    if(tipo === TIPO_ESTATUS.SUCCESS){
+        mensaje = "¡Éxito!";
+    }else{
+        mensaje = "¡Error!";
+    }
+    progress.progressTimer(tipo, {
+        successText : mensaje,
+        onFinish: function(){
+            $("#progressBar").hide();
+        }
+    });
 }
 
 function estasSeguro(pagina,target){

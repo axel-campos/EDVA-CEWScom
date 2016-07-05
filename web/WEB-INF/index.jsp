@@ -12,11 +12,11 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/jquery.progresstimer.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <title>Página Principal</title>
@@ -26,7 +26,9 @@
     </head>
     <body role="document">
         <%@include file="header.jsp" %>
-        <div class="embed-responsive embed-responsive-16by9" id="contenido">
+        <div class="loading-progress-1" id="progressBar" style="display: none"></div>
+        <!--div class="embed-responsive embed-responsive-16by9" id="contenido" style="min-height: 500px"-->
+        <div id="contenido" class="container-fluid">
             <%@include file="principal.jsp"%>
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
@@ -34,8 +36,9 @@
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>   
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
 </html>

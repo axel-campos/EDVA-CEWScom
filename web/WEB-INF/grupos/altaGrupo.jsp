@@ -33,7 +33,7 @@ if(request.getParameter("token") != null){
         <title>EDVA</title>
     </head>
     <body onload="myfunction()">
-        <div class="container">
+        <div class="container-fluid">
             <div class="panel panel-default">
                 <div class='panel-heading'><%= opcion2 %></div>
                 <div class="panel-body">
@@ -42,38 +42,46 @@ if(request.getParameter("token") != null){
                     
                         <% if(request.getParameter("token") != null){ %>
                         <div class="form-group">
-                            <label for="nombre" class="col-md-2 control-label">Token:</label>
-                            <div class="col-md-4">
+                            <label for="nombre" class="col-md-4 control-label">Token:</label>
+                            <div class="col-md-6">
                                 <input type="text" id="nombre" name="nombre" disabled="disabled" class="form-control" value="<%= token %>"/>
                             </div>
                         </div>
                         <% } %>
-                        <div class="form-group">
-                            <label for="nombre" class="col-md-2 control-label">Nombre del Grupo:</label>
-                            <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label for="nombre" class="col-md-4 control-label">Nombre del Grupo:</label>
+                            <div class="col-md-6">
                                 <input type="text" id="nombre" name="nombre" class="form-control" value="<%= nombre %>"/>
+                                <i class="glyphicon glyphicon-inbox form-control-feedback"></i>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="descripcion" class="col-md-2 control-label">Descripción:</label>
-                            <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label for="descripcion" class="col-md-4 control-label">Descripción:</label>
+                            <div class="col-md-6">
                                 <textarea id="descripcion" class="form-control" rows="5" name="descripcion" style="resize: none;"><%= descripcion %></textarea>
+                                <i class="glyphicon glyphicon-edit form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-2">
-                                <input type='submit' value='<%= opcion %>' class='btn btn-success' disabled/>
-                                <a onclick="cambiarContenidos('ListGroup','#contenido')" class="btn btn-danger">Regresar</a>
+                            <div class="col-md-10 col-md-offset-4">
+                                <!--input type='submit' value='<!%= opcion %>' class='btn btn-success' disabled/-->
+                                <button type="submit" class="btn btn-success" disabled><span class="glyphicon glyphicon-ok"></span>  <%=opcion%></button>
+                                <!--a onclick="cambiarContenidos('ListGroup','#contenido')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Regresar</a-->
                                 <input type="hidden" id="submit" name="submit" value="<%= opcion%>">
                             </div>
                         </div>
                         
                         <%= hiddenToken %>
                     </form>
-                </div>                
+                </div>
+                <s:if test="hasActionMessages()">
+                        <div class="alert alert-success">
+                            <!--span class="glyphicon glyphicon-ok"></span-->  <s:actionmessage />
+                        </div>
+                </s:if>
                 <s:if test="hasActionErrors()">
                         <div class="alert alert-danger">
-                            <s:actionerror />
+                            <!--span class="glyphicon glyphicon-alert"></span-->  <s:actionerror />
                         </div>
                 </s:if>
                 

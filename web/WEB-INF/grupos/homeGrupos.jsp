@@ -4,51 +4,23 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <style>
-            div.contenedor{
-                position: relative;
-                width: 100%;
-                height: inherit;
-                border: 3px solid #8AC007;
-            }
-            div.menu1{
-                position: absolute;
-                width: 25%;
-                height: 50%;
-                top:0%;
-                border: 3px solid #003eff;
-            }
-            div.menu2{
-                position: absolute;
-                width: 25%;
-                height: 50%;
-                top: 50%;
-                border: 3px solid #003eff;
-            }
-            div.contenido{
-                position: absolute;
-                width: 75%;
-                height: 100%;
-                border: 3px solid #003eff;
-                left: 25%;
-                top:0%;
-            }
-        </style>
     </head>
     <body>
-        <div class="container container-fluid" style="width: 100%;border: 3px solid #003399">
+        <div class="container container-fluid" style="width: 100%;" id="caja">
             <div class="row-fluid">
-                <div class="col-sm-2 well">
-                    <div class="well">
+                <div class="col-sm-3 well" id="sidebar">
+                    <div class="well" id="divInfo1" style="overflow: auto; height: 45%">
                         INFO 1
                     </div>
-                    <div class="well">
-                        INFO 2
+                    <div class="well" id="divInfo2" style="overflow: auto; height: 50%">
+                        <div class='container-fluid'>
+                            X-MEN
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9" id="content">
                     <div class="panel panel-default">
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow: auto">
                             Contenido
                         </div>
                     </div>
@@ -56,4 +28,15 @@
             </div>
         </div>
     </body>
+    <script>
+        $(document).ready(function(){
+            var height = $(window).height();
+            $("#caja").height((height * 0.9));
+            
+            /*$("#divInfo1").height((height * 0.335));
+            $("#divInfo2").height((height * 0.335));*/
+            $("#sidebar").height(height * 0.825);
+            $("#content").height(height * 0.83);
+        });
+    </script>
 </html>

@@ -40,10 +40,11 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
                         .setAPaterno(apellido)
                         .setFechaNacimiento(new java.sql.Date(fechaNacimiento.getTime()))
                         .setTipo(2)
+                        .setFacebook(1)
                         .setPassword("asdasdasd"));
             }
 
-            //Vamos a obtener al usuario para darlo de alta en la sesión, lo hacemos de nuevo en caso de que haya sido null la primera vez
+            //Vamos a obtener al usuario para darlo de alta en la sesión, lo buscamos de nuevo en caso de que haya sido null la primera vez
             usuario = usuarioDAO.buscar(new Usuario().setCorreo(correo));
             usuarioDAO.desconectar();
             

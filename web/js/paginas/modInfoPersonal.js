@@ -32,28 +32,34 @@ function habilitarEdicion() {
     {
         inputs_forms_nodeList[i].disabled = false;
     }
+    //Escondemos los primeros botones
+    $("#modify_button").hide();
+    $("#pwd_modify_button").hide();
+    //Mostramos los segundos botones
+    $("#submit_button").show();
+    $("#cancel_button").show();
     
-    var modify_button = document.getElementById("modify_button");
-    var pwd_modify_button = document.getElementById("pwd_modify_button");
+    /*var modify_button = document.getElementById("modify_button");
+    var pwd_modify_button = document.getElementById("pwd_modify_button");*/
     
     //Incorporar el boton de submit
-    var submit_button = document.createElement("input");
+    /*var submit_button = document.createElement("input");
     submit_button.id = "submit_button";
     submit_button.type = "button";
     submit_button.value = "Aceptar";
     //submit_button.action = "modUsuario";
     submit_button.onclick = modUsuarioCambiarContenido;
     submit_button.className = "btn btn-success";
-    document.getElementById("button-group").replaceChild(submit_button,modify_button);
+    document.getElementById("button-group").replaceChild(submit_button,modify_button);*/
     
     //Incorporar el boton de cancelar
-    var cancel_button = document.createElement("input");
+    /*var cancel_button = document.createElement("input");
     cancel_button.id = "cancel_button";
     cancel_button.type = "button";
     cancel_button.onclick = cancelOperation;
     cancel_button.value = "Cancelar";
     cancel_button.className = "btn btn-danger";
-    document.getElementById("button-group").replaceChild(cancel_button, pwd_modify_button);
+    document.getElementById("button-group").replaceChild(cancel_button, pwd_modify_button);*/
     
 }
 
@@ -65,7 +71,14 @@ function cancelOperation()
         inputs_forms_nodeList[i].disabled = true;
     }
     
-    var submit_button = document.getElementById("submit_button");
+    // Mostramos los primeros botones
+    $("#modify_button").show();
+    $("#pwd_modify_button").show();
+    //Escondemos los segundos botones
+    $("#submit_button").hide();
+    $("#cancel_button").hide();
+    
+    /*var submit_button = document.getElementById("submit_button");
     var cancel_button = document.getElementById("cancel_button");
        
     var modify_button = document.createElement("input");
@@ -83,7 +96,7 @@ function cancelOperation()
     pwd_modify_button.type = "button";
     pwd_modify_button.value = "Cambiar Contraseña";
     pwd_modify_button.className = "btn btn-primary";
-    document.getElementById("button-group").replaceChild(pwd_modify_button, cancel_button);
+    document.getElementById("button-group").replaceChild(pwd_modify_button, cancel_button);*/
     
     document.getElementById("modificarfrm").reset();
       
