@@ -23,9 +23,7 @@
 		<action name="logout" class="Actions.LoginAction" method="logout">
 			<result>/WEB-INF/login.jsp</result>
 		</action>
-        <action name="modInformacion" method="">
-            <result>/WEB-INF/modInfoPersonal.jsp</result>
-        </action>
+
         
         <action name="indexAction" method="">
             <result>/WEB-INF/principal.jsp</result>
@@ -79,17 +77,44 @@
 			<result name="input">/WEB-INF/grupos/accesoGrupo.jsp</result>
 			<result name="error">/WEB-INF/grupos/accesoGrupo.jsp</result>
 		</action>
-                
-        <action name="modUsuario" class="Actions.ModUsuarioAction">
-            <result name="success">/WEB-INF/index.jsp</result>
-            <result name="input">/WEB-INF/modInfoPersonal.jsp</result>
-            <result name="error">/WEB-INF/modInfoPersonal.jsp</result>
-        </action>
-        <action name="modPwd" class="Actions.ModPwdAction">
-            <result name="success">/WEB-INF/index.jsp</result>
-            <result name="input">/WEB-INF/modContrasena.jsp</result>
-            <result name="error">/WEB-INF/modContrasena.jsp</result>
-        </action>
+        
+        <!-- Action para modificación de usuario -->     
+                <action name="modInformacion">
+                    <result>/WEB-INF/modInfoPersonal.jsp</result>
+                </action>
+        
+                <action name="passwdForm">
+                    <result>/WEB-INF/modPwd.jsp</result>
+                </action>
+        
+                <action name="modUsuario" class="Actions.ModUsuarioAction">
+                    <result name="success" type="redirectAction">
+                        <param name="actionName">modInformacion</param>
+                        <param name="mensaje">Usuario registrado con Exito</param>
+                    </result>
+                    <result name="error" type="redirectAction">
+                        <param name="actionName">modInformacion</param>
+                    </result>
+                    <result name="input" type="redirectAction">
+                        <param name="actionName">modInformacion</param>
+                    </result>
+                </action>
+        
+        
+                <action name="modPwd" class="Actions.ModPwdAction">
+                    <result name="success" type="redirectAction">
+                        <param name="actionName">modInformacion</param>
+                    </result>
+                    <result name="error" type="redirectAction">
+                        <param name="actionName">modInformacion</param>
+                    </result>
+                    <result name="input" type="redirectAction">
+                        <param name="actionName">modInformacion</param>
+                    </result>
+                </action>
+        
+        
+        
         <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
             <result>/WEB-INF/grupos/tablaRoles.jsp</result>
         </action>

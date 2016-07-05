@@ -1,3 +1,5 @@
+/* global pageContext */
+
 $(document).ready(function(){
     $('#loginfrm').bootstrapValidator({
         // message: 'Este valor no es permitido',
@@ -37,9 +39,10 @@ function habilitarEdicion() {
     //Incorporar el boton de submit
     var submit_button = document.createElement("input");
     submit_button.id = "submit_button";
-    submit_button.type = "submit";
+    submit_button.type = "button";
     submit_button.value = "Aceptar";
-    submit_button.action = "modUsuario";
+    //submit_button.action = "modUsuario";
+    submit_button.onclick = modUsuarioCambiarContenido;
     submit_button.className = "btn btn-success";
     document.getElementById("button-group").replaceChild(submit_button,modify_button);
     
@@ -88,16 +91,65 @@ function cancelOperation()
 function modificarContrasenia()
 {
     BootstrapDialog.show({
-    title: 'Modificar contraseña',
-    message: '<form role="form" id="mod_pwd_frm" method="POST" class="form-group" action="modPwd"> <div class="form-group"> <label for="recipient-name" class="control-label">Contraseña actual</label>                       <input type="password" class="form-control" id="old_pwd">                                                            <label for="recipient-name" class="control-label">Contraseña nueva</label>                      <input type="password" class="form-control" id="old_pwd">                                                                <label for="recipient-name" class="control-label">Repetir su Contraseña</label>                        <input type="password" class="form-control" id="old_pwd">                    </div>                  </form>',
-    buttons: [{
-        id: 'btn-ok',         
-        label: 'Aceptar',
-        cssClass: 'btn-primary', 
-        autospin: false,
-        action: function(dialogRef){    
-            dialogRef.close();
+        title: 'Modificar contraseña',
+        message: function (dialog) {
+            var $message = $('<div></div>');
+            var pageToLoad = dialog.getData('pageToLoad');
+            $message.load(pageToLoad);
+            return $message;
+        },
+        data: {
+            'pageToLoad': 'passwdForm'
+        },
+        buttons: [
+            {
+                id: 'btn-ok',
+                label: 'Aceptar',
+                cssClass: 'btn-primary',
+                autospin: true,
+                action: function (dialogRef) {
+                    var form = "#mod_pwd_frm";
+                    var action = "modPwd";
+
+                    var datos = $(form).serialize();
+                    $.ajax({
+                        type: "POST",
+                        url: action,
+                        data: datos,
+                        success: function (data) {
+                            $("#contenido").html(data);
+                        }
+                    });  
+                    
+                    dialogRef.close();
+                    
                 }
-            }]
+            },
+            {
+                id: 'btn-close',
+                label: 'Cerrar',
+                cssClass: 'btn-danger',
+                autospin: false,
+                action: function (dialogRef) {
+                    dialogRef.close();
+                }
+            }
+        ]
     });
+}
+
+function modUsuarioCambiarContenido()
+{   
+    var form = "#modificarfrm";
+    var action = "modUsuario";
+    
+    var datos = $(form).serialize();
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: datos,
+        success: function (data) {
+            $("#contenido").html(data);
+        }
+    });   
 }

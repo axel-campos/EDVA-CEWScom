@@ -6,11 +6,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar información personal</title> 
         <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
+        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
             <div class="panel panel-default">
-                <div class="panel-heading">Modificar Información personal</div>
+                <div class="panel-heading">Modificar Información Personal</div>
                 <div class="panel-body">
                     <form id="modificarfrm" method="POST" class="form-horizontal" action="modUsuario">
                         <div class="form-group">
@@ -58,12 +62,20 @@
                         </div>     
                     </form>
                 </div>
-                <s:if test="hasActionErrors()">
-                    <div class="alert alert-danger">
-                            <s:actionerror />
-                    </div>
-                </s:if>
+                            
+                                <s:if test="hasActionErrors()">
+                                    <div class="alert alert-danger">
+                                        <s:actionerror />
+                                    </div>
+                                </s:if>
+
             </div>
         </div>
+        <br>
+        <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+        <script src="${pageContext.request.contextPath}/js/paginas/registrar.js"></script>
     </body>
 </html>

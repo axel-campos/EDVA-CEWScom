@@ -33,50 +33,51 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     
     @Override
     public void validate() {
-        if (correo == null || correo.trim().isEmpty() || !correo.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$"))
-                addActionError("El formato del correo es incorrecto.");
-        else if (nombre == null || nombre.trim().isEmpty())
-                addActionError("El campo Nombre(s) es requerido.");
-        else if (paterno == null || paterno.trim().isEmpty())
-                addActionError("El campo Apellido Paterno es requerido.");
-        else if (fechaN == null || fechaN.trim().isEmpty())
-                addActionError("El campo Fecha de Nacimiento es requerido.");
+        if (correo == null || correo.trim().isEmpty() || !correo.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$")) {
+            addActionError("El formato del correo es incorrecto.");
+        } else if (nombre == null || nombre.trim().isEmpty()) {
+            addActionError("El campo Nombre(s) es requerido.");
+        } else if (paterno == null || paterno.trim().isEmpty()) {
+            addActionError("El campo Apellido Paterno es requerido.");
+        } else if (fechaN == null || fechaN.trim().isEmpty()) {
+            addActionError("El campo Fecha de Nacimiento es requerido.");
+        }
     }
     
     @Override
     public String execute() throws Exception {
         UsuarioDAO usuariodao = new UsuarioDAO();
-        try{
+        try {
             usuariodao.conectar();
-            
+
             Usuario usuario_modificado = new Usuario()
-                .setFechaNacimiento(Date.valueOf(fechaN))
-				.setCorreo(correo)
-				.setNombre(nombre)
-				.setAPaterno(paterno)
-				.setAMaterno(materno)
-				.setCedula(cedula)
-                .setTipo(usuario.getTipo())
-                .setPassword(usuario.getPassword());
-            
+                    .setFechaNacimiento(Date.valueOf(fechaN))
+                    .setCorreo(correo)
+                    .setNombre(nombre)
+                    .setAPaterno(paterno)
+                    .setAMaterno(materno)
+                    .setCedula(cedula)
+                    .setTipo(usuario.getTipo())
+                    .setPassword(usuario.getPassword());
+
             userSession.put("usuario", usuario_modificado);
-            
-            usuariodao.modificar(usuario, usuario_modificado);           
-			usuariodao.desconectar();
+
+            usuariodao.modificar(usuario, usuario_modificado);
+            usuariodao.desconectar();
             return SUCCESS;
-                        
+
         } catch (IllegalArgumentException e) {
-			usuariodao.desconectar();
-			addActionError("El formato de la fecha de nacimiento es incorrecto.");
+            usuariodao.desconectar();
+            addActionError("El formato de la fecha de nacimiento es incorrecto.");
             e.printStackTrace();
-			return INPUT;
-		} catch(RuntimeException e) {
-			usuariodao.desconectar();
-			addActionError("Ocurrió un error al modificar al nuevo usuario.");
+            return INPUT;
+        } catch (RuntimeException e) {
+            usuariodao.desconectar();
+            addActionError("Ocurrió un error al modificar al nuevo usuario.");
             e.printStackTrace();
             return ERROR;
         }
-        
+
     }
 
     @Override
