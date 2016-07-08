@@ -5,20 +5,23 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import modelo.dao.GrupoDAO;
 import modelo.pojo.Grupo;
 import modelo.dao.UsuarioGrupoDAO;
 import modelo.pojo.TipoUsuarioGrupo;
 import modelo.pojo.Usuario;
 import modelo.pojo.UsuarioGrupo;
+import org.apache.struts2.interceptor.SessionAware;
 
-public class AltaGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser {
+public class AltaGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser, SessionAware {
     
     private String nombre;
     private String descripcion;
     private Usuario usuario;
     private String submit;
     private String token2;
+    private Map<String, Object> userSession;
 
 	public AltaGrupoAction() {
     }
@@ -93,8 +96,12 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
                                             .setToken(token));
 
                 grupoUsuarioDAO.desconectar();
+                userSession.put("token", token);
+                userSession.put("nombre", nombre);
                 return SUCCESS;
             }
+            userSession.put("token", token);
+            userSession.put("nombre", nombre);
             return "modificar";
         }catch(RuntimeException e) {
             grupoDAO.desconectar();
@@ -138,6 +145,11 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
 
     public void setToken2(String token2) {
         this.token2 = token2;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> userSession) {
+        this.userSession = userSession;
     }
     
 }

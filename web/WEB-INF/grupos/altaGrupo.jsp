@@ -65,7 +65,7 @@ if(request.getParameter("token") != null){
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-4">
                                 <!--input type='submit' value='<!%= opcion %>' class='btn btn-success' disabled/-->
-                                <button type="submit" class="btn btn-success" disabled><span class="glyphicon glyphicon-ok"></span>  <%=opcion%></button>
+                                <!--button type="submit" class="btn btn-success" disabled><span class="glyphicon glyphicon-ok"></span>  <!%=opcion%></button-->
                                 <!--a onclick="cambiarContenidos('ListGroup','#contenido')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Regresar</a-->
                                 <input type="hidden" id="submit" name="submit" value="<%= opcion%>">
                             </div>

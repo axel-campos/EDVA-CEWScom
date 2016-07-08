@@ -26,11 +26,12 @@
     </head>
     <body role="document">
         <%@include file="header.jsp" %>
-        <div class="loading-progress-1" id="progressBar" style="display: none"></div>
+        <div class="loading-progress-2" id="progressBar" style="display: none;"></div>
         <!--div class="embed-responsive embed-responsive-16by9" id="contenido" style="min-height: 500px"-->
         <div id="contenido" class="container-fluid">
             <%@include file="principal.jsp"%>
         </div>
+        
         <div id="contenidos_invisibles" style="display: none"></div>
     </body>
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
