@@ -42,7 +42,10 @@
                         }
                         submenuDAO.desconectar();
                     }
-                    String nombre = user.getNombre() + " " + user.getAPaterno() + " " + user.getAMaterno();
+                    String nombre = user.getNombre() + " " + user.getAPaterno();
+                    if(user.getAMaterno() != null){
+                        nombre += " " + user.getAMaterno();
+                    }
                     menuDAO.desconectar();
                 %>
             </ul>

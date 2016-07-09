@@ -28,7 +28,15 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
     public String execute() throws Exception {
         resultados = new ArrayList();
         String tipoUsuario[] = {"","Coordinador", "Administrador", "Colaborador"};
-        
+        //Vamos a verificar si no hay token en session
+        if(userSession.get("token") != null){
+            token = userSession.get("token").toString();
+            userSession.remove("token");
+            rol = "0";
+        }if(userSession.get("nombre") != null){
+            nombre = userSession.get("nombre").toString();
+            userSession.remove("nombre");
+        }
         //Vamos a obtener solo los grupos del usuario que tiene activa la sesión
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO(); 
         usuarioGrupoDAO.conectar();
@@ -75,12 +83,30 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
         }       
         if(!exito.isEmpty()){
             switch(exito){
-                case "7":
+                case "1"://Exito al crear.
+                    addActionMessage("El grupo " + nombre + " ha sido creado con éxito.");
+                    break;
+                case "2":
+                    addActionMessage("El grupo " + nombre + " ha sido modificado con éxito.");
+                    break;
+                case "3":
+                    
+                    break;
+                case "4"://Error al crear
+                    addActionError("Ocurrió un error con el grupo " + nombre + ". Por favor, inténtelo más tarde.");
+                    break;
+                case "5":
+                    
+                    break;
+                case "6":
+                    
+                    break;
+                /*case "7":
                     addActionMessage("El rol de administrador fue cambiado con éxito.");
                     break;
                 case "8":
                     addActionError("No se pudo cambiar de rol de administrador.");
-                    break;
+                    break;*/
             }
         }
         usuarioGrupoDAO.desconectar();

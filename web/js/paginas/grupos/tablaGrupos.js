@@ -106,6 +106,16 @@ function crearGrupo(){
         message: $('<div id="ventana"></div>').load("AltaGroup"),
         title: "Crear nuevo grupo",
         buttons: [{
+            id: 'btn-success',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Crear',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                submitForm();
+                dialogRef.close();
+            }
+        },{
             id: 'btn-cancel',   
             icon: 'glyphicon glyphicon-remove',       
             label: 'Cancelar',
@@ -123,6 +133,16 @@ function modificarGrupo(token){
         message: $('<div id="ventana"></div>').load("AltaGroup?token=" + token),
         title: "Modificar datos grupo",
         buttons: [{
+            id: 'btn-success',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Modificar',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){ 
+                submitForm();
+                dialogRef.close();
+            }
+        },{
             id: 'btn-cancel',   
             icon: 'glyphicon glyphicon-remove',       
             label: 'Cancelar',
@@ -133,4 +153,10 @@ function modificarGrupo(token){
             }
         }]
     });
+}
+
+function submitForm(){
+    var form = "#altaGrupo";
+    $(form).bootstrapValidator().bootstrapValidator('validate');
+    //La magia se hace en el archivo altaGrupo.js
 }

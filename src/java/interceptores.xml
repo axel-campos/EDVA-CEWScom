@@ -34,7 +34,7 @@
 			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
 		</action>
         <action name="SearchGroups" class="Actions.Groups.ListarGrupos">
-            <result name="success">/WEB-INF/grupos/tablaGrupos.jsp</result>            
+            <result name="success">WEB-INF/grupos/tablaGrupos.jsp</result>            
         </action>
 		<!--action name="ListGroup" class="Actions.Groups.ListarGrupos">
 			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
@@ -52,10 +52,19 @@
 		</action>
                 
 		<action name="altaGrupo" class="Actions.Groups.AltaGrupoAction">
-			<result name="success">WEB-INF/grupos/altaGrupo.jsp</result>
-			<result name="modificar">WEB-INF/grupos/altaGrupo.jsp</result>
-			<result name="input">WEB-INF/grupos/altaGrupo.jsp</result>
-			<result name="error">WEB-INF/grupos/altaGrupo.jsp</result>
+			<result name="success" type="redirectAction">
+                <param name="actionName">SearchGroups</param>
+                <param name="exito">1</param>
+            </result>
+			<result name="modificar" type="redirectAction">
+                <param name="actionName">SearchGroups</param>
+                <param name="exito">2</param>
+            </result>
+			<result name="error" type="redirectAction">
+                <param name="actionName">SearchGroups</param>
+                <param name="exito">4</param>
+            </result>
+			<result name="input">WEB-INF/grupos/tablaGrupos.jsp</result>
 		</action>
                 
         <action name="modUsuario" class="Actions.ModUsuarioAction">

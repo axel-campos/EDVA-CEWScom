@@ -14,11 +14,14 @@ var TIPO_ESTATUS = {
 };
 
 function cambiarContenidos(pagina, target){    
-    var progress1 = loading(10)
+    var progress1 = loading(10);
     if(pagina !== "#"){
         $(target).load(pagina,function(response, status, xhr){
             if(status === "success"){
                 finished(progress1, TIPO_ESTATUS.SUCCESS);
+                $("#progressBar").hide();
+            }else if(status === "error"){
+                finished(progress1, TIPO_ESTATUS.ERROR);
             }
             $(".button").button();
         });
@@ -44,7 +47,7 @@ function finished(progress, tipo){
     progress.progressTimer(tipo, {
         successText : mensaje,
         onFinish: function(){
-            $("#progressBar").hide();
+            
         }
     });
 }
