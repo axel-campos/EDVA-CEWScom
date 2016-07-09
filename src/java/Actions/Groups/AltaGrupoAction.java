@@ -33,10 +33,21 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
         if(descripcion.length() > 100){
             addActionError("El número máximo de caracteres en el campo descripción es de 100");
         }
+        int valueLength = nombre.length();
+        String letras = "abcdefghijklmnopqrstuvwxyz";
+        String numeros = "1234567890";
+        String nombreAux = nombre.toLowerCase();
+        char letraInicial = nombreAux.charAt(0);
+        char letraFinal = nombreAux.charAt(valueLength - 1);
+        if(!((letras.indexOf(letraInicial) != -1 || numeros.indexOf(letraInicial) != -1) && (letras.indexOf(letraFinal) != -1 || numeros.indexOf(letraFinal) != -1))){
+            addActionError("El nombre del grupo debe iniciar y terminar con una letra o un número");
+        }
     }
     
 	@Override
     public String execute() throws Exception {
+        
+        //Validamos que el token no contenga caracteres especiales para la creación del token
         String token = ""; 
         String [] abecedario = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J","K", "L", "M","N","O","P","Q","R","S","T","U","V","W", "X","Y","Z" };
                

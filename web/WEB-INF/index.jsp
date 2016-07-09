@@ -14,11 +14,23 @@
         <meta name="author" content="">
         <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/jquery.progresstimer.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/gridex.css" rel="stylesheet" type="text/css"/>
+        <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.js"></script>    
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
         <title>Página Principal</title>
         <style>
             @media (max-height: 500px){}
@@ -33,12 +45,4 @@
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
     </body>
-    <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
 </html>

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#contenidoPrincipal').height($(window).height()*0.7);
+    $('.gridex').gridex();
 });
 
 function responderSolicitud(token, correo, tipo, div){
