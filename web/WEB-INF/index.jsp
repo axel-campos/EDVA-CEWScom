@@ -26,7 +26,6 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.js"></script>    
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
