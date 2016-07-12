@@ -129,84 +129,154 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <div class="panel-default">
-                        <div class="panel-body" style="overflow: auto">
-                            <ul class="thumbnails gridex">
-                                <li class="col-sm-4">
-                                    <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                    <!-- gd-expander required -->
-                                    <div class="gd-expander gd-expanded">
-                                        <!-- gd-inner optional -->
-                                        <div class="gd-inner">
-                                            <div class="row-fluid">
-                                                <div>
-                                                    <h2>Nombre contenido</h2>
-                                                    <p>
-                                                        Información relevante del grupo
-                                                    </p>
-                                                    <a href="#" class="btn btn-success">Ir contenido</a>
-                                                </div>
+                    <div class="container wrapper">
+                        <div class="clearfix"></div>
+                        <ul class="thumbnails gridex">
+                            <li class="span1">
+                                <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
+                                <!-- gd-expander required -->
+                                <div class="gd-expander gd-expanded">
+                                    <!-- gd-inner optional -->
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span2">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="col-sm-4">
-                                    <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                    <!-- gd-expander required -->
-                                    <div class="gd-expander gd-expanded">
-                                        <!-- gd-inner optional -->
-                                        <div class="gd-inner">
-                                            <div class="row-fluid">
-                                                <div>
-                                                    <h2>Nombre contenido</h2>
-                                                    <p>
-                                                        Información relevante del contenido
-                                                    </p>
-                                                    <a href="#" class="btn btn-success">Ir contenido</a>
-                                                </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-3 clearfix">
+                                <a class="thumbnail" > <img alt="270x170" src="http://placehold.it/270x170" /> </a>
+                                <div class="gd-expander gd-expanded">
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="col-sm-4">
-                                    <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                    <!-- gd-expander required -->
-                                    <div class="gd-expander gd-expanded">
-                                        <!-- gd-inner optional -->
-                                        <div class="gd-inner">
-                                            <div class="row-fluid">
-                                                <div>
-                                                    <h2>Nombre contenido</h2>
-                                                    <p>
-                                                        Información relevante del contenido
-                                                    </p>
-                                                    <a href="#" class="btn btn-success">Ir contenido</a>
-                                                </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-3 clearfix">
+                                <a href="#" class="thumbnail">
+                                    <img alt="270x170" src="http://placehold.it/270x170" />
+                                </a>
+                                <div class="gd-expander gd-expanded">
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="col-sm-4">
-                                    <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                    <!-- gd-expander required -->
-                                    <div class="gd-expander gd-expanded">
-                                        <!-- gd-inner optional -->
-                                        <div class="gd-inner">
-                                            <div class="row-fluid">
-                                                <div>
-                                                    <h2>Nombre contenido</h2>
-                                                    <p>
-                                                        Información relevante del contenido
-                                                    </p>
-                                                    <a href="#" class="btn btn-success">Ir contenido</a>
-                                                </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-3 clearfix">
+                                <a hreF="#" class="thumbnail">
+                                    <img alt="270x170" src="http://placehold.it/270x170" />
+                                </a>
+                                <div class="gd-expander gd-expanded">
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                            
-                        </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <br/>
+                        <ul class="thumbnails gridex">
+                            <li class="col-sm-3 clearfix">
+                                <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
+                                <!-- gd-expander required -->
+                                <div class="gd-expander gd-expanded">
+                                    <!-- gd-inner optional -->
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-3 clearfix">
+                                <a class="thumbnail" > <img alt="270x170" src="http://placehold.it/270x170" /> </a>
+                                <div class="gd-expander gd-expanded">
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-3 clearfix">
+                                <a href="#" class="thumbnail">
+                                    <img alt="270x170" src="http://placehold.it/270x170" />
+                                </a>
+                                <div class="gd-expander gd-expanded">
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-3 clearfix">
+                                <a hreF="#" class="thumbnail">
+                                    <img alt="270x170" src="http://placehold.it/270x170" />
+                                </a>
+                                <div class="gd-expander gd-expanded">
+                                    <div class="gd-inner">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <h2>Título contenido</h2>
+                                                <p>
+                                                    Información importante de contenido
+                                                </p>
+                                                <a href="#" class="btn btn-success">Ir al contenido</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="push"></div>
                     </div>
                 </div>
             </div>
