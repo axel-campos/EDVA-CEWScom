@@ -14,12 +14,22 @@
     <body>
         <form role="form" id="mod_pwd_frm" method="" class="form-group" action=""> 
             <div class="form-group"> 
-                <label for="recipient-name" class="control-label">Contraseña actual</label>                       
-                <input type="password" class="form-control" id="new_pwd">                                                            
-                <label for="recipient-name" class="control-label">Contraseña nueva</label>                      
-                <input type="password" class="form-control" id="old_pwd">                                                               
-                <label for="recipient-name" class="control-label">Repetir su Contraseña</label>                       
-                <input type="password" class="form-control" id="old_pwd_rpt">                    
+                <div class="form-group has-feedback">
+                    <label for="recipient-name" class="control-label">Contraseña actual</label> 
+                    <input type="password" class="form-control" id="old_pwd" name="old_pwd"> 
+                </div>
+                
+                <div class="form-group has-feedback">
+                    <label for="recipient-name" class="control-label">Contraseña nueva</label>   
+                    <input type="password" class="form-control" id="new_pwd" name="new_pwd"> 
+                </div>
+                
+                <div class="form-group has-feedback">
+                    <label for="recipient-name" class="control-label">Repetir su Contraseña</label>                       
+                    <input type="password" class="form-control" id="new_pwd_rpt" name="new_pwd_rpt">
+                </div>
+                
+                <script src="${pageContext.request.contextPath}/js/paginas/modPwd.js"></script>
             </div>                  
         </form>  
     </body>

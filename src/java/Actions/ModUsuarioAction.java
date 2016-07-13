@@ -18,19 +18,20 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author axelcampos
  */
 public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser, SessionAware {
+
     private Map<String, Object> userSession;
     private Usuario usuario;
-    
+
     private String correo;
     private String nombre;
     private String paterno;
     private String materno;
     private String cedula;
     private String fechaN;
-    
+
     public ModUsuarioAction() {
     }
-    
+
     @Override
     public void validate() {
         if (correo == null || correo.trim().isEmpty() || !correo.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$")) {
@@ -43,7 +44,7 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
             addActionError("El campo Fecha de Nacimiento es requerido.");
         }
     }
-    
+
     @Override
     public String execute() throws Exception {
         UsuarioDAO usuariodao = new UsuarioDAO();
@@ -61,9 +62,9 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
                     .setPassword(usuario.getPassword());
 
             userSession.put("usuario", usuario_modificado);
-
             usuariodao.modificar(usuario, usuario_modificado);
             usuariodao.desconectar();
+            addActionMessage("La información se actualizado con éxito.");
             return SUCCESS;
 
         } catch (IllegalArgumentException e) {
@@ -84,7 +85,7 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
     public Usuario getUsuario() {
         return this.usuario;
     }
@@ -139,10 +140,7 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
 
     @Override
     public void setSession(Map<String, Object> userSession) {
-        this.userSession = userSession ;
+        this.userSession = userSession;
     }
 
-    
-    
-    
 }

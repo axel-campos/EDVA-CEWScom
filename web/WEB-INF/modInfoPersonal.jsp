@@ -3,8 +3,8 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
     String hidden = "";
-    Usuario usuario = (Usuario)session.getAttribute("usuario");
-    if(usuario.getFacebook() == 1){
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario.getFacebook() == 1) {
         hidden = "display: none;";
     }
 %>
@@ -13,8 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar información personal</title> 
-        <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
-        
+
+
         <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
@@ -24,14 +24,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Modificar Información Personal</div>
                 <div class="panel-body">
-                    <form id="modificarfrm" method="POST" class="form-horizontal" action="modUsuario">
+                    <form id="modificarfrm" method="POST" class="form-horizontal">
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="correo">Correo Electrónico*</label>
                             <div class="col-md-4">
                                 <input disabled type="text" class="form-control" id="correo" name="correo" placeholder="mi_correo@jmail.com" value="${session.usuario.correo}"/>
                                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
                             </div>
-                            
+
                         </div>
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="nombre">Nombre(s)*</label>
@@ -70,22 +70,25 @@
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                
-                                
                                 <button id="modify_button" type="button" class="btn btn-success" onclick="habilitarEdicion()"><span class="glyphicon glyphicon-pencil"></span>  Modificar</button>
                                 <button id="pwd_modify_button" type="button" class="btn btn-primary" style="<%= hidden%>" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>   Cambiar Contraseña</button>
-                                <button id="submit_button" type="submit" class="btn btn-success" style="display:none"><span class="glyphicon glyphicon-ok"></span>  Aceptar</button>
+                                <button id="submit_button" type="button" class="btn btn-success" onclick="modUsuarioCambiarContenido()" style="display:none"><span class="glyphicon glyphicon-ok"></span>  Aceptar</button>
                                 <button id="cancel_button" type="button" class="btn btn-danger" style="display:none" onclick="cancelOperation()"><span class="glyphicon glyphicon-repeat"></span>  Cancelar</button>
                             </div>
                         </div>     
                     </form>
                 </div>
-                            
-                                <s:if test="hasActionErrors()">
-                                    <div class="alert alert-danger">
-                                        <s:actionerror />
-                                    </div>
-                                </s:if>
+
+                <s:if test="hasActionMessages()">
+                    <div class="alert alert-success">
+                        <!--span class="glyphicon glyphicon-ok"></span-->  <s:actionmessage />
+                    </div>
+                </s:if>
+                <s:if test="hasActionErrors()">
+                    <div class="alert alert-danger">
+                        <!--span class="glyphicon glyphicon-alert"></span-->  <s:actionerror />
+                    </div>
+                </s:if>
 
             </div>
         </div>
@@ -94,6 +97,6 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
-        <script src="${pageContext.request.contextPath}/js/paginas/registrar.js"></script>
+        <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
     </body>
 </html>

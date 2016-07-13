@@ -24,7 +24,7 @@ public class ModPwdAction extends ActionSupport implements AuthenticatedUser, Se
 
     private String old_pwd;
     private String new_pwd;
-    private String old_pwd_rpt;
+    private String new_pwd_rpt;
 
     private final int LOG_ROUNDS = 13;
 
@@ -38,15 +38,14 @@ public class ModPwdAction extends ActionSupport implements AuthenticatedUser, Se
         try {
             usuariodao.conectar();
             if (BCrypt.checkpw(old_pwd, usuario.getPassword())) {
-                if (old_pwd.equals(old_pwd_rpt)) {
+                if (new_pwd.equals(new_pwd_rpt)) {
 
                     String pwd = BCrypt.hashpw(new_pwd, BCrypt.gensalt(LOG_ROUNDS));
                     usuario.setPassword(pwd);
                     userSession.put("usuario", usuario);
                     usuariodao.modificar(usuario, usuario);
                     usuariodao.desconectar();
-                    
-                    System.out.print("Pene ultrajugoso");
+                    addActionMessage("Contraseña modificada con éxito.");
 
                     return SUCCESS;
                 } else {
@@ -90,12 +89,12 @@ public class ModPwdAction extends ActionSupport implements AuthenticatedUser, Se
         this.old_pwd = old_pwd;
     }
 
-    public String getOld_pwd_rpt() {
-        return old_pwd_rpt;
+    public String getNew_pwd_rpt() {
+        return new_pwd_rpt;
     }
 
-    public void setOld_pwd_rpt(String old_pwd_rpt) {
-        this.old_pwd_rpt = old_pwd_rpt;
+    public void setNew_pwd_rpt(String new_pwd_rpt) {
+        this.new_pwd_rpt = new_pwd_rpt;
     }
 
     public String getNew_pwd() {
