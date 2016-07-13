@@ -14,7 +14,8 @@
         <meta name="author" content="">    
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">        
+        <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/jquery.progresstimer.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
@@ -23,6 +24,7 @@
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>  
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>

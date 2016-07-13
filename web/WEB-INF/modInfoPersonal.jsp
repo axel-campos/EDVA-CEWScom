@@ -13,11 +13,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar información personal</title> 
-
-
-        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -92,11 +87,6 @@
 
             </div>
         </div>
-        <br>
-        <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
     </body>
 </html>
