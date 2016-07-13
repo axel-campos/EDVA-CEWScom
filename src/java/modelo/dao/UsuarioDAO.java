@@ -46,8 +46,9 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 			stmt.setString(5, nuevo.getCedula());
 			stmt.setInt(6, nuevo.getTipo());
 			stmt.setDate(7, nuevo.getFechaNacimiento());
-			stmt.setString(8, nuevo.getPassword());
-            stmt.setInt(9, nuevo.getFacebook());
+			stmt.setString(8, nuevo.getPassword());                  
+                        stmt.setInt(9, nuevo.getFacebook());
+                        stmt.setString(10, viejo.getCorreo());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
