@@ -11,8 +11,7 @@
         <meta name=viewport content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
-        <meta name="author" content="">
-        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">        
+        <meta name="author" content="">    
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">
@@ -25,7 +24,6 @@
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.js"></script>    
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-gridex.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
