@@ -66,11 +66,11 @@
                 <label for="token">Token:</label>
                     <input type="text" id="token" name="token" class="form-control" value="<%= token%>">
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="nombre">Nombre del Grupo:</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" value="<%= nombre%>">
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="rol">Rol:</label>
                     <select class="form-control" id="rol" name="rol" style="width:50%">
                         <option value="0">Todos los roles</option>

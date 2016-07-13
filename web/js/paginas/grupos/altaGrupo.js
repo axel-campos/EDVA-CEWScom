@@ -66,7 +66,7 @@ $(document).ready(function(){
             url: action,
             data: datos,
             success: function(data){
-                var target = "#ventana";
+                var target = "#contenido";
                 $(target).html(data);
             }
         });
