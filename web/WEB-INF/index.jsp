@@ -46,8 +46,8 @@
             var top1 = $("#header").outerHeight(),
             top2 = $("#progressBar").outerHeight(),
             top3 = top1 + top2;
-            $("#progressBar").offset({top : top1});
-            $("#contenido").offset({top : top3});
+            //$("#progressBar").offset({top : top1});
+            //$("#contenido").offset({top : top3});
         });
     </script>
 </html>
