@@ -15,9 +15,9 @@
                     Ingrese el token para buscar el grupo al que desea ingresar.
                     <form id="accesofrm" name="accesofrm" class="form-horizontal">             
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="token">Token de grupo</label>
+                            <label class="col-md-3 control-label" for="tokenG">Token de grupo</label>
                             <div class="col-md-4">
-                                <input id="token" name="token" type="text" class="form-control" placeholder="El token del grupo" />
+                                <input id="tokenG" name="tokenG" type="text" class="form-control" placeholder="El token del grupo" />
                             </div>    
                         </div> 
                         <div class="form-group">

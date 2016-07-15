@@ -1,4 +1,22 @@
+<%@page import="modelo.pojo.Grupo"%>
+<%@page import="modelo.dao.GrupoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+<%
+    String token = "", nombre = "", descripcion = "";
+    int noProfesores = 0;
+    if(session.getAttribute("token") != null){
+        token = session.getAttribute("token").toString();
+        GrupoDAO grupoDAO = new GrupoDAO();
+        grupoDAO.conectar();
+        Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+        nombre = grupo.getNombre();
+        descripcion = grupo.getDescripcion();
+        noProfesores = grupo.getTotalProfesores();
+        session.removeAttribute("token");
+    }    
+    
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,22 +29,54 @@
             <!--sidebar -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
-                            <span class="glyphicon glyphicon-user"></span> Reload <span class='caret'></span>
+                    <li class="dropdown" id="informacion">
+                        <a href="#" onclick="abrirVentana1()" class="dropdown-toggle" data-toggle="collapse" data-target="#GroupInfo" role="button" aria-haspopup="true" aria-expended="false">
+                            <span class="glyphicon glyphicon-info-sign"></span>   Información del grupo <span class='caret'></span>
                         </a>
-                        <div style="color: #449d44">
-                            Hoy te vas!!!
+                        <div style="color: whitesmoke" id="GroupInfo" class="collapse">
+                            <!--fieldset class="form-group"-->
+                            <div class="container-fluid">
+                                <label class="col-md-4" style="text-align: right;">Nombre:</label>
+                                <div class="col-md-8" style="text-align: left;">
+                                    <%= nombre%>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <label class="col-md-4" style="text-align: right;">Descripción:</label>
+                                <div class="col-md-8" style="text-align: left;">
+                                    <%= descripcion%>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <!--ul class="dropdown-backdrop">
-                            <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>
-                            <li><a href="logout.action">Cerrar Sesión</a></li>
-                        </ul-->
                     </li>
-                    <li>Camino</li>
+                    <li class="dropdown" id="miembros">
+                        <a href="#" onclick="abrirVentana2()"
+                           class="dropdown-toggle" data-toggle="collapse" data-target="#GroupMembers" role="button" aria-haspopup="true" aria-expended="true">
+                            <span class="glyphicon glyphicon-th-list"></span>   Miembros del grupo <span class='caret'></span>
+                        </a>
+                        <div style="color: whitesmoke" id="GroupMembers" class="collapse">
+                            <div class="container-fluid" style="overflow: auto;">
+                                <s:iterator value="results" var="nombre">
+                                    <div class="col-md-12"><s:property value='%{#nombre}'/></div>
+                                </s:iterator>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <!--Page content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--button type="button" class="btn btn-default" data-toggle="collapse"-->
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a><br>
+                            Cuentos de la calle Bronca;:D
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!--div class="container container-fluid" style="width: 100%;" id="caja">
