@@ -7,6 +7,12 @@
     </head>
     <body>
         <div class="container container-fluid" style="width: 100%;" id="caja">
+            <div class="sidebar-left">
+                
+            </div>
+        </div>
+        
+        <!--div class="container container-fluid" style="width: 100%;" id="caja">
             <div class="row-fluid">
                 <div class="col-sm-3 well" id="sidebar">
                     <div class="well" id="divInfo1" style="overflow: auto; height: 45%">
@@ -26,17 +32,16 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div-->
     </body>
     <script>
-        $(document).ready(function(){
-            var height = $(window).height();
-            $("#caja").height((height * 0.9));
+            /*var height = $(window).height();
+            $("#caja").height((height * 0.9));*/
             
             /*$("#divInfo1").height((height * 0.335));
             $("#divInfo2").height((height * 0.335));*/
-            $("#sidebar").height(height * 0.825);
-            $("#content").height(height * 0.83);
+            /*$("#sidebar").height(height * 0.825);
+            $("#content").height(height * 0.83);*/
         });
     </script>
 </html>
