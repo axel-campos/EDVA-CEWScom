@@ -154,5 +154,8 @@
                 <param name="resp">4</param>
             </result>
         </action>
+        <action name="ListarMiembrosAction" class="Actions.Groups.ListarMiembros">
+            <result name="success">WEB-INF/grupos/homeGrupos.jsp</result>
+        </action>
 	</package>
 </struts>

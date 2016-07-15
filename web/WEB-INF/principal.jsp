@@ -1,3 +1,4 @@
+<%@page import="modelo.dao.ContenidoDAO"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="java.util.List"%>
@@ -129,154 +130,74 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <div class="container wrapper">
-                        <div class="clearfix"></div>
-                        <ul class="thumbnails gridex">
-                            <li class="span1">
-                                <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                <!-- gd-expander required -->
-                                <div class="gd-expander gd-expanded">
-                                    <!-- gd-inner optional -->
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span2">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="overflow: auto">
+                            <%
+                                //Buscaremos los primeros diez contenidos de los grupos de este usuario
+                                ContenidoDAO contenidoDAO = new ContenidoDAO();
+                                
+                                contenidoDAO.conectar();
+                                String sqlContenidos = "SELECT con.*, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
+                                    " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
+                                    " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
+                                    " INNER JOIN grupo AS g ON g.token = con.token " +
+                                    " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
+                                    " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW());";
+                                List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
+                                contenidoDAO.desconectar();
+                                if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
+                            %>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        No hay contenidos activos para mostrar</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Para empezar a crear contenidos debe pertenecer a un grupo de trabajo, una vez
+                                        dentro junto con su grupo podrá comenzar a crear los contenidos que desee.
                                     </div>
                                 </div>
-                            </li>
-                            <li class="col-sm-3 clearfix">
-                                <a class="thumbnail" > <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                <div class="gd-expander gd-expanded">
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
+                            </div>
+                            <%
+                                }else{
+                                    for(i = 0; i < tablaContenidos.size(); i++){
+                                        Map<String, Object> columna = tablaContenidos.get(i);
+                                        String nombreGrupo = (String)columna.get("nombreGrupo");
+                                        String titulo = (String)columna.get("titulo");
+                                        String tema = (String)columna.get("tema");
+                                        String descripcion = (String)columna.get("descripcion");
+                                        String etapa = (String)columna.get("nombre");
+                                        String fechaModificacion = (String)columna.get("tiempoModificacion");
+                                        String fechaVotacion = (String)columna.get("tiempoVotacion");
+                            %>
+                             <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                            Contenido: <%=titulo%> del grupo: <%=nombreGrupo%></a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Título: <%=titulo%> <br/>
+                                        Grupo: <%=nombreGrupo%> <br/>
+                                        Tema: <%=tema%> <br/>
+                                        Descripción: <%=descripcion%> <br/>
+                                        Etapa: <%=etapa%> <br/>
+                                        Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
+                                        Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
+                                        <br/>
+                                        <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="col-sm-3 clearfix">
-                                <a href="#" class="thumbnail">
-                                    <img alt="270x170" src="http://placehold.it/270x170" />
-                                </a>
-                                <div class="gd-expander gd-expanded">
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-sm-3 clearfix">
-                                <a hreF="#" class="thumbnail">
-                                    <img alt="270x170" src="http://placehold.it/270x170" />
-                                </a>
-                                <div class="gd-expander gd-expanded">
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <br/>
-                        <ul class="thumbnails gridex">
-                            <li class="col-sm-3 clearfix">
-                                <a href="#" class="thumbnail"> <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                <!-- gd-expander required -->
-                                <div class="gd-expander gd-expanded">
-                                    <!-- gd-inner optional -->
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-sm-3 clearfix">
-                                <a class="thumbnail" > <img alt="270x170" src="http://placehold.it/270x170" /> </a>
-                                <div class="gd-expander gd-expanded">
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-sm-3 clearfix">
-                                <a href="#" class="thumbnail">
-                                    <img alt="270x170" src="http://placehold.it/270x170" />
-                                </a>
-                                <div class="gd-expander gd-expanded">
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-sm-3 clearfix">
-                                <a hreF="#" class="thumbnail">
-                                    <img alt="270x170" src="http://placehold.it/270x170" />
-                                </a>
-                                <div class="gd-expander gd-expanded">
-                                    <div class="gd-inner">
-                                        <div class="row-fluid">
-                                            <div class="span6">
-                                                <h2>Título contenido</h2>
-                                                <p>
-                                                    Información importante de contenido
-                                                </p>
-                                                <a href="#" class="btn btn-success">Ir al contenido</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="push"></div>
+                            <%            
+                                    }
+                                }
+                            %>
+                        </div>
                     </div>
                 </div>
             </div>
