@@ -10,6 +10,7 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
     </head>
     <body>
 		<h1>EDVA CWEScom</h1>
@@ -75,6 +76,19 @@
                                 <i class="glyphicon glyphicon-eye-close form-control-feedback"></i>
                             </div>
                         </div>
+                        <img src="${pageContext.request.contextPath}/images/blank-profile-picture-973460_1280.png" width="200" class="img-circle" alt="Hola?" id="crop_avatar"/>
+                        
+                        <div class="form-group has-feedback">
+                            <label class="control-label" for="upload">Selecciona una imágen para tu avatar</label>
+                            <input type="file" class="btn btn-primary" id="upload" name="up" value="Escoge un Archivo"/>
+                            <div class="col-md-4">
+                                
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2">
                                 <!--input type="submit" class="btn btn-success" value="Registrarse"/-->
@@ -83,6 +97,13 @@
                                 <a href="loginform" class="btn btn-link">¿Ya tienes una cuenta? Inicia sesión aquí</a>
                             </div>
                         </div>
+                        
+                        
+
+                        
+
+
+                        
                     </form>
                 </div>
                 <s:if test="hasActionErrors()">
@@ -91,12 +112,22 @@
                         </div>
                 </s:if>
             </div>
+            
+            
+            <input type="hidden" id="imagebase64" name="imagebase64">
+            <a href="#" class="upload-result">Send</a>
+                        
+            
+            
         </div>
 	<br>
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script> 
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery/croppie.min.js"></script>      
         <script src="${pageContext.request.contextPath}/js/paginas/registrar.js"></script>
     </body>
+    
 </html>

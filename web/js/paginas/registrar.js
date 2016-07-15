@@ -1,12 +1,14 @@
-$(document).ready(function(){
+/* global dialog */
+
+$(document).ready(function () {
     $('#fechaN').datepicker({
         format: "yyyy-mm-dd"
     });
     $('#registrarsefrm').bootstrapValidator({
-        // message: 'Este valor no es permitido',
+// message: 'Este valor no es permitido',
         fields: {
             correo: {
-                //message: ''
+//message: ''
                 validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su correo electrónico'
@@ -17,7 +19,7 @@ $(document).ready(function(){
                 }
             },
             nombre: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su nombre'
                     },
@@ -32,7 +34,7 @@ $(document).ready(function(){
                 }
             },
             paterno: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su apellido paterno'
                     },
@@ -46,8 +48,8 @@ $(document).ready(function(){
                     }
                 }
             },
-            materno:{
-                validators: {                    
+            materno: {
+                validators: {
                     regexp: {
                         regexp: /^[A-Za-záéíóúñÁÉÍÓÚÑ]{0,}$/,
                         message: "Formato incorrecto. Solo puede contener mayúsculas, minúsculas, acentos o la ñ"
@@ -59,17 +61,17 @@ $(document).ready(function(){
                     }
                 }
             },
-            cedula:{
-                validators:{
-                    stringLength:{
+            cedula: {
+                validators: {
+                    stringLength: {
                         min: 0,
                         max: 20,
-                        message: "El campo cédula no puede tener más de 20 caracteres" 
+                        message: "El campo cédula no puede tener más de 20 caracteres"
                     }
                 }
             },
             fechaN: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su fecha de Nacimiento'
                     },
@@ -80,7 +82,7 @@ $(document).ready(function(){
                 }
             },
             password: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su contraseña'
                     },
@@ -90,9 +92,9 @@ $(document).ready(function(){
                     }
                 }
             },
-            pwd:{
+            pwd: {
                 message: "Por favor, repita su contraseña para validarla",
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrede de nuevo su contraseña'
                     },
@@ -102,7 +104,81 @@ $(document).ready(function(){
                     }
                 }
             }
-
         }
     });
-}); 
+    //Croppie
+//    var $uploadCrop;
+//    function readFile(input, dialog) {
+//        if (input.files && input.files[0]) {
+//            var reader = new FileReader();
+//            reader.onload = function (e) {
+//
+//
+//                dialog.open();
+//                $uploadCrop.croppie('bind', {
+//                    url: e.target.result
+//                });
+//                $('.upload-demo').addClass('ready');
+//            }
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+
+    $('#upload').on('change', function () {
+        var dialog = avatarCut(this);
+    });
+    
+    
+
+    var $message;
+    function avatarCut(inputFileButton) {
+        if (inputFileButton.files && inputFileButton.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+//                $message = $('#crop_avatar').attr("src", e.target.result );               
+                var $message = $('<div class="demo" id="upload-demo"></div>').croppie({
+                    viewport: {
+                        width: 200,
+                        height: 200,
+                        type: 'circle'
+                    },
+                    boundary: {
+                        width: 210,
+                        height: 210
+                    }
+                });
+                $message.croppie('bind', {
+                    url: "http://tagticaweb.com/wp-content/uploads/2010/11/imagen-corporativa-tagticaweb.jpg"
+                });
+                var dialog = new BootstrapDialog({
+                    title: 'Haz el corte a tu avatar...',
+                    message: $message,
+                    buttons: [
+                        {
+                            id: 'btn-ok',
+                            label: 'Aceptar',
+                            cssClass: 'btn-primary',
+                            autospin: true,
+                            action: function (dialogRef) {
+                                dialogRef.close();
+                            }
+                        },
+                        {
+                            id: 'btn-close',
+                            label: 'Cerrar',
+                            cssClass: 'btn-danger',
+                            autospin: false,
+                            action: function (dialogRef) {
+                                dialogRef.close();
+                            }
+                        }
+                    ]
+                });
+                dialog.open();
+            };
+            
+            reader.readAsDataURL(inputFileButton.files[0]);
+        }
+    }
+
+});
