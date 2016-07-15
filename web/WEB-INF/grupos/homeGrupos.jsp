@@ -3,13 +3,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="${pageContext.request.contextPath}/js/paginas/grupos/homeGrupos.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container container-fluid" style="width: 100%;" id="caja">
-            <div class="sidebar-left">
-                
+        <div id="wrapper">
+            <!--sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
+                            <span class="glyphicon glyphicon-user"></span> Reload <span class='caret'></span>
+                        </a>
+                        <div style="color: #449d44">
+                            Hoy te vas!!!
+                        </div>
+                        <!--ul class="dropdown-backdrop">
+                            <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>
+                            <li><a href="logout.action">Cerrar Sesión</a></li>
+                        </ul-->
+                    </li>
+                    <li>Camino</li>
+                </ul>
             </div>
+            <!--Page content -->
         </div>
         
         <!--div class="container container-fluid" style="width: 100%;" id="caja">
@@ -35,13 +52,11 @@
         </div-->
     </body>
     <script>
-            /*var height = $(window).height();
-            $("#caja").height((height * 0.9));*/
             
             /*$("#divInfo1").height((height * 0.335));
             $("#divInfo2").height((height * 0.335));*/
             /*$("#sidebar").height(height * 0.825);
             $("#content").height(height * 0.83);*/
-        });
+        //});
     </script>
 </html>

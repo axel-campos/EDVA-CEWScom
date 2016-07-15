@@ -1,8 +1,8 @@
 <%@page import="modelo.dao.*"%>
 <%@page import="modelo.pojo.*"%>
 <%@page import="java.util.List"%>
-<nav class="navbar navbar-inverse">
-    <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="header">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toogle navigation</span>

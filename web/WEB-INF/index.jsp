@@ -36,10 +36,18 @@
     <body role="document">
         <%@include file="header.jsp" %>
         <div class="loading-progress-2" id="progressBar" style="display: none;"></div>
-        <!--div class="embed-responsive embed-responsive-16by9" id="contenido" style="min-height: 500px"-->
-        <div id="contenido" class="container-fluid">
+        <div class="container-fluid" id="contenido">
             <%@include file="principal.jsp"%>
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
     </body>
+    <script>
+        $(document).ready(function(){
+            var top1 = $("#header").outerHeight(),
+            top2 = $("#progressBar").outerHeight(),
+            top3 = top1 + top2;
+            $("#progressBar").offset({top : top1});
+            $("#contenido").offset({top : top3});
+        });
+    </script>
 </html>
