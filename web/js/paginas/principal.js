@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.gridex').gridex();
+    //$('.gridex').gridex();
 });
 
 function responderSolicitud(token, correo, tipo, div){
