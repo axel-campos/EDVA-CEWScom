@@ -20,6 +20,7 @@
         <link href="${pageContext.request.contextPath}/css/jquery.progresstimer.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
