@@ -18,6 +18,8 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
     private List<UsuarioGrupo> usuariosGrupo;
     private List<String> results;
     private Usuario usuario;
+    private boolean esCoordinador = false;
+    private boolean esAdministrador = false;
     @Override
     public String execute() throws Exception {
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
@@ -35,6 +37,18 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
             }
             usuarioDAO.desconectar();
             results.add(nombre);
+            //Ahora revisamos que rol tiene el profesor que accede al home de grupos, con el fin de mostrar los botones.
+            if(usuario.getCorreo().equals(usergroup.getCorreo())){
+                switch(usuario.getTipo()){
+                    case 1://coordinador
+                        esCoordinador = true;
+                        esAdministrador = true;
+                        break;
+                    case 2://administrador
+                        esAdministrador = true;
+                        break;
+                }
+            }
         }
         usuarioGrupoDAO.desconectar();
         userSession.put("token", token);
@@ -83,7 +97,21 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
         this.usuario = usuario;
     }
 
-    
+    public boolean isEsCoordinador() {
+        return esCoordinador;
+    }
+
+    public void setEsCoordinador(boolean esCoordinador) {
+        this.esCoordinador = esCoordinador;
+    }
+
+    public boolean isEsAdministrador() {
+        return esAdministrador;
+    }
+
+    public void setEsAdministrador(boolean esAdministrador) {
+        this.esAdministrador = esAdministrador;
+    }
     
     
 }
