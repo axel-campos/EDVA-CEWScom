@@ -41,44 +41,88 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO(); 
         usuarioGrupoDAO.conectar();
         if(token.trim().isEmpty() && nombre.trim().isEmpty() && rol.equals("0")){//No hubo filtros
-            grupos = usuarioGrupoDAO.buscarTodos().stream().filter(
-            p -> p.getCorreo().equals(usuario.getCorreo())).filter(p -> p.getAceptado()).collect(Collectors.toList());
-            for(int i = 0; i < grupos.size(); i++){
-                List<String> aux = new ArrayList<>();
+            if(usuario.getTipo() == 1){
                 GrupoDAO grupoDAO = new GrupoDAO();
                 grupoDAO.conectar();
-                Grupo group = grupoDAO.buscar(new Grupo().setToken(grupos.get(i).getToken()));
-                aux.add(group.getNombre());
-                aux.add(group.getDescripcion());
-                aux.add(tipoUsuario[grupos.get(i).getIdTipoUsuarioGrupo()]);
-                aux.add(group.getToken());
-                aux.add(grupos.get(i).getIdTipoUsuarioGrupo() + "");
+                List<Grupo> grupos = grupoDAO.buscarTodosLimite();
+                for(Grupo g : grupos){
+                    List<String> aux = new ArrayList<>();
+                    aux.add(g.getNombre());
+                    aux.add(g.getDescripcion());
+                    aux.add(tipoUsuario[1]);
+                    aux.add(g.getToken());
+                    aux.add(1 + "");
+                    resultados.add(aux);
+                }
                 grupoDAO.desconectar();
-                resultados.add(aux);
+            }else{
+                grupos = usuarioGrupoDAO.buscarTodos().stream().filter(
+                p -> p.getCorreo().equals(usuario.getCorreo())).filter(p -> p.getAceptado()).collect(Collectors.toList());
+                for(int i = 0; i < grupos.size(); i++){
+                    List<String> aux = new ArrayList<>();
+                    GrupoDAO grupoDAO = new GrupoDAO();
+                    grupoDAO.conectar();
+                    Grupo group = grupoDAO.buscar(new Grupo().setToken(grupos.get(i).getToken()));
+                    aux.add(group.getNombre());
+                    aux.add(group.getDescripcion());
+                    aux.add(tipoUsuario[grupos.get(i).getIdTipoUsuarioGrupo()]);
+                    aux.add(group.getToken());
+                    aux.add(grupos.get(i).getIdTipoUsuarioGrupo() + "");
+                    grupoDAO.desconectar();
+                    resultados.add(aux);
+                }
             }
         }else{//Hubo mínimo un filtro
             String where = "";
             if(!token.trim().isEmpty()){
-                where += "AND g.token LIKE '%" + token + "%' ";
+                if(usuario.getTipo() == 1){
+                    where = "WHERE g.token LIKE '%" + token + "%' ";
+                }else{
+                    where += "AND g.token LIKE '%" + token + "%' ";
+                }
                 userSession.put("token", token);
             }if(!nombre.trim().isEmpty()){ 
-                where += "AND g.nombre LIKE '%" + nombre + "%' ";
+                if(usuario.getTipo() == 1){
+                    if(where.trim().isEmpty()){
+                        where = "WHERE g.nombre LIKE '%" + nombre + "%' ";
+                    }else{
+                        where += "AND g.nombre LIKE '%" + nombre + "%' ";
+                    }
+                }else{
+                    where += "AND g.nombre LIKE '%" + nombre + "%' ";
+                }
                 userSession.put("nombre", nombre);
             }if(!rol.equals("0")){
-                where += "AND idtipoUsuarioGrupo = " + rol;
-                userSession.put("rol", rol);
+                if(usuario.getTipo() != 1){
+                    where += "AND idtipoUsuarioGrupo = " + rol;
+                    userSession.put("rol", rol);
+                }
             }
-            String sql = "SELECT g.nombre, g.descripcion, ug.idtipoUsuarioGrupo AS rol, g.token FROM usuariogrupo ug INNER JOIN grupo g ON g.token = ug.token " +
+            if(usuario.getTipo() == 1){
+                String sql = "SELECT g.nombre, g.descripcion, g.token FROM grupo g " + where;
+                groups = usuarioGrupoDAO.consultaGenerica(sql);
+                for(Map<String, Object> group : groups){
+                    List<String> aux = new ArrayList<>();
+                    aux.add(group.get("nombre").toString());
+                    aux.add(group.get("descripcion").toString());
+                    aux.add(tipoUsuario[1]);
+                    aux.add(group.get("token").toString());
+                    aux.add(1 + "");
+                    resultados.add(aux);
+                }
+            }else{
+                String sql = "SELECT g.nombre, g.descripcion, ug.idtipoUsuarioGrupo AS rol, g.token FROM usuariogrupo ug INNER JOIN grupo g ON g.token = ug.token " +
                         "WHERE ug.aceptado = 1 AND ug.correo = '" + usuario.getCorreo() + "' " + where;
-            groups = usuarioGrupoDAO.consultaGenerica(sql);
-            for(Map<String, Object> group : groups){
-                List<String> aux = new ArrayList<>();
-                aux.add(group.get("nombre").toString());
-                aux.add(group.get("descripcion").toString());
-                aux.add(tipoUsuario[Integer.parseInt(group.get("rol").toString())]);
-                aux.add(group.get("token").toString());
-                aux.add(group.get("rol").toString());
-                resultados.add(aux);
+                groups = usuarioGrupoDAO.consultaGenerica(sql);
+                for(Map<String, Object> group : groups){
+                    List<String> aux = new ArrayList<>();
+                    aux.add(group.get("nombre").toString());
+                    aux.add(group.get("descripcion").toString());
+                    aux.add(tipoUsuario[Integer.parseInt(group.get("rol").toString())]);
+                    aux.add(group.get("token").toString());
+                    aux.add(group.get("rol").toString());
+                    resultados.add(aux);
+                }
             }
         }       
         if(!exito.isEmpty()){
@@ -170,6 +214,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
     @Override
     public void setSession(Map<String, Object> userSession) {
         this.userSession = userSession;
+        usuario = (Usuario)userSession.get("usuario");
     }
     
     

@@ -18,6 +18,7 @@
     String cabeceraMError = "<div class='alert alert-danger'><span class='glyphicon glyphicon-alert'></span>  ";
     String cierreM = "</div>";
     TipoUsuarioGrupoDAO rolDAO = new TipoUsuarioGrupoDAO();
+    Usuario usuarioS = null;
     rolDAO.conectar();
     List<TipoUsuarioGrupo>roles = rolDAO.buscarTodos();
     String nombre = "", token = "";
@@ -26,15 +27,21 @@
     if(session.getAttribute("nombre") != null){
         nombre = session.getAttribute("nombre").toString();
         session.removeAttribute("nombre");
-    }if(session.getAttribute("rol") != null){
+    }
+    if(session.getAttribute("rol") != null){
         idRol = Integer.parseInt(session.getAttribute("rol").toString());
         session.removeAttribute("rol");
-    }if(session.getAttribute("token") != null){
+    }
+    if(session.getAttribute("token") != null){
         token = session.getAttribute("token").toString();
         session.removeAttribute("token");
-    }if(session.getAttribute("busco") != null){
+    }
+    if(session.getAttribute("busco") != null){
         busco = (Boolean)session.getAttribute("busco");
         session.removeAttribute("busco");
+    }
+    if(session.getAttribute("usuario") != null){
+        usuarioS = (Usuario)session.getAttribute("usuario");
     }
 %>
 
@@ -93,7 +100,6 @@
         </form>
     </div>
     <div class="table-responsive" id='div1'>
-        <!--s:if test="%{resultados.size > 0}"-->
         <% if(busco){%>
             <table id="tabla">
                 <thead>
@@ -109,9 +115,6 @@
                 <tbody>
                     <s:iterator value="resultados" var="resultado">
                         <tr>
-                            <!--td><a onclick="cambiarContenidos('ListRoles?token=<s:property value="%{#resultado[3]}" />','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td-->
-                            <!--td><a onclick="cambiarContenidos('homeGrupos','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td-->
-                            <!--td><a onclick="cambiarContenidos('homeGrupos?token=<!s:property value="%{#resultado[3]}"/>','#contenido');" class="btn btn-link"><!s:property value="%{#resultado[0]}" /></a></td-->
                             <td><a onclick="cambiarContenidos('ListarMiembrosAction?token=<s:property value="%{#resultado[3]}"/>','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
@@ -130,7 +133,6 @@
                     </s:iterator>
                 </tbody>
             </table>        
-        <!--/s:if-->
         <% }%>
     </div>
         
