@@ -17,7 +17,6 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/jquery.progresstimer.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
@@ -27,7 +26,6 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>  
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
         <title>Página Principal</title>

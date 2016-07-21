@@ -1,5 +1,8 @@
 $(document).ready(function(){
     var height = $(window).height();
+    var utilizado = ($("#menu-toggle").outerHeight() + $("#header").outerHeight() + 14);
+    var altura = (height - utilizado);
+    $("#contenidoGrupo").height(altura);
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");

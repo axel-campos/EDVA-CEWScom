@@ -30,8 +30,9 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="dropdown" id="informacion">
-                        <a href="#" onclick="abrirVentana1()" class="dropdown-toggle" data-toggle="collapse" data-target="#GroupInfo" role="button" aria-haspopup="true" aria-expended="false">
-                            <span class="glyphicon glyphicon-info-sign"></span>   Información del grupo <span class='caret'></span>
+                        <a href="#" onclick="abrirVentana1()" class="dropdown-toggle" data-toggle="collapse" data-target="#GroupInfo">
+                            <span class="glyphicon glyphicon-info-sign">   </span>   Información del grupo
+                            <div style="float: right; margin-right: 5%"><span class='caret'></span></div>
                         </a>
                         <div style="color: whitesmoke" id="GroupInfo" class="collapse">
                             <!--fieldset class="form-group"-->
@@ -51,15 +52,26 @@
                         </div>
                     </li>
                     <li class="dropdown" id="miembros">
-                        <a href="#" onclick="abrirVentana2()"
-                           class="dropdown-toggle" data-toggle="collapse" data-target="#GroupMembers" role="button" aria-haspopup="true" aria-expended="true">
-                            <span class="glyphicon glyphicon-th-list"></span>   Miembros del grupo <span class='caret'></span>
+                        <a href="#" onclick="abrirVentana2()" class="dropdown-toggle" data-toggle="collapse" data-target="#GroupMembers">
+                            <span class="glyphicon glyphicon-th-list"></span>   Miembros del grupo 
+                            <span class="badge"><%= noProfesores%></span>
+                            <div style="float: right; margin-right: 5%"><span class='caret'></span></div>
                         </a>
                         <div style="color: whitesmoke" id="GroupMembers" class="collapse">
                             <div class="container-fluid" style="overflow: auto;">
                                 <s:iterator value="results" var="nombre">
                                     <div class="col-md-12"><s:property value='%{#nombre}'/></div>
                                 </s:iterator>
+                                <%if(noProfesores > 1){ %>
+                                <s:if test="esAdministrador">
+                                    <div class="col-md-12">
+                                        <s:if test="esCoordinador">
+                                            <button class="btn btn-primary btn-sm" onclick="cambiarContenidos('ListRoles?token=<%=token%>','#contenidoGrupo');">Roles del grupo</button>
+                                        </s:if>
+                                            <button class="btn btn-info btn-sm">Solicitudes</button>
+                                    </div>
+                                </s:if>
+                                <% }%>
                             </div>
                         </div>
                     </li>
@@ -71,35 +83,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!--button type="button" class="btn btn-default" data-toggle="collapse"-->
-                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a><br>
-                            Cuentos de la calle Bronca;:D
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><span class="glyphicon glyphicon-align-justify"></span></a>
+                            <div style="overflow: auto" id="contenidoGrupo" class="container-fluid">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!--div class="container container-fluid" style="width: 100%;" id="caja">
-            <div class="row-fluid">
-                <div class="col-sm-3 well" id="sidebar">
-                    <div class="well" id="divInfo1" style="overflow: auto; height: 45%">
-                        INFO 1
-                    </div>
-                    <div class="well" id="divInfo2" style="overflow: auto; height: 50%">
-                        <div class='container-fluid'>
-                            X-MEN
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-9" id="content">
-                    <div class="panel panel-default">
-                        <div class="panel-body" style="overflow: auto">
-                            Contenido
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div-->
     </body>
     <script>
             

@@ -8,49 +8,17 @@ var TIPO_MENSAJE = {
     DANGER: 5
 };
 
-var TIPO_ESTATUS = {
-    SUCCESS: 'complete',
-    ERROR: 'error'
-};
 
-function cambiarContenidos(pagina, target){    
-    var progress1 = loading(10);
+
+function cambiarContenidos(pagina, target){
     if(pagina !== "#"){
         $(target).load(pagina,function(response, status, xhr){
-            if(status === "success"){
-                finished(progress1, TIPO_ESTATUS.SUCCESS);
-                $("#progressBar").hide();
-            }else if(status === "error"){
-                finished(progress1, TIPO_ESTATUS.ERROR);
-            }
             $(".button").button();
         });
     }
 }
 
-function loading(tiempo){
-    $("#progressBar").show();
-    return $("#progressBar").progressTimer({
-        timeLimit: tiempo,
-        onFinish: function () {
-        }
-    });
-}
 
-function finished(progress, tipo){
-    var mensaje = "";
-    if(tipo === TIPO_ESTATUS.SUCCESS){
-        mensaje = "¡Éxito!";
-    }else{
-        mensaje = "¡Error!";
-    }
-    progress.progressTimer(tipo, {
-        successText : mensaje,
-        onFinish: function(){
-            
-        }
-    });
-}
 
 function estasSeguro(pagina,target){
     BootstrapDialog.show({
