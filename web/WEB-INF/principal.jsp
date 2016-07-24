@@ -133,24 +133,23 @@
                     </div>
                 </div>
                 <div class="col-sm-8" align="center">
-                    <!div class="col-sm-8" align="center">
+                    <%
+                        //Buscaremos los primeros diez contenidos de los grupos de este usuario
+                        ContenidoDAO contenidoDAO = new ContenidoDAO();
+                        contenidoDAO.conectar();
+                        String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
+                            " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
+                            " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
+                            " INNER JOIN grupo AS g ON g.token = con.token " +
+                            " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
+                            " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW());";
+                        List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
+                        contenidoDAO.desconectar();
+                        if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
+                    %>
+                    <div class="col-sm-12">
                         <div class="panel panel-default">
                             <div class="panel-body" style="overflow: auto">
-                                <%
-                                    //Buscaremos los primeros diez contenidos de los grupos de este usuario
-                                    ContenidoDAO contenidoDAO = new ContenidoDAO();
-
-                                    contenidoDAO.conectar();
-                                    String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
-                                        " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
-                                        " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
-                                        " INNER JOIN grupo AS g ON g.token = con.token " +
-                                        " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
-                                        " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW());";
-                                    List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
-                                    contenidoDAO.desconectar();
-                                    if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
-                                %>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
@@ -165,27 +164,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <%
-                                    }else{
-                                        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                        for(i = 0; i < tablaContenidos.size(); i++){
-                                            Map<String, Object> columna = tablaContenidos.get(i);
-                                            String nombreGrupo = (String)columna.get("nombreGrupo");
-                                            String titulo = (String)columna.get("titulo");
-                                            String tema = (String)columna.get("tema");
-                                            String descripcion = (String)columna.get("descripcion");
-                                            String etapa = (String)columna.get("nombre");
-                                            String fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
-                                            String fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
-                                %>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                        }else{
+                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            for(i = 0; i < tablaContenidos.size(); i++){
+                                Map<String, Object> columna = tablaContenidos.get(i);
+                                String nombreGrupo = (String)columna.get("nombreGrupo");
+                                String titulo = (String)columna.get("titulo");
+                                String tema = (String)columna.get("tema");
+                                String descripcion = (String)columna.get("descripcion");
+                                String etapa = (String)columna.get("nombre");
+                                String fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
+                                String fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
+                    %>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="overflow: auto">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                                Contenido: <%=titulo%> del grupo: <%=nombreGrupo%></a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
+                                                Contenido: <%=titulo%> <br/> Grupo: <%=nombreGrupo%></a>
                                         </h4>
                                     </div>
-                                    <div id="collapse1" class="panel-collapse collapse">
+                                    <div id="collapse<%=i%>" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             Título: <%=titulo%> <br/>
                                             Grupo: <%=nombreGrupo%> <br/>
@@ -198,14 +203,14 @@
                                             <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
                                         </div>
                                     </div>
-                                <%            
-                                        }
-                                    }
-                                %>
                                 </div>
                             </div>
-                        <!/div>
+                        </div>
                     </div>
+                    <%            
+                            }
+                        }
+                    %>
                 </div>
             </div>
         <script src="${pageContext.request.contextPath}/js/paginas/principal.js"></script>
