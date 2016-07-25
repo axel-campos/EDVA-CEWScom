@@ -17,16 +17,16 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/jquery.progresstimer.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/cargando.css" rel="stylesheet" type="text/css"/>
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>  
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/jquery.progresstimer.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
         <title>Página Principal</title>
@@ -36,7 +36,13 @@
     </head>
     <body role="document">
         <%@include file="header.jsp" %>
-        <div class="loading-progress-2" id="progressBar" style="display: none;"></div>
+        <div class="spinner" id="cargando" style="display: none;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+        <div class="alert alert-danger" id="errorPrincipal"  style="display: none;">
+            <strong>Atención!</strong> Hubo un error al procesar la solicitud, inténtelo de nuevo
+        </div>
         <div class="container-fluid" id="contenido">
             <%@include file="principal.jsp"%>
         </div>

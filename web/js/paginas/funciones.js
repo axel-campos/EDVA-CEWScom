@@ -8,48 +8,35 @@ var TIPO_MENSAJE = {
     DANGER: 5
 };
 
-var TIPO_ESTATUS = {
-    SUCCESS: 'complete',
-    ERROR: 'error'
-};
-
-function cambiarContenidos(pagina, target){    
-    var progress1 = loading(10);
-    if(pagina !== "#"){
-        $(target).load(pagina,function(response, status, xhr){
-            if(status === "success"){
-                finished(progress1, TIPO_ESTATUS.SUCCESS);
-                $("#progressBar").hide();
-            }else if(status === "error"){
-                finished(progress1, TIPO_ESTATUS.ERROR);
-            }
-            $(".button").button();
-        });
-    }
-}
-
-function loading(tiempo){
-    $("#progressBar").show();
-    return $("#progressBar").progressTimer({
-        timeLimit: tiempo,
-        onFinish: function () {
-        }
+function cambiarContenidos(pagina, target){
+    cargando();
+    $.post(pagina)
+    .done(function(data){
+        setTimeout(
+        function() 
+        {
+            finalizar();
+            $(target).html(data);
+        }, 1000);
+    }).fail(function(data){
+        errorCargando();
     });
 }
 
-function finished(progress, tipo){
-    var mensaje = "";
-    if(tipo === TIPO_ESTATUS.SUCCESS){
-        mensaje = "¡Éxito!";
-    }else{
-        mensaje = "¡Error!";
-    }
-    progress.progressTimer(tipo, {
-        successText : mensaje,
-        onFinish: function(){
-            
-        }
-    });
+function cargando(){
+    $("#cargando").show();
+    $("#errorPrincipal").hide();
+    $("#contenido").hide();
+}
+
+function finalizar(){
+    $("#cargando").hide();
+    $("#contenido").show();
+}
+
+function errorCargando(){
+    $("#cargando").hide();
+    $("#errorPrincipal").show();
 }
 
 function estasSeguro(pagina,target){

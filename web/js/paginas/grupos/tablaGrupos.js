@@ -41,7 +41,7 @@ function getHeight(){
     var columnas = $("#tabla tr").length;
     var y = $('.fixed-table-container');
     if(columnas > 11){
-        return $(window).height() - ($('.fixed-table-toolbar').outerHeight(true) + $("#contenedor1").outerHeight(true)) * 2.7;
+        return $(window).height() - ($('.fixed-table-toolbar').outerHeight(true) + $("#contenedor1").outerHeight(true) + $("#button-group").outerHeight(true) + 14) * 2.7;
         //return (($(window).height() * 3) / 4);// - $("#contenedor1").outerHeight(true);
 
     }else{
