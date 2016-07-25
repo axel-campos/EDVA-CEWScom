@@ -78,7 +78,6 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
             e.printStackTrace();
             return ERROR;
         }
-
     }
 
     @Override

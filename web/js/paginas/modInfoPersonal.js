@@ -81,6 +81,20 @@ $(document).ready(function () {
                 }
             }
         }
+    }).on('success.form.fv', function(e){
+        //Prevent form submission
+        e.preventDefault();
+        //Use Ajax to submit form data
+        var datos = $(form).serialize();
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: datos,
+            success: function(data){
+                var target = "#contenido";
+                $(target).html(data);
+            }
+        });
     });
 });
 
