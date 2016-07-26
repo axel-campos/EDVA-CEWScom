@@ -5,9 +5,7 @@
  */
 
 $(document).ready(function () {
-    alert("caca");
     $('#mod_pwd_frm').bootstrapValidator({
-        // message: 'Este valor no es permitido',
         fields: {
             old_pwd: {
                 validators: {

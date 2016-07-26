@@ -8,17 +8,36 @@ var TIPO_MENSAJE = {
     DANGER: 5
 };
 
-
-
 function cambiarContenidos(pagina, target){
-    if(pagina !== "#"){
-        $(target).load(pagina,function(response, status, xhr){
-            $(".button").button();
-        });
-    }
+    cargando();
+    $.post(pagina)
+    .done(function(data){
+        setTimeout(
+        function() 
+        {
+            finalizar();
+            $(target).html(data);
+        }, 1000);
+    }).fail(function(data){
+        errorCargando();
+    });
 }
 
+function cargando(){
+    $("#cargando").show();
+    $("#errorPrincipal").hide();
+    $("#contenido").hide();
+}
 
+function finalizar(){
+    $("#cargando").hide();
+    $("#contenido").show();
+}
+
+function errorCargando(){
+    $("#cargando").hide();
+    $("#errorPrincipal").show();
+}
 
 function estasSeguro(pagina,target){
     BootstrapDialog.show({

@@ -101,4 +101,26 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 			throw new RuntimeException(e);
 		}
 	}
+    
+    public List<Grupo> buscarTodosLimite() {
+		String sql = "SELECT * FROM Grupo LIMIT 100";
+		List<Grupo> lista = new ArrayList<>();
+		
+		try (
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+		) {
+			while (rs.next()) {
+				lista.add(new Grupo()
+					.setToken(rs.getString("token"))
+					.setNombre(rs.getString("nombre"))
+					.setDescripcion(rs.getString("descripcion"))
+					.setTotalProfesores(rs.getInt("totalProfesores")));
+			}
+			
+			return lista;
+		} catch (SQLException | NullPointerException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
