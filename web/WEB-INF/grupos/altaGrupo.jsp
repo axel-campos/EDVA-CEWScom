@@ -35,7 +35,7 @@ if(request.getParameter("token") != null){
     <body onload="myfunction()">
         <div class="container-fluid">
             <div class="panel panel-default">
-                <div class='panel-heading'><%= opcion2 %></div>
+                <!--div class='panel-heading'><!%= opcion2 %></div-->
                 <div class="panel-body">
                     <!--form id="altaGrupo" name="altaGrupo" class="form-horizontal" action="/" method="POST"-->
                     <form id="altaGrupo" name="altaGrupo" class="form-horizontal">

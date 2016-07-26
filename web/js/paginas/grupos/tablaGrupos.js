@@ -113,7 +113,7 @@ function crearGrupo(){
             autospin: false,
             action: function(dialogRef){
                 submitForm();
-                dialogRef.close();
+                //dialogRef.close();
             }
         },{
             id: 'btn-cancel',   
@@ -157,6 +157,10 @@ function modificarGrupo(token){
 
 function submitForm(){
     var form = "#altaGrupo";
-    $(form).bootstrapValidator().bootstrapValidator('validate');
+    var resultado = $(form).bootstrapValidator().bootstrapValidator('validate');
     //La magia se hace en el archivo altaGrupo.js
+    //var resultado = $(form).bootstrapValidator().bootstrapValidator('isValid');
+    var c = true;
+    //var d = resultado.message;
+    $("#descripcion").val(resultado + " diablos " + c + " chiquero ");
 }

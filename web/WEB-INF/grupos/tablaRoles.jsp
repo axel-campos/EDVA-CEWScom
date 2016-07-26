@@ -27,10 +27,10 @@
                 <table class="table table-hover" id="tabla">
                     <thead>
                     <th style="width:20%;" data-sortable='true' data-field='Nombre del miembro' data-align='center'>Nombre del miembro</th>
-                    <th style="width:5%; display: none;" id="colCoordinador" data-align='center'>Coordinador</th>
+                    <th style="width:5%;" id="colCoordinador" data-align='center' data-visible="false" data-field='Coordinador'>Coordinador</th>
                     <th style="width:5%;" data-align='center'>Administrador</th>
                     <th style="width:5%;" data-align='center'>Colaborador</th>
-                    <th style="width:10%; display: none;" id="colEliminar" data-align='center'>Eliminar</th>
+                    <th style="width:10%;" id="colEliminar" data-align='center' data-visible="false" data-field='Eliminar'>Eliminar</th>
                     </thead>
                     <tbody>
                     <s:iterator value="results" var="result">
@@ -50,24 +50,31 @@
                 <div class="form-group" >
                     <% if(x > 0){%>
                     <div class="col-md-4" id="button-group">
-                        <input type="button" value="Modificar Roles" class="btn btn-success" onclick="ModificarRoles()" id="modify_button"/>
+                        <!--input type="button" value="Modificar Roles" class="btn btn-success" onclick="ModificarRoles()" id="modify_button"/>
                         <input type="button" value="Nuevo Coordinador" class="btn btn-primary" onclick="NuevoCoordinador()" id="new_coordinator_button"/>
+                        <input type="button" id="submit_button" value="Guardar" class="btn btn-success" onclick="guardarCambiosRoles()" style="display:none"/>
+                        <input type="button" id="coordinador_submit_button" value="Guardar" class="btn btn-success" onclick="asignarNuevoCoordinador()" style="display:none"/>
+                        <input type="button" id="cancelar_button" value="Cancelar" class="btn btn-danger" onclick="cancel_operation()" style="display:none"/-->
+                        <button type="button" id="modify_button" class="btn btn-success" onclick="ModificarRoles()">
+                            <span class="glyphicon glyphicon-retweet"></span>   Modificar Roles
+                        </button>
+                        <button type="button" id="new_coordinator_button" class="btn btn-primary" onclick="NuevoCoordinador()">
+                            <span class="glyphicon glyphicon-pencil"></span>   Nuevo coordinador
+                        </button>
+                        <button type="button" id="submit_button" class="btn btn-success" onclick="guardarCambiosRoles()" style="display: none">
+                            <span class="glyphicon glyphicon-saved"></span>   Guardar
+                        </button>
+                        <button type="button" id="coordinador_submit_button" class="btn btn-success" onclick="asignarNuevoCoordinador()" style="display: none">
+                            <span class="glyphicon glyphicon-saved"></span>   Guardar
+                        </button>
+                        <button type="button" id="cancelar_button" class="btn btn-danger" onclick="cancel_operation()" style="display: none">
+                            <span class="glyphicon glyphicon-remove"></span>   Cancelar
+                        </button>
                     </div>
                     <% }%>
                 </div>
             </form>
         </div>
-        <br>
-        <s:if test="hasActionMessages()">
-            <div class="alert alert-success">
-                <s:actionmessage />
-            </div>
-        </s:if>
-        <s:if test="hasActionErrors()">
-            <div class="alert alert-danger">
-                <s:actionerror />
-            </div>
-        </s:if>
     </body>
     <script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaRoles.js"></script>
 </html>
