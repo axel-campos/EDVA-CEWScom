@@ -105,6 +105,9 @@
         <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
             <result>/WEB-INF/grupos/tablaRoles.jsp</result>
         </action>
+        <action name="ListSolicitudes" class="Actions.Groups.ListarSolicitudesAction">
+            <result>WEB-INF/grupos/tablaSolicitudes.jsp</result>
+        </action>
         
         <action name="enviarSolicitudGrupo">
             <result>/WEB-INF/grupos/accesoGrupo.jsp</result>
