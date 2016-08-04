@@ -15,12 +15,16 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public void registrar(Reporte registro) {
-		String sql = "INSERT INTO Reporte VALUES (?, ?, ?)";
+		String sql = "INSERT INTO Reporte VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
 			stmt.setString(2, registro.getCausa());
 			stmt.setInt(3, registro.getIdContenido());
+            stmt.setString(4, registro.getCorreo());
+            stmt.setInt(5, registro.getAtendido());
+            stmt.setTimestamp(6, new Timestamp(registro.getFechaReporte().getTime()));
+            stmt.setString(7, registro.getCorreoReportando());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -29,14 +33,18 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public void modificar(Reporte viejo, Reporte nuevo) {
-		String sql = "UPDATE Reporte SET idReporte = ?, causa = ?, idContenido = ? "
+		String sql = "UPDATE Reporte SET idReporte = ?, causa = ?, idContenido = ?, correo = ?, atendido = ?, fechaReporte = ?, correoReportando "
 			+ "WHERE idReporte = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, nuevo.getIdReporte());
 			stmt.setString(2, nuevo.getCausa());
 			stmt.setInt(3, nuevo.getIdContenido());
-			stmt.setInt(4, viejo.getIdReporte());
+            stmt.setString(4, nuevo.getCorreo());
+            stmt.setInt(5, nuevo.getAtendido());
+            stmt.setTimestamp(6, new Timestamp(nuevo.getFechaReporte().getTime()));
+            stmt.setString(4, nuevo.getCorreoReportando());
+			stmt.setInt(8, viejo.getIdReporte());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -66,7 +74,11 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 					return new Reporte()
 						.setIdReporte(rs.getInt("idReporte"))
 						.setCausa(rs.getString("causa"))
-						.setIdContenido(rs.getInt("idContenido"));
+						.setIdContenido(rs.getInt("idContenido"))
+                        .setCorreo(rs.getString("correo"))
+                        .setAtendido(rs.getInt("atendido"))
+                        .setFechaReporte(rs.getTimestamp("fechaReporte"))
+                        .setCorreoReportando(rs.getString("correoReportando"));
 				} else
 					return null;
 			}
@@ -88,7 +100,11 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 				lista.add(new Reporte()
 					.setIdReporte(rs.getInt("idReporte"))
 					.setCausa(rs.getString("causa"))
-					.setIdContenido(rs.getInt("idContenido")));
+					.setIdContenido(rs.getInt("idContenido"))
+                    .setCorreo(rs.getString("correo"))
+                    .setAtendido(rs.getInt("atendido"))
+                    .setFechaReporte(rs.getTimestamp("fechaReporte"))
+                    .setCorreoReportando(rs.getString("correoReportando")));
 			}
 			
 			return lista;
