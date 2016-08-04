@@ -46,7 +46,15 @@ public class CambiaRolesAction extends ActionSupport implements interceptor.Auth
     public String establecerNuevoCoordinador(){
         HttpServletRequest request = ServletActionContext.getRequest();
         UsuarioGrupoDAO usuariogrupoDAO = new UsuarioGrupoDAO();
+        String nombreGrupo = "";
         try{
+            //Obtenemos el nombre del grupo.
+            GrupoDAO grupoDAO = new GrupoDAO();
+            grupoDAO.conectar();
+            Grupo group = grupoDAO.buscar(new Grupo().setToken(token));
+            nombreGrupo = group.getNombre();
+            grupoDAO.desconectar();
+            //iniciamos este mame
             usuariogrupoDAO.conectar();
             //Quitar el rol de coordinador al viejo.
             List<UsuarioGrupo> coordinadores = usuariogrupoDAO.buscarTodos().stream().filter(p -> p.getIdTipoUsuarioGrupo() == 1)
@@ -74,8 +82,10 @@ public class CambiaRolesAction extends ActionSupport implements interceptor.Auth
             usuariogrupoDAO.desconectar();
         }catch(RuntimeException e){
             usuariogrupoDAO.desconectar();
+            addActionError("El cambio de coordinador en el grupo " + nombreGrupo + " no se ha podido efectuar. Usted sigue siendo el coordinador");
             return ERROR;
         }
+        addActionMessage("Cambio de coordinador exitoso en el grupo " + nombreGrupo + ". Su rol en este grupo ahora es de administrador.");
         return SUCCESS;
     }
     

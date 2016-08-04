@@ -112,8 +112,10 @@ function crearGrupo(){
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){
-                submitForm();
-                dialogRef.close();
+                var resultado = submitForm();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
             }
         },{
             id: 'btn-cancel',   
@@ -159,4 +161,6 @@ function submitForm(){
     var form = "#altaGrupo";
     $(form).bootstrapValidator().bootstrapValidator('validate');
     //La magia se hace en el archivo altaGrupo.js
+    var respuesta = $(form).data("bootstrapValidator").isValid();
+    return respuesta; //Nos regresará si el formulario estaba correcto o no.
 }

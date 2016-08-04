@@ -39,7 +39,7 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
             results.add(nombre);
             //Ahora revisamos que rol tiene el profesor que accede al home de grupos, con el fin de mostrar los botones.
             if(usuario.getCorreo().equals(usergroup.getCorreo())){
-                switch(usuario.getTipo()){
+                switch(usergroup.getIdTipoUsuarioGrupo()){
                     case 1://coordinador
                         esCoordinador = true;
                         esAdministrador = true;

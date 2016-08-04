@@ -68,7 +68,7 @@
                                         <s:if test="esCoordinador">
                                             <button class="btn btn-primary btn-sm" onclick="cambiarContenidos('ListRoles?token=<%=token%>','#contenidoGrupo');">Roles del grupo</button>
                                         </s:if>
-                                            <button class="btn btn-info btn-sm">Solicitudes</button>
+                                            <button class="btn btn-info btn-sm" onclick="cambiarContenidos('ListSolicitudes?token=<%=token%>','#contenidoGrupo');">Solicitudes</button>
                                     </div>
                                 </s:if>
                                 <% }%>
