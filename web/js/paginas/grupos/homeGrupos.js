@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var height = $(window).height();
-    var utilizado = ($("#menu-toggle").outerHeight() + $("#header").outerHeight() + 14);
+    var utilizado = ($("#menu-toggle").outerHeight() + $("#header").outerHeight() + 5);//antes era 14
     var altura = (height - utilizado);
     $("#contenidoGrupo").height(altura);
     $("#menu-toggle").click(function(e) {
@@ -25,4 +25,8 @@ function abrirVentana2(){
     }else if(c === "dropup"){
         $("#miembros").prop("class","dropdown");
     }
+}
+
+function mostrarLista(pagina){
+    $("#contenidoGrupo").load(pagina);
 }
