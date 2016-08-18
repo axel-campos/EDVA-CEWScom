@@ -62,23 +62,24 @@
                                 <s:iterator value="results" var="nombre">
                                     <div class="col-md-12"><s:property value='%{#nombre}'/></div>
                                 </s:iterator>
-                                <%if(noProfesores > 1){ %>
+                                
                                 <s:if test="esAdministrador">
                                     <div class="col-md-12">
+                                        <%if(noProfesores > 1){ %>
                                         <s:if test="esCoordinador">
-                                            <button class="btn btn-primary btn-sm" onclick="cambiarContenidos('ListRoles?token=<%=token%>','#contenidoGrupo');">Roles del grupo</button>
+                                            <button class="btn btn-primary btn-sm" onclick="mostrarLista('ListRoles?token=<%=token%>');">Roles del grupo</button>
                                         </s:if>
-                                            <button class="btn btn-info btn-sm" onclick="cambiarContenidos('ListSolicitudes?token=<%=token%>','#contenidoGrupo');">Solicitudes</button>
+                                        <% }%>
+                                            <button class="btn btn-info btn-sm" onclick="mostrarLista('ListSolicitudes?token=<%=token%>');">Solicitudes</button>
                                     </div>
                                 </s:if>
-                                <% }%>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
             <!--Page content -->
-            <div id="page-content-wrapper">
+            <div id="page-content-wrapper" class="container-fluid">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
