@@ -95,7 +95,7 @@
                     </select>
             </div>
             <div class="form-group col-md-1">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
             </div>
         </form>
     </div>

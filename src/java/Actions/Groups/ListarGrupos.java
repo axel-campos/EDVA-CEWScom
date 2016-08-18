@@ -81,7 +81,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
                     where += "AND g.token LIKE '%" + token + "%' ";
                 }
                 userSession.put("token", token);
-            }if(!nombre.trim().isEmpty()){ 
+            }if(nombre != null && !nombre.trim().isEmpty()){ 
                 if(usuario.getTipo() == 1){
                     if(where.trim().isEmpty()){
                         where = "WHERE g.nombre LIKE '%" + nombre + "%' ";

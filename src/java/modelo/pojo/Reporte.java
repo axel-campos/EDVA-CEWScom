@@ -14,6 +14,7 @@ public class Reporte implements EDVADB {
 	private int idContenido;
 	private String causa;
 	private String correo;
+    private String token;
     private int atendido;
     private Date fechaReporte;
     private String correoReportando;
@@ -97,6 +98,26 @@ public class Reporte implements EDVADB {
 		this.correo = correo;
 		return this;
 	}
+    
+    /**
+	 * Regresa el token reportado en el reporte.
+	 * 
+	 * @return El token reportado en el reporte.
+	 */
+	public String getToken() {
+		return token;
+	}
+	
+	/**
+	 * Asigna un nuevo token a este reporte.
+	 * 
+	 * @param token El nuevo token.
+	 * @return La referencia a este reporte.
+	 */
+	public Reporte setToken(String token) {
+		this.token = token;
+		return this;
+	} 
     
     /**
 	 * Regresa si el reporte está atendido o no.
