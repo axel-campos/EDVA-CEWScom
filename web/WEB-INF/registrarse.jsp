@@ -11,15 +11,27 @@
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
+
+        uiv=X-UA-Compatible content="IE=edge">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>Registrarse</title>
     </head>
     <body>
-		<h1>EDVA CWEScom</h1>
-		<br>
+        <h1>EDVA CWEScom</h1>
+        <br>
         <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">Regístrate</div>
                 <div class="panel-body">
                     <form id="registrarsefrm" method="POST" class="form-horizontal" action="registrarse">
+                        <div class="form-group has-feedback">
+                            <label class="col-md-2 control-label" for="paterno">Avatar</label>
+                            <div class="col-md-4 text-center">
+                                <img src="${pageContext.request.contextPath}/images/blank-profile-picture-973460_1280.png" width="300" class="img-circle" id="crop_avatar"/>
+                                <label class="btn btn-primary"/> Selecciona una imagen para tu avatar&hellip; <input type="file" id="choose_avatar" accept="image/*" style="display: none;"/>
+                            </div>
+                        </div>
+
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="nombre">Nombre(s)*</label>
                             <div class="col-md-4">
@@ -27,6 +39,7 @@
                                 <i class="glyphicon glyphicon-user form-control-feedback"></i>
                             </div>
                         </div>
+
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="paterno">Apellido Paterno*</label>
                             <div class="col-md-4">
@@ -76,19 +89,7 @@
                                 <i class="glyphicon glyphicon-eye-close form-control-feedback"></i>
                             </div>
                         </div>
-                        <img src="${pageContext.request.contextPath}/images/blank-profile-picture-973460_1280.png" width="200" class="img-circle" alt="Hola?" id="crop_avatar"/>
-                        
-                        <div class="form-group has-feedback">
-                            <label class="control-label" for="upload">Selecciona una imágen para tu avatar</label>
-                            <input type="file" class="btn btn-primary" id="upload" name="up" value="Escoge un Archivo"/>
-                            <div class="col-md-4">
-                                
-                            </div>
-                            
-                        </div>
-                        
-                        
-                        
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2">
                                 <!--input type="submit" class="btn btn-success" value="Registrarse"/-->
@@ -97,37 +98,22 @@
                                 <a href="loginform" class="btn btn-link">¿Ya tienes una cuenta? Inicia sesión aquí</a>
                             </div>
                         </div>
-                        
-                        
-
-                        
-
-
-                        
                     </form>
                 </div>
                 <s:if test="hasActionErrors()">
-                        <div class="alert alert-danger">
-                                <s:actionerror />
-                        </div>
+                    <div class="alert alert-danger">
+                        <s:actionerror />
+                    </div>
                 </s:if>
             </div>
-            
-            
-            <input type="hidden" id="imagebase64" name="imagebase64">
-            <a href="#" class="upload-result">Send</a>
-                        
-            
-            
+            <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
+            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script> 
+            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
+            <script src="${pageContext.request.contextPath}/js/jquery/croppie.min.js"></script>      
+            <script src="${pageContext.request.contextPath}/js/paginas/registrar.js"></script>
         </div>
-	<br>
-        <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script> 
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery/croppie.min.js"></script>      
-        <script src="${pageContext.request.contextPath}/js/paginas/registrar.js"></script>
-    </body>
-    
+        <br>
+    </body> 
 </html>
