@@ -11,8 +11,6 @@
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
-
-        uiv=X-UA-Compatible content="IE=edge">
         <meta name=viewport content="width=device-width, initial-scale=1">
         <title>Registrarse</title>
     </head>
