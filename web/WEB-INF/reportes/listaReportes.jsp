@@ -23,6 +23,7 @@
     String titulo = "";
     String s = "";
     String where = "";
+    String checked = "checked";
     if(request.getParameter("token") != null && !request.getParameter("token").trim().isEmpty()){
         token = request.getParameter("token");
         where = "WHERE g.token LIKE '" + token + "'";
@@ -53,6 +54,14 @@
             where = "WHERE !ISNULL(token)";
         }
     }
+    if(request.getParameter("atendido") == null || request.getParameter("atendido").trim().isEmpty()){
+        checked = "";
+        if(where.isEmpty()){
+            where = "WHERE r.atendido = 0 ";
+        }else{
+            where = " AND r.atendido = 0";
+        }
+    }
     
     %>
 <html>
@@ -72,9 +81,9 @@
                 <label for="nombre">Nombre del Grupo:</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" value="<%=nombre%>">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="tipo">Tipo:</label>
-                    <select class="form-control" id="tipo" name="tipo" style="width:50%">
+                    <select class="form-control" id="tipo" name="tipo" style="width:80%">
                         <option value="0">Todos los tipos</option>
                         <% if(tipo == 1){s = "selected"; } %>
                         <option value="1" <%=s%>>Profesores</option>
@@ -84,7 +93,10 @@
                         <option value="3" <%=s%>>Grupos</option>
                     </select>
             </div>
-            <div class="form-group col-md-1">
+            <div class="form-group col-md-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" id="atendido" name="atendido" <%=checked%>>&nbsp;Atendidos</label>
+                </div>
             </div>
             <div class="form-group col-md-12">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -125,7 +137,7 @@
                                             "WHEN !ISNULL(r.token) THEN 'Grupo' " +
                                             "ELSE 'Contenido' " +
                                 "END) AS tipoReporte," +
-                                "(CASE WHEN !ISNULL(r.correo) THEN CONCAT('ListProfesores.action?correo=',r.correo) " +
+                                "(CASE WHEN !ISNULL(r.correo) THEN CONCAT('SearchProfesor.action?correo=',r.correo) " +
                                             "WHEN !ISNULL(r.token) THEN CONCAT('SearchGroups.action?token=',r.token) " +
                                             "ELSE CONCAT('ListContenido.action?idContenido=',c.idContenido)  " +
                                 "END) AS action," +

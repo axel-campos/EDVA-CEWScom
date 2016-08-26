@@ -16,6 +16,7 @@ public class Reporte implements EDVADB {
 	private String correo;
     private String token;
     private int atendido;
+    private int aceptado;
     private Date fechaReporte;
     private String correoReportando;
     
@@ -136,6 +137,26 @@ public class Reporte implements EDVADB {
 	 */
 	public Reporte setAtendido(int atendido) {
 		this.atendido = atendido;
+		return this;
+	}
+    
+    /**
+	 * Regresa si el reporte está en aceptado o no
+	 * 
+	 * @return Sí el reporte está en aceptado o no.
+	 */
+	public int getAceptado() {
+		return aceptado;
+	}
+	
+	/**
+	 * Asigna si el reporte está aceptado o no.
+	 * 
+	 * @param aceptado EL nuevo estado de aceptado.
+	 * @return La referencia a este reporte.
+	 */
+	public Reporte setAceptado(int aceptado) {
+		this.aceptado = aceptado;
 		return this;
 	}
     

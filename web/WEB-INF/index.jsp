@@ -52,7 +52,7 @@
         $(document).ready(function(){
             var top1 = $("#header").outerHeight(),
             top2 = $("#progressBar").outerHeight(),
-            top3 = top1 + top2 + 1;
+            top3 = top1 + top2 + 5;
             $("#progressBar").offset({top : top1});
             $("#contenido").offset({top : top3});
         });

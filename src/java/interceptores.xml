@@ -65,9 +65,6 @@
         <action name="SearchGroups" class="Actions.Groups.ListarGrupos">
             <result name="success">WEB-INF/grupos/tablaGrupos.jsp</result>            
         </action>
-		<!--action name="ListGroup" class="Actions.Groups.ListarGrupos">
-			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
-		</action-->
 		<action name="AltaGroup">
 			<result>/WEB-INF/grupos/altaGrupo.jsp</result>
 		</action>
@@ -148,13 +145,25 @@
         <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
             <result>/WEB-INF/grupos/tablaRoles.jsp</result>
         </action>
-        <!--action name="ListSolicitudes" class="Actions.Groups.ListarSolicitudesAction">
-            <result>WEB-INF/grupos/tablaSolicitudes.jsp</result>
-        </action-->
         
         <!-- Acciones para los reportes -->
         <action name="listarReportes">
             <result>/WEB-INF/reportes/listaReportes.jsp</result>
         </action>
+        
+        <!-- Acciones para la lista de profesores -->
+        <action name="ListaProfesor">
+            <result>/WEB-INF/profesor/tablaProfesores.jsp</result>
+        </action>
+        <action name="InformacionProfesor">
+            <result>/WEB-INF/profesor/informacionProfesor.jsp</result>
+        </action>
+        <action name="SearchProfesor" class="Actions.Profesor.ListarProfesores">
+            <result name="success">WEB-INF/profesor/tablaProfesores.jsp</result>            
+        </action>
+        <action name="BajaProfesor" class="Actions.Profesor.BajaProfesor">
+			<result name="success">WEB-INF/profesor/tablaProfesores.jsp</result>
+			<result name="error">WEB-INF/profesor/tablaProfesores.jsp</result>
+		</action>
 	</package>
 </struts>

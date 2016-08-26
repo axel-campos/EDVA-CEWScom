@@ -15,7 +15,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public void registrar(Reporte registro) {
-		String sql = "INSERT INTO Reporte VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Reporte VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
@@ -24,6 +24,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
             stmt.setString(4, registro.getCorreo());
             stmt.setString(5, registro.getToken());
             stmt.setInt(6, registro.getAtendido());
+            stmt.setInt(7, registro.getAceptado());
             stmt.setTimestamp(7, new Timestamp(registro.getFechaReporte().getTime()));
             stmt.setString(8, registro.getCorreoReportando());
 			stmt.executeUpdate();
@@ -35,7 +36,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 	@Override
 	public void modificar(Reporte viejo, Reporte nuevo) {
 		String sql = "UPDATE Reporte SET idReporte = ?, causa = ?, idContenido = ?, correo = ?, token = ?, "
-                + "atendido = ?, fechaReporte = ?, correoReportando = ? WHERE idReporte = ?";
+                + "atendido = ?, aceptado = ?, fechaReporte = ?, correoReportando = ? WHERE idReporte = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, nuevo.getIdReporte());
@@ -44,9 +45,10 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
             stmt.setString(4, nuevo.getCorreo());
             stmt.setString(5, nuevo.getToken());
             stmt.setInt(6, nuevo.getAtendido());
-            stmt.setTimestamp(7, new Timestamp(nuevo.getFechaReporte().getTime()));
-            stmt.setString(8, nuevo.getCorreoReportando());
-			stmt.setInt(9, viejo.getIdReporte());
+            stmt.setInt(7, nuevo.getAceptado());
+            stmt.setTimestamp(8, new Timestamp(nuevo.getFechaReporte().getTime()));
+            stmt.setString(9, nuevo.getCorreoReportando());
+			stmt.setInt(10, viejo.getIdReporte());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -80,6 +82,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
                         .setCorreo(rs.getString("correo"))
                         .setToken(rs.getString("token"))
                         .setAtendido(rs.getInt("atendido"))
+                        .setAceptado(rs.getInt("aceptado"))
                         .setFechaReporte(rs.getTimestamp("fechaReporte"))
                         .setCorreoReportando(rs.getString("correoReportando"));
 				} else
@@ -107,6 +110,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
                     .setCorreo(rs.getString("correo"))
                     .setToken(rs.getString("token"))
                     .setAtendido(rs.getInt("atendido"))
+                    .setAceptado(rs.getInt("aceptado"))
                     .setFechaReporte(rs.getTimestamp("fechaReporte"))
                     .setCorreoReportando(rs.getString("correoReportando")));
 			}
