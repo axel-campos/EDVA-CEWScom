@@ -137,12 +137,20 @@
                         //Buscaremos los primeros diez contenidos de los grupos de este usuario
                         ContenidoDAO contenidoDAO = new ContenidoDAO();
                         contenidoDAO.conectar();
+                        Usuario usuarioS = null;
                         String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
                             " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
                             " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
                             " INNER JOIN grupo AS g ON g.token = con.token " +
-                            " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
-                            " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW());";
+                            " INNER JOIN usuariogrupo AS ug ON g.token = ug.token ";
+                        if(session.getAttribute("usuario") != null){
+                            usuarioS = (Usuario)session.getAttribute("usuario");
+                            if(usuarioS.getTipo() == 1){    //Significa que es admin DIOS
+                                sqlContenidos += " WHERE ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW()) GROUP BY idContenido;";
+                            }else{
+                                sqlContenidos += " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ug.aceptado = 1 AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW()) GROUP BY idContenido;";
+                            }
+                        }
                         List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
                         contenidoDAO.desconectar();
                         if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
