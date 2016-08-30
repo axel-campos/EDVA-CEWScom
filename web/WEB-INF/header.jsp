@@ -54,12 +54,11 @@
                     menuDAO.desconectar();
                     
                     //Image Search
-                    String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "\\WEB-INF\\images\\";
-                    System.out.println(pathImages);
-                    String imagen = "./default-avatar.png";
+                    String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
+                    String avatar = "./default-avatar.png";
                     Path path = Paths.get(pathImages + user.getCorreo() + ".png");
                     if (Files.exists(path)) {
-                        imagen = user.getCorreo() + ".png";
+                        avatar = user.getCorreo() + ".png";
                     }
                 %>
             </ul>
@@ -67,7 +66,7 @@
                 <!--li><a href="#"><span class="glyphicon glyphicon-user"></span> <!%= nombre%></a></li-->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
-                        <img src="${pageContext.request.contextPath}/images/<%= imagen%>" width="18" class="img-circle"/> <%= nombre%> <span class='caret'></span>
+                        <img src="${pageContext.request.contextPath}/images/<%= avatar%>" width="18" class="img-circle"/> <%= nombre%> <span class='caret'></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>
