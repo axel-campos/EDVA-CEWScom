@@ -6,12 +6,10 @@
         <meta charset="utf-8">
         <meta http-equiv=X-UA-Compatible content="IE=edge">
         <meta name=viewport content="width=device-width, initial-scale=1">
-        <title>Registrarse</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
-        <meta name=viewport content="width=device-width, initial-scale=1">
         <title>Registrarse</title>
     </head>
     <body>
@@ -19,7 +17,6 @@
         <br>
         <div class="container-fluid">
             <div class="panel panel-default">
-                
                 <div class="panel-heading">Regístrate</div>
                 <div class="panel-body">
                     <s:if test="hasActionErrors()">
@@ -27,12 +24,12 @@
                             <s:actionerror />
                         </div>
                     </s:if>
-                    <form id="registrarsefrm" method="POST" class="form-horizontal" action="registrarse" enctype="multipart/form-data">
+                    <form id="registrarsefrm" method="POST" class="form-horizontal" action="registrarse">
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="avatarImageDataURL">Avatar</label>
                             <div class="col-md-4 text-center">
                                 <img src="${pageContext.request.contextPath}/images/default-avatar.png" width="300" class="img-circle" id="crop_avatar"/>
-                                <label class="btn btn-primary"/>Selecciona una imagen para tu avatar&hellip; <input onchange="avatarUpload();" type="file" accept="image/*" style="display: none;"/>
+                                <label class="btn btn-primary">Selecciona una imagen para tu avatar&hellip; <input onchange="avatarUpload();" type="file" accept="image/*" style="display: none;"/> </label>
                                 <input type="hidden" id="avatarImage" name="avatarImageURL"/>
                             </div>
                         </div>
@@ -105,7 +102,7 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
             <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
             <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
