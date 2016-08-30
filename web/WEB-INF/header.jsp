@@ -1,3 +1,7 @@
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Files"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="modelo.dao.*"%>
 <%@page import="modelo.pojo.*"%>
 <%@page import="java.util.List"%>
@@ -42,18 +46,28 @@
                         }
                         submenuDAO.desconectar();
                     }
+                    
                     String nombre = user.getNombre() + " " + user.getAPaterno();
                     if(user.getAMaterno() != null){
                         nombre += " " + user.getAMaterno();
                     }
                     menuDAO.desconectar();
+                    
+                    //Image Search
+                    String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "\\WEB-INF\\images\\";
+                    System.out.println(pathImages);
+                    String imagen = "./default-avatar.png";
+                    Path path = Paths.get(pathImages + user.getCorreo() + ".png");
+                    if (Files.exists(path)) {
+                        imagen = user.getCorreo() + ".png";
+                    }
                 %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--li><a href="#"><span class="glyphicon glyphicon-user"></span> <!%= nombre%></a></li-->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
-                        <span class="glyphicon glyphicon-user"></span> <%= nombre%> <span class='caret'></span>
+                        <img src="${pageContext.request.contextPath}/images/<%= imagen%>" width="18" class="img-circle"/> <%= nombre%> <span class='caret'></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>

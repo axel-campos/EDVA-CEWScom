@@ -19,14 +19,21 @@
         <br>
         <div class="container-fluid">
             <div class="panel panel-default">
+                
                 <div class="panel-heading">Regístrate</div>
                 <div class="panel-body">
-                    <form id="registrarsefrm" method="POST" class="form-horizontal" action="registrarse">
+                    <s:if test="hasActionErrors()">
+                        <div class="alert alert-danger">
+                            <s:actionerror />
+                        </div>
+                    </s:if>
+                    <form id="registrarsefrm" method="POST" class="form-horizontal" action="registrarse" enctype="multipart/form-data">
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="paterno">Avatar</label>
+                            <label class="col-md-2 control-label" for="avatarImageDataURL">Avatar</label>
                             <div class="col-md-4 text-center">
-                                <img src="${pageContext.request.contextPath}/images/blank-profile-picture-973460_1280.png" width="300" class="img-circle" id="crop_avatar"/>
-                                <label class="btn btn-primary"/> Selecciona una imagen para tu avatar&hellip; <input type="file" id="choose_avatar" accept="image/*" style="display: none;"/>
+                                <img src="${pageContext.request.contextPath}/images/default-avatar.png" width="300" class="img-circle" id="crop_avatar"/>
+                                <label class="btn btn-primary"/>Selecciona una imagen para tu avatar&hellip; <input onchange="avatarUpload();" type="file" accept="image/*" style="display: none;"/>
+                                <input type="hidden" id="avatarImage" name="avatarImageDataURL"/>
                             </div>
                         </div>
 
@@ -98,11 +105,7 @@
                         </div>
                     </form>
                 </div>
-                <s:if test="hasActionErrors()">
-                    <div class="alert alert-danger">
-                        <s:actionerror />
-                    </div>
-                </s:if>
+                
             </div>
             <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
             <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>

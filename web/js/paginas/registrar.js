@@ -103,11 +103,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    //Event called when user upload
-    $('#choose_avatar').on('change', function () {
-        avatarUpload();
-    });
 });
 
 function avatarUpload() {
@@ -139,7 +134,7 @@ function avatarUpload() {
                 cssClass: 'btn-default',
                 autospin: true,
                 action: function (dialogRef) {
-                    var defaultImage = "./images/blank-profile-picture-973460_1280.png";
+                    var defaultImage = "./images/default-avatar.png";
                     $('#crop_avatar').attr('src', defaultImage);
                     dialogRef.close();
 
@@ -156,6 +151,7 @@ function avatarUpload() {
                         size: 'original'
                     }).then(function (src) {
                         $('#crop_avatar').attr('src', src);
+                        $('#avatarImage').val(src);
                     });
                     dialogRef.close();
                 }
@@ -176,7 +172,6 @@ function avatarUpload() {
     //Defining variables for the file input and reader
     var file = document.querySelector('input[type=file]').files[0];
     var reader = new FileReader();
-
 
     //Defining the logic for the event that is called after the upload.
     reader.onloadend = function () {
