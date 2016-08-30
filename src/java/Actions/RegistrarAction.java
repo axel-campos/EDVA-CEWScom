@@ -30,7 +30,7 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
     private final int LOG_ROUNDS = 13;
     
     //Avatar image properties
-    private String avatarImageDataURL;
+    private String avatarImageURL;
     private final String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
 
     @Override
@@ -78,8 +78,8 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
                 return INPUT;
             }
 
-            if(!avatarImageDataURL.equals("")){
-                byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageDataURL.substring(avatarImageDataURL.indexOf(",") + 1));
+            if(!avatarImageURL.equals("")){
+                byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageURL.substring(avatarImageURL.indexOf(",") + 1));
                 BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
                 ImageIO.write(bufferedImage, "png", new File(destPath + correo + ".png"));
             }
@@ -181,13 +181,11 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
             this.pwd = pwd;
     }
     
-    public String getAvatarImageDataURL() {
-        return avatarImageDataURL;
+    public String getAvatarImageURL() {
+        return avatarImageURL;
     }
 
-    public void setAvatarImageDataURL(String avatarImageDataURL) {
-        this.avatarImageDataURL = avatarImageDataURL;
+    public void setAvatarImageURL(String avatarImageURL) {
+        this.avatarImageURL = avatarImageURL;
     }
-    
-
 }

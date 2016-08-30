@@ -33,7 +33,7 @@
                             <div class="col-md-4 text-center">
                                 <img src="${pageContext.request.contextPath}/images/default-avatar.png" width="300" class="img-circle" id="crop_avatar"/>
                                 <label class="btn btn-primary"/>Selecciona una imagen para tu avatar&hellip; <input onchange="avatarUpload();" type="file" accept="image/*" style="display: none;"/>
-                                <input type="hidden" id="avatarImage" name="avatarImageDataURL"/>
+                                <input type="hidden" id="avatarImage" name="avatarImageURL"/>
                             </div>
                         </div>
 
