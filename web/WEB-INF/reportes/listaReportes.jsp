@@ -44,7 +44,7 @@
         titulo = request.getParameter("titulo");
         where = "WHERE c.titulo LIKE '" + titulo + "'";
     }
-    if(request.getParameter("tipo") != null){
+    if(request.getParameter("tipo") != null && Integer.parseInt(request.getParameter("tipo")) != 0){
         tipo = Integer.parseInt(request.getParameter("tipo"));
         if(tipo == 1){  //Profesores
             where = "WHERE !ISNULL(correo)";
@@ -59,7 +59,7 @@
         if(where.isEmpty()){
             where = "WHERE r.atendido = 0 ";
         }else{
-            where = " AND r.atendido = 0";
+            where += " AND r.atendido = 0";
         }
     }
     
@@ -121,67 +121,88 @@
     <br/>
     <!--Page content -->
     <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-11">
-                    <!--button type="button" class="btn btn-default" data-toggle="collapse"-->
-                    <div style="overflow: auto" id="contenidoGrupo" class="container-fluid">
-                        <%
-                            ReporteDAO reporteDAO = new ReporteDAO();
-                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            int i = 0;
-                            reporteDAO.conectar();
-                            List<Map<String, Object>> reportes = reporteDAO.consultaGenerica("" +
-                                "SELECT r.causa, r.atendido, " +
-                                "(CASE WHEN !ISNULL(r.correo) THEN 'Profesor' " +
-                                            "WHEN !ISNULL(r.token) THEN 'Grupo' " +
-                                            "ELSE 'Contenido' " +
-                                "END) AS tipoReporte," +
-                                "(CASE WHEN !ISNULL(r.correo) THEN CONCAT('SearchProfesor.action?correo=',r.correo) " +
-                                            "WHEN !ISNULL(r.token) THEN CONCAT('SearchGroups.action?token=',r.token) " +
-                                            "ELSE CONCAT('ListContenido.action?idContenido=',c.idContenido)  " +
-                                "END) AS action," +
-                                "(CASE WHEN !ISNULL(r.correo) THEN CONCAT_WS(' ','profesor',u.nombre,u.aPaterno,'con correo',r.correo) " +
-                                            "WHEN !ISNULL(r.token) THEN CONCAT_WS(' ','grupo',g.nombre,' con token',r.token) " +
-                                            "ELSE CONCAT_WS(' ','contenido',c.titulo,' con tema',c.tema) " +
-                                "END) AS reportado, r.fechaReporte, CONCAT_WS(' ',u2.nombre,u2.aPaterno,'con correo',u2.correo) AS reportando " +
-                                "FROM reporte r " +
-                                "LEFT JOIN contenido  AS c ON c.idContenido = r.idContenido " +
-                                "LEFT JOIN usuario AS u ON r.correo = u.correo " +
-                                "LEFT JOIN grupo AS g ON g.token = r.token " +
-                                "LEFT JOIN usuario AS u2 ON r.correoReportando = u2.correo " + where);
-                            for(i = 0; i < reportes.size(); i++){
-                                Map<String, Object> columna = reportes.get(i);
-                                String tipoReporte = (String)columna.get("tipoReporte");
-                                String causa = (String)columna.get("causa");
-                                String reportado = (String)columna.get("reportado");
-                                String id = (String)columna.get("id");
-                                String fecha = df.format((Timestamp)columna.get("fechaReporte"));
-                                String reportando = (String)columna.get("reportando");
-                                String action = (String)columna.get("action");
-                                int atendido = (int)columna.get("atendido");
-                                if(atendido == 1){
-                                    out.println("<div class=\"list-group-item list-group-item-danger\">");
-                                }else{
-                                    out.println("<div class=\"list-group-item list-group-item-success\">");
-                                }
-                            %>
-                            <a onclick="cambiarContenidos('<%=action%>','#contenido')" style='cursor:pointer;' class="list-group-item">
-                                <h4 class="list-group-item-heading">Reporte de <%=tipoReporte%></h4>
-                                <p class="list-group-item-text">
-                                    El <%=reportado%> fue reportado debido a <%=causa%>, el reporte se generó en la fecha <%=fecha%>
-                                    por el profesor <%=reportando%> <br/>
-                                </p>
-                            </a>
-                        <%
-                            out.println("</div><br/>");
-                            }
-                            reporteDAO.desconectar();
-                            %>
-                    </div>
-                </div>
-            </div>
+        <div class="row">
+            <div class="col-md-11" id="paginacion"></div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="container-fluid" id="contenedorReportes">
+            <%
+                ReporteDAO reporteDAO = new ReporteDAO();
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                int i = 0, div = 0;
+                Boolean cerrarDiv = false;
+                reporteDAO.conectar();
+                List<Map<String, Object>> reportes = reporteDAO.consultaGenerica("" +
+                    "SELECT r.causa, r.atendido, " +
+                    "(CASE WHEN !ISNULL(r.correo) THEN 'Profesor' " +
+                                "WHEN !ISNULL(r.token) THEN 'Grupo' " +
+                                "ELSE 'Contenido' " +
+                    "END) AS tipoReporte," +
+                    "(CASE WHEN !ISNULL(r.correo) THEN CONCAT('SearchProfesor.action?correo=',r.correo) " +
+                                "WHEN !ISNULL(r.token) THEN CONCAT('SearchGroups.action?token=',r.token) " +
+                                "ELSE CONCAT('ListContenido.action?idContenido=',c.idContenido)  " +
+                    "END) AS action," +
+                    "(CASE WHEN !ISNULL(r.correo) THEN CONCAT_WS(' ','profesor',u.nombre,u.aPaterno,'con correo',r.correo) " +
+                                "WHEN !ISNULL(r.token) THEN CONCAT_WS(' ','grupo',g.nombre,' con token',r.token) " +
+                                "ELSE CONCAT_WS(' ','contenido',c.titulo,' con tema',c.tema) " +
+                    "END) AS reportado, r.fechaReporte, CONCAT_WS(' ',u2.nombre,u2.aPaterno,'con correo',u2.correo) AS reportando " +
+                    "FROM reporte r " +
+                    "LEFT JOIN contenido  AS c ON c.idContenido = r.idContenido " +
+                    "LEFT JOIN usuario AS u ON r.correo = u.correo " +
+                    "LEFT JOIN grupo AS g ON g.token = r.token " +
+                    "LEFT JOIN usuario AS u2 ON r.correoReportando = u2.correo " + where);
+                for(i = 0; i < reportes.size(); i++){
+                    Map<String, Object> columna = reportes.get(i);
+                    String tipoReporte = (String)columna.get("tipoReporte");
+                    String causa = (String)columna.get("causa");
+                    String reportado = (String)columna.get("reportado");
+                    String id = (String)columna.get("id");
+                    String fecha = df.format((Timestamp)columna.get("fechaReporte"));
+                    String reportando = (String)columna.get("reportando");
+                    String action = (String)columna.get("action");
+                    int atendido = (int)columna.get("atendido");
+                    if(i % 8 == 0){
+                        div++;
+                        out.println("<div id='div_" + div + "' name='div_" + div + "'>");
+                        out.println("<div class=\"col-xs-12\">&nbsp;</div>");
+                        cerrarDiv = true;
+                    }
+                    if(i % 2 == 0){
+                        out.println("<div class='row'>");
+                    }
+                    out.println("<div class='col-xs-5'>");
+                    if(atendido == 1){
+                        out.println("<div class=\"list-group-item list-group-item-danger\">");
+                    }else{
+                        out.println("<div class=\"list-group-item list-group-item-success\">");
+                    }
+                %>
+                <a onclick="cambiarContenidos('<%=action%>','#contenido')" style='cursor:pointer;' class="list-group-item">
+                    <h4 class="list-group-item-heading"><%=tipoReporte%></h4>
+                    <p class="list-group-item-text">
+                        El <%=reportado%> fue reportado debido a <%=causa%>, el reporte se generó en la fecha <%=fecha%>
+                        por el profesor <%=reportando%> <br/>
+                    </p>
+                </a>
+            <%
+                    out.println("</div>");
+                    out.println("</div>");
+                    out.println("<div class='col-xs-1'></div>");
+                    if(i % 2 == 1){
+                        out.println("</div>");
+                    }
+                    if(i % 8 == 7){
+                        out.println("</div>");
+                        cerrarDiv = false;
+                    }
+                }
+                if(cerrarDiv){
+                    out.println("</div>");
+                }     
+                reporteDAO.desconectar();
+            %>
         </div>
     </div>
+    <input type="hidden" id="numDivs" name="numDivs" value="<%=div%>"/>
     </body>
 </html>

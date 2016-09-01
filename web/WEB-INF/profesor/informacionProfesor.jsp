@@ -61,13 +61,19 @@
                                 int tipo = Integer.parseInt((String)elemento.get("tipo"));
                                 if(tipo == 1){
                                     numReportesUsuario = Integer.parseInt(String.valueOf(elemento.get("numReportes")));
-                                    reportesUsuario = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "<h5>";
+                                    if(numReportesUsuario != 0){
+                                        reportesUsuario = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "<h5>";
+                                    }
                                 }else if(tipo == 2){
                                     numReportesGrupo = Integer.parseInt(String.valueOf(elemento.get("numReportes")));
-                                    reportesGrupo = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "</h5>";
+                                    if(numReportesGrupo != 0){
+                                        reportesGrupo = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "</h5>";
+                                    }
                                 }else if(tipo == 3){
                                     numReportesContenido = Integer.parseInt(String.valueOf(elemento.get("numReportes")));
-                                    reportesContenido = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "</h5>";
+                                    if(numReportesContenido != 0){
+                                        reportesContenido = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "</h5>";
+                                    }
                                 }
                             }
                         %>
