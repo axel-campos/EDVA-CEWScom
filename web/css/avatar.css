@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/08/2016, 10:46:03 PM
+    Author     : Christian Campos
+*/
+
+div.avatar-layout{
+    display: table;
+    margin: auto;
+}
+
+div.avatar {
+    margin: auto;
+    border-radius: 50%;
+    position: relative;
+    float: right;
+    
+    border: 7px inset skyblue;
+}
+div.avatar img{
+    cursor: pointer;
+    transition: 0.3s; 
+}
+div.avatar:hover img{
+    opacity:0.7;
+}
+div.avatar:hover input{
+    transition: 1s;
+    display: block;
+}
+div.avatar input {
+    position: absolute;
+    display:none;
+}
+div.avatar input.delete {
+    top:5%;
+    left:86%;
+}
+

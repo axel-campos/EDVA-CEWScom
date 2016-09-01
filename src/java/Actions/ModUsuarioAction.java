@@ -11,6 +11,7 @@ import interceptor.AuthenticatedUser;
 import java.sql.Date;
 import java.util.Map;
 import modelo.dao.UsuarioDAO;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
@@ -28,6 +29,10 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     private String materno;
     private String cedula;
     private String fechaN;
+    
+    //Avatar image properties
+    private String avatarImageURL;
+    private final String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
 
     public ModUsuarioAction() {
     }
@@ -140,6 +145,14 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     @Override
     public void setSession(Map<String, Object> userSession) {
         this.userSession = userSession;
+    }
+    
+    public String getAvatarImageURL() {
+        return avatarImageURL;
+    }
+
+    public void setAvatarImageURL(String avatarImageURL) {
+        this.avatarImageURL = avatarImageURL;
     }
 
 }

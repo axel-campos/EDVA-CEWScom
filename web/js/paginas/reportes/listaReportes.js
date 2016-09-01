@@ -33,4 +33,3 @@ $(document).ready(function(){
 function cambiarContenedor(numeroDiv){
     $("#contenedorReportes").html(divs[numeroDiv - 1]);
 }
-
