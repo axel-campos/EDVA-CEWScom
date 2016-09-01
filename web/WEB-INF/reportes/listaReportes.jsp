@@ -129,8 +129,12 @@
             <%
                 ReporteDAO reporteDAO = new ReporteDAO();
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                int i = 0, div = 0;
-                Boolean cerrarDiv = false;
+                int i = 0, div = 0, longitudCadena1 = 0, longitudCadena2 = 0;
+                String[] textoReporte = {"",""};
+                String[] action = {"",""};
+                String[] tipoReporte = {"",""};
+                int [] atendido = {0, 0};
+                Boolean cerrarDiv = false, faltaImprimir = false;
                 reporteDAO.conectar();
                 List<Map<String, Object>> reportes = reporteDAO.consultaGenerica("" +
                     "SELECT r.causa, r.atendido, " +
@@ -153,48 +157,91 @@
                     "LEFT JOIN usuario AS u2 ON r.correoReportando = u2.correo " + where);
                 for(i = 0; i < reportes.size(); i++){
                     Map<String, Object> columna = reportes.get(i);
-                    String tipoReporte = (String)columna.get("tipoReporte");
                     String causa = (String)columna.get("causa");
                     String reportado = (String)columna.get("reportado");
                     String id = (String)columna.get("id");
                     String fecha = df.format((Timestamp)columna.get("fechaReporte"));
                     String reportando = (String)columna.get("reportando");
-                    String action = (String)columna.get("action");
-                    int atendido = (int)columna.get("atendido");
                     if(i % 8 == 0){
                         div++;
                         out.println("<div id='div_" + div + "' name='div_" + div + "'>");
                         out.println("<div class=\"col-xs-12\">&nbsp;</div>");
                         cerrarDiv = true;
                     }
-                    if(i % 2 == 0){
-                        out.println("<div class='row'>");
-                    }
-                    out.println("<div class='col-xs-5'>");
-                    if(atendido == 1){
-                        out.println("<div class=\"list-group-item list-group-item-danger\">");
-                    }else{
-                        out.println("<div class=\"list-group-item list-group-item-success\">");
-                    }
-                %>
-                <a onclick="cambiarContenidos('<%=action%>','#contenido')" style='cursor:pointer;' class="list-group-item">
-                    <h4 class="list-group-item-heading"><%=tipoReporte%></h4>
-                    <p class="list-group-item-text">
-                        El <%=reportado%> fue reportado debido a <%=causa%>, el reporte se generó en la fecha <%=fecha%>
-                        por el profesor <%=reportando%> <br/>
-                    </p>
-                </a>
-            <%
-                    out.println("</div>");
-                    out.println("</div>");
-                    out.println("<div class='col-xs-1'></div>");
                     if(i % 2 == 1){
-                        out.println("</div>");
+                        faltaImprimir = false;
+                        out.println("<div class='row'>");
+                        atendido[1] = (int)columna.get("atendido");
+                        action[1] = (String)columna.get("action");
+                        tipoReporte[1] = (String)columna.get("tipoReporte");
+                        textoReporte[1] = "El " + reportado + " fue reportado debido a " + causa + ", el reporte se generó en la fecha " + 
+                        fecha + " por el profesor " + reportando;
+                        longitudCadena1 = textoReporte[0].length();
+                        longitudCadena2 = textoReporte[1].length();
+                        if(longitudCadena1 > longitudCadena2){
+                            for(int m = longitudCadena2; m < longitudCadena1 + 5; m++){
+                                textoReporte[1] += "&nbsp;";
+                            }
+                            textoReporte[1] += ".";
+                        }else{
+                            for(int m = longitudCadena1; m < longitudCadena2 + 5; m++){
+                                textoReporte[0] += "&nbsp;";
+                            }
+                            textoReporte[0] += ".";
+                        }
+                        for(int n = 0; n < 2; n++){
+                            out.println("<div class='col-xs-5'>");
+                            if(atendido[n] == 1){
+                                out.println("<div class=\"list-group-item list-group-item-danger\">");
+                            }else{
+                                out.println("<div class=\"list-group-item list-group-item-success\">");
+                            }
+                            %>
+                                <a onclick="cambiarContenidos('<%=action[n]%>','#contenido')" style='cursor:pointer;' class="list-group-item">
+                                    <h4 class="list-group-item-heading"><%=tipoReporte[n]%></h4>
+                                    <p class="list-group-item-text">
+                                        <%=textoReporte[n]%>
+                                    </p>
+                                </a>
+                            <%
+                            out.println("</div>");  //Cerrando div de list
+                            out.println("</div>");  //Cerrando div col-xs-5
+                            out.println("<div class='col-xs-1'></div>");
+                        }
+                        out.println("</div>");  //El div de row
+                    }else{
+                        atendido[0] = (int)columna.get("atendido");
+                        textoReporte[0] = "El " + reportado + " fue reportado debido a " + causa + ", el reporte se generó en la fecha " + 
+                            fecha + " por el profesor " + reportando;
+                        action[0] = (String)columna.get("action");
+                        tipoReporte[0] = (String)columna.get("tipoReporte");
+                        faltaImprimir = true;
                     }
                     if(i % 8 == 7){
                         out.println("</div>");
                         cerrarDiv = false;
                     }
+                }
+                if(faltaImprimir){
+                    out.println("<div class='row'>");
+                    out.println("<div class='col-xs-5'>");
+                    if(atendido[0] == 1){
+                        out.println("<div class=\"list-group-item list-group-item-danger\">");
+                    }else{
+                        out.println("<div class=\"list-group-item list-group-item-success\">");
+                    }
+                    %>
+                        <a onclick="cambiarContenidos('<%=action[0]%>','#contenido')" style='cursor:pointer;' class="list-group-item">
+                            <h4 class="list-group-item-heading"><%=tipoReporte[0]%></h4>
+                            <p class="list-group-item-text">
+                                <%=textoReporte[0]%>
+                            </p>
+                        </a>
+                    <%
+                    out.println("</div>");  //Cerrando div de list
+                    out.println("</div>");  //Cerrando div col-xs-5
+                    out.println("<div class='col-xs-7'></div>");
+                    out.println("</div>");  //El div de row
                 }
                 if(cerrarDiv){
                     out.println("</div>");
