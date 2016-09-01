@@ -55,7 +55,7 @@
                     
                     //Image Search
                     String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
-                    String avatar = "./default-avatar.png";
+                    String avatar = "default-avatar.png";
                     Path path = Paths.get(pathImages + user.getCorreo() + ".png");
                     if (Files.exists(path)) {
                         avatar = user.getCorreo() + ".png";

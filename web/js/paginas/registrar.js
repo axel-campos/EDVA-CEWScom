@@ -105,6 +105,16 @@ $(document).ready(function () {
     });
 });
 
+function fileChooser() {
+    $('#imageUpload').trigger('click');
+}
+function defaultImage(){
+    var defaultImage = "images/default-avatar.png";
+    $('#crop_avatar').attr('src', defaultImage);
+    $('#avatarImage').val("");
+    $('#defaultImage').hide();
+}
+
 function avatarUpload() {
     //Defining the croppie model
     var $message = $('<div class="demo" id="image_crop"></div>').croppie({
@@ -129,18 +139,6 @@ function avatarUpload() {
         },
         buttons: [
             {
-                id: 'btn-default',
-                label: 'Imagen default',
-                cssClass: 'btn-default',
-                autospin: true,
-                action: function (dialogRef) {
-                    var defaultImage = "./images/default-avatar.png";
-                    $('#crop_avatar').attr('src', defaultImage);
-                    dialogRef.close();
-
-                }
-            },
-            {
                 id: 'btn-ok',
                 label: 'Aceptar',
                 cssClass: 'btn-primary',
@@ -152,6 +150,7 @@ function avatarUpload() {
                     }).then(function (src) {
                         $('#crop_avatar').attr('src', src);
                         $('#avatarImage').val(src);
+                        $('#defaultImage').show();
                     });
                     dialogRef.close();
                 }

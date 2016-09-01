@@ -10,6 +10,7 @@
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/avatar.css" rel="stylesheet" type="text/css"/>
         <title>Registrarse</title>
     </head>
     <body>
@@ -28,8 +29,12 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="avatarImageDataURL">Avatar</label>
                             <div class="col-md-4 text-center">
-                                <img src="${pageContext.request.contextPath}/images/default-avatar.png" width="300" class="img-circle" id="crop_avatar"/>
-                                <label class="btn btn-primary">Selecciona una imagen para tu avatar&hellip; <input onchange="avatarUpload();" type="file" accept="image/*" style="display: none;"/> </label>
+                                <div class="avatar-layout">
+                                    <div class="avatar"> 
+                                        <img src="${pageContext.request.contextPath}/images/default-avatar.png" width="300" class="img-circle" id="crop_avatar" onclick="fileChooser();" />
+                                        <input id="defaultImage" style="display:none" class="delete" type="image" src="${pageContext.request.contextPath}/images/red-cross.png" width="32" onclick="defaultImage();return false;"/>
+                                    </div>
+                                </div>
                                 <input type="hidden" id="avatarImage" name="avatarImageURL"/>
                             </div>
                         </div>
@@ -101,6 +106,7 @@
                             </div>
                         </div>
                     </form>
+                    <input onchange="avatarUpload();" type="file" id="imageUpload" accept="image/*" style="display: none;"/> 
                 </div>
 
             </div>
