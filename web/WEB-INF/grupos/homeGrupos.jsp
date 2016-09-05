@@ -25,73 +25,55 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div id="wrapper">
-            <!--sidebar -->
-            <div id="sidebar-wrapper">
-                <ul class="sidebar-nav">
-                    <li class="dropdown" id="informacion">
-                        <a href="#" onclick="abrirVentana1()" class="dropdown-toggle" data-toggle="collapse" data-target="#GroupInfo">
-                            <span class="glyphicon glyphicon-info-sign">   </span>   Información del grupo
-                            <div style="float: right; margin-right: 5%"><span class='caret'></span></div>
-                        </a>
-                        <div style="color: whitesmoke" id="GroupInfo" class="collapse">
-                            <!--fieldset class="form-group"-->
-                            <div class="container-fluid">
-                                <label class="col-md-4" style="text-align: right;">Nombre:</label>
-                                <div class="col-md-8" style="text-align: left;">
-                                    <%= nombre%>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <label class="col-md-4" style="text-align: right;">Descripción:</label>
-                                <div class="col-md-8" style="text-align: left;">
-                                    <%= descripcion%>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </li>
-                    <li class="dropdown" id="miembros">
-                        <a href="#" onclick="abrirVentana2()" class="dropdown-toggle" data-toggle="collapse" data-target="#GroupMembers">
-                            <span class="glyphicon glyphicon-th-list"></span>   Miembros del grupo 
-                            <span class="badge"><%= noProfesores%></span>
-                            <div style="float: right; margin-right: 5%"><span class='caret'></span></div>
-                        </a>
-                        <div style="color: whitesmoke" id="GroupMembers" class="collapse">
-                            <div class="container-fluid" style="overflow: auto;">
+        <nav class="navbar navbar-default sidebar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>      
+                </div>
+                <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos del grupo <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
+                                <li style="padding-left: 5%">
+                                    <b>Nombre del grupo:</b> <%= nombre%>
+                                </li>
+                                <li style="padding-left: 5%">
+                                    <b>Descripcion:</b> <%= descripcion%>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miembros del grupo <span class="badge"><%= noProfesores%></span><span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span>
+                            </a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
                                 <s:iterator value="results" var="nombre">
-                                    <div class="col-md-12"><s:property value='%{#nombre}'/></div>
+                                    <li style="padding-left: 5%"><s:property value='%{#nombre}'/></li>
                                 </s:iterator>
                                 
                                 <s:if test="esAdministrador">
-                                    <div class="col-md-12">
+                                    <li style="text-align: center">
                                         <%if(noProfesores > 1){ %>
                                         <s:if test="esCoordinador">
                                             <button class="btn btn-primary btn-sm" onclick="mostrarLista('ListRoles?token=<%=token%>');">Roles del grupo</button>
                                         </s:if>
                                         <% }%>
                                             <button class="btn btn-info btn-sm" onclick="mostrarLista('ListSolicitudes?token=<%=token%>');">Solicitudes</button>
-                                    </div>
+                                    </li>
                                 </s:if>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!--Page content -->
-            <div id="page-content-wrapper" class="container-fluid">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--button type="button" class="btn btn-default" data-toggle="collapse"-->
-                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><span class="glyphicon glyphicon-align-justify"></span></a>
-                            <div style="overflow: auto" id="contenidoGrupo" class="container-fluid">
-                                
-                            </div>
-                        </div>
-                    </div>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>                  
+        <div class="main" id="contenidoGrupo">
+            
         </div>
     </body>
     <script>
