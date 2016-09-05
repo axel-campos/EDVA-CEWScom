@@ -28,7 +28,6 @@
         </style>
     </head>
     <body>
-        <div class="container container-fluid" style="width: 100%;">
             <nav class="navbar navbar-default sidebar" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -54,7 +53,7 @@
                                                        "WHERE ugl.correo = '" + usuario.getCorreo() + "'LIMIT 10;";
                                     List<Map<String, Object>> tabla1 = usuarioGrupoDAO.consultaGenerica(consulta);
                                     for(int i = 0; i < tabla1.size(); i++){
-                                        out.println("<li><p style='font-family: verdana; font-size: 8px'>");
+                                        out.println("<li style='padding-left: 5%'><p style='font-family: verdana; font-size: 8px'>");
                                         Map<String, Object> columna = tabla1.get(i);
                                         if(columna.get("aceptado_nuevo") == null){
                                             out.println("Se rechazó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
@@ -71,7 +70,7 @@
                                         out.println("</p></li>");
                                     }
                                     if(tabla1.size() == 0){
-                                        out.println("<li><p style='font-family: verdana; font-size: 10px'>");
+                                        out.println("<li style='padding-left: 5%'><p style='font-family: verdana; font-size: 10px'>");
                                         out.println("Únete a un grupo de trabajo para recibir notificaciones");
                                         out.println("</p></li>");
                                     }
@@ -79,7 +78,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solicitudes <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solicitudes <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
                                 </a>
                                 <ul class="dropdown-menu forAnimate" role="menu">
                                     <div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="width: 100%; height:100%;">
