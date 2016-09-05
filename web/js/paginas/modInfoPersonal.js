@@ -94,9 +94,13 @@ $(document).ready(function () {
                 var target = "#contenido";
                 $(target).html(data);
             }
-        });
+        });       
+        fotoInicial = $("#avatarImage").attr("src");
     });
+
 });
+
+var fotoInicial = $("#crop_avatar").attr("src");
 
 function habilitarEdicion() {
     var inputs_forms_nodeList = document.getElementsByClassName("form-control");
@@ -110,6 +114,10 @@ function habilitarEdicion() {
     //Mostramos los segundos botones
     $("#submit_button").show();
     $("#cancel_button").show();
+    
+    $("#avatar-layout").addClass("avatar-layout");
+    $("#avatar").addClass("avatar");
+    $("#crop_avatar").attr("onclick","fileChooser()");
 
 }
 
@@ -128,6 +136,11 @@ function cancelOperation()
     $("#submit_button").hide();
     $("#cancel_button").hide();
     document.getElementById("modificarfrm").reset();
+    
+    $("#avatar-layout").removeClass("avatar-layout");
+    $("#avatar").removeClass("avatar");
+    $("#crop_avatar").removeAttr("onclick",null);
+    $("#crop_avatar").attr("src",fotoInicial);
 
 }
 
@@ -192,4 +205,85 @@ function modUsuarioCambiarContenido()
             $("#contenido").html(data);
         }
     });
+}
+
+function fileChooser() {
+    $('#imageUpload').trigger('click');
+}
+function defaultImage(){
+    var defaultImage = fotoInicial;
+    $('#crop_avatar').attr('src', defaultImage);
+    $('#avatarImage').val("");
+    $('#avatarImageShow').hide();
+}
+
+function avatarUpload() {
+    //Defining the croppie model
+    var $message = $('<div class="demo" id="image_crop"></div>').croppie({
+        viewport: {
+            width: 250,
+            height: 250,
+            type: 'circle'
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+
+    //Creating de crop dialog por de avatar upload
+    var dialog = new BootstrapDialog({
+        title: 'Haz el corte a tu avatar...',
+        message: $message,
+        onshown: function () {
+            //This function call is important to bind again to an invisible element (in this case, the modal)
+            $message.croppie('bind');
+        },
+        buttons: [
+            {
+                id: 'btn-ok',
+                label: 'Aceptar',
+                cssClass: 'btn-primary',
+                autospin: true,
+                action: function (dialogRef) {
+                    $message.croppie('result', {
+                        type: 'canvas',
+                        size: 'original'
+                    }).then(function (src) {
+                        $('#crop_avatar').attr('src', src);
+                        $('#avatarImage').val(src);
+                        $('#avatarImageShow').show();
+                    });
+                    dialogRef.close();
+                }
+            },
+            {
+                id: 'btn-close',
+                label: 'Cancelar',
+                cssClass: 'btn-danger',
+                autospin: false,
+                action: function (dialogRef) {
+                    dialogRef.close();
+                }
+            }
+        ]
+    });
+    dialog.realize();
+
+    //Defining variables for the file input and reader
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader();
+
+    //Defining the logic for the event that is called after the upload.
+    reader.onloadend = function () {
+        $message.croppie('bind', {
+            url: reader.result
+        });
+    };
+
+    //Read the file input (image) as data URL
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+    dialog.open();
 }

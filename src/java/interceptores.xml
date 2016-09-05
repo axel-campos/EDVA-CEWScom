@@ -23,20 +23,48 @@
 		<action name="logout" class="Actions.LoginAction" method="logout">
 			<result>/WEB-INF/login.jsp</result>
 		</action>
-
-        
         <action name="indexAction" method="">
             <result>/WEB-INF/principal.jsp</result>
         </action>
+        
+        <!-- Action para modificación de usuario -->     
+        <action name="modInformacion">
+            <result>/WEB-INF/modInfoPersonal.jsp</result>
+        </action>
+        <action name="passwdForm">
+            <result>/WEB-INF/modPwd.jsp</result>
+        </action>
+        <action name="modUsuario" class="Actions.ModUsuarioAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">modInformacion</param>
+                <param name="mensaje">Usuario registrado con Exito</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">modInformacion</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">modInformacion</param>
+            </result>
+        </action>
+        <action name="modPwd" class="Actions.ModPwdAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">modInformacion</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">modInformacion</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">modInformacion</param>
+            </result>
+        </action>
+        
+        <!--Acciones para el manejo de grupos -->
         <action name="ListGroup">
 			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
 		</action>
         <action name="SearchGroups" class="Actions.Groups.ListarGrupos">
             <result name="success">WEB-INF/grupos/tablaGrupos.jsp</result>            
         </action>
-		<!--action name="ListGroup" class="Actions.Groups.ListarGrupos">
-			<result>/WEB-INF/grupos/tablaGrupos.jsp</result>
-		</action-->
 		<action name="AltaGroup">
 			<result>/WEB-INF/grupos/altaGrupo.jsp</result>
 		</action>
@@ -47,8 +75,7 @@
 		<action name="SalirGroup" class="Actions.Groups.BajaGrupo" method="baja">
 			<result name="success">WEB-INF/grupos/tablaGrupos.jsp</result>
 			<result name="error">WEB-INF/grupos/tablaGrupos.jsp</result>
-		</action>
-                
+		</action>  
 		<action name="altaGrupo" class="Actions.Groups.AltaGrupoAction">
 			<result name="success" type="redirectAction">
                 <param name="actionName">SearchGroups</param>
@@ -64,51 +91,6 @@
             </result>
 			<result name="input">WEB-INF/grupos/tablaGrupos.jsp</result>
 		</action>
-        
-        <!-- Action para modificación de usuario -->     
-                <action name="modInformacion">
-                    <result>/WEB-INF/modInfoPersonal.jsp</result>
-                </action>
-        
-                <action name="passwdForm">
-                    <result>/WEB-INF/modPwd.jsp</result>
-                </action>
-        
-                <action name="modUsuario" class="Actions.ModUsuarioAction">
-                    <result name="success" type="redirectAction">
-                        <param name="actionName">modInformacion</param>
-                        <param name="mensaje">Usuario registrado con Exito</param>
-                    </result>
-                    <result name="error" type="redirectAction">
-                        <param name="actionName">modInformacion</param>
-                    </result>
-                    <result name="input" type="redirectAction">
-                        <param name="actionName">modInformacion</param>
-                    </result>
-                </action>
-        
-        
-                <action name="modPwd" class="Actions.ModPwdAction">
-                    <result name="success" type="redirectAction">
-                        <param name="actionName">modInformacion</param>
-                    </result>
-                    <result name="error" type="redirectAction">
-                        <param name="actionName">modInformacion</param>
-                    </result>
-                    <result name="input" type="redirectAction">
-                        <param name="actionName">modInformacion</param>
-                    </result>
-                </action>
-        
-        
-        
-        <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
-            <result>/WEB-INF/grupos/tablaRoles.jsp</result>
-        </action>
-        <action name="ListSolicitudes" class="Actions.Groups.ListarSolicitudesAction">
-            <result>WEB-INF/grupos/tablaSolicitudes.jsp</result>
-        </action>
-        
         <action name="enviarSolicitudGrupo">
             <result>/WEB-INF/grupos/accesoGrupo.jsp</result>
         </action>
@@ -160,5 +142,28 @@
         <action name="ListarMiembrosAction" class="Actions.Groups.ListarMiembros">
             <result name="success">WEB-INF/grupos/homeGrupos.jsp</result>
         </action>
+        <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
+            <result>/WEB-INF/grupos/tablaRoles.jsp</result>
+        </action>
+        
+        <!-- Acciones para los reportes -->
+        <action name="listarReportes">
+            <result>/WEB-INF/reportes/listaReportes.jsp</result>
+        </action>
+        
+        <!-- Acciones para la lista de profesores -->
+        <action name="ListaProfesor">
+            <result>/WEB-INF/profesor/tablaProfesores.jsp</result>
+        </action>
+        <action name="InformacionProfesor">
+            <result>/WEB-INF/profesor/informacionProfesor.jsp</result>
+        </action>
+        <action name="SearchProfesor" class="Actions.Profesor.ListarProfesores">
+            <result name="success">WEB-INF/profesor/tablaProfesores.jsp</result>            
+        </action>
+        <action name="BajaProfesor" class="Actions.Profesor.BajaProfesor">
+			<result name="success">WEB-INF/profesor/tablaProfesores.jsp</result>
+			<result name="error">WEB-INF/profesor/tablaProfesores.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -1,3 +1,8 @@
+<%@page import="java.nio.file.Files"%>
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -7,26 +12,58 @@
     if (usuario.getFacebook() == 1) {
         hidden = "display: none;";
     }
+
+    //Image Search
+    Usuario user = (Usuario) session.getAttribute("usuario");
+    String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
+    String avatar = "default-avatar.png";
+    Path path = Paths.get(pathImages + user.getCorreo() + ".png");
+    if (Files.exists(path)) {
+        avatar = user.getCorreo() + ".png";
+    }
 %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar información personal</title> 
+
+        <meta http-equiv=X-UA-Compatible content="IE=edge">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/avatar.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">Modificar Información Personal</div>
                 <div class="panel-body">
+                    <s:if test="hasActionErrors()">
+                        <div class="alert alert-danger">
+                            <!--span class="glyphicon glyphicon-alert"></span-->  <s:actionerror />
+                        </div>
+                    </s:if>
                     <form id="modificarfrm" method="POST" class="form-horizontal">
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="correo">Correo Electrónico*</label>
+                            <label class="col-md-2 control-label" for="avatarImageDataURL">Avatar</label>
+                            <div class="col-md-4 text-center">
+                                <div id="avatar-layout">
+                                    <div id="avatar"> 
+                                        <img src="${pageContext.request.contextPath}/images/<%= avatar%>" width="300" class="img-circle" id="crop_avatar" />
+                                        <input id="avatarImageShow" <s:if test="%{#avatar != 'default-avatar.png'}"> style="display:none" </s:if> class="delete" type="image" src="${pageContext.request.contextPath}/images/red-cross.png" width="32" onclick="defaultImage();return false;"/>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="avatarImage" name="avatarImageURL"/>
+                            </div>
+                        </div>    
+                        <div class="form-group has-feedback">
+                            <label class="col-md-2 control-label"  for="correo">Correo Electrónico*</label>
                             <div class="col-md-4">
                                 <input disabled type="text" class="form-control" id="correo" name="correo" placeholder="mi_correo@jmail.com" value="${session.usuario.correo}"/>
                                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
                             </div>
-
                         </div>
                         <div class="form-group has-feedback">
                             <label class="col-md-2 control-label" for="nombre">Nombre(s)*</label>
@@ -65,28 +102,18 @@
                         </div> 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-2" id="button-group">
-                                <button id="modify_button" type="button" class="btn btn-success" onclick="habilitarEdicion()"><span class="glyphicon glyphicon-pencil"></span>  Modificar</button>
+                                <button id="modify_button" type="button" class="btn btn-success" onclick="habilitarEdicion();"><span class="glyphicon glyphicon-pencil"></span>  Modificar</button>
                                 <button id="pwd_modify_button" type="button" class="btn btn-primary" style="<%= hidden%>" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>   Cambiar Contraseña</button>
-                                <button id="submit_button" type="button" class="btn btn-success" onclick="modUsuarioCambiarContenido()" style="display:none"><span class="glyphicon glyphicon-ok"></span>  Aceptar</button>
-                                <button id="cancel_button" type="button" class="btn btn-danger" style="display:none" onclick="cancelOperation()"><span class="glyphicon glyphicon-repeat"></span>  Cancelar</button>
+                                <button id="submit_button" type="button" class="btn btn-success" onclick="modUsuarioCambiarContenido();" style="display:none"><span class="glyphicon glyphicon-ok"></span>  Aceptar</button>
+                                <button id="cancel_button" type="button" class="btn btn-danger" style="display:none" onclick="cancelOperation();"><span class="glyphicon glyphicon-repeat"></span>  Cancelar</button>
                             </div>
                         </div>     
                     </form>
+                    <input onchange="avatarUpload();" type="file" id="imageUpload" accept="image/*" style="display: none;"/>
                 </div>
-
-                <s:if test="hasActionMessages()">
-                    <div class="alert alert-success">
-                        <!--span class="glyphicon glyphicon-ok"></span-->  <s:actionmessage />
-                    </div>
-                </s:if>
-                <s:if test="hasActionErrors()">
-                    <div class="alert alert-danger">
-                        <!--span class="glyphicon glyphicon-alert"></span-->  <s:actionerror />
-                    </div>
-                </s:if>
-
             </div>
         </div>
         <script src="${pageContext.request.contextPath}/js/paginas/modInfoPersonal.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery/croppie.min.js" type="text/javascript"></script>
     </body>
 </html>

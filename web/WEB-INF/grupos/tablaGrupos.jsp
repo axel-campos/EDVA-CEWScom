@@ -50,7 +50,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaGrupos.js"></script>
-        <title>JSP Page</title>      
+        <title>Grupos</title>      
     </head>
     <body>
     <div id="contenedor1" class="container-fluid">
@@ -95,7 +95,7 @@
                     </select>
             </div>
             <div class="form-group col-md-1">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
             </div>
         </form>
     </div>
