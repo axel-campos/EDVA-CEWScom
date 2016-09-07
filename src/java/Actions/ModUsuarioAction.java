@@ -8,8 +8,13 @@ package Actions;
 import com.opensymphony.xwork2.ActionSupport;
 import modelo.pojo.Usuario;
 import interceptor.AuthenticatedUser;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.sql.Date;
 import java.util.Map;
+import javax.imageio.ImageIO;
+import javax.xml.bind.DatatypeConverter;
 import modelo.dao.UsuarioDAO;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -29,6 +34,7 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     private String materno;
     private String cedula;
     private String fechaN;
+    private String avatar = "default-avatar.png";
     
     //Avatar image properties
     private String avatarImageURL;
@@ -55,6 +61,27 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
         UsuarioDAO usuariodao = new UsuarioDAO();
         try {
             usuariodao.conectar();
+            
+            //If an image was modified...
+            if(!avatarImageURL.equals("not modified"))
+            {
+               if(!avatarImageURL.equals("")){
+                byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageURL.substring(avatarImageURL.indexOf(",") + 1));
+                BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
+                ImageIO.write(bufferedImage, "png", new File(destPath + correo + ".png"));
+                avatar = correo + ".png";
+                }
+                else
+                {
+                    File file = new File(destPath + correo + ".png");
+                    file.delete();
+                } 
+            }
+            else
+            {
+                avatar = usuario.getAvatar();
+            }
+            
 
             Usuario usuario_modificado = new Usuario()
                     .setFechaNacimiento(Date.valueOf(fechaN))
@@ -64,7 +91,8 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
                     .setAMaterno(materno)
                     .setCedula(cedula)
                     .setTipo(usuario.getTipo())
-                    .setPassword(usuario.getPassword());
+                    .setPassword(usuario.getPassword())
+                    .setAvatar(avatar);
 
             userSession.put("usuario", usuario_modificado);
             usuariodao.modificar(usuario, usuario_modificado);
