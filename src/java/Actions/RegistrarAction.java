@@ -27,6 +27,7 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
     private String fechaN;
     private String password;
     private String pwd;
+    private String avatar = "default-avatar.png";
     private final int LOG_ROUNDS = 13;
     
     //Avatar image properties
@@ -77,11 +78,13 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
                 addActionError("Ya existe un usuario con ese correo. Por favor, elija otro.");
                 return INPUT;
             }
-
+            
+            //If an image was uploaded, write on destPath
             if(!avatarImageURL.equals("")){
                 byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageURL.substring(avatarImageURL.indexOf(",") + 1));
                 BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
                 ImageIO.write(bufferedImage, "png", new File(destPath + correo + ".png"));
+                avatar = correo + ".png";
             }
 
             Usuario usuario = new Usuario()
@@ -92,7 +95,8 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
                                 .setCedula(cedula)
                                 .setFechaNacimiento(Date.valueOf(fechaN))
                                 .setTipo(TipoUsuario.PROFESOR)
-                                .setPassword(BCrypt.hashpw(password, BCrypt.gensalt(LOG_ROUNDS)));
+                                .setPassword(BCrypt.hashpw(password, BCrypt.gensalt(LOG_ROUNDS)))
+                                .setAvatar(avatar);
             usuariodao.registrar(usuario);
             usuariodao.desconectar();
             session.put("usuario", usuario);

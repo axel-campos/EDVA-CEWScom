@@ -19,6 +19,27 @@ public class Usuario implements EDVADB {
 	private Date fechaNacimiento;
 	private String password;
     private int facebook;
+    private String avatar;
+
+    /**
+	 * Regresa la imagen (nombre del archivo) de este usuario.
+	 * 
+	 * @return La imagen (nombre del archivo) del usuario.
+	 */
+    public String getAvatar() {
+        return avatar;
+    }
+    
+    /**
+	 * Asigna una nueva imagen (nombre de archivo) a este usuario.
+	 * 
+	 * @param avatar La imagen (nombre de archivo) del usuario.
+	 * @return La referencia a este usuario.
+	 */
+    public Usuario setAvatar(String avatar) {
+        this.avatar = avatar;
+        return this;
+    }
 	
 	/**
 	 * Regresa el correo de este usuario.

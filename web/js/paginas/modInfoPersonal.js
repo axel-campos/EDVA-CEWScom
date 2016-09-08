@@ -95,12 +95,15 @@ $(document).ready(function () {
                 $(target).html(data);
             }
         });       
-        fotoInicial = $("#avatarImage").attr("src");
     });
 
 });
 
-var fotoInicial = $("#crop_avatar").attr("src");
+//Obtaining path and image name for edit.
+var rutaFoto = $("#crop_avatar").attr("src");
+var ruta = rutaFoto.substring(0, rutaFoto.lastIndexOf("/") + 1);
+var foto = rutaFoto.substring(rutaFoto.lastIndexOf("/") + 1);
+var defaultAvatar = "default-avatar.png";
 
 function habilitarEdicion() {
     var inputs_forms_nodeList = document.getElementsByClassName("form-control");
@@ -118,7 +121,11 @@ function habilitarEdicion() {
     $("#avatar-layout").addClass("avatar-layout");
     $("#avatar").addClass("avatar");
     $("#crop_avatar").attr("onclick","fileChooser()");
-
+    
+    if(foto !== defaultAvatar)
+    {
+        $('#avatarImageShow').show();
+    }
 }
 
 function cancelOperation()
@@ -128,7 +135,7 @@ function cancelOperation()
     {
         inputs_forms_nodeList[i].disabled = true;
     }
-
+    
     // Mostramos los primeros botones
     $("#modify_button").show();
     $("#pwd_modify_button").show();
@@ -140,7 +147,9 @@ function cancelOperation()
     $("#avatar-layout").removeClass("avatar-layout");
     $("#avatar").removeClass("avatar");
     $("#crop_avatar").removeAttr("onclick",null);
-    $("#crop_avatar").attr("src",fotoInicial);
+    $("#crop_avatar").attr("src",rutaFoto);
+    $('#avatarImageShow').hide();
+    $('#avatarImage').val("not modified");
 
 }
 
@@ -203,6 +212,9 @@ function modUsuarioCambiarContenido()
         data: datos,
         success: function (data) {
             $("#contenido").html(data);
+            rutaFoto = $("#crop_avatar").attr("src");
+            ruta = rutaFoto.substring(0, rutaFoto.lastIndexOf("/") + 1);
+            foto = rutaFoto.substring(rutaFoto.lastIndexOf("/") + 1);
         }
     });
 }
@@ -211,8 +223,7 @@ function fileChooser() {
     $('#imageUpload').trigger('click');
 }
 function defaultImage(){
-    var defaultImage = fotoInicial;
-    $('#crop_avatar').attr('src', defaultImage);
+    $('#crop_avatar').attr('src', ruta + defaultAvatar);
     $('#avatarImage').val("");
     $('#avatarImageShow').hide();
 }
