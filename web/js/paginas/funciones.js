@@ -83,4 +83,4 @@ function mensajes(mensaje, tipo){
 }
 
 // Así mandas a llamar a la funcion, Vic.
-//mensajes("Putos todos", TIPO_MENSAJE.SUCCESS);
+//mensajes("Jajatl", TIPO_MENSAJE.SUCCESS);

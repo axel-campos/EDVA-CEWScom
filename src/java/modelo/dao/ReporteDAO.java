@@ -51,6 +51,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 			stmt.setInt(10, viejo.getIdReporte());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
+            System.out.println(e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -117,6 +118,20 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 			
 			return lista;
 		} catch (SQLException | NullPointerException e) {
+			throw new RuntimeException(e);
+		}
+	}
+    
+    public void responderSolicitud(Reporte nuevoReporte) {
+		String sql = "UPDATE reporte SET atendido = ?, aceptado = ? WHERE idReporte = ?";
+		
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, nuevoReporte.getAtendido());
+			stmt.setInt(2, nuevoReporte.getAceptado());
+			stmt.setInt(3, nuevoReporte.getIdReporte());
+			stmt.executeUpdate();
+		} catch (SQLException | NullPointerException e) {
+            System.out.println(e);
 			throw new RuntimeException(e);
 		}
 	}

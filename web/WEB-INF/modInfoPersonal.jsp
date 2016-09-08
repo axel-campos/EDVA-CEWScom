@@ -12,15 +12,6 @@
     if (usuario.getFacebook() == 1) {
         hidden = "display: none;";
     }
-
-    //Image Search
-    Usuario user = (Usuario) session.getAttribute("usuario");
-    String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
-    String avatar = "default-avatar.png";
-    Path path = Paths.get(pathImages + user.getCorreo() + ".png");
-    if (Files.exists(path)) {
-        avatar = user.getCorreo() + ".png";
-    }
 %>
 <!DOCTYPE html>
 <html>
@@ -51,11 +42,11 @@
                             <div class="col-md-4 text-center">
                                 <div id="avatar-layout">
                                     <div id="avatar"> 
-                                        <img src="${pageContext.request.contextPath}/images/<%= avatar%>" width="300" class="img-circle" id="crop_avatar" />
-                                        <input id="avatarImageShow" <s:if test="%{#avatar != 'default-avatar.png'}"> style="display:none" </s:if> class="delete" type="image" src="${pageContext.request.contextPath}/images/red-cross.png" width="32" onclick="defaultImage();return false;"/>
+                                        <img id="crop_avatar" src="${pageContext.request.contextPath}/images/${session.usuario.avatar}" width="300" class="img-circle" />
+                                        <input id="avatarImageShow" style="display:none" class="delete" type="image" src="${pageContext.request.contextPath}/images/red-cross.png" width="32" onclick="defaultImage();return false;"/>
                                     </div>
                                 </div>
-                                <input type="hidden" id="avatarImage" name="avatarImageURL"/>
+                                    <input type="hidden" id="avatarImage" name="avatarImageURL" value="not modified"/>
                             </div>
                         </div>    
                         <div class="form-group has-feedback">

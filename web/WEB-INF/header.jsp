@@ -52,21 +52,13 @@
                         nombre += " " + user.getAMaterno();
                     }
                     menuDAO.desconectar();
-                    
-                    //Image Search
-                    String pathImages = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
-                    String avatar = "default-avatar.png";
-                    Path path = Paths.get(pathImages + user.getCorreo() + ".png");
-                    if (Files.exists(path)) {
-                        avatar = user.getCorreo() + ".png";
-                    }
                 %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--li><a href="#"><span class="glyphicon glyphicon-user"></span> <!%= nombre%></a></li-->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
-                        <img src="${pageContext.request.contextPath}/images/<%= avatar%>" width="18" class="img-circle"/> <%= nombre%> <span class='caret'></span>
+                        <img src="${pageContext.request.contextPath}/images/${session.usuario.avatar}" width="18" class="img-circle"/> <%= nombre%> <span class='caret'></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>

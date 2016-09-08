@@ -134,10 +134,11 @@
                 String[] action = {"",""};
                 String[] tipoReporte = {"",""};
                 int [] atendido = {0, 0};
+                int [] idReporte = {0, 0};
                 Boolean cerrarDiv = false, faltaImprimir = false;
                 reporteDAO.conectar();
                 List<Map<String, Object>> reportes = reporteDAO.consultaGenerica("" +
-                    "SELECT r.causa, r.atendido, " +
+                    "SELECT r.causa, r.atendido, r.idReporte, " +
                     "(CASE WHEN !ISNULL(r.correo) THEN 'Profesor' " +
                                 "WHEN !ISNULL(r.token) THEN 'Grupo' " +
                                 "ELSE 'Contenido' " +
@@ -159,7 +160,6 @@
                     Map<String, Object> columna = reportes.get(i);
                     String causa = (String)columna.get("causa");
                     String reportado = (String)columna.get("reportado");
-                    String id = (String)columna.get("id");
                     String fecha = df.format((Timestamp)columna.get("fechaReporte"));
                     String reportando = (String)columna.get("reportando");
                     if(i % 8 == 0){
@@ -173,6 +173,7 @@
                         out.println("<div class='row'>");
                         atendido[1] = (int)columna.get("atendido");
                         action[1] = (String)columna.get("action");
+                        idReporte[1] = (int)columna.get("idReporte");
                         tipoReporte[1] = (String)columna.get("tipoReporte");
                         textoReporte[1] = "El " + reportado + " fue reportado debido a " + causa + ", el reporte se generó en la fecha " + 
                         fecha + " por el profesor " + reportando;
@@ -204,6 +205,13 @@
                                     </p>
                                 </a>
                             <%
+                            out.println("<br/><table><tr>");
+                            out.println("<td style=\"width=40%\" align=\"center\"><input id=\"modify_button\" type=\"button\" class=\"btn btn-success\" value=\"Aceptar\" "
+                                + "style=\"heigth: 15px; font-size: 12px\" onclick=\"responderReporte('"+idReporte[n]+"','1')\"></td>" +
+                                "<td style=\"width=20\">&nbsp;&nbsp;</td>" +
+                                "<td style=\"width=40%\" align=\"center\"><input id=\"pwd_modify_button\" type=\"button\" class=\"btn btn-danger\" value=\"Rechazar\" "
+                                + "style=\"heigth: 15px; font-size: 12px\" onclick=\"responderReporte('"+ idReporte[n] + "','0')\"></td>");
+                            out.println("</tr></table>");
                             out.println("</div>");  //Cerrando div de list
                             out.println("</div>");  //Cerrando div col-xs-5
                             out.println("<div class='col-xs-1'></div>");
@@ -215,6 +223,7 @@
                             fecha + " por el profesor " + reportando;
                         action[0] = (String)columna.get("action");
                         tipoReporte[0] = (String)columna.get("tipoReporte");
+                        idReporte[0] = (int)columna.get("idReporte");
                         faltaImprimir = true;
                     }
                     if(i % 8 == 7){
@@ -238,6 +247,13 @@
                             </p>
                         </a>
                     <%
+                    out.println("<br/><table><tr>");
+                    out.println("<td style=\"width=40%\" align=\"center\"><input id=\"modify_button\" type=\"button\" class=\"btn btn-success\" value=\"Aceptar\" "
+                        + "style=\"heigth: 15px; font-size: 12px\" onclick=\"responderReporte('"+idReporte[0]+"','1')\"></td>" +
+                        "<td style=\"width=20\">&nbsp;&nbsp;</td>" +
+                        "<td style=\"width=40%\" align=\"center\"><input id=\"pwd_modify_button\" type=\"button\" class=\"btn btn-danger\" value=\"Rechazar\" "
+                        + "style=\"heigth: 15px; font-size: 12px\" onclick=\"responderReporte('"+ idReporte[0] + "','0')\"></td>");
+                    out.println("</tr></table>");
                     out.println("</div>");  //Cerrando div de list
                     out.println("</div>");  //Cerrando div col-xs-5
                     out.println("<div class='col-xs-7'></div>");
