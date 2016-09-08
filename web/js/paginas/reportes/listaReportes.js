@@ -34,3 +34,20 @@ function cambiarContenedor(numeroDiv){
     $("#contenedorReportes").html(divs[numeroDiv - 1]);
 }
 
+function responderReporte(idReporte, respuesta){
+    //Respuesta: 1 = aceptado, 0 = rechazado
+    var action = "responderReporte?idReporte="+idReporte+"&respuesta="+respuesta;
+    
+    $.ajax({
+        type: "POST",
+        url: action,
+        success: function(data){
+            if(data.toString().indexOf("Error:") === -1){//No error
+                mensajes(data, TIPO_MENSAJE.SUCCESS);
+                $( "#frmFiltros" ).submit();
+            }else{
+                mensajes(data, TIPO_MENSAJE.DANGER);
+            }
+        }
+    });
+}

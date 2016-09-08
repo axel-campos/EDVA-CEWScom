@@ -23,7 +23,7 @@ import modelo.pojo.EDVADB;
 public abstract class ConexionDAO<T extends EDVADB> {
 	
 	private final String driver = "com.mysql.jdbc.Driver";
-	private final String database = "jdbc:mysql://localhost/edvadb";
+	private final String database = "jdbc:mysql://localhost/edvadb?autoReconnect=true&useSSL=false";
 	private final String user = "root";
 	private final String pass = "root";
 	protected Connection conn = null;
