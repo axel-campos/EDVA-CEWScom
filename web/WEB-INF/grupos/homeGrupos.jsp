@@ -43,6 +43,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                     <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="active"><a href="#" onclick="mostrarLista('contenidosGrupo','<%=token%>');">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos del grupo <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
@@ -66,10 +67,10 @@
                                     <li style="text-align: center">
                                         <%if(noProfesores > 1){ %>
                                         <s:if test="esCoordinador">
-                                            <button class="btn btn-primary btn-sm" onclick="mostrarLista('ListRoles?token=<%=token%>');">Roles del grupo</button>
+                                            <button class="btn btn-primary btn-sm" onclick="mostrarLista('ListRoles','<%=token%>');">Roles del grupo</button>
                                         </s:if>
                                         <% }%>
-                                            <button class="btn btn-info btn-sm" onclick="mostrarLista('ListSolicitudes?token=<%=token%>');">Solicitudes</button>
+                                            <button class="btn btn-info btn-sm" onclick="mostrarLista('ListSolicitudes','<%=token%>');">Solicitudes</button>
                                     </li>
                                 </s:if>
                             </ul>
@@ -79,89 +80,7 @@
             </div>
         </nav>                  
         <div class="main" id="contenidoGrupo">
-            <%
-            //Buscaremos los primeros diez contenidos de los grupos de este usuario
-                ContenidoDAO contenidoDAO = new ContenidoDAO();
-                contenidoDAO.conectar();
-                
-                String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
-                    " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
-                    " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
-                    " INNER JOIN grupo AS g ON g.token = con.token " +
-                    " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " + 
-                    " WHERE con.token = '" + token + "'";
-                if(session.getAttribute("usuario") != null){
-                    sqlContenidos += " WHERE ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW()) GROUP BY idContenido;";
-                }
-                List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
-                contenidoDAO.desconectar();
-                if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
-            %>
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="overflow: auto">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                    No hay contenidos activos para mostrar</a>
-                                </h4>
-                            </div>
-                            <div id="collapse1" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    Para empezar a crear contenidos debe pertenecer a un grupo de trabajo, una vez
-                                    dentro junto con su grupo podrá comenzar a crear los contenidos que desee.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%
-                }else{
-                    int i = 0;
-                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    for(i = 0; i < tablaContenidos.size(); i++){
-                        Map<String, Object> columna = tablaContenidos.get(i);
-                        String nombreGrupo = (String)columna.get("nombreGrupo");
-                        String titulo = (String)columna.get("titulo");
-                        String tema = (String)columna.get("tema");
-                        String descripcion2 = (String)columna.get("descripcion");
-                        String etapa = (String)columna.get("nombre");
-                        String fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
-                        String fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
-            %>
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="overflow: auto">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                        Contenido: <%=titulo%> <br/> Grupo: <%=nombreGrupo%></a>
-                                </h4>
-                            </div>
-                            <div id="collapse<%=i%>" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    Título: <%=titulo%> <br/>
-                                    Grupo: <%=nombreGrupo%> <br/>
-                                    Tema: <%=tema%> <br/>
-                                    Descripción: <%=descripcion%> <br/>
-                                    Etapa: <%=etapa%> <br/>
-                                    Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
-                                    Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
-                                    <br/>
-                                    <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%            
-                    }
-                }
-            %>
+            <%@include file="contenidoGrupo.jsp"%>
         </div>
     </body>
     <script>
