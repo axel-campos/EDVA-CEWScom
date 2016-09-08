@@ -3,8 +3,14 @@ package Actions.JSON;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
+import modelo.dao.ContenidoDAO;
+import modelo.dao.GrupoDAO;
 import modelo.dao.ReporteDAO;
+import modelo.dao.UsuarioDAO;
+import modelo.pojo.Contenido;
+import modelo.pojo.Grupo;
 import modelo.pojo.Reporte;
+import modelo.pojo.Usuario;
 import org.apache.struts2.ServletActionContext;
 
 public class ResponderReporteAction extends ActionSupport {
@@ -27,16 +33,24 @@ public class ResponderReporteAction extends ActionSupport {
                     reporte.setAtendido(1);
                     String query = "";
                     if(reporte.getCorreo() != null && !reporte.getCorreo().equals("")){
-                        query = "DELETE FROM usuario WHERE correo = " + reporte.getCorreo();
+                        UsuarioDAO usuarioDAO = new UsuarioDAO();
+                        usuarioDAO.conectar();
+                        usuarioDAO.eliminar(new Usuario().setCorreo(reporte.getCorreo()));
                         out.println("El usuario ha sido eliminado debido al reporte");
+                        usuarioDAO.desconectar();
                     }else if(reporte.getToken() != null && !reporte.getToken().equals("")){
-                        query = "DELETE FROM grupo WHERE token = " + reporte.getToken();
+                        GrupoDAO grupoDAO = new GrupoDAO();
+                        grupoDAO.conectar();
+                        grupoDAO.eliminar(new Grupo().setToken(reporte.getToken()));
                         out.println("El grupo ha sido eliminado debido al reporte");
+                        grupoDAO.desconectar();
                     }else{
-                        query = "DELETE FROM contenido WHERE idContenido = " + reporte.getIdContenido();
+                        ContenidoDAO contenidoDAO = new ContenidoDAO();
+                        contenidoDAO.conectar();
+                        contenidoDAO.eliminar(new Contenido().setIdContenido(reporte.getIdContenido()));
                         out.println("El contenido ha sido eliminado debido al reporte");
+                        contenidoDAO.desconectar();
                     }
-                    reporteDAO.consultaGenerica(query);
                     out.println("El reporte ha sido atendido exitosamente");
                 }else{  //El reporte fue rechazado y no habrá consecuencias
                     reporte.setAtendido(1);

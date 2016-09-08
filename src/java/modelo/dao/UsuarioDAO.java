@@ -65,6 +65,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
             stmt.setString(1, registro.getCorreo());
             stmt.executeUpdate();
         } catch (SQLException | NullPointerException e) {
+            System.out.println(e);
             throw new RuntimeException(e);
         }
     }
