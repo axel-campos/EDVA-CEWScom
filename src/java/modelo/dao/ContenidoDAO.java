@@ -108,4 +108,21 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 			throw new RuntimeException(e);
 		}
 	}
+    
+    public boolean buscarContenidoxTitulo(Contenido registro){
+        String sql = "SELECT * FROM Contenido WHERE titulo = ? AND token = ?";
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, registro.getTitulo());
+            stmt.setString(2, registro.getToken());
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) { 
+                    return true;
+				} else{
+					return false;
+                }
+			}
+		} catch (SQLException | NullPointerException e) {
+			throw new RuntimeException(e);
+		}
+    }
 }

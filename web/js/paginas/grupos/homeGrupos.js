@@ -5,6 +5,6 @@ $(document).ready(function(){
     $("#contenidoGrupo").height(altura);
 });
 
-function mostrarLista(pagina){
-    $("#contenidoGrupo").load(pagina);
+function mostrarLista(pagina,token){
+    $("#contenidoGrupo").load(pagina,{"token": token});
 }

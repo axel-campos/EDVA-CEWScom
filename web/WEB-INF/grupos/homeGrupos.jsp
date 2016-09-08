@@ -37,6 +37,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                     <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="active"><a href="#" onclick="mostrarLista('contenidosGrupo','<%=token%>');">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos del grupo <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
@@ -60,10 +61,10 @@
                                     <li style="text-align: center">
                                         <%if(noProfesores > 1){ %>
                                         <s:if test="esCoordinador">
-                                            <button class="btn btn-primary btn-sm" onclick="mostrarLista('ListRoles?token=<%=token%>');">Roles del grupo</button>
+                                            <button class="btn btn-primary btn-sm" onclick="mostrarLista('ListRoles','<%=token%>');">Roles del grupo</button>
                                         </s:if>
                                         <% }%>
-                                            <button class="btn btn-info btn-sm" onclick="mostrarLista('ListSolicitudes?token=<%=token%>');">Solicitudes</button>
+                                            <button class="btn btn-info btn-sm" onclick="mostrarLista('ListSolicitudes','<%=token%>');">Solicitudes</button>
                                     </li>
                                 </s:if>
                             </ul>
@@ -73,7 +74,7 @@
             </div>
         </nav>                  
         <div class="main" id="contenidoGrupo">
-            
+            <%@include file="contenidoGrupo.jsp"%>
         </div>
     </body>
     <script>

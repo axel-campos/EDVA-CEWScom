@@ -121,6 +121,9 @@
         <action name="homeGrupos">
             <result>/WEB-INF/grupos/homeGrupos.jsp</result>
         </action>
+        <action name="contenidosGrupo">
+            <result>WEB-INF/grupos/contenidoGrupo.jsp</result>
+        </action>
         <action name="mandarSolicitudAction" class="Actions.Groups.AccesoGrupoAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">enviarSolicitudGrupo</param>
@@ -168,5 +171,16 @@
 			<result name="success">WEB-INF/profesor/tablaProfesores.jsp</result>
 			<result name="error">WEB-INF/profesor/tablaProfesores.jsp</result>
 		</action>
+        
+        <!-- Acciones para los contenidos-->
+        <action name="altaContenido">
+            <result>WEB-INF/contenido/altaContenido.jsp</result>
+        </action>
+        <action name="crearContenido" class="Actions.Contenido.AltaContenidoAction">
+            <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="error">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="input">WEB-INF/grupos/contenidoGrupo.jsp</result>
+        </action>
+        
 	</package>
 </struts>
