@@ -1,3 +1,9 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="modelo.dao.ContenidoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
@@ -21,27 +27,26 @@
             </s:if>
             <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
             <input type="hidden" id="token" value="<s:property value="token"/>">
-            <%
-                //Buscaremos los primeros diez contenidos de los grupos de este usuario
-                ContenidoDAO contenidoDAO = new ContenidoDAO();
-                contenidoDAO.conectar();
-                Usuario usuarioS = null;
-                String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
-                    " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
-                    " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
-                    " INNER JOIN grupo AS g ON g.token = con.token " +
-                    " INNER JOIN usuariogrupo AS ug ON g.token = ug.token ";
-                if(session.getAttribute("usuario") != null){
-                    usuarioS = (Usuario)session.getAttribute("usuario");
-                    if(usuarioS.getTipo() == 1){    //Significa que es admin DIOS
-                        sqlContenidos += " WHERE ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW()) GROUP BY idContenido;";
-                    }else{
-                        sqlContenidos += " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ug.aceptado = 1 AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW()) GROUP BY idContenido;";
-                    }
-                }
-                List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
-                contenidoDAO.desconectar();
-                if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
+        </div>
+        <%
+            String token2 = "";
+            if(request.getParameter("token") != null){
+                token2 = (String)request.getParameter("token");
+            }
+            //Buscaremos los primeros diez contenidos de los grupos de este usuario
+            ContenidoDAO contenidoDAO = new ContenidoDAO();
+            contenidoDAO.conectar();
+            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
+                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
+                " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
+                " INNER JOIN grupo AS g ON g.token = con.token " +
+                " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
+                " WHERE g.token ='" + token2 + "'";
+            sqlContenidos += " AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW() OR ce.tiempoVotacion >= NOW()) GROUP BY idContenido;";
+            System.out.println(sqlContenidos);
+            List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
+            contenidoDAO.desconectar();
+            if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
             %>
                 <div class="col-sm-12">
                     <div class="panel panel-default">
@@ -65,13 +70,14 @@
                 </div>
                 <%
                     }else{
+                        int i = 0;
                         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         for(i = 0; i < tablaContenidos.size(); i++){
                             Map<String, Object> columna = tablaContenidos.get(i);
                             String nombreGrupo = (String)columna.get("nombreGrupo");
                             String titulo = (String)columna.get("titulo");
                             String tema = (String)columna.get("tema");
-                            String descripcion = (String)columna.get("descripcion");
+                            String descripcion2 = (String)columna.get("descripcion");
                             String etapa = (String)columna.get("nombre");
                             String fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
                             String fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
@@ -91,7 +97,7 @@
                                         Título: <%=titulo%> <br/>
                                         Grupo: <%=nombreGrupo%> <br/>
                                         Tema: <%=tema%> <br/>
-                                        Descripción: <%=descripcion%> <br/>
+                                        Descripción: <%=descripcion2%> <br/>
                                         Etapa: <%=etapa%> <br/>
                                         Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
                                         Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
@@ -107,7 +113,5 @@
                         }
                     }
                 %>
-        </div>
-        
     </body>
 </html>

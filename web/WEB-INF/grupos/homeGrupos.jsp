@@ -1,9 +1,3 @@
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.text.DateFormat"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.List"%>
-<%@page import="modelo.dao.ContenidoDAO"%>
 <%@page import="modelo.pojo.Grupo"%>
 <%@page import="modelo.dao.GrupoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
