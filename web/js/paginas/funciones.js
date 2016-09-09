@@ -1,10 +1,42 @@
+// Tipos de mensajes a mostrar
+var TIPO_MENSAJE = {
+    DEFAULT: 0,
+    INFO: 1,
+    PRIMARY: 2,
+    SUCCESS: 3,
+    WARNING: 4,
+    DANGER: 5
+};
+
 function cambiarContenidos(pagina, target){
-    var destino = target;
-    if(pagina !== "#"){
-        $(destino).load(pagina,function(){
-            $(".button").button();
-        });
-    }
+    cargando();
+    $.post(pagina)
+    .done(function(data){
+        setTimeout(
+        function() 
+        {
+            finalizar();
+            $(target).html(data);
+        }, 1000);
+    }).fail(function(data){
+        errorCargando();
+    });
+}
+
+function cargando(){
+    $("#cargando").show();
+    $("#errorPrincipal").hide();
+    $("#contenido").hide();
+}
+
+function finalizar(){
+    $("#cargando").hide();
+    $("#contenido").show();
+}
+
+function errorCargando(){
+    $("#cargando").hide();
+    $("#errorPrincipal").show();
 }
 
 function estasSeguro(pagina,target){
@@ -28,4 +60,37 @@ function estasSeguro(pagina,target){
     });
 }
 
+/**
+* Permite mostrar un mensaje con BootstrapDialog, de diferentes tipos
+* 
+* @param {String} mensaje El mensaje a mostrar
+* @param {int} tipo 0 = DEFAULT, 1 = INFO, 2 = PRIMARY, 3 = SUCCESS, 4 = WARNING, 5 = DANGER
+* @return La referencia a este contenido-etapa.
+*/
+function mensajes(mensaje, tipo){
+    var types = [BootstrapDialog.TYPE_DEFAULT, 
+                     BootstrapDialog.TYPE_INFO, 
+                     BootstrapDialog.TYPE_PRIMARY, 
+                     BootstrapDialog.TYPE_SUCCESS, 
+                     BootstrapDialog.TYPE_WARNING, 
+                     BootstrapDialog.TYPE_DANGER];
+                     
+    BootstrapDialog.show({
+        type: types[tipo],
+        title: 'Mensaje: ',
+        message: mensaje
+    });     
+}
 
+// Así mandas a llamar a la funcion, Vic.
+//mensajes("Jajatl", TIPO_MENSAJE.SUCCESS);
+
+function mostrarNotificacion(type, message){
+    $.notify({
+        // options
+        message: message 
+    },{
+        // settings
+        type: type
+    });
+}

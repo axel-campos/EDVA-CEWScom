@@ -1,9 +1,8 @@
 $(document).ready(function(){
-    $('#loginfrm').bootstrapValidator({
-        // message: 'Este valor no es permitido',
-        fields: {
-            correo: {
-                //message: ''
+    var form = "#loginfrm";
+    $(form).bootstrapValidator({
+        fields:{
+            correo:{
                 validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su correo electrónico'
@@ -20,9 +19,9 @@ $(document).ready(function(){
                     }
                 }
             }
-        }
-    });
-}); 
+       }
+   });
+});
 
 function inicioSesionFacebook(correo, nombre, apellido, fecha){
     var action_ajax = "verificarUsuarioFacebook.action";

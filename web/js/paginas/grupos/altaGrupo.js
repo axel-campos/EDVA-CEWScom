@@ -56,7 +56,7 @@ $(document).ready(function(){
                 }
             }
         }               
-    }).on('success.form.fv', function(e){
+    }).on('success.form.fv', function(e, data){
         //Prevent form submission
         e.preventDefault();
         //Use Ajax to submit form data
@@ -66,7 +66,8 @@ $(document).ready(function(){
             url: action,
             data: datos,
             success: function(data){
-                $("#contenido").html(data);
+                var target = "#contenido";
+                $(target).html(data);
             }
         });
     }); 

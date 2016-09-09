@@ -10,6 +10,7 @@ import modelo.pojo.UsuarioGrupo;
 public class AccesoGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser{
     private Usuario usuario;
     private String token;
+    private static final String SAMEINPUT = "sameinput";
     
     
     public AccesoGrupoAction() {        
@@ -23,15 +24,19 @@ public class AccesoGrupoAction extends ActionSupport implements interceptor.Auth
             UsuarioGrupo usuariogrupo = usuariogrupoDAO.buscar(new UsuarioGrupo().setToken(token).setCorreo(usuario.getCorreo()));
             if(usuariogrupo == null){//No se tiene registro de que ya se hizo una solicitud.
                 usuariogrupoDAO.registrar(new UsuarioGrupo().setToken(token).setCorreo(usuario.getCorreo()).setAceptado(false).setIdTipoUsuarioGrupo(3));
-                addActionMessage("Éxito al enviar la solicitud. Por favor, espere la respuesta a su solicitud.");
+                //addActionMessage("Éxito al enviar la solicitud. Por favor, espere la respuesta a su solicitud.");
                 usuariogrupoDAO.desconectar();                
             }else{//Si se tiene registro.
                 usuariogrupoDAO.desconectar();
-                addActionMessage("Usted ya había envíado una solicitud previa para ingresar a este grupo. Por favor, espere la respuesta de su solicitud.");
-                return INPUT;
+                if(usuariogrupo.getAceptado()){//Ya está adentro del grupo.
+                    return SAMEINPUT;
+                }else{
+                //addActionMessage("Usted ya había envíado una solicitud previa para ingresar a este grupo. Por favor, espere la respuesta de su solicitud.");
+                    return INPUT;
+                }
             }
         }catch(RuntimeException e){
-            addActionError("No se pudo enviar solicitud. Intente de nuevo.");
+            //addActionError("No se pudo enviar solicitud. Intente de nuevo.");
             usuariogrupoDAO.desconectar();
             return ERROR;
         }

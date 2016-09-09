@@ -31,7 +31,7 @@ $(document).ready(function(){
         $("#correcto").hide();
         $("#incorrecto").hide();
         //Use Ajax to submit form data
-        var token = $("#token").val();
+        var token = $("#tokenG").val();
         $.post(action1, {"token": token}).done(function(data) 
         {
             if(data.toString().indexOf("Error:") === -1){//No error

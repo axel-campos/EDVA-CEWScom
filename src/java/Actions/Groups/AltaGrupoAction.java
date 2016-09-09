@@ -5,20 +5,23 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import modelo.dao.GrupoDAO;
 import modelo.pojo.Grupo;
 import modelo.dao.UsuarioGrupoDAO;
 import modelo.pojo.TipoUsuarioGrupo;
 import modelo.pojo.Usuario;
 import modelo.pojo.UsuarioGrupo;
+import org.apache.struts2.interceptor.SessionAware;
 
-public class AltaGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser {
+public class AltaGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser, SessionAware {
     
     private String nombre;
     private String descripcion;
     private Usuario usuario;
     private String submit;
     private String token2;
+    private Map<String, Object> userSession;
 
 	public AltaGrupoAction() {
     }
@@ -33,10 +36,21 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
         if(descripcion.length() > 100){
             addActionError("El número máximo de caracteres en el campo descripción es de 100");
         }
+        int valueLength = nombre.length();
+        String letras = "abcdefghijklmnopqrstuvwxyz";
+        String numeros = "1234567890";
+        String nombreAux = nombre.toLowerCase();
+        char letraInicial = nombreAux.charAt(0);
+        char letraFinal = nombreAux.charAt(valueLength - 1);
+        if(!((letras.indexOf(letraInicial) != -1 || numeros.indexOf(letraInicial) != -1) && (letras.indexOf(letraFinal) != -1 || numeros.indexOf(letraFinal) != -1))){
+            addActionError("El nombre del grupo debe iniciar y terminar con una letra o un número");
+        }
     }
     
 	@Override
     public String execute() throws Exception {
+        
+        //Validamos que el token no contenga caracteres especiales para la creación del token
         String token = ""; 
         String [] abecedario = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J","K", "L", "M","N","O","P","Q","R","S","T","U","V","W", "X","Y","Z" };
                
@@ -55,6 +69,10 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
         }
         
         GrupoDAO grupoDAO = new GrupoDAO();
+        String accion = "crear", nombreGrupo = "";
+        if(submit.equals("Crear")){
+            accion = "modificar";
+        }
         try{
             grupoDAO.conectar();
             if(submit.equals("Crear")){
@@ -64,15 +82,17 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
             Grupo grupo = new Grupo()
                     .setToken(token)
                     .setNombre(nombre)
-                    .setDescripcion(descripcion)
-                    .setTotalProfesores(1);
-            
+                    .setDescripcion(descripcion);
+            nombreGrupo = grupo.getNombre();
             if(submit.equals("Crear")){
+                grupo.setTotalProfesores(1);//Solo el creador es registrado
                 grupoDAO.registrar(grupo);
-                addActionMessage("<b>¡Éxito!</b> El grupo " + grupo.getNombre() + " ha sido registrado.");
+                addActionMessage("El grupo " + grupo.getNombre() + " ha sido registrado con éxito.");
             }else{
-                Grupo viejo = new Grupo().setToken(token);
+                Grupo viejo = grupoDAO.buscar(new Grupo().setToken(token));
+                grupo.setTotalProfesores(viejo.getTotalProfesores());//Se busca el numero de profesores que tenía antes de modificar
                 grupoDAO.modificar(viejo, grupo);
+                addActionMessage("El grupo " + grupo.getNombre() + " ha sido modificado con éxito");
             }
             grupoDAO.desconectar();
             /*Esto es para agregar al usuario como profesor coordinador.*/
@@ -87,12 +107,16 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
                                             .setToken(token));
 
                 grupoUsuarioDAO.desconectar();
+                userSession.put("token", token);
+                userSession.put("nombre", nombre);
                 return SUCCESS;
             }
+            userSession.put("token", token);
+            userSession.put("nombre", nombre);
             return "modificar";
         }catch(RuntimeException e) {
             grupoDAO.desconectar();
-            addActionError("Ocurrió un error al registrar al nuevo grupo.");
+            addActionError("Ocurrió un error al " + accion + " el grupo " + nombreGrupo);
             return ERROR;
         }
     }
@@ -132,6 +156,11 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
 
     public void setToken2(String token2) {
         this.token2 = token2;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> userSession) {
+        this.userSession = userSession;
     }
     
 }

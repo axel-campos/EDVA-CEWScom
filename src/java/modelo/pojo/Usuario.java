@@ -18,7 +18,28 @@ public class Usuario implements EDVADB {
 	private int tipo;
 	private Date fechaNacimiento;
 	private String password;
-    private Date ultimaConexion;
+    private int facebook;
+    private String avatar;
+
+    /**
+	 * Regresa la imagen (nombre del archivo) de este usuario.
+	 * 
+	 * @return La imagen (nombre del archivo) del usuario.
+	 */
+    public String getAvatar() {
+        return avatar;
+    }
+    
+    /**
+	 * Asigna una nueva imagen (nombre de archivo) a este usuario.
+	 * 
+	 * @param avatar La imagen (nombre de archivo) del usuario.
+	 * @return La referencia a este usuario.
+	 */
+    public Usuario setAvatar(String avatar) {
+        this.avatar = avatar;
+        return this;
+    }
 	
 	/**
 	 * Regresa el correo de este usuario.
@@ -179,23 +200,24 @@ public class Usuario implements EDVADB {
 		this.password = password;
 		return this;
 	}
+    
     /**
-	 * Regresa la contraseña de este usuario.
+	 * Regresa si el usuario se registro con Facebook
 	 * 
-	 * @return La contraseña del usuario.
+	 * @return 1 = Se registro con Facebook
 	 */
-	public Date getUltimaConexion() {
-		return ultimaConexion;
+	public int getFacebook() {
+		return facebook;
 	}
 	
 	/**
-	 * Asigna una nueva contraseña a este usuario.
+	 * Se asigna si el usuario se registro con Facebook
 	 * 
-	 * @param password La nueva contraseña.
-	 * @return La referencia a este objeto.
+	 * @param facebook 1 = Se registro con Facebook
+	 * @return La referencia a este usuario.
 	 */
-	public Usuario setUltimaConexion(Date ultimaConexion) {
-		this.ultimaConexion = ultimaConexion;
+	public Usuario setFacebook(int facebook) {
+		this.facebook = facebook;
 		return this;
 	}
 }

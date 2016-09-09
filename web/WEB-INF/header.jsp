@@ -1,8 +1,12 @@
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Files"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="modelo.dao.*"%>
 <%@page import="modelo.pojo.*"%>
 <%@page import="java.util.List"%>
-<nav class="navbar navbar-inverse">
-    <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="header">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toogle navigation</span>
@@ -42,13 +46,25 @@
                         }
                         submenuDAO.desconectar();
                     }
-                    String nombre = user.getNombre() + " " + user.getAPaterno() + " " + user.getAMaterno();
+                    
+                    String nombre = user.getNombre() + " " + user.getAPaterno();
+                    if(user.getAMaterno() != null){
+                        nombre += " " + user.getAMaterno();
+                    }
                     menuDAO.desconectar();
                 %>
-                <li><a href="logout.action">Cerrar Sesión</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= nombre%></a></li>
+                <!--li><a href="#"><span class="glyphicon glyphicon-user"></span> <!%= nombre%></a></li-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
+                        <img src="${pageContext.request.contextPath}/images/${session.usuario.avatar}" width="18" class="img-circle"/> <%= nombre%> <span class='caret'></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>
+                        <li><a href="logout.action">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

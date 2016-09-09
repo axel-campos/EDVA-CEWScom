@@ -1,4 +1,4 @@
-package Actions;
+package Actions.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;

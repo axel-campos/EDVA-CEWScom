@@ -1,12 +1,11 @@
-$(document).ready(function(){
+/* global dialog, FileReader */
+$(document).ready(function () {
     $('#fechaN').datepicker({
         format: "yyyy-mm-dd"
     });
     $('#registrarsefrm').bootstrapValidator({
-        // message: 'Este valor no es permitido',
         fields: {
             correo: {
-                //message: ''
                 validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su correo electrónico'
@@ -17,7 +16,7 @@ $(document).ready(function(){
                 }
             },
             nombre: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su nombre'
                     },
@@ -32,7 +31,7 @@ $(document).ready(function(){
                 }
             },
             paterno: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su apellido paterno'
                     },
@@ -46,8 +45,8 @@ $(document).ready(function(){
                     }
                 }
             },
-            materno:{
-                validators: {                    
+            materno: {
+                validators: {
                     regexp: {
                         regexp: /^[A-Za-záéíóúñÁÉÍÓÚÑ]{0,}$/,
                         message: "Formato incorrecto. Solo puede contener mayúsculas, minúsculas, acentos o la ñ"
@@ -59,17 +58,17 @@ $(document).ready(function(){
                     }
                 }
             },
-            cedula:{
-                validators:{
-                    stringLength:{
+            cedula: {
+                validators: {
+                    stringLength: {
                         min: 0,
                         max: 20,
-                        message: "El campo cédula no puede tener más de 20 caracteres" 
+                        message: "El campo cédula no puede tener más de 20 caracteres"
                     }
                 }
             },
             fechaN: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su fecha de Nacimiento'
                     },
@@ -80,7 +79,7 @@ $(document).ready(function(){
                 }
             },
             password: {
-                validators:{
+                validators: {
                     notEmpty: {
                         message: 'Por favor, ingrese su contraseña'
                     },
@@ -90,11 +89,11 @@ $(document).ready(function(){
                     }
                 }
             },
-            pwd:{
+            pwd: {
                 message: "Por favor, repita su contraseña para validarla",
-                validators:{
+                validators: {
                     notEmpty: {
-                        message: 'Por favor, ingrede de nuevo su contraseña'
+                        message: 'Por favor, ingrese de nuevo su contraseña'
                     },
                     identical: {
                         field: "password",
@@ -102,7 +101,87 @@ $(document).ready(function(){
                     }
                 }
             }
-
         }
     });
-}); 
+});
+
+function fileChooser() {
+    $('#imageUpload').trigger('click');
+}
+function defaultImage(){
+    var defaultImage = "images/default-avatar.png";
+    $('#crop_avatar').attr('src', defaultImage);
+    $('#avatarImage').val("");
+    $('#defaultImage').hide();
+}
+
+function avatarUpload() {
+    //Defining the croppie model
+    var $message = $('<div class="demo" id="image_crop"></div>').croppie({
+        viewport: {
+            width: 250,
+            height: 250,
+            type: 'circle'
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+
+    //Creating de crop dialog por de avatar upload
+    var dialog = new BootstrapDialog({
+        title: 'Haz el corte a tu avatar...',
+        message: $message,
+        onshown: function () {
+            //This function call is important to bind again to an invisible element (in this case, the modal)
+            $message.croppie('bind');
+        },
+        buttons: [
+            {
+                id: 'btn-ok',
+                label: 'Aceptar',
+                cssClass: 'btn-primary',
+                autospin: true,
+                action: function (dialogRef) {
+                    $message.croppie('result', {
+                        type: 'canvas',
+                        size: 'original'
+                    }).then(function (src) {
+                        $('#crop_avatar').attr('src', src);
+                        $('#avatarImage').val(src);
+                        $('#defaultImage').show();
+                    });
+                    dialogRef.close();
+                }
+            },
+            {
+                id: 'btn-close',
+                label: 'Cancelar',
+                cssClass: 'btn-danger',
+                autospin: false,
+                action: function (dialogRef) {
+                    dialogRef.close();
+                }
+            }
+        ]
+    });
+    dialog.realize();
+
+    //Defining variables for the file input and reader
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader();
+
+    //Defining the logic for the event that is called after the upload.
+    reader.onloadend = function () {
+        $message.croppie('bind', {
+            url: reader.result
+        });
+    };
+
+    //Read the file input (image) as data URL
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+    dialog.open();
+}
