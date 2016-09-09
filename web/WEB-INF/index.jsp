@@ -28,6 +28,7 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>  
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-notify.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
         <title>Página Principal</title>
         <style>

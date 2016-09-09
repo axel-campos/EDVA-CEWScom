@@ -1,3 +1,12 @@
+$(document).ready(function(){
+    var message = $("#message").val();
+    var type = $("#type").val();
+    if(message !== "" && type !== ""){
+        mostrarNotificacion(type, message);
+    }
+});
+
+
 function crearContenido(){
     var token = $("#token").val();
     BootstrapDialog.show({
