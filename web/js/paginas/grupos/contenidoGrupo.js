@@ -12,6 +12,12 @@ $(document).ready(function(){
     
     $("#contenedorContenidos").html($("#div_1").html());
     $("#paginacion").html("<ul class=\"breadcrumb\">" + uls + "</ul>");
+    
+    var message = $("#message").val();
+    var type = $("#type").val();
+    if(message !== "" && type !== ""){
+        mostrarNotificacion(type, message);
+    }
 });
 
 function crearContenido(){

@@ -27,6 +27,8 @@
             </s:if>
             <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
             <input type="hidden" id="token" value="<s:property value="token"/>">
+            <input type="hidden" id="message" value="<s:property value="message"/>">
+            <input type="hidden" id="type" value="<s:property value="type"/>">
         </div>
         <div class="row">
             <div class="col-md-11" id="paginacion"></div>

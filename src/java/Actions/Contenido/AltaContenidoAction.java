@@ -15,6 +15,10 @@ public class AltaContenidoAction extends ActionSupport {
     private String tipo;
     private String id;
     
+    //Para el notify
+    private String type;
+    private String message;
+    
     @Override
     public void validate(){
         if(titulo == null || titulo.trim().isEmpty()){
@@ -47,7 +51,9 @@ public class AltaContenidoAction extends ActionSupport {
             contenidoDAO.conectar();        
             if(tipo.equals("Guardar")){//Registrar
                 if(contenidoDAO.buscarContenidoxTitulo(contenido)){//existe, entonces no podemos guardar
-                    addActionError("El contenido " + titulo + " no se guardó debido a que este grupo ya creo un contenido con el mismo título.");
+                    //addActionError("El contenido " + titulo + " no se guardó debido a que este grupo ya creo un contenido con el mismo título.");
+                    type = "info";
+                    message = "El contenido <b>" + titulo + "</b> no se guardó debido a que este grupo ya creo un contenido con el mismo título.";
                     contenidoDAO.desconectar();
                     return INPUT;
                 }
@@ -55,11 +61,14 @@ public class AltaContenidoAction extends ActionSupport {
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }
-            addActionMessage("El contenido didáctico " + titulo + " se " + accion + ".");
+            //addActionMessage("El contenido didáctico " + titulo + " se " + accion + ".");
+            type = "success";
+            message = "El contenido didáctico <b>" + titulo + "</b> se " + accion + ".";
             contenidoDAO.desconectar();
             return SUCCESS;
         }catch(RuntimeException e){
-            addActionError("El contenido didáctico " + titulo + " no se " + accion + ".");
+            type = "danger";
+            message = "El contenido didáctico <b>" + titulo + "</b> no se " + accion + ".";
             contenidoDAO.desconectar();
             return ERROR;
         }
@@ -112,6 +121,22 @@ public class AltaContenidoAction extends ActionSupport {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
     
     
