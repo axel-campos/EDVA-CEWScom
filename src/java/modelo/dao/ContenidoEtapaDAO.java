@@ -3,6 +3,8 @@ package modelo.dao;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import modelo.pojo.ContenidoEtapa;
 
 /**
@@ -112,6 +114,28 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 			
 			return lista;
 		} catch (SQLException | NullPointerException e) {
+			throw new RuntimeException(e);
+		}
+	}
+    
+    @Override
+    public List<Map<String, Object>> consultaGenerica(String sql) {
+		try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+			List<Map<String, Object>> tabla = new ArrayList<>();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int numberOfColumns = rsmd.getColumnCount();
+			
+			while (rs.next()) {
+				Map<String, Object> columna = new HashMap<>();
+				
+				for (int i = 1; i <= numberOfColumns; i++)
+					columna.put(rsmd.getColumnLabel(i), rs.getObject(i));
+				
+				tabla.add(columna);
+			}
+			
+			return tabla;
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}

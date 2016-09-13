@@ -30,7 +30,7 @@
             <input type="hidden" id="message" value="<s:property value="message"/>">
             <input type="hidden" id="type" value="<s:property value="type"/>">
         </div>
-        <div class="row">
+        <div class="row-fluid">
             <div class="col-md-11" id="paginacion"></div>
             <div class="col-md-1"></div>
         </div>
@@ -96,6 +96,7 @@
                             String etapa = "El contenido no tiene etapa activa";
                             String fechaModificacion = "";
                             String fechaVotacion = "";
+                            String idContenido = columna.get("idContenido").toString();
                             if(columna.get("nombre") != null){
                                 etapa = (String)columna.get("nombre");
                             }
@@ -128,7 +129,7 @@
                                         Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
                                         Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                         <br/>
-                                        <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
+                                        <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
                                     </div>
                                 </div>
                             </div>
