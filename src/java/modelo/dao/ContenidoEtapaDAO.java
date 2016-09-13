@@ -15,14 +15,13 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public void registrar(ContenidoEtapa registro) {
-		String sql = "INSERT INTO ContenidoEtapa VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ContenidoEtapa VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
 			stmt.setInt(2, registro.getVersion());
 			stmt.setShort(3, registro.getIdEtapa());
 			stmt.setTimestamp(4, new Timestamp(registro.getTiempoModificacion().getTime()));
-			stmt.setTimestamp(5, new Timestamp(registro.getTiempoVotacion().getTime()));
 			stmt.setString(6, registro.getRutaRecursos());
 			stmt.setBoolean(7, registro.getLiberado());
 			stmt.executeUpdate();
@@ -34,7 +33,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 	@Override
 	public void modificar(ContenidoEtapa viejo, ContenidoEtapa nuevo) {
 		String sql = "UPDATE ContenidoEtapa SET idContenido = ?, version = ?, idEtapa = ?, "
-			+ "tiempoModificacion = ?, tiempoVotacion = ?, rutaRecursos = ?, liberado = ? "
+			+ "tiempoModificacion = ?, rutaRecursos = ?, liberado = ? "
 			+ "WHERE idContenido = ? AND version = ? AND idContenido = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -42,7 +41,6 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 			stmt.setInt(2, nuevo.getVersion());
 			stmt.setShort(3, nuevo.getIdEtapa());
 			stmt.setTimestamp(4, new Timestamp(nuevo.getTiempoModificacion().getTime()));
-			stmt.setTimestamp(5, new Timestamp(nuevo.getTiempoVotacion().getTime()));
 			stmt.setString(6, nuevo.getRutaRecursos());
 			stmt.setBoolean(7, nuevo.getLiberado());
 			stmt.setInt(8, viejo.getIdContenido());
@@ -83,7 +81,6 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 						.setVersion(rs.getInt("version"))
 						.setIdEtapa(rs.getShort("idEtapa"))
 						.setTiempoModificacion(rs.getTimestamp("tiempoModificacion"))
-						.setTiempoVotacion(rs.getTimestamp("tiempoVotacion"))
 						.setRutaRecursos(rs.getString("rutaRecursos"))
 						.setLiberado(rs.getBoolean("liberado"));
 				} else
@@ -109,7 +106,6 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 					.setVersion(rs.getInt("version"))
 					.setIdEtapa(rs.getShort("idEtapa"))
 					.setTiempoModificacion(rs.getTimestamp("tiempoModificacion"))
-					.setTiempoVotacion(rs.getTimestamp("tiempoVotacion"))
 					.setRutaRecursos(rs.getString("rutaRecursos"))
 					.setLiberado(rs.getBoolean("liberado")));
 			}

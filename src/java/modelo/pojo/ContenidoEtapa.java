@@ -14,7 +14,6 @@ public class ContenidoEtapa implements EDVADB {
 	private short idEtapa;
 	private int version;
 	private Date tiempoModificacion;
-	private Date tiempoVotacion;
 	private String rutaRecursos;
 	private boolean liberado;
 	
@@ -95,26 +94,6 @@ public class ContenidoEtapa implements EDVADB {
 	 */
 	public ContenidoEtapa setTiempoModificacion(Date tiempoModificacion) {
 		this.tiempoModificacion = new Date(tiempoModificacion.getTime());
-		return this;
-	}
-	
-	/**
-	 * Regresa la fecha límite de votación para este contenido-etapa.
-	 * 
-	 * @return La fecha límite de votación del contenido-etapa.
-	 */
-	public Date getTiempoVotacion() {
-		return new Date(tiempoVotacion.getTime());
-	}
-	
-	/**
-	 * Asigna una nueva fecha límite de votación a este contenido-etapa.
-	 * 
-	 * @param tiempoVotacion La nueva fecha límite de votación.
-	 * @return La referencia a este contenido-etapa.
-	 */
-	public ContenidoEtapa setTiempoVotacion(Date tiempoVotacion) {
-		this.tiempoVotacion = new Date(tiempoVotacion.getTime());
 		return this;
 	}
 	

@@ -1,7 +1,8 @@
 /* global dialog, FileReader */
 $(document).ready(function () {
-    $('#fechaN').datepicker({
-        format: "yyyy-mm-dd"
+    $("#fechaN").datetimepicker({
+        locale: 'es',
+        format: 'YYYY-MM-DD'
     });
     $('#registrarsefrm').bootstrapValidator({
         fields: {
