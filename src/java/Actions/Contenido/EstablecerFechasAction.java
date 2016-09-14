@@ -18,7 +18,7 @@ public class EstablecerFechasAction extends ActionSupport  {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public void cargaEtapas(){
+    public String cargaEtapas(){
         ContenidoEtapaDAO contEtapaDAO = new ContenidoEtapaDAO();
         String sql = "SELECT IF(ISNULL(MAX(idEtapa)),1, MAX(idEtapa) + 1) AS etapa FROM contenidoetapa WHERE idContenido = " + idContenido;
         int numeroEtapa = 0;
@@ -34,8 +34,10 @@ public class EstablecerFechasAction extends ActionSupport  {
             etapaDAO.conectar();
             etapas = etapaDAO.buscarTodos().stream().filter(p -> p.getIdEtapa() <= n).collect(Collectors.toList());
             etapaDAO.desconectar();
+            return SUCCESS;
         }catch(RuntimeException e){
             contEtapaDAO.desconectar();
+            return ERROR;
         }
     }
 
@@ -45,6 +47,14 @@ public class EstablecerFechasAction extends ActionSupport  {
 
     public void setIdContenido(String idContenido) {
         this.idContenido = idContenido;
+    }
+
+    public List<Etapa> getEtapas() {
+        return etapas;
+    }
+
+    public void setEtapas(List<Etapa> etapas) {
+        this.etapas = etapas;
     }
     
     

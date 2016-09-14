@@ -182,7 +182,8 @@
             <result name="input">WEB-INF/grupos/contenidoGrupo.jsp</result>
         </action>
         <action name="cargaEtapas" class="Actions.Contenido.EstablecerFechasAction" method="cargaEtapas">
-            <result>WEB-INF/contenido/formEtapas.jsp</result>
+            <result name="success">WEB-INF/contenido/formEtapas.jsp</result>
+            <result name="error">WEB-INF/contenido/formEtapas.jsp</result>
         </action>
 	</package>
 </struts>

@@ -67,7 +67,7 @@ function cargarFormulario(id){
     //var token = $("#token").val();
     BootstrapDialog.show({
         message: $('<div id="ventana"></div>').load("cargaEtapas", {"idContenido": id}),
-        title: "Crear nuevo contenido didáctico",
+        title: "Establecer tiempo de modificación",
         buttons: [{
             id: 'btn-success',   
             icon: 'glyphicon glyphicon-ok',       
@@ -75,10 +75,10 @@ function cargarFormulario(id){
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){
-                var resultado = submitForm();
-                if(resultado){//true, quiere decir que todo bien
+                //var resultado = submitForm();
+                //if(resultado){//true, quiere decir que todo bien
                     dialogRef.close();
-                }
+                //}
             }
         },{
             id: 'btn-cancel',   

@@ -45,7 +45,7 @@
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();
             contenidoDAO.conectar();
-            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ce.tiempoVotacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
+            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
                 " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
                 " LEFT JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
@@ -104,10 +104,10 @@
                             {
                                 fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
                             }
-                            if(columna.get("tiempoVotacion") != null)
+                            /*if(columna.get("tiempoVotacion") != null)
                             {
                                 fechaVotacion = df.format((Timestamp)columna.get("tiempoModificacion"));
-                            }
+                            }*/
                 %>
                 <div class="col-sm-6">
                     <div class="panel panel-default">
