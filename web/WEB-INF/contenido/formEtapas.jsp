@@ -16,10 +16,19 @@
                         <select id="etapa" name="etapa" class='form-control'>
                             <option value='0'>Seleccione una etapa</option>
                             <s:iterator value="etapas" var="etapa">
-                                <option value='<s:property value="%{#etapa.getIdEtapa()}"/>'><s:property value="%{#etapa.getNombre()}"/></option>
-                                
+                                <option value='<s:property value="%{#etapa.getIdEtapa()}"/>'><s:property value="%{#etapa.getNombre()}"/></option>                                
                             </s:iterator>
                         </select>
+                    </div>
+                    <br>
+                    <div class='table-responsive'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Versión</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </form>
             </div>
