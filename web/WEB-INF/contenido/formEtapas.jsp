@@ -5,33 +5,43 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="${pageContext.request.contextPath}/js/paginas/contenido/altaEtapasVersion.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container container-fluid">
-            <div class="container-fluid">
-                <form id="frmTiempos" name="frmTiempo" class="form-inline">
-                    <div class="form-group col-md-4">
-                        <label for="etapa">Etapa:</label>
-                        <select id="etapa" name="etapa" class='form-control'>
-                            <option value='0'>Seleccione una etapa</option>
-                            <s:iterator value="etapas" var="etapa">
-                                <option value='<s:property value="%{#etapa.getIdEtapa()}"/>'><s:property value="%{#etapa.getNombre()}"/></option>                                
-                            </s:iterator>
-                        </select>
-                    </div>
-                    <br>
-                    <div class='table-responsive'>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Versión</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </form>
-            </div>
+        <div class="container-fluid">
+            <form id="frmTiempos" name="frmTiempos" class="form-horizontal">
+                <div class="form-group">
+                    <label for="etapa">Etapa:</label>
+                    <select id="etapa" name="etapa" class='form-control' onchange="cargarVersiones(this.value)" style="width: 45%">
+                        <option value='0'>Seleccione una etapa</option>
+                        <s:iterator value="etapas" var="etapa">
+                            <option value='<s:property value="%{#etapa.getIdEtapa()}"/>'><s:property value="%{#etapa.getNombre()}"/></option>                                
+                        </s:iterator>
+                    </select>
+                    <a onclick="agregarVersion()" title="Nueva versión" id="btnAgregar" style="display: none;"><span class="glyphicon glyphicon-plus" style="float: right; cursor: pointer"></span></a>
+                </div>
+                <div class="form-group">
+                    <label for="temp">Temporal</label>
+                    <input type="text" name="temp" id="temp" class="form-control"/>
+                </div>
+                <div class="table-responsive">
+                    <table class='table' id="tablaVersiones">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%; text-align: center;">Versión</th>
+                                <th style="width: 70%; text-align: center">Tiempo Límite Creación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" value="<s:property value="idContenido"/>" id="idContenido" name="idContenido"/> 
+                <button type="button" onclick="cancelarOperacion()" class="btn btn-sm btn-danger" id="btnCancelar" style="float:right;display: none;"><span class="glyphicon glyphicon-repeat"></span> Cancelar</button>
+                <button type="submit" class="btn btn-sm btn-success" id="btnSubmit" style="float:right;display: none;"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+                
+            </form>            
         </div>
     </body>
 </html>
