@@ -14,19 +14,21 @@
         <meta name="author" content="">
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet">        
-        <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet"> 
         <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">        
+        <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/miSidebar.css" type="text/css">
         <link href="${pageContext.request.contextPath}/css/cargando.css" rel="stylesheet" type="text/css"/>
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>  
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>  
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery/locale_es.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datetimepicker.min.js"></script> 
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-notify.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>

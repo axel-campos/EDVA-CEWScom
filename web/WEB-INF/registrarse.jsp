@@ -8,7 +8,7 @@
         <meta name=viewport content="width=device-width, initial-scale=1">
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/croppie.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/avatar.css" rel="stylesheet" type="text/css"/>
         <title>Registrarse</title>
@@ -111,8 +111,10 @@
 
             </div>
             <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
-            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datepicker.js"></script>     
+            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>  
+            <script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/jquery/locale_es.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datetimepicker.min.js"></script> 
             <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script> 
             <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
             <script src="${pageContext.request.contextPath}/js/jquery/croppie.min.js"></script>      

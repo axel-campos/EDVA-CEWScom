@@ -1,7 +1,8 @@
 /* global pageContext */
 $(document).ready(function () {
-    $('#fechaN').datepicker({
-        format: "yyyy-mm-dd"
+    $("#fechaN").datetimepicker({
+        locale: 'es',
+        format: 'YYYY-MM-DD'
     });
     $('#modificarfrm').bootstrapValidator({
         // message: 'Este valor no es permitido',
