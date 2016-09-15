@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 
-function updateTogetherJS(html)
+function updateTogetherJS(container)
 {
     if (TogetherJS.running) {
         TogetherJS.send({
             type: 'drop',
-            container: html
+            idcontainer: container,
+            htmlcontainer: $(container).html()
         });
     }
     TogetherJS.reinitialize();
@@ -19,15 +20,16 @@ TogetherJS.hub.on('drop', function (msg) {
   if (!msg.sameUrl) {
       return;
   }
-  $("#contenidoDidacticoBody").html(msg.container);
+  $(msg.idcontainer).html(msg.htmlcontainer);
   TogetherJS.reinitialize();
 });
 
 
 TogetherJS.hub.on("togetherjs.hello", function (msg) {
+    var container = "#contenidoDidacticoBody";
     TogetherJS.send({
         type: 'drop',
-        container: $("#contenidoDidacticoBody").html()
+        container: $(container).html()
     });
     TogetherJS.reinitialize();
 });

@@ -309,12 +309,12 @@ var MDOFactories = (function() {
 		
 		function _listaArtefactos() {
 			return [
-				"<div class='Pelicula'>Película</div>",
-				"<div class='Video'>Video</div>",
-				"<div class='Libro'>Libro</div>",
-				"<div class='ArticuloWeb'>Artículo Web</div>",
-				"<div class='ArticuloPDF'>Artículo PDF</div>",
-				"<div class='Revista'>Revista</div>"
+				"<div class='Pelicula'><div class='box box1 shadow1'><h5>Película</h5></div></div>",
+				"<div class='Video'><div class='box box2 shadow1'><h5>Video</h5></div></div>",
+				"<div class='Libro'><div class='box box3 shadow1'><h5>Libro</h5></div></div>",
+				"<div class='ArticuloWeb'><div class='box box4 shadow1'><h5>Artículo Web</h5></div></div>",
+				"<div class='ArticuloPDF'><div class='box box5 shadow1'><h5>Artículo PDF</h5></div></div>",
+				"<div class='Revista'><div class='box box6 shadow1'><h5>Revista</h5></div></div>"
 			];
 		}
 		

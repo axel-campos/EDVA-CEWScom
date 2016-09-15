@@ -185,5 +185,31 @@
             <result name="success">WEB-INF/contenido/formEtapas.jsp</result>
             <result name="error">WEB-INF/contenido/formEtapas.jsp</result>
         </action>
+		<action name="workspaceColaboracion">
+			<result>WEB-INF/contenido/workspaceColaboracion.jsp</result>
+		</action>
 	</package>
+	
+	<!-- Acciones para la edición colaborativa de contenidos -->
+	<package name="Actions.mdocontenido" namespace="/mdocontenido" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="json">
+					<param name="enableSMD">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+        <action name="GuardarProgreso" class="Actions.mdocontenido.GuardarProgreso">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+			</result>
+        </action>
+		<action name="DescargarContenido" class="Actions.mdocontenido.DescargarContenido">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+			</result>
+		</action>
+    </package>
 </struts>
