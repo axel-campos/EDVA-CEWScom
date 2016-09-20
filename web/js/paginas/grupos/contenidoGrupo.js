@@ -69,22 +69,10 @@ function cargarFormulario(id){
         message: $('<div id="ventana"></div>').load("cargaEtapas", {"idContenido": id}),
         title: "Establecer tiempo de modificación",
         buttons: [{
-            id: 'btn-success',   
-            icon: 'glyphicon glyphicon-ok',       
-            label: 'Crear',
-            cssClass: 'btn-success', 
-            autospin: false,
-            action: function(dialogRef){
-                //var resultado = submitForm();
-                //if(resultado){//true, quiere decir que todo bien
-                    dialogRef.close();
-                //}
-            }
-        },{
             id: 'btn-cancel',   
-            icon: 'glyphicon glyphicon-remove',       
-            label: 'Cancelar',
-            cssClass: 'btn-danger', 
+            icon: 'glyphicon glyphicon-thumbs-up',       
+            label: 'OK',
+            cssClass: 'btn-primary', 
             autospin: false,
             action: function(dialogRef){    
                 dialogRef.close();

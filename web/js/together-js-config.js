@@ -11,6 +11,7 @@ var TogetherJSConfig_suppressJoinConfirmation = true;
 var TogetherJSConfig_suppressInvite = true;
 var TogetherJSConfig_inviteFromRoom = true;
 var TogetherJSConfig_includeHashInUrl = true;
+var TogetherJSConfig_lang = 'es';
 //
 //var TogetherJSConfig_getUserName = function () {return 'Los EDVONES';};
 //var TogetherJSConfig_getUserColor = function () {return '#E65F00';};

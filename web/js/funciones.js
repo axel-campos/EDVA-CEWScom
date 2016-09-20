@@ -53,7 +53,7 @@ function agregarDragAndDrop(selector, nombreFabrica) {
 		removeOnSpill: true
 	}).on("drag", function(el) {
 		el.className = el.className.replace("ex-moved", "");
-        updateTogetherJS( $("#contenidoDidacticoBody").html() );
+                updateTogetherJS( "#contenidoDidacticoBody" );
 	}).on("drop", function(el) {
 		var nombreArtefacto = el.className.replace("gu-transit", "").trim();
 		if (!el.className.includes("mdo-")) {
@@ -65,14 +65,14 @@ function agregarDragAndDrop(selector, nombreFabrica) {
 		el.className += " ex-moved";
 	}).on("over", function(el, container) {
 		container.className += " ex-over";
+                updateTogetherJS( "#contenidoDidacticoBody" );
 	}).on("out", function(el, container) {
 		container.className = container.className.replace("ex-over", "");
+                updateTogetherJS( "#contenidoDidacticoBody" );
 	}).on("dragend", function(el, container) {
-        updateTogetherJS( $("#contenidoDidacticoBody").html() );
-        TogetherJS.reinitialize();
+            updateTogetherJS( "#contenidoDidacticoBody" );
 	}).on("shadow", function(el, container) {
-        updateTogetherJS( $("#contenidoDidacticoBody").html() );
-        TogetherJS.reinitialize();
+            updateTogetherJS( "#contenidoDidacticoBody" );
 	});
 }
 

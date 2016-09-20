@@ -17,15 +17,15 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public void registrar(ContenidoEtapa registro) {
-		String sql = "INSERT INTO ContenidoEtapa VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ContenidoEtapa () VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
 			stmt.setInt(2, registro.getVersion());
 			stmt.setShort(3, registro.getIdEtapa());
 			stmt.setTimestamp(4, new Timestamp(registro.getTiempoModificacion().getTime()));
-			stmt.setString(6, registro.getRutaRecursos());
-			stmt.setBoolean(7, registro.getLiberado());
+			stmt.setString(5, registro.getRutaRecursos());
+			stmt.setBoolean(6, registro.getLiberado());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -43,11 +43,11 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 			stmt.setInt(2, nuevo.getVersion());
 			stmt.setShort(3, nuevo.getIdEtapa());
 			stmt.setTimestamp(4, new Timestamp(nuevo.getTiempoModificacion().getTime()));
-			stmt.setString(6, nuevo.getRutaRecursos());
-			stmt.setBoolean(7, nuevo.getLiberado());
-			stmt.setInt(8, viejo.getIdContenido());
-			stmt.setInt(9, viejo.getVersion());
-			stmt.setShort(10, viejo.getIdEtapa());
+			stmt.setString(5, nuevo.getRutaRecursos());
+			stmt.setBoolean(6, nuevo.getLiberado());
+			stmt.setInt(7, viejo.getIdContenido());
+			stmt.setInt(8, viejo.getVersion());
+			stmt.setShort(9, viejo.getIdEtapa());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);

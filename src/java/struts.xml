@@ -3,6 +3,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+	<constant name="struts.ui.theme" value="simple" />
     <!-- Configuration for the default package. -->
     <package name="cuentas" namespace="/" extends="struts-default">
         <action name="registrarseform">
