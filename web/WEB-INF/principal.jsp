@@ -154,9 +154,9 @@
                 Usuario usuarioS = null;
                 String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
                     " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
-                    " INNER JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
+                    " INNER JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
                     " INNER JOIN grupo AS g ON g.token = con.token " +
-                    " INNER JOIN usuariogrupo AS ug ON g.token = ug.token ";
+                    " INNER JOIN usuariogrupo AS ug ON g.token = ug.token";
                 if(session.getAttribute("usuario") != null){
                     usuarioS = (Usuario)session.getAttribute("usuario");
                     if(usuarioS.getTipo() == 1){    //Significa que es admin DIOS

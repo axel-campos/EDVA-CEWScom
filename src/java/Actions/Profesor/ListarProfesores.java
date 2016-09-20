@@ -27,23 +27,22 @@ public class ListarProfesores extends ActionSupport implements SessionAware{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.conectar();
         List<Map<String, Object>> usuarios;
-        String where = "";
+        String where = "WHERE tipoUsuario = 2 ";
         
         if(nombre != null && !nombre.isEmpty()){
-            where = "WHERE CONCAT_WS(' ',u.nombre,u.aPaterno,u.aMaterno) LIKE '%" + nombre + "%'";
+            where = "AND CONCAT_WS(' ',u.nombre,u.aPaterno,u.aMaterno) LIKE '%" + nombre + "%'";
             userSession.put("nombre", nombre);
         }
         if(correo != null && !correo.isEmpty()){
-            where = "WHERE u.correo = '" + correo + "'";
+            where = "AND u.correo = '" + correo + "'";
             userSession.put("correo", correo);
         }
         if(cedula != null && !cedula.isEmpty()){
-            where = "WHERE u.cedula = '" + cedula + "'";
+            where = "AND u.cedula = '" + cedula + "'";
             userSession.put("cedula", cedula);
         }
         
         String sql = "SELECT * FROM Usuario u " + where;
-        System.out.println(sql);
         usuarios = usuarioDAO.consultaGenerica(sql);
         for(Map<String, Object> u : usuarios){
             List<String> aux = new ArrayList<>();
