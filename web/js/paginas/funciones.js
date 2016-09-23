@@ -94,3 +94,47 @@ function mostrarNotificacion(type, message){
         type: type
     });
 }
+
+
+/**
+ * Crea una ventana emergente para crear un reporte de cualquier tipo
+ * 
+ * @param {int} tipoReporte El tipo de reporte que haremos
+ * @param {string} valor Puede ser el correo, token o idContenido
+ */
+function crearReporte(tipoReporte, valor, extra){
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("CrearReporte?tipoReporte=" + tipoReporte + "&valor=" + valor + "&extra=" + extra),
+        title: "Crear nuevo reporte",
+        buttons: [{
+            id: 'btn-success',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Crear',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitForm2();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
+            }
+        },{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    });
+}
+
+function submitForm2(){
+    var form = "#reporte";
+    $(form).bootstrapValidator().bootstrapValidator('validate');
+    //La magia se hace en el archivo altaGrupo.js
+    var respuesta = $(form).data("bootstrapValidator").isValid();
+    return respuesta; //Nos regresará si el formulario estaba correcto o no.
+}

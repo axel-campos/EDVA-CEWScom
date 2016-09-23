@@ -33,7 +33,7 @@ public class EstablecerFechasAction extends ActionSupport  {
         try(PrintWriter out = response.getWriter()){
             contEtapaDAO.conectar();
             //DateFormat df = DateFormat.getDateInstance();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-d HH:mm");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             /*List<ContenidoEtapa> versiones = contEtapaDAO.buscarTodos().stream()
                     .filter(p -> p.getIdContenido() == Integer.parseInt(idContenido)).filter(p -> p.getTiempoModificacion() >= Date.valueOf(fecha)).collect(Collectors.toList());*/
             contEtapaDAO.registrar(new ContenidoEtapa().setIdContenido(Integer.parseInt(idContenido))

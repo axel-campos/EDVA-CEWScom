@@ -156,6 +156,18 @@
         <action name="listarReportes">
             <result>/WEB-INF/reportes/listaReportes.jsp</result>
         </action>
+        <action name="CrearReporte">
+            <result>/WEB-INF/reportes/crearReporte.jsp</result>
+        </action>
+        <action name="altaReporte" class="Actions.Reportes.AltaReporte">
+            <result name="grupo" type="redirectAction">
+                <param name="actionName">SearchGroups</param>
+                <param name="exito">3</param>
+            </result>
+            <result name="profesor">
+                /WEB-INF/grupos/homeGrupos.jsp
+            </result>
+        </action>
         
         <!-- Acciones para la lista de profesores -->
         <action name="ListaProfesor">
