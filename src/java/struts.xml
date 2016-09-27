@@ -43,7 +43,13 @@
         <action name="responderReporte" class="Actions.JSON.ResponderReporteAction">
             <result type="json">/WEB-INF/principal.jsp</result>
         </action>
+        <action name="cargaVersiones" class="Actions.Contenido.EstablecerFechasAction" method="cargaVersiones">
+            <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
+        </action>
+        <action name="registraVersion" class="Actions.Contenido.EstablecerFechasAction">
+            <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
+        </action>
     </package>
-	
+    
 	<include file="interceptores.xml" />
 </struts>
