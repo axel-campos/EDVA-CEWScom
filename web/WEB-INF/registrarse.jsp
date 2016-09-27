@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="nombre">Nombre(s)*</label>
+                            <label class="col-md-2 control-label" for="nombre">Nombre(s)<span class="obligatorio"> *</span></label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu(s) nombre(s)"/>
                                 <i class="glyphicon glyphicon-user form-control-feedback"></i>
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="paterno">Apellido Paterno*</label>
+                            <label class="col-md-2 control-label" for="paterno">Apellido Paterno<span class="obligatorio"> *</span></label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" id="paterno" name="paterno" placeholder="Tu apellido paterno"/>
                                 <i class="glyphicon glyphicon-info-sign form-control-feedback"></i>
@@ -69,21 +69,21 @@
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="fechaN">Fecha de Nacimiento*</label>
+                            <label class="col-md-2 control-label" for="fechaN">Fecha de Nacimiento<span class="obligatorio"> *</span></label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" id="fechaN" name="fechaN" placeholder="Tu fecha de nacimiento"/>
                                 <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="correo">Correo Electrónico*</label>
+                            <label class="col-md-2 control-label" for="correo">Correo Electrónico<span class="obligatorio"> *</span></label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" id="correo" name="correo" placeholder="mi_correo@example.com"/>
                                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            <label class="col-md-2 control-label" for="password">Contraseña*</label>
+                            <label class="col-md-2 control-label" for="password">Contraseña<span class="obligatorio"> *</span></label>
                             <div class="col-md-4">
                                 <input type="password" class="form-control" id="password" name="password"/>
                                 <i class="glyphicon glyphicon-eye-close form-control-feedback"></i>

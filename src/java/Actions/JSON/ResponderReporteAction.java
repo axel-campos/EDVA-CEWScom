@@ -2,15 +2,19 @@ package Actions.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import modelo.dao.ContenidoDAO;
 import modelo.dao.GrupoDAO;
 import modelo.dao.ReporteDAO;
 import modelo.dao.UsuarioDAO;
+import modelo.dao.UsuarioGrupoDAO;
 import modelo.pojo.Contenido;
 import modelo.pojo.Grupo;
 import modelo.pojo.Reporte;
 import modelo.pojo.Usuario;
+import modelo.pojo.UsuarioGrupo;
 import org.apache.struts2.ServletActionContext;
 
 public class ResponderReporteAction extends ActionSupport {
@@ -35,6 +39,37 @@ public class ResponderReporteAction extends ActionSupport {
                     if(reporte.getCorreo() != null && !reporte.getCorreo().equals("")){
                         UsuarioDAO usuarioDAO = new UsuarioDAO();
                         usuarioDAO.conectar();
+                        String queryGruposProfesor = "SELECT DISTINCT token, idtipoUsuarioGrupo FROM usuariogrupo WHERE correo = '" + reporte.getCorreo() + "';";
+                        List<Map<String, Object>> grupos = usuarioDAO.consultaGenerica(queryGruposProfesor);
+                        for(Map<String,Object> grupo: grupos){
+                            GrupoDAO grupoDAO = new GrupoDAO();
+                            grupoDAO.conectar();
+                            Grupo aux = grupoDAO.buscar(new Grupo().setToken((String)grupo.get("token")));
+                            int idTipoUsuarioGrupo = (int)grupo.get("idtipoUsuarioGrupo");
+                            if(idTipoUsuarioGrupo == 1){    //Si es coordinador asignaremos a otro integrante
+                                if(aux.getTotalProfesores() == 1){  //Solo él está en el grupo así que eliminamos totalmente el grupo
+                                    grupoDAO.eliminar(aux);
+                                }else{
+                                    String queryCoordinador = "SELECT * FROM usuariogrupo WHERE token = '" + aux.getToken() + "' "
+                                            + "AND aceptado = 1 AND correo != '" + reporte.getCorreo() + "' LIMIT 1;";
+                                    List<Map<String, Object>> lista = grupoDAO.consultaGenerica(queryCoordinador);
+                                    for(Map<String,Object> elemento: lista){
+                                        UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
+                                        usuarioGrupoDAO.conectar();
+                                        UsuarioGrupo usuarioGrupo = new UsuarioGrupo();
+                                        usuarioGrupo.setCorreo((String)elemento.get("correo"));
+                                        usuarioGrupo.setToken((String)elemento.get("token"));
+                                        usuarioGrupo.setAceptado(true);
+                                        usuarioGrupo.setIdTipoUsuarioGrupo(1);
+                                        usuarioGrupoDAO.modificar(usuarioGrupo, usuarioGrupo);
+                                        usuarioGrupoDAO.desconectar();
+                                    }
+                                }
+                            }
+                            aux.setTotalProfesores(aux.getTotalProfesores() - 1);
+                            grupoDAO.modificar(aux, aux);
+                            grupoDAO.desconectar();
+                        }
                         usuarioDAO.eliminar(new Usuario().setCorreo(reporte.getCorreo()));
                         out.println("El usuario ha sido eliminado debido al reporte");
                         usuarioDAO.desconectar();

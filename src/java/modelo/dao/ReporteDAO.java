@@ -20,13 +20,17 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
 			stmt.setString(2, registro.getCausa());
-			stmt.setInt(3, registro.getIdContenido());
+            if(registro.getIdContenido() == 0){
+                stmt.setObject(3, null);
+            }else{
+                stmt.setInt(3, registro.getIdContenido());
+            }
             stmt.setString(4, registro.getCorreo());
             stmt.setString(5, registro.getToken());
             stmt.setInt(6, registro.getAtendido());
             stmt.setInt(7, registro.getAceptado());
-            stmt.setTimestamp(7, new Timestamp(registro.getFechaReporte().getTime()));
-            stmt.setString(8, registro.getCorreoReportando());
+            stmt.setTimestamp(8, new Timestamp(registro.getFechaReporte().getTime()));
+            stmt.setString(9, registro.getCorreoReportando());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);

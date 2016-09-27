@@ -33,7 +33,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 	public void modificar(UsuarioGrupo viejo, UsuarioGrupo nuevo) {
 		String sql = "UPDATE UsuarioGrupo SET correo = ?, token = ?, aceptado = ?, "
 			+ "idtipoUsuarioGrupo = ? WHERE correo = ? AND token = ?";
-		
+
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, nuevo.getCorreo());
 			stmt.setString(2, nuevo.getToken());
@@ -43,6 +43,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 			stmt.setString(6, viejo.getToken());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
+            System.out.println(e);
 			throw new RuntimeException(e);
 		}
 	}

@@ -134,7 +134,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
                     addActionMessage("El grupo " + nombre + " ha sido modificado con éxito.");
                     break;
                 case "3":
-                    
+                    addActionMessage("El reporte ha sido creado con éxito");
                     break;
                 case "4"://Error al crear
                     addActionError("Ocurrió un error con el grupo " + nombre + ". Por favor, inténtelo más tarde.");

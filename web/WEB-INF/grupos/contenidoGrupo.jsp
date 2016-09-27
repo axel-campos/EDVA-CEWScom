@@ -46,13 +46,12 @@
             ContenidoDAO contenidoDAO = new ContenidoDAO();
             contenidoDAO.conectar();
             String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
-                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido " +
-                " LEFT JOIN etapa AS e ON e.idEtapa = ce.idEtapa " +
+                " LEFT JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
+                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
                 " WHERE g.token ='" + token2 + "'";
             sqlContenidos += " AND con.finalizado = 0 GROUP BY idContenido;";
-            System.out.println(sqlContenidos);
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
             contenidoDAO.desconectar();
             if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos

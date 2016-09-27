@@ -16,7 +16,7 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
     Map<String, Object> userSession;
     private String token;
     private List<UsuarioGrupo> usuariosGrupo;
-    private List<String> results;
+    private List<String[]> results;
     private Usuario usuario;
     private boolean esCoordinador = false;
     private boolean esAdministrador = false;
@@ -31,10 +31,12 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.conectar();
             Usuario user = usuarioDAO.buscar(new Usuario().setCorreo(usergroup.getCorreo()));
-            String nombre = user.getNombre() + " " + user.getAPaterno();
+            String [] nombre = new String[2];
+            nombre[0] = user.getNombre() + " " + user.getAPaterno();
             if(user.getAMaterno() != null){
-                nombre += " " + user.getAMaterno();
+                nombre[0] += " " + user.getAMaterno();
             }
+            nombre[1] = user.getCorreo();
             usuarioDAO.desconectar();
             results.add(nombre);
             //Ahora revisamos que rol tiene el profesor que accede al home de grupos, con el fin de mostrar los botones.
@@ -84,11 +86,11 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
         this.usuariosGrupo = usuariosGrupo;
     }
 
-    public List<String> getResults() {
+    public List<String[]> getResults() {
         return results;
     }
 
-    public void setResults(List<String> results) {
+    public void setResults(List<String[]> results) {
         this.results = results;
     }
 

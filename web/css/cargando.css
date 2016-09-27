@@ -39,3 +39,5 @@
     -webkit-transform: scale(1.0);
   }
 }
+
+.obligatorio{color:red; display: inline;}

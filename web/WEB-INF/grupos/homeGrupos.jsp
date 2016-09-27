@@ -49,12 +49,23 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" style="width: 100%">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miembros del grupo <span class="badge"><%= noProfesores%></span><span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span>
                             </a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 <s:iterator value="results" var="nombre">
-                                    <li style="padding-left: 5%"><s:property value='%{#nombre}'/></li>
+                                    <li style="padding-left: 5%">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <s:property value='%{#nombre[0]}'/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a onclick="crearReporte('3','<s:property value="%{#nombre[1]}"/>','<%=token%>');" class="btn btn-link">
+                                                    <span style="font-size:16px;" class="glyphicon glyphicon-warning-sign"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </s:iterator>
                                 
                                 <s:if test="esAdministrador">

@@ -13,7 +13,7 @@
 
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
-    String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar"}; 
+    String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar","Reportar"}; 
     String cabeceraMExito = "<div class='alert alert-success'><span class='glyphicon glyphicon-ok'></span>  ";
     String cabeceraMError = "<div class='alert alert-danger'><span class='glyphicon glyphicon-alert'></span>  ";
     String cierreM = "</div>";
@@ -129,6 +129,11 @@
                                 <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">
                                 <span class="glyphicon glyphicon-trash" style="min-width: 20px; min-height: 20px"></span></a>    
                             </s:if></td>
+                            <td>
+                                <a onclick<s:property value="%{#resultado[3]}"/>="crearReporte('2','');" class="btn btn-link">
+                                    <span class="glyphicon glyphicon-warning-sign" style="min-width: 20px; min-height: 20px"></span>
+                                </a>
+                            </td>
                         </tr>
                     </s:iterator>
                 </tbody>
