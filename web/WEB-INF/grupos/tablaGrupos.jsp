@@ -50,7 +50,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <script src="${pageContext.request.contextPath}/js/paginas/grupos/tablaGrupos.js"></script>
-        <title>Grupos</title>      
+        <title>Grupos</title> 
     </head>
     <body>
     <div id="contenedor1" class="container-fluid">
@@ -140,7 +140,6 @@
             </table>        
         <% }%>
     </div>
-        
     </body>
 </html>
 

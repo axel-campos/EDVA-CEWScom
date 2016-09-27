@@ -129,7 +129,7 @@
                                         Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                         <br/>
                                         <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
-										<a onclick="cambiarContenidos('workspaceColaboracion', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idContenido=<%= idContenido %>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                     </div>
                                 </div>
                             </div>
