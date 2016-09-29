@@ -88,16 +88,3 @@ function mensajes(mensaje, tipo){
         message: mensaje
     });     
 }
-
-// Así mandas a llamar a la funcion, Vic.
-//mensajes("Jajatl", TIPO_MENSAJE.SUCCESS);
-
-function mostrarNotificacion(type, message){
-    $.notify({
-        // options
-        message: message 
-    },{
-        // settings
-        type: type
-    });
-}

@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -34,12 +35,19 @@ public class EstablecerFechasAction extends ActionSupport  {
             contEtapaDAO.conectar();
             //DateFormat df = DateFormat.getDateInstance();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-d HH:mm");
-            /*List<ContenidoEtapa> versiones = contEtapaDAO.buscarTodos().stream()
-                    .filter(p -> p.getIdContenido() == Integer.parseInt(idContenido)).filter(p -> p.getTiempoModificacion() >= Date.valueOf(fecha)).collect(Collectors.toList());*/
-            contEtapaDAO.registrar(new ContenidoEtapa().setIdContenido(Integer.parseInt(idContenido))
-            .setIdEtapa(Short.parseShort(etapa)).setLiberado(false).setRutaRecursos("").setVersion(Integer.parseInt(version))
-            .setTiempoModificacion(formatter.parse(fecha)));
-            out.print("Exito");
+            Date limite = formatter.parse(fecha);
+            List<ContenidoEtapa> versiones = contEtapaDAO.buscarTodos().stream()
+                    .filter(p -> p.getIdContenido() == Integer.parseInt(idContenido)).filter(p -> p.getTiempoModificacion().after(limite)).collect(Collectors.toList());
+            //Si hay versiones después de la fecha límite, quiere decir que no podemos guardar dicha versión
+            if(versiones.isEmpty()){//Vacía, entonces si podemos guardar
+                contEtapaDAO.registrar(new ContenidoEtapa().setIdContenido(Integer.parseInt(idContenido))
+                .setIdEtapa(Short.parseShort(etapa)).setLiberado(false).setRutaRecursos("").setVersion(Integer.parseInt(version))
+                .setTiempoModificacion(limite));
+                out.print("Exito");
+            }else{
+                out.print("Fecha");
+            }
+            
             contEtapaDAO.desconectar();
         }catch(RuntimeException e){
             contEtapaDAO.desconectar();

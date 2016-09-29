@@ -35,9 +35,7 @@ if(request.getParameter("token") != null){
     <body onload="myfunction()">
         <div class="container-fluid">
             <div class="panel panel-default">
-                <!--div class='panel-heading'><!%= opcion2 %></div-->
                 <div class="panel-body">
-                    <!--form id="altaGrupo" name="altaGrupo" class="form-horizontal" action="/" method="POST"-->
                     <form id="altaGrupo" name="altaGrupo" class="form-horizontal">
                     
                         <% if(request.getParameter("token") != null){ %>
@@ -76,12 +74,12 @@ if(request.getParameter("token") != null){
                 </div>
                 <s:if test="hasActionMessages()">
                         <div class="alert alert-success">
-                            <!--span class="glyphicon glyphicon-ok"></span-->  <s:actionmessage />
+                            <s:actionmessage />
                         </div>
                 </s:if>
                 <s:if test="hasActionErrors()">
                         <div class="alert alert-danger">
-                            <!--span class="glyphicon glyphicon-alert"></span-->  <s:actionerror />
+                            <s:actionerror />
                         </div>
                 </s:if>
                 

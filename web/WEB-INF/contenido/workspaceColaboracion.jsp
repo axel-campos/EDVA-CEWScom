@@ -29,6 +29,13 @@
 %>
 
 <!DOCTYPE html>
+<%
+    String identificadorDisqus = "", paginaDisqus = "";
+    if(request.getParameter("idContenido") != null){
+       identificadorDisqus = "id" + request.getParameter("idContenido");
+       paginaDisqus = "pagina" + request.getParameter("idContenido");
+    }
+    %>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -53,6 +60,21 @@
         <script src="${pageContext.request.contextPath}/js/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/mdo-utilities.js"></script>
         <script src="${pageContext.request.contextPath}/js/funciones.js"></script>
+        <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
+        <script>            
+            var disqus_config = function () {
+                this.page.url = "http://localhost:8084/EDVA/#!<%= paginaDisqus %>";  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '<%= identificadorDisqus %>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = '//http-localhost-8084-edva.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </head>
     <body id="unloadJS">
         <div id="header" class="container" align="center">
@@ -139,6 +161,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="row" style="margin-top: 100px">
+                <div class="col-md-7"></div>
+                <div class="col-md-4">
+                    <div id="disqus_thread"></div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div> 
     </body>
 </html>
