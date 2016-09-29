@@ -15,8 +15,15 @@ function cambiarContenidos(pagina, target){
         setTimeout(
         function() 
         {
+            if (TogetherJS.running) {
+                TogetherJS();
+                TogetherJS.require("storage").tab.clear("status");
+                console.log("End Of Together");
+            }
+            
             finalizar();
             $(target).html(data);
+            
         }, 1000);
     }).fail(function(data){
         errorCargando();
