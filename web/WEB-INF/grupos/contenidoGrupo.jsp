@@ -131,6 +131,7 @@
                                         <br/>
                                         <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
                                         <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                        <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                     </div>
                                 </div>
                             </div>

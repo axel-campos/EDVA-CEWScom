@@ -200,6 +200,9 @@
 		<action name="workspaceColaboracion">
 			<result>WEB-INF/contenido/workspaceColaboracion.jsp</result>
 		</action>
+        <action name="verDisqus">
+			<result>WEB-INF/contenido/verDisqus.jsp</result>
+		</action>
 	</package>
 	
 	<!-- Acciones para la edición colaborativa de contenidos -->
