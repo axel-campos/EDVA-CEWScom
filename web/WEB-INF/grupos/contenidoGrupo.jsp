@@ -31,6 +31,7 @@
             <input type="hidden" id="type" value="<s:property value="type"/>">
         </div>
         <div class="row-fluid">
+            
             <div class="col-md-11" id="paginacion"></div>
             <div class="col-md-1"></div>
         </div>
@@ -128,7 +129,9 @@
                                         Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
                                         Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                         <br/>
-                                        <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
+                                        <s:if test="esAdministrador">
+                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span>Agregar versión</button>
+                                        </s:if>                                        
 										<a onclick="cambiarContenidos('workspaceColaboracion?idContenido=<%= idContenido %>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                     </div>
                                 </div>

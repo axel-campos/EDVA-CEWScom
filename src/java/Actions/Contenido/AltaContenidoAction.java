@@ -2,8 +2,11 @@ package Actions.Contenido;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import javax.servlet.http.HttpServletRequest;
+import model.mdo.DropboxPersistence;
 import modelo.dao.ContenidoDAO;
 import modelo.pojo.Contenido;
+import org.apache.struts2.ServletActionContext;
 
 
 public class AltaContenidoAction extends ActionSupport {
@@ -57,7 +60,13 @@ public class AltaContenidoAction extends ActionSupport {
                     contenidoDAO.desconectar();
                     return INPUT;
                 }
-                contenidoDAO.registrar(contenido);                
+                contenidoDAO.registrar(contenido);
+                //Ahora creamos las cinco carpetas en DropBox
+                String ruta = "/" + token + "/" + titulo.replace(" ", "");
+                HttpServletRequest request = ServletActionContext.getRequest();
+                for(int it = 1; it <= 5; it++){
+                    new DropboxPersistence(request.getServletContext().getRealPath("/plantillas")).crearCarpeta(ruta + "/" + it);
+                }
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }

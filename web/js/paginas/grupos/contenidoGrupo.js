@@ -16,7 +16,13 @@ $(document).ready(function(){
     var message = $("#message").val();
     var type = $("#type").val();
     if(message !== "" && type !== ""){
-        mostrarNotificacion(type, message);
+        if(type === "success"){
+            mensajes(message, TIPO_MENSAJE.SUCCESS);
+        }else if(type === "danger"){
+            mensajes(message, TIPO_MENSAJE.DANGER);
+        }
+        
+        //mostrarNotificacion(type, message);
     }
 });
 

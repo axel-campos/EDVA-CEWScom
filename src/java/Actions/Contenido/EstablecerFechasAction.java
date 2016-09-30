@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.mdo.DropboxPersistence;
 import modelo.dao.ContenidoEtapaDAO;
 import modelo.dao.EtapaDAO;
 import modelo.pojo.ContenidoEtapa;
@@ -40,15 +42,20 @@ public class EstablecerFechasAction extends ActionSupport  {
                     .filter(p -> p.getIdContenido() == Integer.parseInt(idContenido)).filter(p -> p.getTiempoModificacion().after(limite)).collect(Collectors.toList());
             //Si hay versiones después de la fecha límite, quiere decir que no podemos guardar dicha versión
             if(versiones.isEmpty()){//Vacía, entonces si podemos guardar
+                String ruta = this.getRutaRecursos(contEtapaDAO);
                 contEtapaDAO.registrar(new ContenidoEtapa().setIdContenido(Integer.parseInt(idContenido))
-                .setIdEtapa(Short.parseShort(etapa)).setLiberado(false).setRutaRecursos("").setVersion(Integer.parseInt(version))
+                .setIdEtapa(Short.parseShort(etapa)).setLiberado(false).setRutaRecursos(ruta).setVersion(Integer.parseInt(version))
                 .setTiempoModificacion(limite));
                 out.print("Exito");
+                contEtapaDAO.desconectar();
+                HttpServletRequest request = ServletActionContext.getRequest();
+                new DropboxPersistence(request.getServletContext().getRealPath("/plantillas")).crearCarpeta(ruta);
             }else{
                 out.print("Fecha");
+                contEtapaDAO.desconectar();
             }
             
-            contEtapaDAO.desconectar();
+            
         }catch(RuntimeException e){
             contEtapaDAO.desconectar();
             e.printStackTrace();
@@ -104,6 +111,22 @@ public class EstablecerFechasAction extends ActionSupport  {
             contEtapaDAO.desconectar();
         }        
         return SUCCESS;
+    }
+    
+    private String getRutaRecursos(ContenidoEtapaDAO contEtapaDAO){
+        String sql = "SELECT token, titulo FROM contenido WHERE idContenido = " + idContenido;
+        String ruta = "/";
+        try{
+            List<Map<String, Object>> resultado = contEtapaDAO.consultaGenerica(sql);
+            for(Map<String, Object>respuesta : resultado){
+                //numeroEtapa = Integer.parseInt(respuesta.get("etapa").toString());
+                ruta += respuesta.get("token").toString() + "/" + respuesta.get("titulo").toString().replace(" ", "") + "/"
+                        + etapa + "/" + version;
+            }
+        }catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        return ruta;
     }
 
     public String getIdContenido() {
