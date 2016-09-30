@@ -57,6 +57,27 @@ function crearContenido(){
     });    
 }
 
+function mostrarDisqus(idContenido){
+    
+    BootstrapDialog.show({
+        message: $('<div id="ventanaDisqus"></div>').load("verDisqus", {"idContenido": idContenido}),
+        title: "Foro del contenido",
+        buttons: [{
+            id: 'btn-info',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Listo',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitForm();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
+            }
+        }]
+    });    
+}
+
 function submitForm(){
     var form = "#altaContenido";
     $(form).bootstrapValidator().bootstrapValidator('validate');

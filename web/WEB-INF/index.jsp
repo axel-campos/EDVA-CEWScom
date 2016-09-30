@@ -12,6 +12,13 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
+        
+        
+        
+        
+        <script src="${pageContext.request.contextPath}/js/together-js-config.js"></script>
+        <script src="${pageContext.request.contextPath}/js/togetherjsEDVA/togetherjs-min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet"> 
