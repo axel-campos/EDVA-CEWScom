@@ -17,3 +17,5 @@ var EDVAcolors = ["#00FF00","#00FF00","#0000FF","#FF4000"];
 var TogetherJSConfig_getUserColor = function () {return EDVAcolors[randomNumber];};
 
 
+
+

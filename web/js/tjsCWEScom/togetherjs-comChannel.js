@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 
-if (TogetherJS.running) {
-    TogetherJS();
-    TogetherJS.require("storage").tab.clear("status");
-    alert("Goodbye!");
-}
-
 function updateTogetherJS(container)
 {
     if (TogetherJS.running) {
@@ -23,11 +17,11 @@ function updateTogetherJS(container)
 }
 
 TogetherJS.hub.on('drop', function (msg) {
-  if (!msg.sameUrl) {
-      return;
-  }
-  $(msg.idcontainer).html(msg.htmlcontainer);
-  TogetherJS.reinitialize();
+    if (!msg.sameUrl) {
+        return;
+    }
+    $(msg.idcontainer).html(msg.htmlcontainer);
+    TogetherJS.reinitialize();
 });
 
 

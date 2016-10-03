@@ -8,7 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
-    Usuario user = (Usuario)session.getAttribute("usuario");
+    Usuario user = (Usuario) session.getAttribute("usuario");
     String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
     File file = new File(destPath + user.getAvatar());
     // Reading a Image file from file system
@@ -21,7 +21,7 @@
     sb.append("data:image/png;base64,");
     sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(imageData, false)));
     String imageDataString = sb.toString();
-    
+
     imageInFile.close();
 %>
 
@@ -37,30 +37,31 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/timeline.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilo.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ElementosMDO.css">
-        <script>
+        <script>          
+            cargando();
             var APP_BASE = "${pageContext.request.contextPath}";
             var ETAPA = "<%=request.getParameter("etapa")%>";
-            
-            var TogetherJSConfig_getUserName = function () {return "${session.usuario.nombre}";};
-            var TogetherJSConfig_getUserAvatar = function () {return "<%=imageDataString%>";};
+
+            var TogetherJSConfig_getUserName = function () {
+                return "${session.usuario.nombre}";
+            };
+            var TogetherJSConfig_getUserAvatar = function () {
+                return "<%=imageDataString%>";
+            };
             var TogetherJSConfig_findRoom = "<%=request.getParameter("idRoom")%>";
             TogetherJS();
             
-            function endTogether(){
-                if (TogetherJS.running) {
-                    TogetherJS();
-                    TogetherJS.require("storage").tab.clear("status");
-                    alert("Goodbye!");
-                }
-            }
+            TogetherJS.on("ready", function () {
+                finalizar();
+            })
+
         </script>
-        <script src="${pageContext.request.contextPath}/js/dragula.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/mdo-factories.js"></script>
-        <script src="${pageContext.request.contextPath}/js/mdo-utilities.js"></script>
-        <script src="${pageContext.request.contextPath}/js/funciones.js"></script>
-        <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/funciones.js"></script>
     </head>
-    <body id="unloadJS" onunload="endTogether();">
+    <body>
         <div id="header" class="container" align="center">
             <div class="row">
                 <h1><%=request.getParameter("titulo")%></h1>
