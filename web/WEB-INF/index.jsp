@@ -13,12 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        
-        
-        
-        <script src="${pageContext.request.contextPath}/js/together-js-config.js"></script>
-        <script src="${pageContext.request.contextPath}/js/togetherjsEDVA/togetherjs-min.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
+        <%-- CSS resources  --%>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-theme.css" rel="stylesheet"> 
@@ -28,9 +23,14 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/miSidebar.css" type="text/css">
         <link href="${pageContext.request.contextPath}/css/cargando.css" rel="stylesheet" type="text/css"/>
+        
+        <%-- JS resources  --%>
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>    
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>   
+        <script src="${pageContext.request.contextPath}/js/together-js-config.js"></script>
+        <script src="${pageContext.request.contextPath}/js/togetherjsEDVA/togetherjs-min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>  
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
@@ -39,6 +39,7 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-notify.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
+        
         <title>Página Principal</title>
         <style>
             @media (max-height: 500px){}

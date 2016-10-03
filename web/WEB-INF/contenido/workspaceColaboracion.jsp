@@ -23,9 +23,6 @@
     String imageDataString = sb.toString();
     
     imageInFile.close();
-    
-    //Obtaining token from group to togetherjs room
-    String idRoom = (String)request.getParameter("idRoom");
 %>
 
 <!DOCTYPE html>
@@ -42,23 +39,31 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ElementosMDO.css">
         <script>
             var APP_BASE = "${pageContext.request.contextPath}";
+            var ETAPA = "<%=request.getParameter("etapa")%>";
+            
             var TogetherJSConfig_getUserName = function () {return "${session.usuario.nombre}";};
             var TogetherJSConfig_getUserAvatar = function () {return "<%=imageDataString%>";};
-            var TogetherJSConfig_findRoom = "<%=idRoom%>";
+            var TogetherJSConfig_findRoom = "<%=request.getParameter("idRoom")%>";
             TogetherJS();
+            
+            function endTogether(){
+                if (TogetherJS.running) {
+                    TogetherJS();
+                    TogetherJS.require("storage").tab.clear("status");
+                    alert("Goodbye!");
+                }
+            }
         </script>
-        <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/dragula.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/mdo-utilities.js"></script>
         <script src="${pageContext.request.contextPath}/js/funciones.js"></script>
         <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
     </head>
-    <body id="unloadJS">
+    <body id="unloadJS" onunload="endTogether();">
         <div id="header" class="container" align="center">
             <div class="row">
-                <h1>Fábricas Abstractas de MDO</h1>
+                <h1><%=request.getParameter("titulo")%></h1>
             </div>
         </div>
         <div class="container-fluid">
@@ -68,61 +73,13 @@
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#vivenciaPanel">
-                                        Vivencias
+                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#<%=request.getParameter("etapa")%>Panel">
+                                        <%=request.getParameter("etapa")%>
                                     </a>
                                 </h4>
                             </div>
-                            <div id="vivenciaPanel" class="panel-collapse collapse">
-                                <div id="vivenciaPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#conceptualizacionPanel">
-                                        Conceptualización
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="conceptualizacionPanel" class="panel-collapse collapse">
-                                <div id="conceptualizacionPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#documentacionPanel">
-                                        Documentación
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="documentacionPanel" class="panel-collapse collapse in">
-                                <div id="documentacionPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#aplicacionPanel">
-                                        Aplicación
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="aplicacionPanel" class="panel-collapse collapse">
-                                <div id="aplicacionPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#ampliacionPanel">
-                                        Ampliación
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="ampliacionPanel" class="panel-collapse collapse">
-                                <div id="ampliacionPanelBody" class="panel-body"></div>
+                            <div id="<%=request.getParameter("etapa")%>Panel" class="panel-collapse collapse in">
+                                <div id="<%=request.getParameter("etapa")%>PanelBody" class="panel-body"></div>
                             </div>
                         </div>
                     </div>
@@ -135,7 +92,7 @@
                 <div class="col-md-10 col-sm-10 col-xs-8 scrollit">
                     <div class="container">
                         <ul id="contenidoDidacticoBody" class="timeline">
-                            <li class="year">Vivencia</li>
+                            <li class="year"><%=request.getParameter("etapa")%></li>
                         </ul>
                     </div>
                 </div>

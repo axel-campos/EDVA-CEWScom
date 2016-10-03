@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 
+if (TogetherJS.running) {
+    TogetherJS();
+    TogetherJS.require("storage").tab.clear("status");
+    alert("Goodbye!");
+}
+
 function updateTogetherJS(container)
 {
     if (TogetherJS.running) {

@@ -73,12 +73,12 @@ var MDOFactories = (function() {
 		
 		function _listaArtefactos() {
 			return [
-				"<div class='Observacion'>Observación</div>",
-				"<div class='Visita'>Visita</div>",
-				"<div class='Demostracion'>Demostración</div>",
-				"<div class='Ensayo'>Ensayo</div>",
-				"<div class='Simulacion'>Simulación</div>",
-				"<div class='JuegoRol'>Juego de Rol</div>"
+				"<div class='Observacion'><div class='box box1 shadow1'><h5>Observación</h5></div></div>",
+				"<div class='Visita'><div class='box box2 shadow1'><h5>Visita</h5></div></div>",
+				"<div class='Demostracion'><div class='box box2 shadow1'><h5>Demostración</h5></div></div>",
+				"<div class='Ensayo'><div class='box box3 shadow1'><h5>Ensayo</h5></div></div>",
+				"<div class='Simulacion'><div class='box box4 shadow1'><h5>Simulación</h5></div></div>",
+				"<div class='JuegoRol'><div class='box box5 shadow1'><h5>Juego de Rol</h5></div></div>"
 			];
 		}
 
@@ -491,10 +491,10 @@ var MDOFactories = (function() {
 	})();
 	
 	return {
-		VivenciaFactory: _VivenciaFactory,
-		ConceptualizacionFactory: _ConceptualizacionFactory,
-		DocumentacionFactory: _DocumentacionFactory,
-		AplicacionFactory: _AplicacionFactory,
-		AmpliacionFactory: _AmpliacionFactory
+		VivenciasFactory: _VivenciaFactory,
+		ConceptualizaciónFactory: _ConceptualizacionFactory,
+		DocumentaciónFactory: _DocumentacionFactory,
+		AplicaciónFactory: _AplicacionFactory,
+		AmpliaciónFactory: _AmpliacionFactory
 	};
 })();

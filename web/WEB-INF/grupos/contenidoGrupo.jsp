@@ -133,7 +133,7 @@
                                         <s:if test="esAdministrador">
                                             <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span>Agregar versión</button>
                                         </s:if>                                        
-										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&titulo=<%=titulo%>&etapa=<%=etapa%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                     </div>
                                 </div>
