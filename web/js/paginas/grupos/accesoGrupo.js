@@ -44,6 +44,7 @@ $(document).ready(function(){
                 $("#tb_grupo").html(data);
                 $("#correcto").show();
             }else{
+                $(form1).bootstrapValidator('resetForm', true);
                 $("#incorrecto").show();
             }
         });

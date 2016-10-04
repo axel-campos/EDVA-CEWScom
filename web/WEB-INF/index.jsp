@@ -28,10 +28,11 @@
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>   
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-config.js"></script>
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-comChannel.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script>  
+         
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/locale_es.js"></script>
