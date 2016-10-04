@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.mdo.DropboxPersistence;
+import model.mdo.FilePersistence;
 import modelo.dao.ContenidoEtapaDAO;
 import modelo.dao.EtapaDAO;
 import modelo.pojo.ContenidoEtapa;
@@ -43,14 +44,20 @@ public class EstablecerFechasAction extends ActionSupport  {
             //Si hay versiones después de la fecha límite, quiere decir que no podemos guardar dicha versión
             if(versiones.isEmpty()){//Vacía, entonces si podemos guardar
                 String ruta = this.getRutaRecursos(contEtapaDAO);
-                contEtapaDAO.registrar(new ContenidoEtapa().setIdContenido(Integer.parseInt(idContenido))
-                .setIdEtapa(Short.parseShort(etapa)).setLiberado(false).setRutaRecursos(ruta).setVersion(Integer.parseInt(version))
-                .setTiempoModificacion(limite));
+                contEtapaDAO.registrar(new ContenidoEtapa()
+					.setIdContenido(Integer.parseInt(idContenido))
+					.setIdEtapa(Short.parseShort(etapa))
+					.setLiberado(false)
+					.setRutaRecursos(ruta)
+					.setVersion(Integer.parseInt(version))
+					.setTiempoModificacion(limite));
                 out.print("Exito");
                 contEtapaDAO.desconectar();
-                HttpServletRequest request = ServletActionContext.getRequest();
-                new DropboxPersistence(request.getServletContext().getRealPath("/plantillas")).crearCarpeta(ruta);
-            }else{
+				
+                FilePersistence persistence = new DropboxPersistence();
+				persistence.crearCarpeta(ruta);
+				persistence.crearJsonVacio(ruta);
+            } else {
                 out.print("Fecha");
                 contEtapaDAO.desconectar();
             }
@@ -101,10 +108,11 @@ public class EstablecerFechasAction extends ActionSupport  {
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE d MMMM yyyy, HH:mm:ss", espanol);
             for(ContenidoEtapa version : versiones){
                 txt += "<tr>"
-                        + "<td style='text-align: center;'>" + version.getVersion() + "</td>"
-                        + "<td style='text-align: center;'>" + dateFormat.format(version.getTiempoModificacion()) + "</td>"
-                        + "</tr>";
+					+ "<td style='text-align: center;'>" + version.getVersion() + "</td>"
+					+ "<td style='text-align: center;'>" + dateFormat.format(version.getTiempoModificacion()) + "</td>"
+					+ "</tr>";
             }
+			
             txt += "</tbody>";
             out.println(txt);
         }catch(RuntimeException e){

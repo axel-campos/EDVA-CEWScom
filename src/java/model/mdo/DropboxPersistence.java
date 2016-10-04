@@ -6,6 +6,7 @@ import com.dropbox.core.v2.*;
 import com.dropbox.core.v2.files.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -34,16 +35,11 @@ public final class DropboxPersistence implements FilePersistence {
 		client = new DbxClientV2(config, ACCESS_TOKEN);
 	}
 
-    /*public DropboxPersistence() {        
+    public DropboxPersistence() {        
         realPath = "";
         config = new DbxRequestConfig("edva/cwescom");
 		client = new DbxClientV2(config, ACCESS_TOKEN);
-    }*/
-
-    
-    
-    
-    
+    }    
 	
 	@Override
 	public void guardar(Map<String, Object> detallesContenido, List<String> html) {
@@ -59,10 +55,40 @@ public final class DropboxPersistence implements FilePersistence {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
 	@Override
 	public Map<String, Object> descargar(Map<String, Object> detallesContenido) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	
+	@Override
+    public void crearCarpeta(String nombre) {
+        try {
+			client.files().createFolder(nombre);
+		} catch (DbxException e) {
+			throw new RuntimeException(e);
+		}
+    }
+	
+	@Override
+	public void crearJsonVacio(String ruta) {
+		try {
+			String json = "{\"artefactos\":[]}";
+			subirArchivoTexto(ruta, "artefactos.json", json);
+		} catch (IOException | DbxException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	@Override
+	public String descargarJson(String ruta) {
+		try {
+			String json = descargarArchivoTexto(ruta, "artefactos.json");
+			return json;
+		} catch (IOException | DbxException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	/**
@@ -82,15 +108,46 @@ public final class DropboxPersistence implements FilePersistence {
 		File temp = new File(tempFile);
 		
 		FileUtils.writeStringToFile(temp, pagina, "UTF-8");
-		FileInputStream fis = new FileInputStream(temp);
-		client.files().uploadBuilder(ruta + "/" + etapa + ".html").uploadAndFinish(fis);
-		
-		fis.close();
+		try(FileInputStream fis = new FileInputStream(temp)) {
+			client.files().uploadBuilder(ruta + "/" + etapa + ".html").uploadAndFinish(fis);
+		}
 		FileUtils.deleteDirectory(new File(appRoot + token));
 	}
-    
-    public boolean crearCarpeta(String nombre) throws DbxException{
-        client.files().createFolder(nombre);
-        return true;
-    }
+	
+	/**
+	 * Sube el archivo de texto indicado a la carpeta de Dropbox indicada.
+	 * 
+	 * @param ruta La ruta a la cual se subirá el archivo.
+	 * @param nombre El nombre del archivo con su extensión.
+	 * @param contenido El contenido del archivo.
+	 * @throws IOException Si ocurre un error al leer el archivo de texto.
+	 * @throws DbxException Si ocurre un error al subir el archivo a Dropbox.
+	 */
+	private void subirArchivoTexto(String ruta, String nombre, String contenido) throws IOException, DbxException {
+		String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+		String token = ruta.split("/")[1];
+		String tempFile = appRoot + ruta + "/" + nombre;
+		File temp = new File(tempFile);
+		FileUtils.writeStringToFile(temp, contenido);
+		try (FileInputStream fis = new FileInputStream(temp)) {
+			client.files().uploadBuilder(ruta + "/" + nombre).uploadAndFinish(fis);
+		}
+		FileUtils.deleteDirectory(new File(appRoot + token));
+	}
+	
+	private String descargarArchivoTexto(String ruta, String nombre) throws IOException, DbxException {
+		String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+		String token = ruta.split("/")[1];
+		String tempFile = appRoot + ruta + "/" + nombre;
+		File temp = new File(tempFile);
+		FileUtils.writeStringToFile(temp, "");
+		
+		try (FileOutputStream fos = new FileOutputStream(temp)) {
+			client.files().download(ruta + "/" + nombre).download(fos);
+		}
+		
+		String file = FileUtils.readFileToString(temp);
+		FileUtils.deleteDirectory(new File(appRoot + token));
+		return file;
+	}
 }
