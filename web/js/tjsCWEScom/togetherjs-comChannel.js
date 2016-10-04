@@ -17,11 +17,11 @@ function updateTogetherJS(container)
 }
 
 TogetherJS.hub.on('drop', function (msg) {
-  if (!msg.sameUrl) {
-      return;
-  }
-  $(msg.idcontainer).html(msg.htmlcontainer);
-  TogetherJS.reinitialize();
+    if (!msg.sameUrl) {
+        return;
+    }
+    $(msg.idcontainer).html(msg.htmlcontainer);
+    TogetherJS.reinitialize();
 });
 
 
@@ -33,7 +33,6 @@ TogetherJS.hub.on("togetherjs.hello", function (msg) {
     });
     TogetherJS.reinitialize();
 });
-
 
 
 

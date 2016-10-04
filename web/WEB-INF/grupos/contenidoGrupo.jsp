@@ -31,6 +31,7 @@
             <input type="hidden" id="type" value="<s:property value="type"/>">
         </div>
         <div class="row-fluid">
+            
             <div class="col-md-11" id="paginacion"></div>
             <div class="col-md-1"></div>
         </div>
@@ -107,6 +108,7 @@
                             {
                                 fechaVotacion = df.format((Timestamp)columna.get("tiempoModificacion"));
                             }*/
+                            String idRoomTogetherJS = token2 + idContenido;
                 %>
                 <div class="col-sm-6">
                     <div class="panel panel-default">
@@ -128,8 +130,11 @@
                                         Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
                                         Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                         <br/>
-                                        <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
-										<a onclick="cambiarContenidos('workspaceColaboracion?idContenido=<%= idContenido %>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                        <s:if test="esAdministrador">
+                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span>Agregar versión</button>
+                                        </s:if>                                        
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&titulo=<%=titulo%>&etapa=<%=etapa%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                        <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                     </div>
                                 </div>
                             </div>

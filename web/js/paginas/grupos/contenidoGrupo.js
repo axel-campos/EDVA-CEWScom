@@ -16,7 +16,13 @@ $(document).ready(function(){
     var message = $("#message").val();
     var type = $("#type").val();
     if(message !== "" && type !== ""){
-        mostrarNotificacion(type, message);
+        if(type === "success"){
+            mensajes(message, TIPO_MENSAJE.SUCCESS);
+        }else if(type === "danger"){
+            mensajes(message, TIPO_MENSAJE.DANGER);
+        }
+        
+        //mostrarNotificacion(type, message);
     }
 });
 
@@ -46,6 +52,27 @@ function crearContenido(){
             autospin: false,
             action: function(dialogRef){    
                 dialogRef.close();
+            }
+        }]
+    });    
+}
+
+function mostrarDisqus(idContenido){
+    
+    BootstrapDialog.show({
+        message: $('<div id="ventanaDisqus"></div>').load("verDisqus", {"idContenido": idContenido}),
+        title: "Foro del contenido",
+        buttons: [{
+            id: 'btn-info',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Listo',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitForm();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
             }
         }]
     });    

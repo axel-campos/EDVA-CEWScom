@@ -1,13 +1,31 @@
+<%@page import="modelo.pojo.Usuario"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="org.apache.tomcat.util.codec.binary.StringUtils"%>
+<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.File"%>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html>
 <%
-    String identificadorDisqus = "", paginaDisqus = "";
-    if(request.getParameter("idContenido") != null){
-       identificadorDisqus = "id" + request.getParameter("idContenido");
-       paginaDisqus = "pagina" + request.getParameter("idContenido");
-    }
-    %>
+    Usuario user = (Usuario) session.getAttribute("usuario");
+    String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
+    File file = new File(destPath + user.getAvatar());
+    // Reading a Image file from file system
+    FileInputStream imageInFile = new FileInputStream(file);
+    byte imageData[] = new byte[(int) file.length()];
+    imageInFile.read(imageData);
+
+    // Converting Image byte array into Base64 String
+    StringBuilder sb = new StringBuilder();
+    sb.append("data:image/png;base64,");
+    sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(imageData, false)));
+    String imageDataString = sb.toString();
+
+    imageInFile.close();
+%>
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -19,37 +37,34 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/timeline.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilo.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ElementosMDO.css">
-        <script>
+        <script>          
+            cargando();
             var APP_BASE = "${pageContext.request.contextPath}";
-        </script>
-        <script src="${pageContext.request.contextPath}/js/together-js-config.js"></script>
-        <script src="${pageContext.request.contextPath}/js/togetherjsEDVA/togetherjs-min.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/dragula.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/mdo-factories.js"></script>
-        <script src="${pageContext.request.contextPath}/js/mdo-utilities.js"></script>
-        <script src="${pageContext.request.contextPath}/js/funciones.js"></script>
-        <script src="${pageContext.request.contextPath}/js/together-js-comChannel.js" type="text/javascript"></script>
-        <script>            
-            var disqus_config = function () {
-                this.page.url = "http://localhost:8084/EDVA/#!<%= paginaDisqus %>";  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = '<%= identificadorDisqus %>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
+            var ETAPA = "<%=request.getParameter("etapa")%>";
 
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = '//http-localhost-8084-edva.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
+            var TogetherJSConfig_getUserName = function () {
+                return "${session.usuario.nombre}";
+            };
+            var TogetherJSConfig_getUserAvatar = function () {
+                return "<%=imageDataString%>";
+            };
+            var TogetherJSConfig_findRoom = "<%=request.getParameter("idRoom")%>";
+            TogetherJS();
+            
+            TogetherJS.on("ready", function () {
+                finalizar();
+            })
+
         </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/funciones.js"></script>
     </head>
     <body>
         <div id="header" class="container" align="center">
             <div class="row">
-                <h1>Fábricas Abstractas de MDO</h1>
+                <h1><%=request.getParameter("titulo")%></h1>
             </div>
         </div>
         <div class="container-fluid">
@@ -59,61 +74,13 @@
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#vivenciaPanel">
-                                        Vivencias
+                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#<%=request.getParameter("etapa")%>Panel">
+                                        <%=request.getParameter("etapa")%>
                                     </a>
                                 </h4>
                             </div>
-                            <div id="vivenciaPanel" class="panel-collapse collapse">
-                                <div id="vivenciaPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#conceptualizacionPanel">
-                                        Conceptualización
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="conceptualizacionPanel" class="panel-collapse collapse">
-                                <div id="conceptualizacionPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#documentacionPanel">
-                                        Documentación
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="documentacionPanel" class="panel-collapse collapse in">
-                                <div id="documentacionPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#aplicacionPanel">
-                                        Aplicación
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="aplicacionPanel" class="panel-collapse collapse">
-                                <div id="aplicacionPanelBody" class="panel-body"></div>
-                            </div>
-                        </div>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#ampliacionPanel">
-                                        Ampliación
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="ampliacionPanel" class="panel-collapse collapse">
-                                <div id="ampliacionPanelBody" class="panel-body"></div>
+                            <div id="<%=request.getParameter("etapa")%>Panel" class="panel-collapse collapse in">
+                                <div id="<%=request.getParameter("etapa")%>PanelBody" class="panel-body"></div>
                             </div>
                         </div>
                     </div>
@@ -126,17 +93,10 @@
                 <div class="col-md-10 col-sm-10 col-xs-8 scrollit">
                     <div class="container">
                         <ul id="contenidoDidacticoBody" class="timeline">
-                            <li class="year">Vivencia</li>
+                            <li class="year"><%=request.getParameter("etapa")%></li>
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="row" style="margin-top: 100px">
-                <div class="col-md-7"></div>
-                <div class="col-md-4">
-                    <div id="disqus_thread"></div>
-                </div>
-                <div class="col-md-1"></div>
             </div>
         </div> 
     </body>

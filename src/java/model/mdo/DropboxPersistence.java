@@ -18,7 +18,8 @@ import org.apache.struts2.ServletActionContext;
  */
 public final class DropboxPersistence implements FilePersistence {
 
-	private final String ACCESS_TOKEN = "_vjkq--5dsAAAAAAAAAAI1AIN17ztTSAF_7kZ_IAeOO11tmOe-L5YJMEWpXp_h7M";
+	//private final String ACCESS_TOKEN = "_vjkq--5dsAAAAAAAAAAI1AIN17ztTSAF_7kZ_IAeOO11tmOe-L5YJMEWpXp_h7M";
+    private final String ACCESS_TOKEN = "_vjkq--5dsAAAAAAAAAANaKwM5NYC9M2wAjk0cFSzKVhGI_Jxi7KNvQucdAvHvQU";  
 	private final DbxRequestConfig config;
 	private final DbxClientV2 client;
 	private final String realPath;
@@ -32,6 +33,17 @@ public final class DropboxPersistence implements FilePersistence {
 		config = new DbxRequestConfig("edva/cwescom");
 		client = new DbxClientV2(config, ACCESS_TOKEN);
 	}
+
+    /*public DropboxPersistence() {        
+        realPath = "";
+        config = new DbxRequestConfig("edva/cwescom");
+		client = new DbxClientV2(config, ACCESS_TOKEN);
+    }*/
+
+    
+    
+    
+    
 	
 	@Override
 	public void guardar(Map<String, Object> detallesContenido, List<String> html) {
@@ -76,4 +88,9 @@ public final class DropboxPersistence implements FilePersistence {
 		fis.close();
 		FileUtils.deleteDirectory(new File(appRoot + token));
 	}
+    
+    public boolean crearCarpeta(String nombre) throws DbxException{
+        client.files().createFolder(nombre);
+        return true;
+    }
 }

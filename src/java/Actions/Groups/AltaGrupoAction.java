@@ -6,12 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import model.mdo.DropboxPersistence;
 import modelo.dao.GrupoDAO;
 import modelo.pojo.Grupo;
 import modelo.dao.UsuarioGrupoDAO;
 import modelo.pojo.TipoUsuarioGrupo;
 import modelo.pojo.Usuario;
 import modelo.pojo.UsuarioGrupo;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 public class AltaGrupoAction extends ActionSupport implements interceptor.AuthenticatedUser, SessionAware {
@@ -51,6 +54,7 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
     public String execute() throws Exception {
         
         //Validamos que el token no contenga caracteres especiales para la creación del token
+        HttpServletRequest request = ServletActionContext.getRequest();
         String token = ""; 
         String [] abecedario = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J","K", "L", "M","N","O","P","Q","R","S","T","U","V","W", "X","Y","Z" };
                
@@ -88,6 +92,7 @@ public class AltaGrupoAction extends ActionSupport implements interceptor.Authen
                 grupo.setTotalProfesores(1);//Solo el creador es registrado
                 grupoDAO.registrar(grupo);
                 addActionMessage("El grupo " + grupo.getNombre() + " ha sido registrado con éxito.");
+                new DropboxPersistence(request.getServletContext().getRealPath("/plantillas")).crearCarpeta("/" + token);
             }else{
                 Grupo viejo = grupoDAO.buscar(new Grupo().setToken(token));
                 grupo.setTotalProfesores(viejo.getTotalProfesores());//Se busca el numero de profesores que tenía antes de modificar
