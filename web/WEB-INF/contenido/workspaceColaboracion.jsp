@@ -4,6 +4,7 @@
 <%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
+<%@page import="model.mdo.DropboxPersistence"%>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -23,6 +24,14 @@
     String imageDataString = sb.toString();
 
     imageInFile.close();
+	
+	// Obteniendo el archivo JSON de Dropbox.
+	String token = request.getParameter("token");
+	String titulo = request.getParameter("titulo").replace(" ", "");
+	String idEtapa = request.getParameter("idEtapa");
+	String version = request.getParameter("version");
+	String ruta = String.format("/%s/%s/%s/%s", token, titulo, idEtapa, version);
+	String json = new DropboxPersistence().descargarJson(ruta);
 %>
 
 <!DOCTYPE html>
@@ -41,6 +50,8 @@
             cargando();
             var APP_BASE = "${pageContext.request.contextPath}";
             var ETAPA = "<%=request.getParameter("etapa")%>";
+			var ARTEFACTOS = JSON.parse('<%=json%>');
+			var RUTA_PERSISTENCIA = '<%=ruta%>';
 
             var TogetherJSConfig_getUserName = function () {
                 return "${session.usuario.nombre}";
@@ -53,8 +64,8 @@
             
             TogetherJS.on("ready", function () {
                 finalizar();
-            })
-
+            });
+			
         </script>
         <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
