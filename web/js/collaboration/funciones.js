@@ -8,33 +8,37 @@ $(document).ready(function () {
     agregarDragAndDrop(targetDiv, MDOfactory);
 	recrearTimeline(MDOfactory, ARTEFACTOS);
 
+	/**
+	 * ************************************************
+	 * VERSIÓN DE PRUEBA PARA PERSISTENCIA.
+	 * Todos las fábricas abstractas de los artefactos (junto con sus parsers) de las 5 etapas
+	 * deben estar terminados para el correcto funcionamiento de este botón.
+	 */
     $("#btnGuardar").click(function () {
-        var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
+        //var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
+		var listaArtefactos = [];
         $("#header .alert").remove();
-
-        if (listaArtefactos.length > 0) {
-            var artefactos = MDOUtil.getListaArtefactos(listaArtefactos, "Documentacion", "Contenido de Ejemplo", "CFH765KHSIUH");
-            console.log(artefactos);
-            /*$.ajax({
-				url: APP_BASE + "/mdocontenido/GuardarProgreso",
-				type: "POST",
-				contentType: "application/json",
-				data: JSON.stringify(artefactos),
-				success: function(response) {
-				$("#header").append("\
-				<div class='alert alert-success'>\n\
-				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>\n\
-				" + response.message + "\n\
-				</div>");
+		
+		if (listaArtefactos.length > -1) {
+			var artefactos = {
+				artefactos: {
+					ruta: RUTA_PERSISTENCIA,
+					lista: MDOUtil.getListaArtefactos(listaArtefactos, RUTA_PERSISTENCIA)
 				}
-            });*/
-        }
-    });
-
-    $("#btnDescargar").click(function () {
-        $.post(APP_BASE + "/mdocontenido/DescargarContenido", {}, function (response) {
-            alert(response.stateMap.message);
-        });
+			};
+			console.log(artefactos);
+			$.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
+				artefactos: JSON.stringify(artefactos)
+			}, function(response) {
+				console.log(response);
+				$("#header").append("\
+					<div class='alert " + (response.estatus ? "alert-success" : "alert-danger") + "'>\n\
+						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>\n\
+						" + response.message + "\n\
+					</div>"
+				);
+			});
+		}
     });
 });
 

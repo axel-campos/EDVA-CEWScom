@@ -82,6 +82,16 @@ public final class DropboxPersistence implements FilePersistence {
 	}
 	
 	@Override
+	public void guardarJson(String json) {
+		try {
+			String ruta = obtenerRutaDeJson(json);
+			
+		} catch (RuntimeException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Override
 	public String descargarJson(String ruta) {
 		try {
 			String json = descargarArchivoTexto(ruta, "artefactos.json");
@@ -149,5 +159,19 @@ public final class DropboxPersistence implements FilePersistence {
 		String file = FileUtils.readFileToString(temp);
 		FileUtils.deleteDirectory(new File(appRoot + token));
 		return file;
+	}
+	
+	/**
+	 * Obtiene la ruta de la carpeta de Dropbox desde el JSON.
+	 * 
+	 * @param json El JSON formado y enviado desde el cliente.
+	 * @return La ruta de la carpeta de Dropbox del contenido
+	 * didáctico.
+	 */
+	private String obtenerRutaDeJson(String json) {
+		// CAMBIAR POR GSON
+		int inicio = json.indexOf("ruta") + 7;
+		int fin = json.indexOf("\",", inicio) - 1;
+		return json.substring(inicio, fin);
 	}
 }

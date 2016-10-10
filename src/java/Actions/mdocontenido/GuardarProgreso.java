@@ -16,27 +16,29 @@ import model.mdo.DropboxPersistence;
 public class GuardarProgreso extends ActionSupport {
 	
 	/**
-	 * Recibe los artefactos del cliente en JSON. El
-	 * primer objeto (artefactos[0]) siempre contiene la etapa,
-	 * el nombre del contenido didactico y el token del grupo
-	 * que está editándolo.
-	 */
-	private List<Map<String, Object>> artefactos;
-	
-	/**
 	 * Mensaje de respuesta y tipo al cliente.
 	 */
 	private String message;
 	private boolean estatus;
 	
+	/**
+	 * Contiene las variables que se envían desde el
+	 * servidor por AJAX.
+	 */
 	private HttpServletRequest request;
 
 	@Override
 	public String execute() throws Exception {
-		request = ServletActionContext.getRequest();
-		guardar();
-		message = "Su progreso ha sido guardado.";
-		estatus = true;
+		try {
+			request = ServletActionContext.getRequest();
+			guardar();
+			message = "Su progreso ha sido guardado.";
+			estatus = true;
+		} catch (RuntimeException e) {
+			message = "Ocurrió un error al guardar su contenido: " + e.getMessage();
+			estatus = false;
+		}
+		
 		return SUCCESS;
 	}
 	
@@ -46,14 +48,8 @@ public class GuardarProgreso extends ActionSupport {
 	 * se tienen carpetas individuales para cada contenido didáctico.
 	 */
 	private void guardar() throws Exception {
-		Map<String, Object> detallesContenido = artefactos.get(0);
-		List<String> html =
-			MDOUtil.parseMDOArtifacts(MDOUtil.parseJsonArtifacts(artefactos.subList(1, artefactos.size())));
-		new DropboxPersistence(request.getServletContext().getRealPath("/plantillas")).guardar(detallesContenido, html);
-	}
-	
-	public void setArtefactos(List<Map<String, Object>> artefactos) {
-		this.artefactos = artefactos;
+		String json = request.getParameter("artefactos");
+		new DropboxPersistence().guardarJson(json);
 	}
 	
 	public String getMessage() {
