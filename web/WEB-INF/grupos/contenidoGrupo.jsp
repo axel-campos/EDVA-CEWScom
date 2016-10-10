@@ -25,7 +25,9 @@
                     <s:actionerror />
                 </div>
             </s:if>
+            <s:if test="esAdministrador">
             <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
+            </s:if>
             <input type="hidden" id="token" value="<s:property value="token"/>">
             <input type="hidden" id="message" value="<s:property value="message"/>">
             <input type="hidden" id="type" value="<s:property value="type"/>">
@@ -46,7 +48,7 @@
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();
             contenidoDAO.conectar();
-            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo, e.idEtapa AS idEtapa, ce.version FROM contenido con " +
+            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
                 " LEFT JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
                 " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
@@ -80,7 +82,7 @@
                 <%
                     }else{
                         int i = 0;
-                        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        DateFormat df = new SimpleDateFormat("EEEE d MMMM yyyy, HH:mm:ss");
                         for(i = 0; i < tablaContenidos.size(); i++){
                             if(i % 8 == 0){
                                 div++;
@@ -97,8 +99,6 @@
                             String fechaModificacion = "";
                             String fechaVotacion = "";
                             String idContenido = columna.get("idContenido").toString();
-							Integer idEtapa = (Integer)columna.get("idEtapa");
-							Integer version = (Integer)columna.get("version");
                             if(columna.get("nombre") != null){
                                 etapa = (String)columna.get("nombre");
                             }
@@ -134,8 +134,10 @@
                                         <br/>
                                         <s:if test="esAdministrador">
                                             <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span>Agregar versión</button>
-                                        </s:if>
-										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                        </s:if>                
+                                        <% if(fechaModificacion != ""){%>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&titulo=<%=titulo%>&etapa=<%=etapa%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                        <% }%>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                     </div>
                                 </div>
@@ -155,6 +157,7 @@
                     }
                 %>
         </div>
+        <% //out.println(sqlContenidos);%>
         <input type="hidden" id="numDivs" name="numDivs" value="<%=div%>"/>
     </body>
 </html>
