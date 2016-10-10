@@ -42,12 +42,17 @@ $(document).ready(function(){
                     if(data.toString() !== ""){
                         var idContenido = $("#idContenido").val();
                         var etapa = $("#etapa").val();
+                        var token = $("#token").val();
                         if(data.toString() === "Exito"){
                             //Refrecamos la ventana
                             $("#ventana").load("cargaEtapas",{"idContenido": idContenido, "etapa": etapa}, function(response, status, xhr){
                                 if(status === "success"){
                                     //Cargamos las versiones de la etapa en la que se cargo el nuevo
                                     cargarVersiones(etapa);
+                                    //
+                                    cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                                    /*var target = "#contenidoGrupo";
+                                    cambiarContenidos('ListarMiembrosAction?token='+token,target);*/
                                 }
 
                             });

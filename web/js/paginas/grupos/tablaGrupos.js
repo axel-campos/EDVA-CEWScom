@@ -1,5 +1,11 @@
 $(document).ready(function(){
-    
+    if($("#msjExito").length > 0){
+        mensajes($("#msjExito span").text(),TIPO_MENSAJE.SUCCESS);
+        $("#msjExito").html("");
+    }else if($("#msjError").length > 0){
+        mensajes($("#msjError span").text(), TIPO_MENSAJE.DANGER);
+        $("#msjError").html("");
+    }
     var form = "#frmFiltros";
     var action = "SearchGroups";
     $(form).submit(function(event){
