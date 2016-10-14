@@ -64,6 +64,9 @@ $(document).ready(function(){
             url: action,
             data: datos,
             success: function(data){
+                var token = $("#token").val();
+                //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
+                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
                 var target = "#contenidoGrupo";
                 $(target).html(data);
             }
