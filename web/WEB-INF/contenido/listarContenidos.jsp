@@ -94,7 +94,6 @@
             "INNER JOIN contenidoetapa ce ON c.idContenido = ce.idContenido AND ce.idEtapa = 6 " +
             "INNER JOIN grupo g ON g.token = c.token " +
             "WHERE c.finalizado = 1 " + where;
-        System.out.println(sql);
         List<Map<String, Object>> contenidos = contenidoDAO.consultaGenerica(sql);
         int contador = 0, div = 0;
         Boolean cerrarDiv = false, cerrarRow = false;
@@ -104,9 +103,10 @@
                 String idContenido = (Integer)contenido.get("idContenido") + "";
                 String tituloContenido = (String)contenido.get("titulo");
                 String temaContenido = (String)contenido.get("tema");
-                String descripcion = (String)contenido.get("descripcion");
-                if(descripcion.length() > 30){
-                    descripcion = descripcion.substring(0, 30);
+                String descripcion = (String)contenido.get("descripcion") + "asdnaskjdlskjdnnasd asdkj asd cñjasd  asdcl asdkjc als cjadsncklas cnasdc kalsdncjasnd ckasdckjasn dkn ";
+                String descripcionCompleta = descripcion;
+                if(descripcion.length() > 50){
+                    descripcion = descripcion.substring(0, 100) + "...";
                 }
                 if(contador % 20 == 0){
                     div++;
@@ -123,19 +123,22 @@
                     cerrarRow = true;
                 }
             %>
-            <div class="col-md-3">    
-                <a href="http://saber9y11.edu.co/recursos/algebrabaldor.pdf" data-toggle="lightbox">
-                    <div class="row" id="box-search">
-                        <div class="thumbnail text-center">
-                            <img src="${pageContext.request.contextPath}/images/blanco.png" alt="" class="img-responsive">
-                            <div class="caption">
-                                <b>Título: </b> <%=tituloContenido%>
-                                <br/><b>Tema: </b> <%=temaContenido%>
-                                <br/><b>Descripcion</b> <%=descripcion%>
+            <div class="col-md-3">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <a href="http://saber9y11.edu.co/recursos/algebrabaldor.pdf" data-toggle="lightbox" data-title="<%=tituloContenido%>" data-footer="<%=descripcionCompleta%>">
+                        <div class="row" id="box-search">
+                            <div class="thumbnail text-center">
+                                <img src="${pageContext.request.contextPath}/images/marco3.JPG" class="img-responsive">
+                                <div class="caption">
+                                    <b>Título: </b> <%=tituloContenido%>
+                                    <br/><b>Tema: </b> <%=temaContenido%>
+                                    <br/><b>Descripcion</b> <%=descripcion%>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
             <%
                 if(contador % 20 == 19){
