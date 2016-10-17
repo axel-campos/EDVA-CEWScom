@@ -96,8 +96,6 @@
                         </div>
                     </div>
                     <button id="btnGuardar" class="btn btn-primary btn-block">Guardar</button>
-                    <br>
-                    <button id="btnDescargar" class="btn btn-primary btn-block">Descargar ZIP</button>
                 </div>
                 <br>
                 <br>

@@ -211,6 +211,11 @@
         <action name="verDisqus">
 			<result>WEB-INF/contenido/verDisqus.jsp</result>
 		</action>
+        
+        <!-- Acciones para el menú de contenidos -->
+        <action name="listarContenidos">
+            <result>/WEB-INF/contenido/listarContenidos.jsp</result>
+        </action>
 	</package>
 	
 	<!-- Acciones para la edición colaborativa de contenidos -->
