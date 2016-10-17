@@ -28,6 +28,8 @@ public class EstablecerFechasAction extends ActionSupport  {
     private List<Etapa> etapas;
     //Para cargaVersiones
     private String etapa;
+    //Para saber si pueden crear o sólo editar.
+    private Boolean crear;
     
     @Override
     public String execute() throws Exception {
@@ -175,6 +177,14 @@ public class EstablecerFechasAction extends ActionSupport  {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public Boolean getCrear() {
+        return crear;
+    }
+
+    public void setCrear(Boolean crear) {
+        this.crear = crear;
     }
     
     

@@ -145,6 +145,9 @@
         <action name="ListarMiembrosAction" class="Actions.Groups.ListarMiembros">
             <result name="success">WEB-INF/grupos/homeGrupos.jsp</result>
         </action>
+        <action name="ListarContenidosGrupoAction" class="Actions.Groups.ListarContenidosGrupo">
+            <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
+        </action>
         <action name="ListRoles" class="Actions.Groups.ListarRolesGrupo">
             <result>/WEB-INF/grupos/tablaRoles.jsp</result>
         </action>
@@ -189,6 +192,11 @@
             <result>WEB-INF/contenido/altaContenido.jsp</result>
         </action>
         <action name="crearContenido" class="Actions.Contenido.AltaContenidoAction">
+            <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="error">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="input">WEB-INF/grupos/contenidoGrupo.jsp</result>
+        </action>
+        <action name="eliminarContenido" class="Actions.Contenido.EliminarContenidoAction">
             <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
             <result name="error">WEB-INF/grupos/contenidoGrupo.jsp</result>
             <result name="input">WEB-INF/grupos/contenidoGrupo.jsp</result>

@@ -150,4 +150,13 @@ public final class DropboxPersistence implements FilePersistence {
 		FileUtils.deleteDirectory(new File(appRoot + token));
 		return file;
 	}
+
+    @Override
+    public void borrarCarpeta(String ruta) {
+        try {
+			client.files().delete(ruta);
+		} catch (DbxException e) {
+			throw new RuntimeException(e);
+		}
+    }
 }

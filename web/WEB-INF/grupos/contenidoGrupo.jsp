@@ -33,7 +33,6 @@
             <input type="hidden" id="type" value="<s:property value="type"/>">
         </div>
         <div class="row-fluid">
-            
             <div class="col-md-11" id="paginacion"></div>
             <div class="col-md-1"></div>
         </div>
@@ -133,7 +132,10 @@
                                         Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
-                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span>Agregar versión</button>
+                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span> Agregar versión</button>
+                                            <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
+                                            <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>
+                                            <br><br>
                                         </s:if>                
                                         <% if(fechaModificacion != ""){%>
 										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&titulo=<%=titulo%>&etapa=<%=etapa%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
@@ -157,7 +159,8 @@
                     }
                 %>
         </div>
-        <% //out.println(sqlContenidos);%>
+        
         <input type="hidden" id="numDivs" name="numDivs" value="<%=div%>"/>
+        
     </body>
 </html>

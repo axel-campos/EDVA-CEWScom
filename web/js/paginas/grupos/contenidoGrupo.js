@@ -20,6 +20,8 @@ $(document).ready(function(){
             mensajes(message, TIPO_MENSAJE.SUCCESS);
         }else if(type === "danger"){
             mensajes(message, TIPO_MENSAJE.DANGER);
+        }else if(type === "info"){
+            mensajes(message, TIPO_MENSAJE.INFO);
         }
         
         //mostrarNotificacion(type, message);
@@ -103,6 +105,64 @@ function cargarFormulario(id){
             autospin: false,
             action: function(dialogRef){    
                 dialogRef.close();
+            }
+        }]
+    });
+}
+
+function modificarContenido(id){
+    var token = $("#token").val();
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("altaContenido", {"token": token, id: id}),
+        title: "Modificar información del contenido didáctico",
+        buttons: [{
+            id: 'btn-success',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Modificar',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitForm();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
+            }
+        },{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    }); 
+}
+
+function eliminaContenido(id){
+    var token = $("#token").val();
+    BootstrapDialog.show({
+        title: 'Mensaje',
+        message: '¿Está seguro de eliminar este contenido didáctico?',
+        buttons: [{
+            label: 'Sí',
+            cssClass: 'btn-primary',
+            action: function(dialogItself) {
+                dialogItself.close();
+                $.post("eliminarContenido",{id: id}).done(function(data){
+                    cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                    var target = "#contenidoGrupo";
+                    $(target).html(data);
+                });
+                
+                
+            }
+        }, {
+            label: 'No',
+            cssClass: 'btn-warning',
+            action: function(dialogItself){
+                dialogItself.close();
             }
         }]
     });

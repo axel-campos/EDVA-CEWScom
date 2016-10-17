@@ -37,7 +37,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="active"><a href="#" onclick="mostrarLista('contenidosGrupo','<%=token%>');">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                        <li class="active"><a href="#" onclick="mostrarLista('ListarContenidosGrupoAction','<%=token%>');">Contenidos<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datos del grupo <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
@@ -83,10 +83,11 @@
                     </ul>
                 </div>
             </div>
-        </nav>                  
+        </nav>
         <div class="main" id="contenidoGrupo">
             <%@include file="contenidoGrupo.jsp"%>
         </div>
+            
     </body>
     <script>
             

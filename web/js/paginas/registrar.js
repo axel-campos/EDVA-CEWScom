@@ -2,7 +2,23 @@
 $(document).ready(function () {
     $("#fechaN").datetimepicker({
         locale: 'es',
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        tooltips: {
+            today: 'Hoy',
+            clear: 'Limpiar selección',
+            close: 'Cerrar el calendario',
+            selectMonth: 'Seleccionar mes',
+            prevMonth: 'Mes previo',
+            nextMonth: 'Próximo mes',
+            selectYear: 'Selecciona año',
+            prevYear: 'Año previo',
+            nextYear: 'Próximo año',
+            selectDecade: 'Selecciona década',
+            prevDecade: 'Década previa',
+            nextDecade: 'Próxima década',
+            prevCentury: 'Siglo previo',
+            nextCentury: 'Próximo siglo'
+        }
     });
     $('#registrarsefrm').bootstrapValidator({
         fields: {

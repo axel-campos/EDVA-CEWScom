@@ -57,9 +57,12 @@ function procesarSolicitud(correo, tipo, numero){
                 {
                     if (data.toString().indexOf("Error:") === -1) {//En caso de que no hay error
                         $('#contenidos_invisibles').html(data); //Es forzoso mostrar el data de respuesta
-                        cambiarContenidos('ListarMiembrosAction?token=' + token,'#contenido');
-                        mostrarLista('ListSolicitudes?token='+token);
-                        mensajes(data,TIPO_MENSAJE.SUCCESS);
+                        //cambiarContenidos('ListarMiembrosAction?token=' + token,'#contenido');
+                        $.post('ListarMiembrosAction',{token: token}).done(function(data){
+                            $("#contenido").html(data);
+                            mostrarLista('ListSolicitudes',token);
+                            mensajes(data,TIPO_MENSAJE.SUCCESS);
+                        });
                     }else{
                         mensajes(data,TIPO_MENSAJE.WARNING);
                     }    

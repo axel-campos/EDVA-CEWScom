@@ -2,6 +2,8 @@ package Actions.Groups;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.SQLException;
+import model.mdo.DropboxPersistence;
+import model.mdo.FilePersistence;
 import modelo.dao.GrupoDAO;
 import modelo.dao.UsuarioDAO;
 import modelo.dao.UsuarioGrupoDAO;
@@ -27,6 +29,9 @@ public class BajaGrupo extends ActionSupport implements interceptor.Authenticate
             nombreGrupo = grupo.getNombre();
             grupoDAO.eliminar(grupo);
             grupoDAO.desconectar();
+            //Eliminamos la carpeta en Dropi
+            FilePersistence persistence = new DropboxPersistence();
+            persistence.borrarCarpeta("/" + grupo.getToken());
         }catch(RuntimeException e){
             addActionError("El grupo " + nombreGrupo + " no se pudo eliminar.");
             return ERROR;
