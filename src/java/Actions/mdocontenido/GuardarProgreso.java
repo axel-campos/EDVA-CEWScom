@@ -34,7 +34,7 @@ public class GuardarProgreso extends ActionSupport {
 			guardar();
 			message = "Su progreso ha sido guardado.";
 			estatus = true;
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			message = "Ocurrió un error al guardar su contenido: " + e.getMessage();
 			estatus = false;
 		}

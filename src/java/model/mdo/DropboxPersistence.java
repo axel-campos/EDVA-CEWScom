@@ -3,7 +3,8 @@ package model.mdo;
 import org.apache.commons.io.FileUtils;
 import com.dropbox.core.*;
 import com.dropbox.core.v2.*;
-import com.dropbox.core.v2.files.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,6 +24,7 @@ public final class DropboxPersistence implements FilePersistence {
     private final String ACCESS_TOKEN = "_vjkq--5dsAAAAAAAAAANaKwM5NYC9M2wAjk0cFSzKVhGI_Jxi7KNvQucdAvHvQU";  
 	private final DbxRequestConfig config;
 	private final DbxClientV2 client;
+	private final Gson gson = new Gson();
 	private final String realPath;
 	
 	/**
@@ -84,9 +86,12 @@ public final class DropboxPersistence implements FilePersistence {
 	@Override
 	public void guardarJson(String json) {
 		try {
-			String ruta = obtenerRutaDeJson(json);
-			
-		} catch (RuntimeException e) {
+			Map<String, Object> map = obtenerMapaDeJson(json);
+			String ruta = (String)map.get("ruta");
+			List<Map<String, Object>> artefactos = (List<Map<String, Object>>)map.get("lista");
+			String nuevoJson = String.format("{\"artefactos\":%s}", gson.toJson(artefactos));
+			subirArchivoTexto(ruta, "artefactos.json", nuevoJson);
+		} catch (DbxException | IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -162,16 +167,17 @@ public final class DropboxPersistence implements FilePersistence {
 	}
 	
 	/**
-	 * Obtiene la ruta de la carpeta de Dropbox desde el JSON.
+	 * Regresa un mapa con el contenido del JSON dado.
 	 * 
-	 * @param json El JSON formado y enviado desde el cliente.
-	 * @return La ruta de la carpeta de Dropbox del contenido
-	 * didáctico.
+	 * @param json Cadena de texto con los artefactos obtenidos desde el cliente.
+	 * @return Un mapa con los artefactos del JSON.
 	 */
-	private String obtenerRutaDeJson(String json) {
-		// CAMBIAR POR GSON
-		int inicio = json.indexOf("ruta") + 7;
-		int fin = json.indexOf("\",", inicio) - 1;
-		return json.substring(inicio, fin);
+	private Map<String, Object> obtenerMapaDeJson(String json) {
+		return (
+			(Map<String, Map<String, Object>>)gson
+				.fromJson(json, new TypeToken<Map<String, Object>>(){}.getType())
+		).get("artefactos");
 	}
+	
+	
 }

@@ -162,7 +162,7 @@ var MDOUtil = (function() {
 				var titulo = inputs[1].value;
 				var descripcion = inputs[2].value;
 				var nombre = inputs[3].value;
-				inputs = contenido.eq(2).children("input");;
+				inputs = contenido.eq(2).children("input");
 				var anyo = inputs[0].value;
 				var mes = inputs[1].value;
 				var dia = inputs[2].value;
@@ -411,5 +411,65 @@ var MDOUtil = (function() {
 	return {
 		parseNodeList: _parseNodeList,
 		getListaArtefactos: _getListaArtefactos
+	};
+})();
+
+var MDOTimeline = (function() {
+	var MDOParser = (function() {
+		var _VivenciaParser = (function() {
+			
+		})();
+		
+		var _ConceptualizacionParser = (function() {
+			
+		})();
+		
+		var _DocumentacionParser = (function() {
+			
+		})();
+		
+		var _AplicacionParser = (function() {
+			
+		})();
+		
+		var _AmpliacionParser = (function() {
+			
+		})();
+		
+		return {
+			VivenciaParser: _VivenciaParser,
+			ConceptualizacionParser: _ConceptualizacionParser,
+			DocumentacionParser: _DocumentacionParser,
+			AplicacionParser: _AplicacionParser,
+			AmpliacionParser: _AmpliacionParser
+		};
+	})();
+	
+	/**
+	 * Convierte un objeto JavaScript en un nodo HTML,
+	 * de acuerdo a su etapa
+	 * 
+	 * @returns {undefined}
+	 */
+	function _parseNode() {
+		
+	}
+	
+	/**
+	 * Convierte los artefactos dados en nodos HTML
+	 * que puedan insertarse directamente en el timeline.
+	 * 
+	 * @param {array} artefactos Un arreglo de objetos JavaScript,
+	 * donde cada uno contiene un artefacto de la etapa.
+	 * @returns {array} Un arreglo de nodos HTML, cada uno 
+	 * contiene la información.
+	 */
+	function _obtenerNodos(artefactos) {
+		
+	}
+	
+	return {
+		parseNode: _parseNode,
+		obtenerNodos: _obtenerNodos
 	};
 })();

@@ -58,7 +58,7 @@ function recrearTimeline(factory, artefactos) {
 			+ MDOFactories[factory].crear("Ensayo")
 			+ MDOFactories[factory].crear("Simulacion")
 			+ MDOFactories[factory].crear("JuegoRol");
-	} else if (ETAPA === "Conceptualizacón") {
+	} else if (ETAPA === "Conceptualización") {
 		body += MDOFactories[factory].crear("Dinamica")
 			+ MDOFactories[factory].crear("Preguntas")
 			+ MDOFactories[factory].crear("Tutoria")
