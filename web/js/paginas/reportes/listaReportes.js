@@ -38,16 +38,35 @@ function responderReporte(idReporte, respuesta){
     //Respuesta: 1 = aceptado, 0 = rechazado
     var action = "responderReporte?idReporte="+idReporte+"&respuesta="+respuesta;
     
-    $.ajax({
-        type: "POST",
-        url: action,
-        success: function(data){
-            if(data.toString().indexOf("Error:") === -1){//No error
-                mensajes(data, TIPO_MENSAJE.SUCCESS);
-                $( "#frmFiltros" ).submit();
-            }else{
-                mensajes(data, TIPO_MENSAJE.DANGER);
+    BootstrapDialog.show({
+        title: 'Mensaje',
+        message: 'Si acepta el reporte se eliminaran todos los datos relacionados con el elemento, \n\
+                ¿Está seguro de eliminar este elemento?',
+        buttons: [{
+            label: 'Sí',
+            cssClass: 'btn-primary',
+            action: function(dialogItself) {
+                dialogItself.close();
+                $.ajax({
+                    type: "POST",
+                    url: action,
+                    success: function(data){
+                        if(data.toString().indexOf("Error:") === -1){//No error
+                            mensajes(data, TIPO_MENSAJE.SUCCESS);
+                            $( "#frmFiltros" ).submit();
+                        }else{
+                            mensajes(data, TIPO_MENSAJE.DANGER);
+                        }
+                    }
+                });
             }
-        }
+        }, {
+            label: 'No',
+            cssClass: 'btn-warning',
+            action: function(dialogItself){
+                dialogItself.close();
+            }
+        }]
     });
+    
 }
