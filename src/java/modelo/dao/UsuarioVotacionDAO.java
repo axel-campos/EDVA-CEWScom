@@ -20,7 +20,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdVotacion());
 			stmt.setString(2, registro.getCorreo());
-			stmt.setBoolean(3, registro.getVoto());
+			stmt.setInt(3, registro.getVersion());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -29,13 +29,13 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 
 	@Override
 	public void modificar(UsuarioVotacion viejo, UsuarioVotacion nuevo) {
-		String sql = "UPDATE UsuarioVotacion SET idVotacion = ?, correo = ?, voto = ? "
+		String sql = "UPDATE UsuarioVotacion SET idVotacion = ?, correo = ?, version = ? "
 			+ "WHERE idVotacion = ? AND correo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, nuevo.getIdVotacion());
 			stmt.setString(2, nuevo.getCorreo());
-			stmt.setBoolean(3, nuevo.getVoto());
+			stmt.setInt(3, nuevo.getVersion());
 			stmt.setInt(4, viejo.getIdVotacion());
 			stmt.setString(5, viejo.getCorreo());
 			stmt.executeUpdate();
@@ -69,7 +69,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 					return new UsuarioVotacion()
 						.setIdVotacion(rs.getInt("idVotacion"))
 						.setCorreo(rs.getString("correo"))
-						.setVoto(rs.getBoolean("voto"));
+						.setVersion(rs.getInt("version"));
 				} else
 					return null;
 			}
@@ -91,7 +91,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 				lista.add(new UsuarioVotacion()
 					.setIdVotacion(rs.getInt("idVotacion"))
 					.setCorreo(rs.getString("correo"))
-					.setVoto(rs.getBoolean("voto")));
+					.setVersion(rs.getInt("version")));
 			}
 			
 			return lista;

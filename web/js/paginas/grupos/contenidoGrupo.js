@@ -167,3 +167,25 @@ function eliminaContenido(id){
         }]
     });
 }
+
+function mostrarVotacion(idContenido){
+    
+    BootstrapDialog.show({
+        message: $('<div id="ventanaVotacion"></div>').load("verVotacion", {"idContenido": idContenido}),
+        title: "Votación por etapas",
+        buttons: [{
+            id: 'btn-info',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Listo',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitForm();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
+            }
+        }]
+    });    
+}
+

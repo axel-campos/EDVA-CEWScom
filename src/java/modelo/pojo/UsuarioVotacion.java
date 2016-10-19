@@ -10,7 +10,7 @@ public class UsuarioVotacion implements EDVADB {
 	
 	private String correo;
 	private int idVotacion;
-	private boolean voto;
+	private int version;;
 	
 	/**
 	 * Regresa el correo de usuario de este usuario-votación.
@@ -53,22 +53,22 @@ public class UsuarioVotacion implements EDVADB {
 	}
 	
 	/**
-	 * Regresa el estado de voto de este usuario-votacion.
+	 * Regresa la version por la cual voto el usuario en está etapa
 	 * 
-	 * @return El estado de voto del usuario-votacion.
+	 * @return La versión del voto.
 	 */
-	public boolean getVoto() {
-		return voto;
+	public int getVersion() {
+		return version;
 	}
 	
 	/**
-	 * Asigna un nuevo estado de voto a este usuario-votacion.
+	 * Asigna la versión por la cuál votó el usuario
 	 * 
-	 * @param voto El nuevo estado de voto.
+	 * @param version La version de la etapa por la cuál votó el usuario
 	 * @return La referencia a este usuario-votacion.
 	 */
-	public UsuarioVotacion setVoto(boolean voto) {
-		this.voto = voto;
+	public UsuarioVotacion setVersion(int version) {
+		this.version = version;
 		return this;
 	}
 }

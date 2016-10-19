@@ -211,6 +211,9 @@
         <action name="verDisqus">
 			<result>WEB-INF/contenido/verDisqus.jsp</result>
 		</action>
+        <action name="verVotacion">
+			<result>WEB-INF/contenido/verVotacion.jsp</result>
+		</action>
         
         <!-- Acciones para el menú de contenidos -->
         <action name="listarContenidos">
