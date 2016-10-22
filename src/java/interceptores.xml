@@ -214,6 +214,11 @@
         <action name="verVotacion">
 			<result>WEB-INF/contenido/verVotacion.jsp</result>
 		</action>
+        <action name="registrarVotacion" class="Actions.Contenido.RegistrarVotacionAction">
+            <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="error">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="input">WEB-INF/grupos/contenidoGrupo.jsp</result>
+        </action>
         
         <!-- Acciones para el menú de contenidos -->
         <action name="listarContenidos">

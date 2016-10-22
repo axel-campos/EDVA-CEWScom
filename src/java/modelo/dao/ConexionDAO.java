@@ -109,6 +109,35 @@ public abstract class ConexionDAO<T extends EDVADB> {
 		}
 	}
 	
+    	/**
+	 * Realiza una insetción genérica a la base de datos. La ventaja que se obtiene al usar una inserción
+     * genérica es que podremos hacer una inserción donde se incluya una consulta, además de que soporta 
+     * actualizaciones de cualquier atributo de una tupla en una entidad sin necesidad de generar totalmente
+     * el objeto a modificar
+	 * <br>
+	 * <pre><code>
+	 * boolean insercion tuplas =
+	 *   insercionGenerica("INSERT INTO alumno VALUES (1,2,3,4,5)");
+	 * 
+	 * </code></pre>
+	 * @param sql La inserción SQL a ejecutar.
+	 * @return true. Sí la inserción se ejecuto con éxito
+	 * @throws RuntimeException Si ocurrió un error al ejecutar la consulta.
+	 */
+	public boolean insercionGenerica(String sql) {
+		try {
+			Statement stmt = conn.createStatement();
+            int rs = stmt.executeUpdate(sql);
+			if(rs > 0) {
+                return true;
+			}
+			
+			return false;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+    
 	/**
 	 * Inserta un nuevo registro en la base de datos.
 	 * @param registro POJO con los datos a insertar. Debe contener la llave o llaves primarias del

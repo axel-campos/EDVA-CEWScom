@@ -144,7 +144,7 @@
                                         <% if(fechaModificacion != ""){%>
 										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(fechaVotacion != ""){%>
-                                        <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
+                                        <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
                                         <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                     </div>
