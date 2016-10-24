@@ -64,11 +64,19 @@ public class RegistrarVotacionAction extends ActionSupport implements SessionAwa
                     votacionDAO.registrar(votacion);
                 } 
             }
-            
+            String versiones[] = {etapa1, etapa2, etapa3, etapa4, etapa5};
+            for(int x = 1; x<=5; x++){
+                String queryInsercion = "INSERT INTO usuarioVotacion VALUES(" +
+                     "(SELECT idVotacion FROM votacion WHERE idContenido =  " + idContenido + " AND idEtapa = " + x + ")" +
+                     "," + idContenido + ", " + versiones[x - 1] + ")";
+                System.out.println(queryInsercion);
+                usuarioVotacionDAO.insercionGenerica(queryInsercion);
+            }
         }catch(Exception e){
-            addActionError("Hubo un error al procesar la solicitud, inténtelo de nuevo");
+            addActionError("Hubo un error al procesar la solicitud, inténtelo de nuevo.");
             return ERROR;
         }
+        addActionMessage("Se han registrado sus votos con éxito.");
         return SUCCESS;
     }
 

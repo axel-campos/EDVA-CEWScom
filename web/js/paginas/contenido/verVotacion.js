@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var form = "#votacionForm";
     var action = "registrarVotacion";
+    
     $(form).bootstrapValidator({
         autofocus: true,
         elementClass: 'fv-form',
@@ -61,6 +62,7 @@ $(document).ready(function(){
             }
         }               
     }).on('success.form.fv', function(e, data){
+        alert("Hola!!!");
         //Prevent form submission
         e.preventDefault();
         //Use Ajax to submit form data

@@ -37,11 +37,16 @@ function cambiarContenedor(numeroDiv){
 function responderReporte(idReporte, respuesta){
     //Respuesta: 1 = aceptado, 0 = rechazado
     var action = "responderReporte?idReporte="+idReporte+"&respuesta="+respuesta;
+    var mensaje = "¿Está seguro de descartar el reporte?";
+    
+    if(respuesta === 1){
+        mensaje = "Si acepta el reporte se eliminaran todos los datos relacionados con el elemento, \n\
+                ¿Está seguro de eliminar este elemento?";
+    }
     
     BootstrapDialog.show({
         title: 'Mensaje',
-        message: 'Si acepta el reporte se eliminaran todos los datos relacionados con el elemento, \n\
-                ¿Está seguro de eliminar este elemento?',
+        message: mensaje,
         buttons: [{
             label: 'Sí',
             cssClass: 'btn-primary',

@@ -52,6 +52,7 @@ public class AltaReporte extends ActionSupport implements SessionAware{
         reporte.setCausa(causa);
         reporte.setFechaReporte(now);
         if(tipoReporte == 1){   //Reporte de contenido
+            userSession.put("token", extra);
             reporte.setIdContenido(Integer.parseInt(valor));
             ret = "contenido";
         }else if(tipoReporte == 2){ //Reporte de grupo

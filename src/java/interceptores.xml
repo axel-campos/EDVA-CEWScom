@@ -167,8 +167,11 @@
                 <param name="actionName">SearchGroups</param>
                 <param name="exito">3</param>
             </result>
-            <result name="profesor">
-                /WEB-INF/grupos/homeGrupos.jsp
+            <result name="profesor" type="redirectAction">
+                <param name="actionName">ListarMiembrosAction</param>
+            </result>
+            <result name="contenido" type="redirectAction">
+                <param name="actionName">ListarMiembrosAction</param>
             </result>
         </action>
         

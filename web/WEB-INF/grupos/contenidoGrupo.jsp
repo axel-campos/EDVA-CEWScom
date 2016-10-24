@@ -147,6 +147,9 @@
                                         <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
                                         <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
+                                        <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">
+                                            <span style="font-size:16px;" class="glyphicon glyphicon-warning-sign"></span> Reportar contenido
+                                        </a>
                                     </div>
                                 </div>
                             </div>
