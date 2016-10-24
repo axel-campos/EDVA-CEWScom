@@ -5,7 +5,7 @@
 <%
     String token = request.getParameter("token");
     String tipo = "Guardar";
-    String id = "", readonly = "";
+    String id = "";
     String titulo = "", tema = "", descripcion = "";
     if(request.getParameter("id") != null){
         id = request.getParameter("id").toString();
@@ -17,7 +17,6 @@
         titulo = contenido.getTitulo();
         tema = contenido.getTema();
         descripcion = contenido.getDescripcion();
-        readonly = "readonly";
     }
 %>
 <!DOCTYPE html>
@@ -35,7 +34,7 @@
                         <div class="form-group has-feedback">
                             <label for="titulo" class="col-md-4 control-label">Titulo:</label>
                             <div class="col-md-6">
-                                <input type="text" <%= readonly%> id="titulo" name="titulo" class="form-control" value="<%= titulo%>"/>
+                                <input type="text" id="titulo" name="titulo" class="form-control" value="<%= titulo%>"/>
                                 <i class="glyphicon glyphicon-list-alt form-control-feedback"></i>
                             </div>
                         </div>

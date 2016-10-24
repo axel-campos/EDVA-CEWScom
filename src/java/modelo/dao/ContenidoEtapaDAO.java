@@ -36,7 +36,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 	public void modificar(ContenidoEtapa viejo, ContenidoEtapa nuevo) {
 		String sql = "UPDATE ContenidoEtapa SET idContenido = ?, version = ?, idEtapa = ?, "
 			+ "tiempoModificacion = ?, rutaRecursos = ?, liberado = ? "
-			+ "WHERE idContenido = ? AND version = ? AND idContenido = ?";
+			+ "WHERE idContenido = ? AND version = ? AND idEtapa = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, nuevo.getIdContenido());

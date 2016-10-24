@@ -92,10 +92,12 @@ function cambiarContenedor(numeroDiv){
     $("#contenedorContenidos").html(divs[numeroDiv - 1]);
 }
 
-function cargarFormulario(id){
+function cargarFormulario(id, etapa, version){
     //var token = $("#token").val();
+    if(etapa === "null"){etapa = "";}
+    if(version === "null"){version = "";}
     BootstrapDialog.show({
-        message: $('<div id="ventana"></div>').load("cargaEtapas", {"idContenido": id}),
+        message: $('<div id="ventana"></div>').load("cargaEtapas", {"idContenido": id, etapa: etapa, version: version}),
         title: "Establecer tiempo de modificación",
         buttons: [{
             id: 'btn-cancel',   
@@ -151,6 +153,34 @@ function eliminaContenido(id){
             action: function(dialogItself) {
                 dialogItself.close();
                 $.post("eliminarContenido",{id: id}).done(function(data){
+                    cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                    var target = "#contenidoGrupo";
+                    $(target).html(data);
+                });
+                
+                
+            }
+        }, {
+            label: 'No',
+            cssClass: 'btn-warning',
+            action: function(dialogItself){
+                dialogItself.close();
+            }
+        }]
+    });
+}
+
+function terminaVersion(id, etapa, version){
+    var token = $("#token").val();
+    BootstrapDialog.show({
+        title: 'Mensaje',
+        message: '¿Está seguro de terminar el tiempo de esta versión?',
+        buttons: [{
+            label: 'Sí',
+            cssClass: 'btn-primary',
+            action: function(dialogItself) {
+                dialogItself.close();
+                $.post("terminaVersion",{"idContenido": id, etapa: etapa, version: version}).done(function(data){
                     cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
                     var target = "#contenidoGrupo";
                     $(target).html(data);

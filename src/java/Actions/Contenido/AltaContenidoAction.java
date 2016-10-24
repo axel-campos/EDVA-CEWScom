@@ -61,12 +61,13 @@ public class AltaContenidoAction extends ActionSupport {
                     return INPUT;
                 }
                 contenidoDAO.registrar(contenido);
+                /*
                 //Ahora creamos las cinco carpetas en DropBox
                 FilePersistence persistence = new DropboxPersistence();				
                 String ruta = "/" + token + "/" + titulo.replace(" ", "");
                 for(int it = 1; it <= 5; it++){
                     persistence.crearCarpeta(ruta + "/" + it);
-                }
+                }*/
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }
