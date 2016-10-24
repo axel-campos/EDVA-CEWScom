@@ -71,7 +71,6 @@ public class AltaContenidoAction extends ActionSupport {
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }
-            //addActionMessage("El contenido didáctico " + titulo + " se " + accion + ".");
             type = "success";
             message = "El contenido didáctico <b>" + titulo + "</b> se " + accion + ".";
             contenidoDAO.desconectar();

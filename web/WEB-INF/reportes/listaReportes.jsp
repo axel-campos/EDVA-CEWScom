@@ -21,7 +21,7 @@
     String correo = "";
     String tema = "";
     String titulo = "";
-    String s = "";
+    String s = "", s1 = "", s2 = "";
     String where = "";
     String checked = "checked";
     if(request.getParameter("token") != null && !request.getParameter("token").trim().isEmpty()){
@@ -47,11 +47,11 @@
     if(request.getParameter("tipo") != null && Integer.parseInt(request.getParameter("tipo")) != 0){
         tipo = Integer.parseInt(request.getParameter("tipo"));
         if(tipo == 1){  //Profesores
-            where = "WHERE !ISNULL(correo)";
+            where = "WHERE !ISNULL(r.correo)";
         }else if(tipo == 2){    //Contenidos
-            where = "WHERE !ISNULL(idContenido)";
+            where = "WHERE !ISNULL(r.idContenido)";
         }else if(tipo == 3){    //Grupos
-            where = "WHERE !ISNULL(token)";
+            where = "WHERE !ISNULL(r.token)";
         }
     }
     if(request.getParameter("atendido") == null || request.getParameter("atendido").trim().isEmpty()){
@@ -87,10 +87,10 @@
                         <option value="0">Todos los tipos</option>
                         <% if(tipo == 1){s = "selected"; } %>
                         <option value="1" <%=s%>>Profesores</option>
-                        <% if(tipo == 2){s = "selected"; } %>
-                        <option value="2" <%=s%>>Contenidos</option>
-                        <% if(tipo == 3){s = "selected"; } %>
-                        <option value="3" <%=s%>>Grupos</option>
+                        <% if(tipo == 2){s1 = "selected"; } %>
+                        <option value="2" <%=s1%>>Contenidos</option>
+                        <% if(tipo == 3){s2 = "selected"; } %>
+                        <option value="3" <%=s2%>>Grupos</option>
                     </select>
             </div>
             <div class="form-group col-md-2">

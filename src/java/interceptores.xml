@@ -167,8 +167,11 @@
                 <param name="actionName">SearchGroups</param>
                 <param name="exito">3</param>
             </result>
-            <result name="profesor">
-                /WEB-INF/grupos/homeGrupos.jsp
+            <result name="profesor" type="redirectAction">
+                <param name="actionName">ListarMiembrosAction</param>
+            </result>
+            <result name="contenido" type="redirectAction">
+                <param name="actionName">ListarMiembrosAction</param>
             </result>
         </action>
         
@@ -215,6 +218,14 @@
         <action name="verDisqus">
 			<result>WEB-INF/contenido/verDisqus.jsp</result>
 		</action>
+        <action name="verVotacion">
+			<result>WEB-INF/contenido/verVotacion.jsp</result>
+		</action>
+        <action name="registrarVotacion" class="Actions.Contenido.RegistrarVotacionAction">
+            <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="error">WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result name="input">WEB-INF/grupos/contenidoGrupo.jsp</result>
+        </action>
         
         <!-- Acciones para el menú de contenidos -->
         <action name="listarContenidos">

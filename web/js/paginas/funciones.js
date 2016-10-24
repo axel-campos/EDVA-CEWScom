@@ -88,3 +88,51 @@ function mensajes(mensaje, tipo){
         message: mensaje
     });     
 }
+
+/**
+* Permite crear un reporte de cualquier tipo
+* 
+* @param {int} tipoReporte 1 = contenido, 2 = grupos, 3 = profesor
+* @param {valor} valor Si es el contenido este valor es el idContenido, para grupos token y para profesor correo
+* @param {extra} extra 
+* @return 
+*/
+function crearReporte(tipoReporte, valor, extra){
+    BootstrapDialog.show({
+        message: $('<div id="ventana"></div>').load("CrearReporte?tipoReporte=" + tipoReporte + "&valor=" + valor + "&extra=" + extra),
+        title: "Crear nuevo reporte",
+        buttons: [{
+            id: 'btn-success',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Crear',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitForm2();
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                    mensajes("El reporte se ha creado con éxito", 3);
+                }
+            }
+        },{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+                mensajes("Hubo un problema al crear el reporte", 4);
+            }
+        }]
+    });
+}
+
+function submitForm2(){
+    var form = "#reporte";
+    $(form).bootstrapValidator().bootstrapValidator('validate');
+    //La magia se hace en el archivo altaGrupo.js
+    var respuesta = $(form).data("bootstrapValidator").isValid();
+    return respuesta; //Nos regresará si el formulario estaba correcto o no.
+}
+

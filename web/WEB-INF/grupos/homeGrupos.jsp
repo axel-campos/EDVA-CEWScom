@@ -14,7 +14,8 @@
         descripcion = grupo.getDescripcion();
         noProfesores = grupo.getTotalProfesores();
         session.removeAttribute("token");
-    }    
+    }  
+    String url = "contenidoGrupo.jsp?token=" + token;
     
 %>
 <!DOCTYPE html>
@@ -85,7 +86,7 @@
             </div>
         </nav>
         <div class="main" id="contenidoGrupo">
-            <%@include file="contenidoGrupo.jsp"%>
+            <jsp:include page='<%=url%>' />
         </div>
             
     </body>
