@@ -111,7 +111,9 @@ function crearReporte(tipoReporte, valor, extra){
                 var resultado = submitForm2();
                 if(resultado){//true, quiere decir que todo bien
                     dialogRef.close();
-                    mensajes("El reporte se ha creado con éxito", 3);
+                    if(tipoReporte != 2){
+                        mensajes("El reporte se ha creado con éxito", 3);
+                    }   
                 }
             }
         },{
@@ -122,7 +124,6 @@ function crearReporte(tipoReporte, valor, extra){
             autospin: false,
             action: function(dialogRef){    
                 dialogRef.close();
-                mensajes("Hubo un problema al crear el reporte", 4);
             }
         }]
     });
