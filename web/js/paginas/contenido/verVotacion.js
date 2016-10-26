@@ -23,46 +23,8 @@ $(document).ready(function(){
             localeChanged: 'changed.locale.fv',
             validatorError: 'err.validator.fv',
             validatorSuccess: 'success.validator.fv'
-        },
-        fields: {
-            etapa1: {
-                validators: {
-                    notEmpty: {
-                        message: "Por favor, seleccione una versión para la etapa 1."
-                    }
-                }
-            },
-            etapa2: {
-                validators: {
-                    notEmpty: {
-                        message: "Por favor, seleccione una versión para la etapa 2."
-                    }
-                }
-            },
-            etapa3: {
-                validators: {
-                    notEmpty: {
-                        message: "Por favor, seleccione una versión para la etapa 3."
-                    }
-                }
-            },
-            etapa4: {
-                validators: {
-                    notEmpty: {
-                        message: "Por favor, seleccione una versión para la etapa 4."
-                    }
-                }
-            },
-            etapa5: {
-                validators: {
-                    notEmpty: {
-                        message: "Por favor, seleccione una versión para la etapa 5."
-                    }
-                }
-            }
-        }               
+        }              
     }).on('success.form.fv', function(e, data){
-        alert("Hola!!!");
         //Prevent form submission
         e.preventDefault();
         //Use Ajax to submit form data
@@ -72,13 +34,27 @@ $(document).ready(function(){
             url: action,
             data: datos,
             success: function(data){
-                mensajes("Éxito al registrar su votación", TIPO_MENSAJE.SUCCESS);
+                var token = $("#token").val();
+                //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
+                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                var target = "#contenidoGrupo";
+                $(target).html(data);
             },
             error: function(data){
-                mensajes("Hubo un problema al registrar la votación, inténtelo de nuevo", TIPO_MENSAJE.WARNING);
+                var token = $("#token").val();
+                //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
+                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                var target = "#contenidoGrupo";
+                $(target).html(data);
             }
         });
     });
 });
+
+function modificarVotacion(){
+    $("#principalVotacion").show();
+    $("#btn-info").show();
+    $("#modificarVoto").html($("#principalVotacion"));
+}
 
 

@@ -207,7 +207,7 @@ function mostrarVotacion(idContenido){
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){
-                var resultado = submitForm("#votacionForm");
+                var resultado = submitFormGeneral("#votacionForm");
                 if(resultado){//true, quiere decir que todo bien
                     dialogRef.close();
                 }

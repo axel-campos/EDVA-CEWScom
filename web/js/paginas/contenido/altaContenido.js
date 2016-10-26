@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var form = "#altaContenido";
     var action = "crearContenido";
+    
     $(form).bootstrapValidator({
         autofocus: true,
         elementClass: 'fv-form',
