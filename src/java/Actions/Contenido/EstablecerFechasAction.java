@@ -60,9 +60,9 @@ public class EstablecerFechasAction extends ActionSupport  {
                 out.print("Exito");
                 contEtapaDAO.desconectar();
 				
-                /*FilePersistence persistence = new DropboxPersistence();
+                FilePersistence persistence = new DropboxPersistence();
 				persistence.crearCarpeta(ruta);
-				persistence.crearJsonVacio(ruta);*/
+				persistence.crearJsonVacio(ruta);
             } else {
                 out.print("Fecha");
                 contEtapaDAO.desconectar();
