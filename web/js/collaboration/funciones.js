@@ -1,12 +1,4 @@
 $(document).ready(function () {    
-    var targetDiv = "#" + ETAPA + "PanelBody";
-    var MDOfactory = ETAPA + "Factory";
-
-    console.log(targetDiv + "::" + MDOfactory);
-    
-    populate(targetDiv, MDOfactory);
-    agregarDragAndDrop(targetDiv, MDOfactory);
-	recrearTimeline(MDOfactory, ARTEFACTOS);
 
     $("#btnGuardar").click(function () {
         var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
@@ -154,4 +146,16 @@ function populate(selector , nombreFabrica) {
     lista.forEach(function (e) {
         body.append(e);
     });
+}
+
+function initWorkspace()
+{
+    var targetDiv = "#" + ETAPA + "PanelBody";
+    var MDOfactory = ETAPA + "Factory";
+
+    console.log(targetDiv + "::" + MDOfactory);
+    
+    populate(targetDiv, MDOfactory);
+    agregarDragAndDrop(targetDiv, MDOfactory);
+	recrearTimeline(MDOfactory, ARTEFACTOS);
 }
