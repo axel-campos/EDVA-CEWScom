@@ -22,6 +22,11 @@ public class ListarMiembros extends ActionSupport implements interceptor.Authent
     private boolean esAdministrador = false;
     @Override
     public String execute() throws Exception {
+        
+        if(userSession.get("token") != null){
+            this.token = (String)userSession.get("token");
+            this.usuario = (Usuario)userSession.get("usuario");
+        }
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
         usuarioGrupoDAO.conectar();
         results = new ArrayList();

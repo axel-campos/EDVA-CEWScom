@@ -162,7 +162,7 @@ var MDOUtil = (function() {
 				var titulo = inputs[1].value;
 				var descripcion = inputs[2].value;
 				var nombre = inputs[3].value;
-				inputs = contenido.eq(2).children("input");;
+				inputs = contenido.eq(2).children("input");
 				var anyo = inputs[0].value;
 				var mes = inputs[1].value;
 				var dia = inputs[2].value;
@@ -399,30 +399,77 @@ var MDOUtil = (function() {
 	 * deben ser de la clase .mdo-[etapa]-[artefacto]
 	 * 
 	 * @param {Array} nodeArray Un arreglo JavaScript de objetos DOM Node.
-	 * @param {string} etapa El nombre de la etapa en construcción.
-	 * @param {string} contenido El nombre del contenido didáctico en construcción.
-	 * @param {string} token El token del grupo creador de este contenido didáctico.
-	 * @returns {Object} Un objeto que contiene una lista de objetos-artefacto. El primer
-	 * objeto de esta lista siempre contendrá los últimos tres parámetros de esta función.
+	 * @param {string} ruta La ruta donde se almacenarán los artefactos.
+	 * @returns {Object} Una lista de objetos-artefacto.
 	 */
-	function _getListaArtefactos(nodeArray, etapa, contenido, token) {
-		var artefactos = nodeArray.map(function(e) {
+	function _getListaArtefactos(nodeArray, ruta) {
+		return nodeArray.map(function(e) {
 			return _parseNode(e);
 		});
-		
-		artefactos.unshift({
-			etapa: etapa,
-			contenido: contenido,
-			token: token
-		});
-		
-		return {
-			artefactos: artefactos
-		};
 	}
 	
 	return {
 		parseNodeList: _parseNodeList,
 		getListaArtefactos: _getListaArtefactos
+	};
+})();
+
+var MDOTimeline = (function() {
+	var MDOParser = (function() {
+		var _VivenciaParser = (function() {
+			
+		})();
+		
+		var _ConceptualizacionParser = (function() {
+			
+		})();
+		
+		var _DocumentacionParser = (function() {
+			
+		})();
+		
+		var _AplicacionParser = (function() {
+			
+		})();
+		
+		var _AmpliacionParser = (function() {
+			
+		})();
+		
+		return {
+			VivenciaParser: _VivenciaParser,
+			ConceptualizacionParser: _ConceptualizacionParser,
+			DocumentacionParser: _DocumentacionParser,
+			AplicacionParser: _AplicacionParser,
+			AmpliacionParser: _AmpliacionParser
+		};
+	})();
+	
+	/**
+	 * Convierte un objeto JavaScript en un nodo HTML,
+	 * de acuerdo a su etapa
+	 * 
+	 * @returns {undefined}
+	 */
+	function _parseNode() {
+		
+	}
+	
+	/**
+	 * Convierte los artefactos dados en nodos HTML
+	 * que puedan insertarse directamente en el timeline.
+	 * 
+	 * @param {array} artefactos Un arreglo de objetos JavaScript,
+	 * donde cada uno contiene un artefacto de la etapa.
+	 * @returns {array} Un arreglo de nodos HTML, cada uno 
+	 * contiene la información.
+	 */
+	function _obtenerNodos(artefactos) {
+		
+	}
+	
+	return {
+		parseNode: _parseNode,
+		obtenerNodos: _obtenerNodos
 	};
 })();

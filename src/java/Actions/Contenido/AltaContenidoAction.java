@@ -2,8 +2,8 @@ package Actions.Contenido;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
-import javax.servlet.http.HttpServletRequest;
 import model.mdo.DropboxPersistence;
+import model.mdo.FilePersistence;
 import modelo.dao.ContenidoDAO;
 import modelo.pojo.Contenido;
 import org.apache.struts2.ServletActionContext;
@@ -43,7 +43,7 @@ public class AltaContenidoAction extends ActionSupport {
         String accion = "";
         Contenido contenido = new Contenido();
         Contenido viejo = new Contenido();
-        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion);
+        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion).setIdContenido(Integer.parseInt(id));
         if(tipo.equals("Guardar")){//Registrar            
             accion = "guardó";
         }else{//Modificar
@@ -61,16 +61,16 @@ public class AltaContenidoAction extends ActionSupport {
                     return INPUT;
                 }
                 contenidoDAO.registrar(contenido);
+                /*
                 //Ahora creamos las cinco carpetas en DropBox
+                FilePersistence persistence = new DropboxPersistence();				
                 String ruta = "/" + token + "/" + titulo.replace(" ", "");
-                HttpServletRequest request = ServletActionContext.getRequest();
                 for(int it = 1; it <= 5; it++){
-                    new DropboxPersistence(request.getServletContext().getRealPath("/plantillas")).crearCarpeta(ruta + "/" + it);
-                }
+                    persistence.crearCarpeta(ruta + "/" + it);
+                }*/
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }
-            //addActionMessage("El contenido didáctico " + titulo + " se " + accion + ".");
             type = "success";
             message = "El contenido didáctico <b>" + titulo + "</b> se " + accion + ".";
             contenidoDAO.desconectar();

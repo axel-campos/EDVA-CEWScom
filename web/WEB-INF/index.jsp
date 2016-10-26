@@ -21,13 +21,15 @@
         <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/miSidebar.css" type="text/css">
+        <link href="${pageContext.request.contextPath}/css/miSidebar.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/css/ekko-lightbox.min.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/css/cargando.css" rel="stylesheet" type="text/css"/>
 
         <%-- JS resources  --%>
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>   
+        <script src="${pageContext.request.contextPath}/js/bootstrap/ekko-lightbox.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-config.js"></script>
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-min.js" type="text/javascript"></script>

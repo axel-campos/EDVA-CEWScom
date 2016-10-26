@@ -31,6 +31,18 @@ public interface FilePersistence {
 	void crearJsonVacio(String ruta);
 	
 	/**
+	 * Sube el archivo JSON a la carpeta del contenido didáctico. El JSON debe estar compuesto
+	 * de dos elementos: la ruta del contenido y un arreglo con los artefactos a subir. La ruta
+	 * del contenido debe tener la siguiente estructura jerárquica:
+	 * [Grupo] -> [Contenido] -> [Etapa] -> [Versión].
+	 * 
+	 * @param json El JSON formado y recibido desde el cliente. Debe contener la ruta del
+	 * contenido didáctico y el arreglo con los artefactos a guardar.
+	 * @throws RuntimeException Si ocurre algún error al momento de almacenar el archivo JSON.
+	 */
+	void guardarJson(String json);
+	
+	/**
 	 * Descarga el archivo JSON con los artefactos dentro de la carpeta del contenido didáctico.
 	 * La ruta del contenido debe tener la siguiente estructura jerárquica:
 	 * [Grupo] -> [Contenido] -> [Etapa] -> [Versión].
@@ -59,4 +71,12 @@ public interface FilePersistence {
 	 * @throws RuntimeException Si ocurre algún error al momento de descargar el contenido.
 	 */
 	Map<String, Object> descargar(Map<String, Object> detallesContenido);
+    
+    /**
+     * Borra una carpeta
+     * 
+     * @param ruta La ruta de la carpeta a ser borrada.
+     * @throws RuntimeException Si ocurre un error al momento de borrar la carpeta
+     */
+    void borrarCarpeta(String ruta);
 }

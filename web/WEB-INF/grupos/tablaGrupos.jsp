@@ -55,12 +55,12 @@
     <body>
     <div id="contenedor1" class="container-fluid">
         <s:if test="hasActionMessages()">
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="msjExito" style="display: none;">
                 <s:actionmessage />
             </div>
         </s:if>
         <s:if test="hasActionErrors()">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" id="msjError" style="display: none">
                 <s:actionerror />
             </div>
         </s:if>
@@ -130,7 +130,7 @@
                                 <span class="glyphicon glyphicon-trash" style="min-width: 20px; min-height: 20px"></span></a>    
                             </s:if></td>
                             <td>
-                                <a onclick<s:property value="%{#resultado[3]}"/>="crearReporte('2','');" class="btn btn-link">
+                                <a onclick="crearReporte('2','<s:property value="%{#resultado[3]}"/>','');" class="btn btn-link">
                                     <span class="glyphicon glyphicon-warning-sign" style="min-width: 20px; min-height: 20px"></span>
                                 </a>
                             </td>

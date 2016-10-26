@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    var form = "#altaContenido";
-    var action = "crearContenido";
+    var form = "#votacionForm";
+    var action = "registrarVotacion";
+    
     $(form).bootstrapValidator({
         autofocus: true,
         elementClass: 'fv-form',
@@ -24,37 +25,44 @@ $(document).ready(function(){
             validatorSuccess: 'success.validator.fv'
         },
         fields: {
-            titulo: {
+            etapa1: {
                 validators: {
                     notEmpty: {
-                        message: "Por favor, ingrese el titulo del contenido."
-                    },
-                    stringLength:{
-                        max: 20,
-                        message: 'La cantidad máxima de letras para el título es de 20.'
+                        message: "Por favor, seleccione una versión para la etapa 1."
                     }
                 }
             },
-            tema:{
-                validators:{
-                    stringLength:{
-                        min: 0,
-                        max: 20,
-                        message: 'La cantidad máxima de letras para el tema es de 20.'
+            etapa2: {
+                validators: {
+                    notEmpty: {
+                        message: "Por favor, seleccione una versión para la etapa 2."
                     }
                 }
             },
-            descripcion: {
-                validators:{
-                    stringLength:{
-                        min: 0,
-                        max: 100,
-                        message: 'La cantidad máxima de letras para la descripción es de 100.'
+            etapa3: {
+                validators: {
+                    notEmpty: {
+                        message: "Por favor, seleccione una versión para la etapa 3."
+                    }
+                }
+            },
+            etapa4: {
+                validators: {
+                    notEmpty: {
+                        message: "Por favor, seleccione una versión para la etapa 4."
+                    }
+                }
+            },
+            etapa5: {
+                validators: {
+                    notEmpty: {
+                        message: "Por favor, seleccione una versión para la etapa 5."
                     }
                 }
             }
         }               
     }).on('success.form.fv', function(e, data){
+        alert("Hola!!!");
         //Prevent form submission
         e.preventDefault();
         //Use Ajax to submit form data
@@ -64,12 +72,13 @@ $(document).ready(function(){
             url: action,
             data: datos,
             success: function(data){
-                var token = $("#token").val();
-                //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
-                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
-                var target = "#contenidoGrupo";
-                $(target).html(data);
+                mensajes("Éxito al registrar su votación", TIPO_MENSAJE.SUCCESS);
+            },
+            error: function(data){
+                mensajes("Hubo un problema al registrar la votación, inténtelo de nuevo", TIPO_MENSAJE.WARNING);
             }
         });
     });
 });
+
+

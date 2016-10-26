@@ -3,7 +3,8 @@ package model.mdo;
 import org.apache.commons.io.FileUtils;
 import com.dropbox.core.*;
 import com.dropbox.core.v2.*;
-import com.dropbox.core.v2.files.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,6 +24,7 @@ public final class DropboxPersistence implements FilePersistence {
     private final String ACCESS_TOKEN = "_vjkq--5dsAAAAAAAAAANaKwM5NYC9M2wAjk0cFSzKVhGI_Jxi7KNvQucdAvHvQU";  
 	private final DbxRequestConfig config;
 	private final DbxClientV2 client;
+	private final Gson gson = new Gson();
 	private final String realPath;
 	
 	/**
@@ -79,6 +81,19 @@ public final class DropboxPersistence implements FilePersistence {
 			throw new RuntimeException(e);
 		}
 		
+	}
+	
+	@Override
+	public void guardarJson(String json) {
+		try {
+			Map<String, Object> map = obtenerMapaDeJson(json);
+			String ruta = (String)map.get("ruta");
+			List<Map<String, Object>> artefactos = (List<Map<String, Object>>)map.get("lista");
+			String nuevoJson = String.format("{\"artefactos\":%s}", gson.toJson(artefactos));
+			subirArchivoTexto(ruta, "artefactos.json", nuevoJson);
+		} catch (DbxException | IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@Override
@@ -150,4 +165,28 @@ public final class DropboxPersistence implements FilePersistence {
 		FileUtils.deleteDirectory(new File(appRoot + token));
 		return file;
 	}
+	
+	/**
+	 * Regresa un mapa con el contenido del JSON dado.
+	 * 
+	 * @param json Cadena de texto con los artefactos obtenidos desde el cliente.
+	 * @return Un mapa con los artefactos del JSON.
+	 */
+	private Map<String, Object> obtenerMapaDeJson(String json) {
+		return (
+			(Map<String, Map<String, Object>>)gson
+				.fromJson(json, new TypeToken<Map<String, Object>>(){}.getType())
+		).get("artefactos");
+	}
+	
+	
+
+    @Override
+    public void borrarCarpeta(String ruta) {
+        try {
+			client.files().delete(ruta);
+		} catch (DbxException e) {
+			throw new RuntimeException(e);
+		}
+    }
 }

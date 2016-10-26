@@ -53,7 +53,13 @@
         <action name="cargaVersiones" class="Actions.Contenido.EstablecerFechasAction" method="cargaVersiones">
             <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
         </action>
+        <action name="cargaVersionEditar" class="Actions.Contenido.EstablecerFechasAction" method="cargaVersionParaEditar">
+            <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
+        </action>
         <action name="registraVersion" class="Actions.Contenido.EstablecerFechasAction">
+            <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
+        </action>
+        <action name="modificaVersion" class="Actions.Contenido.EstablecerFechasAction" method="editaVersion">
             <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
         </action>
     </package>
