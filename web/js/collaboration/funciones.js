@@ -6,37 +6,53 @@ $(document).ready(function () {
     
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
-	recrearTimeline(MDOfactory, ARTEFACTOS);
+	recrearTimeline(ARTEFACTOS);
 
-	/**
-	 * ************************************************
-	 * VERSIÓN DE PRUEBA PARA PERSISTENCIA.
-	 * Todos las fábricas abstractas de los artefactos (junto con sus parsers) de las 5 etapas
-	 * deben estar terminados para el correcto funcionamiento de este botón.
-	 */
     $("#btnGuardar").click(function () {
-        //var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
-		var listaArtefactos = [];
-        $("#header .alert").remove();
+        var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
 		
-		if (listaArtefactos.length > -1) {
+		if (listaArtefactos.length > 0) {
 			var artefactos = {
 				artefactos: {
 					ruta: RUTA_PERSISTENCIA,
-					lista: MDOUtil.getListaArtefactos(listaArtefactos, RUTA_PERSISTENCIA)
+					lista: MDOUtil.getListaArtefactos(listaArtefactos)
 				}
 			};
+			
 			console.log(artefactos);
 			$.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
 				artefactos: JSON.stringify(artefactos)
 			}, function(response) {
-				console.log(response);
-				$("#header").append("\
-					<div class='alert " + (response.estatus ? "alert-success" : "alert-danger") + "'>\n\
-						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>\n\
-						" + response.message + "\n\
-					</div>"
-				);
+				
+				if (response.estatus) {
+					BootstrapDialog.show({
+						title: "Progreso Guardado",
+						message: response.message,
+						type: BootstrapDialog.TYPE_SUCCESS,
+						buttons: [{
+							label: "Continuar Colaborando",
+							icon: "glyphicon glyphicon-ok-circle",
+							cssClass: "btn-success",
+							action: function(dialog) {
+								dialog.close();
+							}
+						}]
+					});
+				} else {
+					BootstrapDialog.show({
+						title: "Error al Guardar Progreso",
+						message: response.message,
+						type: BootstrapDialog.TYPE_DANGER,
+						buttons: [{
+							label: "Cerrar",
+							icon: "glyphicon glyphicon-remove-circle",
+							cssClass: "btn-danger",
+							action: function(dialog) {
+								dialog.close();
+							}
+						}]
+					});
+				}
 			});
 		}
     });
@@ -45,49 +61,13 @@ $(document).ready(function () {
 /**
  * Recrea la línea del tiempo a partir de los artefactos obtenidos del servidor.
  * 
- * @param {string} factory El nombre de la fábrica abstracta a utilizar.
  * @param {object} artefactos Los artefactos recuperados del servidor.
  */
-function recrearTimeline(factory, artefactos) {
-	var body = "<li class='year'>" + ETAPA + "</li>";
-		
-	if (ETAPA === "Vivencias") {
-		body += MDOFactories[factory].crear("Observacion")
-			+ MDOFactories[factory].crear("Visita")
-			+ MDOFactories[factory].crear("Demostracion")
-			+ MDOFactories[factory].crear("Ensayo")
-			+ MDOFactories[factory].crear("Simulacion")
-			+ MDOFactories[factory].crear("JuegoRol");
-	} else if (ETAPA === "Conceptualización") {
-		body += MDOFactories[factory].crear("Dinamica")
-			+ MDOFactories[factory].crear("Preguntas")
-			+ MDOFactories[factory].crear("Tutoria")
-			+ MDOFactories[factory].crear("LluviaIdeas")
-			+ MDOFactories[factory].crear("GrupoEstudio");
-	} else if (ETAPA === "Documentación") {
-		body += MDOFactories[factory].crear("Pelicula")
-			+ MDOFactories[factory].crear("Video")
-			+ MDOFactories[factory].crear("Libro")
-			+ MDOFactories[factory].crear("ArticuloWeb")
-			+ MDOFactories[factory].crear("ArticuloPDF")
-			+ MDOFactories[factory].crear("Revista");
-	} else if (ETAPA === "Aplicación") {
-		body += MDOFactories[factory].crear("EstudioCasos")
-			+ MDOFactories[factory].crear("MarcoLogico")
-			+ MDOFactories[factory].crear("MapaConceptual")
-			+ MDOFactories[factory].crear("ArbolProblemas")
-			+ MDOFactories[factory].crear("ProyectoInvestigacion")
-			+ MDOFactories[factory].crear("ProyectoProduccion")
-			+ MDOFactories[factory].crear("Ejercicios");
-	} else {
-		body += MDOFactories[factory].crear("Conferencia")
-			+ MDOFactories[factory].crear("MesaRedonda")
-			+ MDOFactories[factory].crear("Panel")
-			+ MDOFactories[factory].crear("Simposio")
-	}
+function recrearTimeline(artefactos) {
+	var lista = artefactos.artefactos;
+	var body = MDOTimeline.obtenerNodos(lista).join("");
 	
-	
-	$("#contenidoDidacticoBody").html(body);
+	$("#contenidoDidacticoBody").append(body);
 }
 
 /**
@@ -132,18 +112,6 @@ function agregarDragAndDrop(selector, nombreFabrica) {
     }).on("shadow", function (el, container) {
         updateTogetherJS("#contenidoDidacticoBody");
     });
-}
-
-/**
- * Rellena los selectores de artefactos de todas las etapas MDO.
- * OJO: ESTA FUNCIÓN ES ÚNICAMENTE DE PRUEBA Y NO IRÁ EN PRODUCCIÓN.
- */
-function populateArtefactos() {
-    populate("VivenciasFactory", "#VivenciasPanelBody");
-    populate("ConceptualizacionFactory", "#conceptualizacionPanelBody");
-    populate("DocumentacionFactory", "#documentacionPanelBody");
-    populate("AplicacionFactory", "#aplicacionPanelBody");
-    populate("AmpliacionFactory", "#ampliacionPanelBody");
 }
 
 /**

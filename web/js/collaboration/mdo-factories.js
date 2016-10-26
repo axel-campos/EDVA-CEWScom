@@ -1,57 +1,85 @@
 var MDOFactories = (function() {
 	var _VivenciaFactory = (function() {
 		function Observacion() {
-			return "<div class='mdo-vivencia-observacion panel panel-success'>\n\
-						<div class='panel-heading'><strong>Observación</strong></div>\n\
-						<div class='panel-body'>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-vivencia-observacion event'>\n\
+						<h2 class='heading'>Observación</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Pregunta:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Fenómeno a observar:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Posible explicación:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Posible resultado:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
+					</li>";
 		}
 		
 		function Visita() {
-			return "<div class='mdo-vivencia-visita panel panel-success'>\n\
-						<div class='panel-heading'><strong>Visita</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-vivencia-visita event'>\n\
+						<h2 class='heading'>Visita</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Lugar a visitar:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática del lugar:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Propósito:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
+					</li>";
 		}
 		
 		function Demostracion() {
-			return "<div class='mdo-vivencia-demostracion panel panel-success'>\n\
-						<div class='panel-heading'><strong>Demostración</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-vivencia-demostracion event'>\n\
+						<h2 class='heading'>Demostración</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivo:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Material necesario:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Procedimiento:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
+					</li>";
 		}
 		
 		function Ensayo() {
-			return "<div class='mdo-vivencia-ensayo panel panel-success'>\n\
-						<div class='panel-heading'><strong>Ensayo</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-vivencia-ensayo event'>\n\
+						<h2 class='heading'>Ensayo</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Requisitos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Tiempo de realización:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
+					</li>";
 		}
 		
 		function Simulacion() {
-			return "<div class='mdo-vivencia-simulacion panel panel-success'>\n\
-						<div class='panel-heading'><strong>Simulación</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
-		}
-
-		function JuegoRol() {
-			return "<div class='mdo-vivencia-juegorol panel panel-success'>\n\
-						<div class='panel-heading'><strong>Juego de Rol</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-vivencia-simulacion event'>\n\
+						<h2 class='heading'>Simulación</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Roles:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Material necesario:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Procedimiento:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
+					</li>";
 		}
 		
 		function _crear(tipo) {
@@ -65,8 +93,6 @@ var MDOFactories = (function() {
 				return Ensayo();
 			else if(tipo === "Simulacion")
 				return Simulacion();
-			else if (tipo === "JuegoRol")
-				return JuegoRol();
 			else
 				return null;
 		}
@@ -77,8 +103,7 @@ var MDOFactories = (function() {
 				"<div class='Visita'><div class='box box2 shadow1'><h5>Visita</h5></div></div>",
 				"<div class='Demostracion'><div class='box box2 shadow1'><h5>Demostración</h5></div></div>",
 				"<div class='Ensayo'><div class='box box3 shadow1'><h5>Ensayo</h5></div></div>",
-				"<div class='Simulacion'><div class='box box4 shadow1'><h5>Simulación</h5></div></div>",
-				"<div class='JuegoRol'><div class='box box5 shadow1'><h5>Juego de Rol</h5></div></div>"
+				"<div class='Simulacion'><div class='box box4 shadow1'><h5>Simulación</h5></div></div>"
 			];
 		}
 
@@ -90,48 +115,43 @@ var MDOFactories = (function() {
 	
 	var _ConceptualizacionFactory = (function() {
 		function Dinamica() {
-			return "<div class='mdo-conceptualizacion-dinamica panel panel-warning'>\n\
-						<div class='panel-heading'><strong>Dinámica</strong></div>\n\
-						<div class='panel-body'>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-conceptualizacion-dinamica event'>\n\
+						<h2 class='heading'>Dinámica</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function Preguntas() {
-			return "<div class='mdo-conceptualizacion-preguntas panel panel-warning'>\n\
-						<div class='panel-heading'><strong>Preguntas</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-conceptualizacion-preguntas event'>\n\
+						<h2 class='heading'>Preguntas</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function Tutoria() {
-			return "<div class='mdo-conceptualizacion-tutoria panel panel-warning'>\n\
-						<div class='panel-heading'><strong>Tutoría</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-conceptualizacion-tutoria event'>\n\
+						<h2 class='heading'>Tutoría</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function LluviaIdeas() {
-			return "<div class='mdo-conceptualizacion-lluviaideas panel panel-warning'>\n\
-						<div class='panel-heading'><strong>Lluvia de Ideas</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
+						<h2 class='heading'>Lluvia de Ideas</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function GrupoEstudio() {
-			return "<div class='mdo-conceptualizacion-grupoestudio panel panel-warning'>\n\
-						<div class='panel-heading'><strong>Grupo de Estudio</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
+						<h2 class='heading'>Grupo de Estudio</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function _crear(tipo) {
@@ -326,66 +346,59 @@ var MDOFactories = (function() {
 	
 	var _AplicacionFactory = (function() {
 		function EstudioCasos() {
-			return "<div class='mdo-aplicacion-estudiocasos panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Estudio de Casos</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-estudiocasos event'>\n\
+						<h2 class='heading'>Caso de Estudio</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function MarcoLogico() {
-			return "<div class='mdo-aplicacion-marcologico panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Marco Lógico</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-marcologico event'>\n\
+						<h2 class='heading'>Marco Lógico</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function MapaConceptual() {
-			return "<div class='mdo-aplicacion-mapaconceptual panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Mapa Conceptual</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
+						<h2 class='heading'>Mapa Conceptual</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function ArbolProblemas() {
-			return "<div class='mdo-aplicacion-arbolproblemas panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Árbol de Problemas</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
+						<h2 class='heading'>Árbol de Problemas</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function ProyectoInvestigacion() {
-			return "<div class='mdo-aplicacion-proyectoinvestigacion panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Proyecto de Investigación</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
+						<h2 class='heading'>Proyecto de Investigación</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function ProyectoProduccion() {
-			return "<div class='mdo-aplicacion-proyectoproduccion panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Proyecto de Producción</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-proyectoproduccion event'>\n\
+						<h2 class='heading'>Proyecto de Producción</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function Ejercicios() {
-			return "<div class='mdo-aplicacion-ejercicios panel panel-default panel-mdo-aplicacion'>\n\
-						<div class='panel-heading'><strong>Ejercicios</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-aplicacion-ejercicios event'>\n\
+						<h2 class='heading'>Ejercicios</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function _crear(tipo) {
@@ -427,39 +440,35 @@ var MDOFactories = (function() {
 	
 	var _AmpliacionFactory = (function() {
 		function Conferencia() {
-			return "<div class='mdo-ampliacion-conferencia panel panel-default panel-mdo-ampliacion'>\n\
-						<div class='panel-heading'><strong>Conferencia</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-ampliacion-conferencia event'>\n\
+						<h2 class='heading'>Conferencia</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function MesaRedonda() {
-			return "<div class='mdo-ampliacion-mesaredonda panel panel-default panel-mdo-ampliacion'>\n\
-						<div class='panel-heading'><strong>Mesa Redonda</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-ampliacion-mesaredonda event'>\n\
+						<h2 class='heading'>Mesa Redonda</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function Panel() {
-			return "<div class='mdo-ampliacion-panel panel panel-default panel-mdo-ampliacion'>\n\
-						<div class='panel-heading'><strong>Panel</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-ampliacion-panel event'>\n\
+						<h2 class='heading'>Panel</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function Simposio() {
-			return "<div class='mdo-ampliacion-simposio panel panel-default panel-mdo-ampliacion'>\n\
-						<div class='panel-heading'><strong>Simposio</strong></div>\n\
-						<div class='panel-body'>\n\
-							<textarea class='form-control'></textarea>\n\
-						</div>\n\
-					</div>";
+			return "<li class='mdo-ampliacion-simposio event'>\n\
+						<h2 class='heading'>Simposio</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control' />\n\
+					</li>";
 		}
 		
 		function _crear(tipo) {

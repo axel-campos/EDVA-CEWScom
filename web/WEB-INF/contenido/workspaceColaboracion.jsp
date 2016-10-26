@@ -42,6 +42,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dragula.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/timeline.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilo.css">
@@ -67,6 +68,7 @@
             });
 			
         </script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap-dialog.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
@@ -75,7 +77,7 @@
     <body>
         <div id="header" class="container" align="center">
             <div class="row">
-                <h1><%=request.getParameter("titulo")%></h1>
+                <h1><%=request.getParameter("titulo")%> - <%=request.getParameter("etapa")%> (Versión <%=version%>)</h1>
             </div>
         </div>
         <div class="container-fluid">
@@ -102,8 +104,8 @@
                 <div class="col-md-10 col-sm-10 col-xs-8 scrollit">
                     <div class="container">
                         <ul id="contenidoDidacticoBody" class="timeline">
-                            <li class="year"><%=request.getParameter("etapa")%></li>
-                        </ul>
+							<li class="year">Inicio</li>
+						</ul>
                     </div>
                 </div>
             </div>

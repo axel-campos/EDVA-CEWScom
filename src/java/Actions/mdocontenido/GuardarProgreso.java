@@ -32,7 +32,7 @@ public class GuardarProgreso extends ActionSupport {
 		try {
 			request = ServletActionContext.getRequest();
 			guardar();
-			message = "Su progreso ha sido guardado.";
+			message = "Su progreso ha sido guardado con éxito.";
 			estatus = true;
 		} catch (Exception e) {
 			message = "Ocurrió un error al guardar su contenido: " + e.getMessage();

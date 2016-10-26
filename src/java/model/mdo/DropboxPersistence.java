@@ -1,8 +1,10 @@
 package model.mdo;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.commons.io.FileUtils;
 import com.dropbox.core.*;
 import com.dropbox.core.v2.*;
+import com.dropbox.core.v2.files.WriteMode;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
@@ -12,7 +14,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import model.mdo.template.MDOTemplateUtil;
-import org.apache.struts2.ServletActionContext;
 
 /**
  * Permite almacenar y descargar archivos desde Dropbox
@@ -145,7 +146,11 @@ public final class DropboxPersistence implements FilePersistence {
 		File temp = new File(tempFile);
 		FileUtils.writeStringToFile(temp, contenido);
 		try (FileInputStream fis = new FileInputStream(temp)) {
-			client.files().uploadBuilder(ruta + "/" + nombre).uploadAndFinish(fis);
+			client
+				.files()
+				.uploadBuilder(ruta + "/" + nombre)
+				.withMode(WriteMode.OVERWRITE)
+				.uploadAndFinish(fis);
 		}
 		FileUtils.deleteDirectory(new File(appRoot + token));
 	}

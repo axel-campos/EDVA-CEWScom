@@ -2,27 +2,90 @@ var MDOUtil = (function() {
 	var MDOParser = (function() {
 		var _VivenciaParser = (function() {
 			function ObservacionParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var pregunta = contenido[1].value;
+				var fenomenoAObservar = contenido[2].value;
+				var posibleExplicacion = contenido[3].value;
+				var posibleResultado = contenido[4].value;
 				
+				return {
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					pregunta: pregunta,
+					fenomenoAObservar: fenomenoAObservar,
+					posibleExplicacion: posibleExplicacion,
+					posibleResultado: posibleResultado
+				};
 			}
 			
 			function VisitaParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var lugarAVisitar = contenido[1].value;
+				var tematica = contenido[2].value;
+				var proposito = contenido[3].value;
+				var objetivos = contenido[4].value;
+				var entregables = contenido[5].value;
 				
+				return {
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					lugarAVisitar: lugarAVisitar,
+					tematica: tematica,
+					proposito: proposito,
+					objetivos: objetivos,
+					entregables: entregables
+				};
 			}
 			
 			function DemostracionParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var objetivo = contenido[1].value;
+				var materialNecesario = contenido[2].value;
+				var procedimiento = contenido[3].value;
 				
+				return {
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					objetivo: objetivo,
+					materialNecesario: materialNecesario,
+					procedimiento: procedimiento
+				};
 			}
 			
 			function EnsayoParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var requisitos = contenido[3].value;
+				var tiempoRealizacion = contenido[4].value;
 				
+				return {
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					requisitos: requisitos,
+					tiempoRealizacion: tiempoRealizacion
+				};
 			}
 			
 			function SimulacionParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var tematica = contenido[1].value;
+				var descripcion = contenido[2].value;
+				var roles = contenido[3].value;
+				var materialNecesario = contenido[4].value;
+				var procedimiento = contenido[5].value;
 				
-			}
-			
-			function JuegoRolParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					tematica: tematica,
+					descripcion: descripcion,
+					roles: roles,
+					materialNecesario: materialNecesario,
+					procedimiento: procedimiento
+				};
 			}
 			
 			/**
@@ -42,10 +105,8 @@ var MDOUtil = (function() {
 					return DemostracionParser(nombreArtefacto, contenido);
 				else if (nombreArtefacto.includes("ensayo"))
 					return EnsayoParser(nombreArtefacto, contenido);
-				else if (nombreArtefacto.includes("simulacion"))
-					return SimulacionParser(nombreArtefacto, contenido);
 				else
-					return JuegoRolParser(nombreArtefacto, contenido);
+					return SimulacionParser(nombreArtefacto, contenido);
 			}
 			
 			return {
@@ -55,23 +116,33 @@ var MDOUtil = (function() {
 		
 		var _ConceptualizacionParser = (function() {
 			function DinamicaParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function PreguntasParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function TutoriaParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function LluviaIdeasParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function GrupoEstudioParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			/**
@@ -249,31 +320,45 @@ var MDOUtil = (function() {
 		
 		var _AplicacionParser = (function() {
 			function EstudioCasosParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function MarcoLogicoParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function MapaConceptualParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function ArbolProblemasParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function ProyectoInvestigacionParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function ProyectoProduccionParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function EjerciciosParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			/**
@@ -308,19 +393,27 @@ var MDOUtil = (function() {
 		
 		var _AmpliacionParser = (function() {
 			function ConferenciaParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function MesaRedondaParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function PanelParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			function SimposioParser(nombreArtefacto, contenido) {
-				
+				return {
+					artefacto: nombreArtefacto
+				};
 			}
 			
 			/**
@@ -362,7 +455,7 @@ var MDOUtil = (function() {
 	 * fácil de manipular.
 	 * 
 	 * @param {NodeList} nodeList Una lista de artefactos, obtenidos preferentemente
-	 * por document.querySelectorAll('.ex-moved > div').
+	 * por document.querySelectorAll('.event').
 	 * @returns {Array} Un arreglo común con los nodos de los artefactos MDO.
 	 */
 	function _parseNodeList(nodeList) {
@@ -377,7 +470,7 @@ var MDOUtil = (function() {
 	 */
 	function _parseNode(node) {
 		var nombreArtefacto = node.className.split(" ")[0];
-		var contenido = $(node).children();
+		var contenido = $(node).children("input");
 		var tipoParser;
 		
 		if (nombreArtefacto.includes("vivencia"))
@@ -399,10 +492,9 @@ var MDOUtil = (function() {
 	 * deben ser de la clase .mdo-[etapa]-[artefacto]
 	 * 
 	 * @param {Array} nodeArray Un arreglo JavaScript de objetos DOM Node.
-	 * @param {string} ruta La ruta donde se almacenarán los artefactos.
 	 * @returns {Object} Una lista de objetos-artefacto.
 	 */
-	function _getListaArtefactos(nodeArray, ruta) {
+	function _getListaArtefactos(nodeArray) {
 		return nodeArray.map(function(e) {
 			return _parseNode(e);
 		});
@@ -417,23 +509,303 @@ var MDOUtil = (function() {
 var MDOTimeline = (function() {
 	var MDOParser = (function() {
 		var _VivenciaParser = (function() {
+			function ObservacionParser(contenido) {
+				return "<li class='mdo-vivencia-observacion event'>\n\
+							<h2 class='heading'>Observación</h2>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+							<label>Pregunta:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.pregunta + "' /><br>\n\
+							<label>Fenómeno a observar:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.fenomenoAObservar + "' /><br>\n\
+							<label>Posible explicación:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.posibleExplicacion + "' /><br>\n\
+							<label>Posible resultado:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.posibleResultado + "' />\n\
+						</li>";
+			}
 			
+			function VisitaParser(contenido) {
+				return "<li class='mdo-vivencia-visita event'>\n\
+							<h2 class='heading'>Visita</h2>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+							<label>Lugar a visitar:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.lugarAVisitar + "' /><br>\n\
+							<label>Temática del lugar:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+							<label>Propósito:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.proposito + "' /><br>\n\
+							<label>Objetivos:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+						</li>";
+			}
+			
+			function DemostracionParser(contenido) {
+				return "<li class='mdo-vivencia-demostracion event'>\n\
+							<h2 class='heading'>Demostración</h2>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+							<label>Objetivo:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.objetivo + "' /><br>\n\
+							<label>Material necesario:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.materialNecesario + "' /><br>\n\
+							<label>Procedimiento:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.procedimiento + "' />\n\
+						</li>";
+			}
+			
+			function EnsayoParser(contenido) {
+				return "<li class='mdo-vivencia-ensayo event'>\n\
+							<h2 class='heading'>Ensayo</h2>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+							<label>Requisitos:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.requisitos + "' /><br>\n\
+							<label>Tiempo de realización:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tiempoRealizacion + "' />\n\
+						</li>";
+			}
+			
+			function SimulacionParser(contenido) {
+				return "<li class='mdo-vivencia-simulacion event'>\n\
+							<h2 class='heading'>Simulación</h2>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+							<label>Roles:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.roles + "' /><br>\n\
+							<label>Material necesario:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.materialNecesario + "' /><br>\n\
+							<label>Procedimiento:</label>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.procedimiento + "' />\n\
+						</li>";
+			}
+			
+			/**
+			 * Analiza el artefacto pasado y lo convierte a una cadena HTML
+			 * apropiado de la etapa MDO de Vivencia.
+			 * @param {string} nombreArtefacto El nombre del artefacto.
+			 * @param {object} contenido El artefacto como objeto JavaScript.
+			 * @returns {string} Una cadena con la información del artefacto.
+			 */
+			function _parse(nombreArtefacto, contenido) {
+				if (nombreArtefacto.includes("observacion"))
+					return ObservacionParser(contenido);
+				else if (nombreArtefacto.includes("visita"))
+					return VisitaParser(contenido);
+				else if (nombreArtefacto.includes("demostracion"))
+					return DemostracionParser(contenido);
+				else if (nombreArtefacto.includes("ensayo"))
+					return EnsayoParser(contenido);
+				else
+					return SimulacionParser(contenido);
+			}
+			
+			return {
+				parse: _parse
+			}
 		})();
 		
 		var _ConceptualizacionParser = (function() {
+			function DinamicaParser(contenido) {
+				return "";
+			}
 			
+			function PreguntasParser(contenido) {
+				return "";
+			}
+			
+			function TutoriaParser(contenido) {
+				return "";
+			}
+			
+			function LluviaIdeasParser(contenido) {
+				return "";
+			}
+			
+			function GrupoEstudioParser(contenido) {
+				return "";
+			}
+			
+			/**
+			 * Analiza el artefacto pasado y lo convierte a una cadena HTML
+			 * apropiado de la etapa MDO de Conceptualización.
+			 * @param {string} nombreArtefacto El nombre del artefacto.
+			 * @param {object} contenido El artefacto como objeto JavaScript.
+			 * @returns {string} Una cadena con la información del artefacto.
+			 */
+			function _parse(nombreArtefacto, contenido) {
+				if (nombreArtefacto.includes("dinamica"))
+					return DinamicaParser(contenido);
+				else if (nombreArtefacto.includes("preguntas"))
+					return PreguntasParser(contenido);
+				else if (nombreArtefacto.includes("tutoria"))
+					return TutoriaParser(contenido);
+				else if (nombreArtefacto.includes("lluviaideas"))
+					return LluviaIdeasParser(contenido);
+				else
+					return GrupoEstudioParser(contenido);
+			}
+			
+			return {
+				parse: _parse
+			}
 		})();
 		
 		var _DocumentacionParser = (function() {
+			function PeliculaParser(contenido) {
+				return "";
+			}
 			
+			function VideoParser(contenido) {
+				return "";
+			}
+			
+			function LibroParser(contenido) {
+				return "";
+			}
+			
+			function ArticuloWebParser(contenido) {
+				return "";
+			}
+			
+			function ArticuloPDFParser(contenido) {
+				return "";
+			}
+			
+			function RevistaParser(contenido) {
+				return "";
+			}
+			
+			/**
+			 * Analiza el artefacto pasado y lo convierte a una cadena HTML
+			 * apropiado de la etapa MDO de Documentación.
+			 * @param {string} nombreArtefacto El nombre del artefacto.
+			 * @param {object} contenido El artefacto como objeto JavaScript.
+			 * @returns {string} Una cadena con la información del artefacto.
+			 */
+			function _parse(nombreArtefacto, contenido) {
+				if (nombreArtefacto.includes("pelicula"))
+					return PeliculaParser(contenido);
+				else if (nombreArtefacto.includes("video"))
+					return VideoParser(contenido);
+				else if (nombreArtefacto.includes("libro"))
+					return LibroParser(contenido);
+				else if (nombreArtefacto.includes("articuloweb"))
+					return ArticuloWebParser(contenido);
+				else if (nombreArtefacto.includes("articulopdf"))
+					return ArticuloPDFParser(contenido);
+				else
+					return RevistaParser(contenido);
+			}
+			
+			return {
+				parse: _parse
+			}
 		})();
 		
 		var _AplicacionParser = (function() {
+			function EstudioCasosParser(contenido) {
+				return "";
+			}
 			
+			function MarcoLogicoParser(contenido) {
+				return "";
+			}
+			
+			function MapaConceptualParser(contenido) {
+				return "";
+			}
+			
+			function ArbolProblemasParser(contenido) {
+				return "";
+			}
+			
+			function ProyectoInvestigacionParser(contenido) {
+				return "";
+			}
+			
+			function ProyectoProduccionParser(contenido) {
+				return "";
+			}
+			
+			/**
+			 * Analiza el artefacto pasado y lo convierte a una cadena HTML
+			 * apropiado de la etapa MDO de Aplicación.
+			 * @param {string} nombreArtefacto El nombre del artefacto.
+			 * @param {object} contenido El artefacto como objeto JavaScript.
+			 * @returns {string} Una cadena con la información del artefacto.
+			 */
+			function _parse(nombreArtefacto, contenido) {
+				if (nombreArtefacto.includes("estudiocasos"))
+					return EstudioCasosParser(contenido);
+				else if (nombreArtefacto.includes("marcologico"))
+					return MarcoLogicoParser(contenido);
+				else if (nombreArtefacto.includes("mapaconceptual"))
+					return MapaConceptualParser(contenido);
+				else if (nombreArtefacto.includes("arbolproblemas"))
+					return ArbolProblemasParser(contenido);
+				else if (nombreArtefacto.includes("proyectoinvestigacion"))
+					return ProyectoInvestigacionParser(contenido);
+				else if (nombreArtefacto.includes("proyectoproduccion"))
+					return ProyectoProduccionParser(contenido);
+				else
+					return EjerciciosParser(contenido);
+			}
+			
+			return {
+				parse: _parse
+			}
 		})();
 		
 		var _AmpliacionParser = (function() {
+			function ConferenciaParser(contenido) {
+				return "";
+			}
 			
+			function MesaRedondaParser(contenido) {
+				return "";
+			}
+			
+			function PanelParser(contenido) {
+				return "";
+			}
+			
+			function SimposioParser(contenido) {
+				return "";
+			}
+			
+			/**
+			 * Analiza el artefacto pasado y lo convierte a una cadena HTML
+			 * apropiado de la etapa MDO de Ampliación.
+			 * @param {string} nombreArtefacto El nombre del artefacto.
+			 * @param {object} contenido El artefacto como objeto JavaScript.
+			 * @returns {string} Una cadena con la información del artefacto.
+			 */
+			function _parse(nombreArtefacto, contenido) {
+				if (nombreArtefacto.includes("conferencia"))
+					return ConferenciaParser(contenido);
+				else if (nombreArtefacto.includes("mesaredonda"))
+					return MesaRedondaParser(contenido);
+				else if (nombreArtefacto.includes("ampliacion-panel"))
+					return PanelParser(contenido);
+				else
+					return SimposioParser(contenido);
+			}
+			
+			return {
+				parse: _parse
+			}
 		})();
 		
 		return {
@@ -446,13 +818,28 @@ var MDOTimeline = (function() {
 	})();
 	
 	/**
-	 * Convierte un objeto JavaScript en un nodo HTML,
-	 * de acuerdo a su etapa
+	 * Convierte un objeto JavaScript en su equivalente HTML, de acuerdo
+	 * a su etapa.
 	 * 
-	 * @returns {undefined}
+	 * @param {object} artefacto El artefacto
+	 * @returns {string} Una cadena HTML con la información del artefacto.
 	 */
-	function _parseNode() {
+	function _parseNode(artefacto) {
+		var nombreArtefacto = artefacto.artefacto;
+		var tipoParser;
 		
+		if (nombreArtefacto.includes("vivencia"))
+			tipoParser = "VivenciaParser";
+		else if (nombreArtefacto.includes("conceptualizacion"))
+			tipoParser = "ConceptualizacionParser";
+		else if (nombreArtefacto.includes("documentacion"))
+			tipoParser = "DocumentacionParser";
+		else if (nombreArtefacto.includes("aplicacion"))
+			tipoParser = "AplicacionParser";
+		else
+			tipoParser = "AmpliacionParser";
+		
+		return MDOParser[tipoParser].parse(nombreArtefacto, artefacto);
 	}
 	
 	/**
@@ -465,7 +852,9 @@ var MDOTimeline = (function() {
 	 * contiene la información.
 	 */
 	function _obtenerNodos(artefactos) {
-		
+		return artefactos.map(function(e) {
+			return _parseNode(e);
+		});
 	}
 	
 	return {
