@@ -33,7 +33,6 @@
             <input type="hidden" id="type" value="<s:property value="type"/>">
         </div>
         <div class="row-fluid">
-            
             <div class="col-md-11" id="paginacion"></div>
             <div class="col-md-1"></div>
         </div>
@@ -48,13 +47,20 @@
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();
             contenidoDAO.conectar();
-            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo, e.idEtapa AS idEtapa, ce.version AS version FROM contenido con " +
+            String sqlContenidos = "SELECT con.*, g.nombre AS nombreGrupo, " +
+                "(CASE WHEN ce.tiempoModificacion > NOW() THEN e.nombre ELSE NULL END) AS nombre, " +
+                "(CASE WHEN ce.tiempoModificacion > NOW() THEN ce.tiempoModificacion ELSE NULL END) AS tiempoModificacion, " +
+                "(CASE WHEN ce.tiempoModificacion > NOW() THEN e.idEtapa ELSE NULL END) AS idEtapa, " +
+                "(CASE WHEN ce.tiempoModificacion > NOW() THEN ce.version ELSE NULL END) AS version, " +
+                "(CASE WHEN ve.tiempoModificacion > NOW() THEN ve.idEtapa ELSE NULL END) AS idEtapa2," +
+                " ve.tiempoModificacion AS tiempoVotacion FROM contenido con " +
                 " LEFT JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
-                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa" +
+                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa AND ce.idEtapa != 6 " +
+                " LEFT JOIN contenidoetapa AS ve ON ve.idContenido = con.idContenido AND ve.idEtapa = 6" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
-                " WHERE g.token ='" + token2 + "'";
-            sqlContenidos += " AND con.finalizado = 0 GROUP BY idContenido;";
+                " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY idContenido;";
+            System.out.println(sqlContenidos);
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
             contenidoDAO.desconectar();
             if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
@@ -97,7 +103,7 @@
                             String descripcion2 = (String)columna.get("descripcion");
                             String etapa = "El contenido no tiene etapa activa";
                             String fechaModificacion = "";
-                            String fechaVotacion = "";
+                            String fechaVotacion = "Aún no se ha llegado a la etapa de votación";
                             String idContenido = columna.get("idContenido").toString();
 							Integer idEtapa = (Integer)columna.get("idEtapa");
 							Integer version = (Integer)columna.get("version");
@@ -108,10 +114,10 @@
                             {
                                 fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
                             }
-                            /*if(columna.get("tiempoVotacion") != null)
+                            if(columna.get("tiempoVotacion") != null)
                             {
-                                fechaVotacion = df.format((Timestamp)columna.get("tiempoModificacion"));
-                            }*/
+                                fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
+                            }
                             String idRoomTogetherJS = token2 + idContenido;
                 %>
                 <div class="col-sm-6">
@@ -132,15 +138,26 @@
                                         Descripción: <%=descripcion2%> <br/>
                                         Etapa: <%=etapa%> <br/>
                                         Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
-                                        Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
+                                        Fecha votación: <%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
-                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>)"><span class="glyphicon glyphicon-calendar"></span>Agregar versión</button>
+                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-calendar"></span> Agregar versión</button>
+                                            <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
+                                            <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>
+                                            <% if(idEtapa != null){%>
+                                            <button type="button" class="btn btn-warning" onclick="terminaVersion(<%= idContenido %>, <%= idEtapa %>, <%= version %>)"><span class="glyphicon glyphicon-filter"></span> Terminar versión</button>
+                                            <% }%>
+                                            <br><br>
                                         </s:if>                
                                         <% if(fechaModificacion != ""){%>
 										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
-                                        <% }%>
+                                        <% }else if(columna.get("idEtapa2") != null){%>
+                                        <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
+                                        <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
+                                        <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">
+                                            <span style="font-size:16px;" class="glyphicon glyphicon-warning-sign"></span> Reportar contenido
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +176,8 @@
                     }
                 %>
         </div>
-        <% //out.println(sqlContenidos);%>
+        
         <input type="hidden" id="numDivs" name="numDivs" value="<%=div%>"/>
+        
     </body>
 </html>

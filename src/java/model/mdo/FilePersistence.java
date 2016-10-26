@@ -71,4 +71,12 @@ public interface FilePersistence {
 	 * @throws RuntimeException Si ocurre algún error al momento de descargar el contenido.
 	 */
 	Map<String, Object> descargar(Map<String, Object> detallesContenido);
+    
+    /**
+     * Borra una carpeta
+     * 
+     * @param ruta La ruta de la carpeta a ser borrada.
+     * @throws RuntimeException Si ocurre un error al momento de borrar la carpeta
+     */
+    void borrarCarpeta(String ruta);
 }

@@ -12,6 +12,8 @@
         <s:set name="etapa" value="etapa"/>
         <div class="container-fluid">
             <form id="frmTiempos" name="frmTiempos" class="form-horizontal">
+                <input type="hidden" id="version" value="<s:property value="version"/>"/>
+                <input type="hidden" id="etapaActiva" value="<s:property value="etapa"/>"/>
                 <div class="form-group">
                     <label for="etapa">Etapa:</label>
                     <select id="etapa" name="etapa" class='form-control' onchange="cargarVersiones(this.value);" style="width: 45%">
@@ -45,9 +47,13 @@
                     </table>
                 </div>
                 <input type="hidden" value="<s:property value="idContenido"/>" id="idContenido" name="idContenido"/> 
+                <!--Botones normales para crear -->
                 <button type="button" class="btn btn-sm btn-danger" id="btnCancelar" style="float:right;display: none;"><span class="glyphicon glyphicon-repeat"></span> Cancelar</button>
                 <button type="submit" class="btn btn-sm btn-success" id="btnSubmit" style="float:right;display:none"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
-                
+                <!--Botones para editar -->
+                <button type="button" class="btn btn-sm btn-success" id="btnEditar" style="float:right;display:none"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                <button type="button" class="btn btn-sm btn-danger" id="CancelarEdicion" style="float:right;display: none;"><span class="glyphicon glyphicon-repeat"></span> Cancelar</button>
+                <button type="submit" class="btn btn-sm btn-success" id="SubmitEdicion" style="float:right;display:none"><span class="glyphicon glyphicon-ok"></span> Editar</button>
             </form>   
         </div>
     </body>

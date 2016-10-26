@@ -16,7 +16,6 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 	@Override
 	public void registrar(Reporte registro) {
 		String sql = "INSERT INTO Reporte VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
 			stmt.setString(2, registro.getCausa());

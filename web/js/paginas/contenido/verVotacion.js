@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var form = "#altaContenido";
-    var action = "crearContenido";
+    var form = "#votacionForm";
+    var action = "registrarVotacion";
     
     $(form).bootstrapValidator({
         autofocus: true,
@@ -23,38 +23,7 @@ $(document).ready(function(){
             localeChanged: 'changed.locale.fv',
             validatorError: 'err.validator.fv',
             validatorSuccess: 'success.validator.fv'
-        },
-        fields: {
-            titulo: {
-                validators: {
-                    notEmpty: {
-                        message: "Por favor, ingrese el titulo del contenido."
-                    },
-                    stringLength:{
-                        max: 20,
-                        message: 'La cantidad máxima de letras para el título es de 20.'
-                    }
-                }
-            },
-            tema:{
-                validators:{
-                    stringLength:{
-                        min: 0,
-                        max: 20,
-                        message: 'La cantidad máxima de letras para el tema es de 20.'
-                    }
-                }
-            },
-            descripcion: {
-                validators:{
-                    stringLength:{
-                        min: 0,
-                        max: 100,
-                        message: 'La cantidad máxima de letras para la descripción es de 100.'
-                    }
-                }
-            }
-        }               
+        }              
     }).on('success.form.fv', function(e, data){
         //Prevent form submission
         e.preventDefault();
@@ -70,7 +39,22 @@ $(document).ready(function(){
                 cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
                 var target = "#contenidoGrupo";
                 $(target).html(data);
+            },
+            error: function(data){
+                var token = $("#token").val();
+                //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
+                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                var target = "#contenidoGrupo";
+                $(target).html(data);
             }
         });
     });
 });
+
+function modificarVotacion(){
+    $("#principalVotacion").show();
+    $("#btn-info").show();
+    $("#modificarVoto").html($("#principalVotacion"));
+}
+
+

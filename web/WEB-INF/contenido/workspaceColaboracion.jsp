@@ -24,14 +24,14 @@
     String imageDataString = sb.toString();
 
     imageInFile.close();
-	
-	// Obteniendo el archivo JSON de Dropbox.
-	String token = request.getParameter("token");
-	String titulo = request.getParameter("titulo").replace(" ", "");
-	String idEtapa = request.getParameter("idEtapa");
-	String version = request.getParameter("version");
-	String ruta = String.format("/%s/%s/%s/%s", token, titulo, idEtapa, version);
-	String json = new DropboxPersistence().descargarJson(ruta);
+
+    // Obteniendo el archivo JSON de Dropbox.
+    String token = request.getParameter("token");
+    String titulo = request.getParameter("titulo").replace(" ", "");
+    String idEtapa = request.getParameter("idEtapa");
+    String version = request.getParameter("version");
+    String ruta = String.format("/%s/%s/%s/%s", token, titulo, idEtapa, version);
+    String json = new DropboxPersistence().descargarJson(ruta);
 %>
 
 <!DOCTYPE html>
@@ -45,34 +45,44 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-dialog.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dragula.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/timeline.css">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilo.css">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ElementosMDO.css">
-        <script>          
+        <link href="${pageContext.request.contextPath}/css/workspace.css" rel="stylesheet" type="text/css"/>
+        <script>
+            closeTogetherJS();
             cargando();
+
             var APP_BASE = "${pageContext.request.contextPath}";
             var ETAPA = "<%=request.getParameter("etapa")%>";
-			var ARTEFACTOS = JSON.parse('<%=json%>');
-			var RUTA_PERSISTENCIA = '<%=ruta%>';
+            var ARTEFACTOS = JSON.parse('<%=json%>');
+            var RUTA_PERSISTENCIA = '<%=ruta%>';
 
             var TogetherJSConfig_getUserName = function () {
-                return "${session.usuario.nombre}";
-            };
-            var TogetherJSConfig_getUserAvatar = function () {
-                return "<%=imageDataString%>";
-            };
-            var TogetherJSConfig_findRoom = "<%=request.getParameter("idRoom")%>";
-            TogetherJS();
-            
-            TogetherJS.on("ready", function () {
-                finalizar();
-            });
-			
+                return "${session.usuario.nombre} ${session.usuario.APaterno}";
+                    };
+                    var TogetherJSConfig_getUserAvatar = function () {
+                        return "<%=imageDataString%>";
+                    };
+                    var TogetherJSConfig_findRoom = "<%=request.getParameter("idRoom")%>";
+                    TogetherJS();
+
+                    TogetherJS.on("ready", function () {
+                        finalizar();
+                    });
+
         </script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap-dialog.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
+        <script src="${pageContext.request.contextPath}/js/collaboration/jquery-resizable.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/funciones.js"></script>
+
+        <script>
+            initWorkspace();
+            $(".panel-left").resizable({
+                handleSelector: ".splitter",
+                resizeHeight: false
+            });
+        </script>
     </head>
     <body>
         <div id="header" class="container" align="center">
@@ -80,32 +90,43 @@
                 <h1><%=request.getParameter("titulo")%> - <%=request.getParameter("etapa")%> (Versión <%=version%>)</h1>
             </div>
         </div>
+
+
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-4 fixed">
-                    <div id="menuMDO" class="panel-group">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#menuMDO" href="#<%=request.getParameter("etapa")%>Panel">
-                                        <%=request.getParameter("etapa")%>
-                                    </a>
-                                </h4>
+                <div class="panel-container">
+                    <%-- Left Panel --%>
+                    <div class="panel-left">
+                        <div class="col-md-2 col-sm-2 col-xs-4 fixed">
+                            <div id="menuMDO" class="panel-group">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#menuMDO" href="#<%=request.getParameter("etapa")%>Panel">
+                                                <%=request.getParameter("etapa")%>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="<%=request.getParameter("etapa")%>Panel" class="panel-collapse collapse in">
+                                        <div id="<%=request.getParameter("etapa")%>PanelBody" class="panel-body"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="<%=request.getParameter("etapa")%>Panel" class="panel-collapse collapse in">
-                                <div id="<%=request.getParameter("etapa")%>PanelBody" class="panel-body"></div>
-                            </div>
+                            <button id="btnGuardar" class="btn btn-primary btn-block">Guardar</button>
+                            <br>
+                            <button id="btnDescargar" class="btn btn-primary btn-block">Descargar ZIP</button>
                         </div>
                     </div>
-                    <button id="btnGuardar" class="btn btn-primary btn-block">Guardar</button>
-                </div>
-                <br>
-                <br>
-                <div class="col-md-10 col-sm-10 col-xs-8 scrollit">
-                    <div class="container">
-                        <ul id="contenidoDidacticoBody" class="timeline">
-							<li class="year">Inicio</li>
-						</ul>
+                    <div class="splitter"></div>
+                    <%-- Rigth Panel --%>
+                    <div class="panel-right">
+                        <div class="col-md-12 col-sm-12 col-xs-12 scrollit">
+                            <div class="container">
+                                <ul id="contenidoDidacticoBody" class="timeline">
+                                    <li class="year">Inicio</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

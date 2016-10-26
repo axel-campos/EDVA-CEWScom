@@ -12,12 +12,12 @@
     <body>
         <div id="contenedor1" class="container-fluid">
             <s:if test="hasActionMessages()">
-                <div class="alert alert-success">
+                <div class="alert alert-success" id="msjExito" style="display: none;">
                     <s:actionmessage />
                 </div>
             </s:if>
             <s:if test="hasActionErrors()">
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" id="msjError" style="display: none;">
                     <s:actionerror />
                 </div>
             </s:if>

@@ -34,7 +34,7 @@
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-config.js"></script>
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-comChannel.js" type="text/javascript"></script>
-         
+
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery/locale_es.js"></script>
@@ -69,14 +69,11 @@
                     top3 = top1 + top2 + 5;
             $("#progressBar").offset({top: top1});
             $("#contenido").offset({top: top3});
-
+            closeTogetherJS();
         });
 
         window.onbeforeunload = function () {
-            if (TogetherJS.running) {
-                TogetherJS();
-                TogetherJS.require("storage").tab.clear("status");
-            }
+            closeTogetherJS();
         };
     </script>
 </html>

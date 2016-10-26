@@ -9,11 +9,15 @@
 <%
     int tipoReporte = 0;
     String valor = "";
+    String extra = "";
     if(request.getParameter("tipoReporte") != null){
         tipoReporte = Integer.parseInt((String)request.getParameter("tipoReporte"));
     }
     if(request.getParameter("valor") != null){
         valor = (String)request.getParameter("valor");
+    }
+    if(request.getParameter("extra") != null){
+        extra = (String)request.getParameter("extra");
     }
     %>
 <html>
@@ -38,6 +42,7 @@
                             <div class="col-md-10 col-md-offset-4">
                                 <input type="hidden" id="tipoReporte" name="tipoReporte" value="<%=tipoReporte%>">
                                 <input type="hidden" id="valor" name="valor" value="<%=valor%>">
+                                <input type="hidden" id="extra" name="extra" value="<%=extra%>">
                             </div>
                         </div>
                     </form>

@@ -43,7 +43,7 @@ public class AltaContenidoAction extends ActionSupport {
         String accion = "";
         Contenido contenido = new Contenido();
         Contenido viejo = new Contenido();
-        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion);
+        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion).setIdContenido(Integer.parseInt(id));
         if(tipo.equals("Guardar")){//Registrar            
             accion = "guardó";
         }else{//Modificar
@@ -61,16 +61,16 @@ public class AltaContenidoAction extends ActionSupport {
                     return INPUT;
                 }
                 contenidoDAO.registrar(contenido);
+                /*
                 //Ahora creamos las cinco carpetas en DropBox
                 FilePersistence persistence = new DropboxPersistence();				
                 String ruta = "/" + token + "/" + titulo.replace(" ", "");
                 for(int it = 1; it <= 5; it++){
                     persistence.crearCarpeta(ruta + "/" + it);
-                }
+                }*/
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }
-            //addActionMessage("El contenido didáctico " + titulo + " se " + accion + ".");
             type = "success";
             message = "El contenido didáctico <b>" + titulo + "</b> se " + accion + ".";
             contenidoDAO.desconectar();

@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    if($("#msjExito").length > 0){
+        mensajes($("#msjExito span:last").text(), TIPO_MENSAJE.SUCCESS);
+    }else if($("#msjError").length > 0){
+        mensajes($("#msjError span:last").text(), TIPO_MENSAJE.DANGER);
+    }    
+    
     $("#tabla").bootstrapTable({
         height: getHeight(),
         sortName: 'Item ID',
