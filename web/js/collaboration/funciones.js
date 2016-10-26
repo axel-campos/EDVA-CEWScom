@@ -1,12 +1,4 @@
 $(document).ready(function () {    
-    var targetDiv = "#" + ETAPA + "PanelBody";
-    var MDOfactory = ETAPA + "Factory";
-
-    console.log(targetDiv + "::" + MDOfactory);
-    
-    populate(targetDiv, MDOfactory);
-    agregarDragAndDrop(targetDiv, MDOfactory);
-	recrearTimeline(MDOfactory, ARTEFACTOS);
 
 	/**
 	 * ************************************************
@@ -135,18 +127,6 @@ function agregarDragAndDrop(selector, nombreFabrica) {
 }
 
 /**
- * Rellena los selectores de artefactos de todas las etapas MDO.
- * OJO: ESTA FUNCIÓN ES ÚNICAMENTE DE PRUEBA Y NO IRÁ EN PRODUCCIÓN.
- */
-function populateArtefactos() {
-    populate("VivenciasFactory", "#VivenciasPanelBody");
-    populate("ConceptualizacionFactory", "#conceptualizacionPanelBody");
-    populate("DocumentacionFactory", "#documentacionPanelBody");
-    populate("AplicacionFactory", "#aplicacionPanelBody");
-    populate("AmpliacionFactory", "#ampliacionPanelBody");
-}
-
-/**
  * Rellena el selector de artefactos MDO con la fábrica indicada.
  * 
  * @param {string} selector ID de jQuery del selector de artefactos
@@ -158,4 +138,16 @@ function populate(selector , nombreFabrica) {
     lista.forEach(function (e) {
         body.append(e);
     });
+}
+
+function initWorkspace()
+{
+    var targetDiv = "#" + ETAPA + "PanelBody";
+    var MDOfactory = ETAPA + "Factory";
+
+    console.log(targetDiv + "::" + MDOfactory);
+    
+    populate(targetDiv, MDOfactory);
+    agregarDragAndDrop(targetDiv, MDOfactory);
+	recrearTimeline(MDOfactory, ARTEFACTOS);
 }

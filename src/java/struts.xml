@@ -3,7 +3,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.ui.theme" value="simple" />
     <!-- Configuration for the default package. -->
     <package name="cuentas" namespace="/" extends="struts-default">
         <action name="registrarseform">
@@ -20,15 +20,22 @@
             <result name="input">/WEB-INF/registrarse.jsp</result>
             <result name="error">/WEB-INF/registrarse.jsp</result>
         </action>
+        
         <action name="login" class="Actions.LoginAction">
             <result name="success" type="redirect">/index.action</result>
             <result name="input">/WEB-INF/login.jsp</result>
             <result name="error">/WEB-INF/login.jsp</result>
         </action>
+        
+        <action name="doUpload" class="Actions.UploadFile">
+            <result name="success" type="redirectAction">/WEB-INF/login.jsp</result>
+        </action>
     </package>
+    
+    
 	
-	<package name="peticiones" namespace="/" extends="json-default">
-    	<action name="verificarRelacionesGrupo" class="Actions.JSON.VerificarRelacionesAction">
+    <package name="peticiones" namespace="/" extends="json-default">
+        <action name="verificarRelacionesGrupo" class="Actions.JSON.VerificarRelacionesAction">
             <result type="json">/WEB-INF/grupos/tablaGrupos.jsp</result>
         </action>
         <action name="verificarUsuarioFacebook" class="Actions.JSON.VerificarUsuarioFacebookAction">
@@ -57,5 +64,5 @@
         </action>
     </package>
     
-	<include file="interceptores.xml" />
+    <include file="interceptores.xml" />
 </struts>
