@@ -240,9 +240,9 @@ var MDOFactories = (function() {
 		function Libro() {
 			return "<li class='mdo-documentacion-libro event'>\n\
 						<h2 class='heading'>Libro</h2>\n\
-						<label>Autor:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Autor:</label>\n\
 						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Año:</label>\n\
 						<input type='text' class='form-control input-sm' /><br>\n\
@@ -258,9 +258,9 @@ var MDOFactories = (function() {
 		function ArticuloWeb() {
 			return "<li class='mdo-documentacion-articuloweb event'>\n\
 						<h2 class='heading'>Artículo Web</h2>\n\
-						<label>Autor:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Autor:</label>\n\
 						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Descripción:</label>\n\
 						<input type='text' class='form-control input-sm' /><br>\n\
@@ -294,9 +294,9 @@ var MDOFactories = (function() {
 		function Revista() {
 			return "<li class='mdo-documentacion-revista event'>\n\
 						<h2 class='heading'>Revista</h2>\n\
-						<label>Autor:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Autor:</label>\n\
 						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Descripción:</label>\n\
 						<input type='text' class='form-control input-sm' /><br>\n\
