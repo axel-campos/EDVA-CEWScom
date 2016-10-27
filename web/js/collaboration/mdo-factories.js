@@ -114,19 +114,17 @@ var MDOFactories = (function() {
 	})();
 	
 	var _ConceptualizacionFactory = (function() {
-		function Dinamica() {
-			return "<li class='mdo-conceptualizacion-dinamica event'>\n\
-						<h2 class='heading'>Dinámica</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
-					</li>";
-		}
-		
 		function Preguntas() {
 			return "<li class='mdo-conceptualizacion-preguntas event'>\n\
 						<h2 class='heading'>Preguntas</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Preguntas a realizar:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -134,7 +132,15 @@ var MDOFactories = (function() {
 			return "<li class='mdo-conceptualizacion-tutoria event'>\n\
 						<h2 class='heading'>Tutoría</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temas a tratar:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Material de apoyo:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -142,7 +148,15 @@ var MDOFactories = (function() {
 			return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
 						<h2 class='heading'>Lluvia de Ideas</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Problemática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Preguntas clave:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -150,14 +164,20 @@ var MDOFactories = (function() {
 			return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
 						<h2 class='heading'>Grupo de Estudio</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Integrantes por grupo:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
 					</li>";
 		}
 		
 		function _crear(tipo) {
-			if (tipo === "Dinamica")
-				return Dinamica();
-			else if (tipo === "Preguntas")
+			if (tipo === "Preguntas")
 				return Preguntas();
 			else if (tipo === "Tutoria")
 				return Tutoria();
@@ -171,11 +191,10 @@ var MDOFactories = (function() {
 		
 		function _listaArtefactos(){
 			return [
-				"<div class='Dinamica'>Dinámica</div>",
-				"<div class='Preguntas'>Preguntas</div>",
-				"<div class='Tutoria'>Tutoría</div>",
-				"<div class='LluviaIdeas'>Lluvia de Ideas</div>",
-				"<div class='GrupoEstudio'>Grupo de Estudio</div>"
+				"<div class='Preguntas'><div class='box box1 shadow1'><h5>Preguntas</h5></div></div>",
+				"<div class='Tutoria'><div class='box box2 shadow1'><h5>Tutoría</h5></div></div>",
+				"<div class='LluviaIdeas'><div class='box box3 shadow1'><h5>Lluvia de Ideas</h5></div></div>",
+				"<div class='GrupoEstudio'><div class='box box4 shadow1'><h5>Grupo de Estudio</h5></div></div>"
 			];
 		}
 		
@@ -189,22 +208,18 @@ var MDOFactories = (function() {
 		function Pelicula() {
 			return "<li class='mdo-documentacion-pelicula event'>\n\
 						<h2 class='heading'>Película</h2>\n\
-						<div class='col-md-6'>\n\
-							<label>Título:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Descripción:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Director:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
-						<div class='col-md-6'>\n\
-							<label>Productora:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>País o región:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Año:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Director:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Productora:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>País o región:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Año:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -212,11 +227,11 @@ var MDOFactories = (function() {
 			return "<li class='mdo-documentacion-video event'>\n\
 						<h2 class='heading'>Video</h2>\n\
 						<label>Nombre:</label>\n\
-						<input type='text' class='form-control' /><br>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Descripción:</label>\n\
-						<input type='text' class='form-control' /><br>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>URL del video:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' />\n\
 						<br>\n\
 						<button class='btn btn-primary'>O puedes subir un video</button>\n\
 					</li>";
@@ -225,48 +240,40 @@ var MDOFactories = (function() {
 		function Libro() {
 			return "<li class='mdo-documentacion-libro event'>\n\
 						<h2 class='heading'>Libro</h2>\n\
-						<div class='col-md-6'>\n\
-							<label>Autor:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Título:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Año:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
-						<div class='col-md-6'>\n\
-							<label>Ciudad:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Editorial:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Volumen:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Autor:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Año:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Ciudad:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Editorial:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Volumen:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
 		function ArticuloWeb() {
 			return "<li class='mdo-documentacion-articuloweb event'>\n\
 						<h2 class='heading'>Artículo Web</h2>\n\
-						<div class='col-md-6'>\n\
-							<label>Autor:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Título:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Descripción:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Nombre del sitio Web:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
-						<div class='col-md-6'>\n\
-							<label>Año en que se realizó la consulta:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Mes en el que se realizó la consulta:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Día en el que se realizó la consulta:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>URL:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Autor:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Nombre del sitio Web:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Año en que se realizó la consulta:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Mes en el que se realizó la consulta:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Día en el que se realizó la consulta:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>URL:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -274,11 +281,11 @@ var MDOFactories = (function() {
 			return "<li class='mdo-documentacion-articulopdf event'>\n\
 						<h2 class='heading'>Artículo PDF</h2>\n\
 						<label>Nombre:</label>\n\
-						<input type='text' class='form-control' /><br>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>Descripción:</label>\n\
-						<input type='text' class='form-control' /><br>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>URL del artículo:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' />\n\
 						<br>\n\
 						<button class='btn btn-primary'>O puedes subir un PDF</button>\n\
 					</li>";
@@ -287,26 +294,22 @@ var MDOFactories = (function() {
 		function Revista() {
 			return "<li class='mdo-documentacion-revista event'>\n\
 						<h2 class='heading'>Revista</h2>\n\
-						<div class='col-md-6'>\n\
-							<label>Autor:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Título:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Descripción:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Nombre de la revista:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
-						<div class='col-md-6'>\n\
-							<label>Año:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Páginas:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Volumen:</label>\n\
-							<input type='text' class='form-control' /><br>\n\
-							<label>Número:</label>\n\
-							<input type='text' class='form-control' />\n\
-						</div>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Autor:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Nombre de la revista:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Año:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Páginas:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Volumen:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Número:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -345,11 +348,21 @@ var MDOFactories = (function() {
 	})();
 	
 	var _AplicacionFactory = (function() {
-		function EstudioCasos() {
-			return "<li class='mdo-aplicacion-estudiocasos event'>\n\
-						<h2 class='heading'>Caso de Estudio</h2>\n\
+		function EstudioCaso() {
+			return "<li class='mdo-aplicacion-estudiocaso event'>\n\
+						<h2 class='heading'>Estudio de Caso</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Problemática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Métodos de investigación:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -357,7 +370,21 @@ var MDOFactories = (function() {
 			return "<li class='mdo-aplicacion-marcologico event'>\n\
 						<h2 class='heading'>Marco Lógico</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivo general:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivos específicos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Resultados esperados:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Actividades a realizar:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Indicadores:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Fuentes de verificación:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Supuestos:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -365,7 +392,13 @@ var MDOFactories = (function() {
 			return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
 						<h2 class='heading'>Mapa Conceptual</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -373,7 +406,17 @@ var MDOFactories = (function() {
 			return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
 						<h2 class='heading'>Árbol de Problemas</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Problemática principal:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Causas:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Problemas secundarios:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Efectos:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -381,15 +424,17 @@ var MDOFactories = (function() {
 			return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
 						<h2 class='heading'>Proyecto de Investigación</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
-					</li>";
-		}
-		
-		function ProyectoProduccion() {
-			return "<li class='mdo-aplicacion-proyectoproduccion event'>\n\
-						<h2 class='heading'>Proyecto de Producción</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Marco teórico:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Hipótesis:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -397,13 +442,21 @@ var MDOFactories = (function() {
 			return "<li class='mdo-aplicacion-ejercicios event'>\n\
 						<h2 class='heading'>Ejercicios</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Ejercicios:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
 		function _crear(tipo) {
-			if (tipo === "EstudioCasos")
-				return EstudioCasos();
+			if (tipo === "EstudioCaso")
+				return EstudioCaso();
 			else if (tipo === "MarcoLogico")
 				return MarcoLogico();
 			else if (tipo === "MapaConceptual")
@@ -412,8 +465,6 @@ var MDOFactories = (function() {
 				return ArbolProblemas();
 			else if (tipo === "ProyectoInvestigacion")
 				return ProyectoInvestigacion();
-			else if (tipo === "ProyectoProduccion")
-				return ProyectoProduccion();
 			else if (tipo === "Ejercicios")
 				return Ejercicios();
 			else
@@ -422,13 +473,12 @@ var MDOFactories = (function() {
 		
 		function _listaArtefactos() {
 			return [
-				"<div class='EstudioCasos'>Casos de Estudio</div>",
-				"<div class='MarcoLogico'>Marco Lógico</div>",
-				"<div class='MapaConceptual'>Mapa Conceptual</div>",
-				"<div class='ArbolProblemas'>Árbol de Problemas</div>",
-				"<div class='ProyectoInvestigacion'>Proyecto de Investigación</div>",
-				"<div class='ProyectoProduccion'>Proyecto de Producción</div>",
-				"<div class='Ejercicios'>Ejercicios</div>"
+				"<div class='EstudioCaso'><div class='box box1 shadow1'><h5>Estudio de Caso</h5></div></div>",
+				"<div class='MarcoLogico'><div class='box box2 shadow1'><h5>Marco Lógico</h5></div></div>",
+				"<div class='MapaConceptual'><div class='box box3 shadow1'><h5>Mapa Conceptual</h5></div></div>",
+				"<div class='ArbolProblemas'><div class='box box4 shadow1'><h5>Árbol de Problemas</h5></div></div>",
+				"<div class='ProyectoInvestigacion'><div class='box box5 shadow1'><h5>Proyecto de Investigación</h5></div></div>",
+				"<div class='Ejercicios'><div class='box box6 shadow1'><h5>Ejercicios</h5></div></div>"
 			];
 		}
 		
@@ -443,7 +493,13 @@ var MDOFactories = (function() {
 			return "<li class='mdo-ampliacion-conferencia event'>\n\
 						<h2 class='heading'>Conferencia</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -451,7 +507,15 @@ var MDOFactories = (function() {
 			return "<li class='mdo-ampliacion-mesaredonda event'>\n\
 						<h2 class='heading'>Mesa Redonda</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Número de integrantes:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Tiempo de exposición:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -459,7 +523,15 @@ var MDOFactories = (function() {
 			return "<li class='mdo-ampliacion-panel event'>\n\
 						<h2 class='heading'>Panel</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Número de integrantes:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Tiempo de exposición:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -467,7 +539,15 @@ var MDOFactories = (function() {
 			return "<li class='mdo-ampliacion-simposio event'>\n\
 						<h2 class='heading'>Simposio</h2>\n\
 						<label>Título:</label>\n\
-						<input type='text' class='form-control' />\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Número de integrantes:</label>\n\
+						<input type='text' class='form-control input-sm' /><br>\n\
+						<label>Tiempo de exposición por integrante:</label>\n\
+						<input type='text' class='form-control input-sm' />\n\
 					</li>";
 		}
 		
@@ -486,10 +566,10 @@ var MDOFactories = (function() {
 		
 		function _listaArtefactos() {
 			return [
-				"<div class='Conferencia'>Conferencia</div>",
-				"<div class='MesaRedonda'>Mesa Redonda</div>",
-				"<div class='Panel'>Panel</div>",
-				"<div class='Simposio'>Simposio</div>"
+				"<div class='Conferencia'><div class='box box1 shadow1'><h5>Conferencia</h5></div></div>",
+				"<div class='MesaRedonda'><div class='box box2 shadow1'><h5>Mesa Redonda</h5></div></div>",
+				"<div class='Panel'><div class='box box3 shadow1'><h5>Panel</h5></div></div>",
+				"<div class='Simposio'><div class='box box4 shadow1'><h5>Simposio</h5></div></div>"
 			];
 		}
 		

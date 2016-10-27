@@ -115,33 +115,69 @@ var MDOUtil = (function() {
 		})();
 		
 		var _ConceptualizacionParser = (function() {
-			function DinamicaParser(nombreArtefacto, contenido) {
-				return {
-					artefacto: nombreArtefacto
-				};
-			}
-			
 			function PreguntasParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var preguntas = contenido[3].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					preguntas: preguntas
 				};
 			}
 			
 			function TutoriaParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var objetivos = contenido[2].value;
+				var temas = contenido[3].value;
+				var materialApoyo = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					objetivos: objetivos,
+					temas: temas,
+					materialApoyo: materialApoyo
 				};
 			}
 			
 			function LluviaIdeasParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var problematica = contenido[3].value;
+				var preguntasClave = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					problematica: problematica,
+					preguntasClave: preguntasClave
 				};
 			}
 			
 			function GrupoEstudioParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var integrantes = contenido[3].value;
+				var entregables = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					integrantes: integrantes,
+					entregables: entregables
 				};
 			}
 			
@@ -154,9 +190,7 @@ var MDOUtil = (function() {
 			 * sobre el artefacto.
 			 */
 			function _parse(nombreArtefacto, contenido) {
-				if (nombreArtefacto.includes("dinamica"))
-					return DinamicaParser(nombreArtefacto, contenido);
-				else if (nombreArtefacto.includes("preguntas"))
+				if (nombreArtefacto.includes("preguntas"))
 					return PreguntasParser(nombreArtefacto, contenido);
 				else if (nombreArtefacto.includes("tutoria"))
 					return TutoriaParser(nombreArtefacto, contenido);
@@ -173,14 +207,12 @@ var MDOUtil = (function() {
 		
 		var _DocumentacionParser = (function() {
 			function PeliculaParser(nombreArtefacto, contenido) {
-				var inputs = contenido.eq(1).children("input");
-				var titulo = inputs[0].value;
-				var descripcion = inputs[1].value;
-				var director = inputs[2].value;
-				inputs = contenido.eq(2).children("input");
-				var productora = inputs[0].value;
-				var pais = inputs[1].value;
-				var anyo = inputs[2].value;
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var director = contenido[2].value;
+				var productora = contenido[3].value;
+				var pais = contenido[4].value;
+				var anyo = contenido[5].value;
 				
 				return {
 					artefacto: nombreArtefacto,
@@ -194,9 +226,9 @@ var MDOUtil = (function() {
 			}
 			
 			function VideoParser(nombreArtefacto, contenido) {
-				var nombre = contenido[2].value;
-				var descripcion = contenido[5].value;
-				var url = contenido[8].value;
+				var nombre = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var url = contenido[2].value;
 				
 				return {
 					artefacto: nombreArtefacto,
@@ -207,14 +239,12 @@ var MDOUtil = (function() {
 			}
 			
 			function LibroParser(nombreArtefacto, contenido) {
-				var inputs = contenido.eq(1).children("input");
-				var autor = inputs[0].value;
-				var titulo = inputs[1].value;
-				var anyo = inputs[2].value;
-				inputs = contenido.eq(2).children("input");
-				var ciudad = inputs[0].value;
-				var editorial = inputs[1].value;
-				var volumen = inputs[2].value;
+				var titulo = contenido[0].value;
+				var autor = contenido[1].value;
+				var anyo = contenido[2].value;
+				var ciudad = contenido[3].value;
+				var editorial = contenido[4].value;
+				var volumen = contenido[5].value;
 				
 				return {
 					artefacto: nombreArtefacto,
@@ -228,23 +258,21 @@ var MDOUtil = (function() {
 			}
 			
 			function ArticuloWebParser(nombreArtefacto, contenido) {
-				var inputs = contenido.eq(1).children("input");
-				var autor = inputs[0].value;
-				var titulo = inputs[1].value;
-				var descripcion = inputs[2].value;
-				var nombre = inputs[3].value;
-				inputs = contenido.eq(2).children("input");
-				var anyo = inputs[0].value;
-				var mes = inputs[1].value;
-				var dia = inputs[2].value;
-				var url = inputs[3].value;
+				var titulo = contenido[0].value;
+				var autor = contenido[1].value;
+				var descripcion = contenido[2].value;
+				var nombreSitioWeb = contenido[3].value;
+				var anyo = contenido[4].value;
+				var mes = contenido[5].value;
+				var dia = contenido[6].value;
+				var url = contenido[7].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					autor: autor,
 					titulo: titulo,
 					descripcion: descripcion,
-					nombre: nombre,
+					nombreSitioWeb: nombreSitioWeb,
 					anyo: anyo,
 					mes: mes,
 					dia: dia,
@@ -253,9 +281,9 @@ var MDOUtil = (function() {
 			}
 			
 			function ArticuloPDFParser(nombreArtefacto, contenido) {
-				var nombre = contenido[2].value;
-				var descripcion = contenido[5].value;
-				var url = contenido[8].value;
+				var nombre = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var url = contenido[2].value;
 				
 				return {
 					artefacto: nombreArtefacto,
@@ -266,23 +294,21 @@ var MDOUtil = (function() {
 			}
 			
 			function RevistaParser(nombreArtefacto, contenido) {
-				var inputs = contenido.eq(1).children("input");
-				var autor = inputs[0].value;
-				var titulo = inputs[1].value;
-				var descripcion = inputs[2].value;
-				var nombre = inputs[3].value;
-				inputs = contenido.eq(2).children("input");
-				var anyo = inputs[0].value;
-				var paginas = inputs[1].value;
-				var volumen = inputs[2].value;
-				var numero = inputs[3].value;
+				var titulo = contenido[0].value;
+				var autor = contenido[1].value;
+				var descripcion = contenido[2].value;
+				var nombreRevista = contenido[3].value;
+				var anyo = contenido[4].value;
+				var paginas = contenido[5].value;
+				var volumen = contenido[6].value;
+				var numero = contenido[7].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					autor: autor,
 					titulo: titulo,
 					descripcion: descripcion,
-					nombre: nombre,
+					nombreRevista: nombreRevista,
 					anyo: anyo,
 					paginas: paginas,
 					volumen: volumen,
@@ -319,45 +345,115 @@ var MDOUtil = (function() {
 		})();
 		
 		var _AplicacionParser = (function() {
-			function EstudioCasosParser(nombreArtefacto, contenido) {
+			function EstudioCasoParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var objetivos = contenido[2].value;
+				var problematica = contenido[3].value;
+				var metodosInvestigacion = contenido[4].value;
+				var entregables = contenido[5].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					objetivos: objetivos,
+					problematica: problematica,
+					metodosInvestigacion: metodosInvestigacion,
+					entregables: entregables
 				};
 			}
 			
 			function MarcoLogicoParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var objetivoGeneral = contenido[1].value;
+				var objetivosEspecificos = contenido[2].value;
+				var resultados = contenido[3].value;
+				var actividades = contenido[4].value;
+				var indicadores = contenido[5].value;
+				var fuentesVerificacion = contenido[6].value;
+				var supuestos = contenido[7].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					objetivoGeneral: objetivoGeneral,
+					objetivosEspecificos: objetivosEspecificos,
+					resultados: resultados,
+					actividades: actividades,
+					indicadores: indicadores,
+					fuentesVerificacion: fuentesVerificacion,
+					supuestos: supuestos
 				};
 			}
 			
 			function MapaConceptualParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var entregables = contenido[3].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					entregables: entregables
 				};
 			}
 			
 			function ArbolProblemasParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var problematicaCentral = contenido[2].value;
+				var causas = contenido[3].value;
+				var problemasSecundarios = contenido[4].value;
+				var efectos = contenido[5].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					problematicaCentral: problematicaCentral,
+					causas: causas,
+					problemasSecundarios: problemasSecundarios,
+					efectos: efectos
 				};
 			}
 			
 			function ProyectoInvestigacionParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var objetivos = contenido[2].value;
+				var marcoTeorico = contenido[3].value;
+				var hipotesis = contenido[4].value;
+				var entregables = contenido[5].value;
+				
 				return {
-					artefacto: nombreArtefacto
-				};
-			}
-			
-			function ProyectoProduccionParser(nombreArtefacto, contenido) {
-				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					objetivos: objetivos,
+					marcoTeorico: marcoTeorico,
+					hipotesis: hipotesis,
+					entregables: entregables
 				};
 			}
 			
 			function EjerciciosParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var ejercicios = contenido[3].value;
+				var entregables = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					ejercicios: ejercicios,
+					entregables: entregables
 				};
 			}
 			
@@ -370,8 +466,8 @@ var MDOUtil = (function() {
 			 * sobre el artefacto.
 			 */
 			function _parse(nombreArtefacto, contenido) {
-				if (nombreArtefacto.includes("estudiocasos"))
-					return EstudioCasosParser(nombreArtefacto, contenido);
+				if (nombreArtefacto.includes("estudiocaso"))
+					return EstudioCasoParser(nombreArtefacto, contenido);
 				else if (nombreArtefacto.includes("marcologico"))
 					return MarcoLogicoParser(nombreArtefacto, contenido);
 				else if (nombreArtefacto.includes("mapaconceptual"))
@@ -380,8 +476,6 @@ var MDOUtil = (function() {
 					return ArbolProblemasParser(nombreArtefacto, contenido);
 				else if (nombreArtefacto.includes("proyectoinvestigacion"))
 					return ProyectoInvestigacionParser(nombreArtefacto, contenido);
-				else if (nombreArtefacto.includes("proyectoproduccion"))
-					return ProyectoProduccionParser(nombreArtefacto, contenido);
 				else
 					return EjerciciosParser(nombreArtefacto, contenido);
 			}
@@ -393,26 +487,68 @@ var MDOUtil = (function() {
 		
 		var _AmpliacionParser = (function() {
 			function ConferenciaParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var objetivos = contenido[2].value;
+				var tematica = contenido[3].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					objetivos: objetivos,
+					tematica: tematica
 				};
 			}
 			
 			function MesaRedondaParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var numeroIntegrantes = contenido[3].value;
+				var tiempoExposicion = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					numeroIntegrantes: numeroIntegrantes,
+					tiempoExposicion: tiempoExposicion
 				};
 			}
 			
 			function PanelParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var numeroIntegrantes = contenido[3].value;
+				var tiempoExposicion = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					numeroIntegrantes: numeroIntegrantes,
+					tiempoExposicion: tiempoExposicion
 				};
 			}
 			
 			function SimposioParser(nombreArtefacto, contenido) {
+				var titulo = contenido[0].value;
+				var descripcion = contenido[1].value;
+				var tematica = contenido[2].value;
+				var numeroIntegrantes = contenido[3].value;
+				var tiempoExposicionPorIntegrante = contenido[4].value;
+				
 				return {
-					artefacto: nombreArtefacto
+					artefacto: nombreArtefacto,
+					titulo: titulo,
+					descripcion: descripcion,
+					tematica: tematica,
+					numeroIntegrantes: numeroIntegrantes,
+					tiempoExposicionPorIntegrante: tiempoExposicionPorIntegrante
 				};
 			}
 			
