@@ -60,7 +60,6 @@
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
                 " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY idContenido;";
-            System.out.println(sqlContenidos);
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
             contenidoDAO.desconectar();
             if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos

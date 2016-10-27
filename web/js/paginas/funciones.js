@@ -137,3 +137,39 @@ function submitForm2(){
     return respuesta; //Nos regresará si el formulario estaba correcto o no.
 }
 
+function mostrarVotacion(idContenido){
+    BootstrapDialog.show({
+        message: $('<div id="ventanaVotacion"></div>').load("verVotacion", {"idContenido": idContenido}),
+        title: "Votación por etapas",
+        buttons: [{
+            id: 'btn-info',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Votar',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitFormGeneral("#votacionForm");
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
+            }
+        },{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    });    
+}
+
+function submitFormGeneral(form){
+    $(form).bootstrapValidator().bootstrapValidator('validate');
+    //La magia se hace en el archivo js
+    var respuesta = $(form).data("bootstrapValidator").isValid();
+    return respuesta; //Nos regresará si el formulario estaba correcto o no.
+}
+

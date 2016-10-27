@@ -152,17 +152,18 @@
             ContenidoDAO contenidoDAO = new ContenidoDAO();
             contenidoDAO.conectar();
             Usuario usuarioS = null;
-            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, e.nombre, g.nombre AS nombreGrupo FROM contenido con " +
+            String sqlContenidos = "SELECT con.*,ce.tiempoModificacion, ve.tiempoModificacion AS tiempoVotacion, e.nombre, g.nombre AS nombreGrupo, e.idEtapa, ce.version FROM contenido con " +
                 " INNER JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
-                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa" +
+                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa AND ce.idEtapa != 6" +
+                " LEFT JOIN contenidoetapa AS ve ON ve.idContenido = con.idContenido AND ve.idEtapa = 6" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token";
             if(session.getAttribute("usuario") != null){
                 usuarioS = (Usuario)session.getAttribute("usuario");
                 if(usuarioS.getTipo() == 1){    //Significa que es admin DIOS
-                    sqlContenidos += " WHERE ce.liberado = 0 AND (ce.tiempoModificacion >= NOW()) GROUP BY idContenido;";
+                    sqlContenidos += " WHERE ((ce.tiempoModificacion >= NOW() AND ce.liberado = 0) OR (ve.tiempoModificacion >= NOW() AND ve.liberado = 0)) GROUP BY idContenido;";
                 }else{
-                    sqlContenidos += " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ug.aceptado = 1 AND ce.liberado = 0 AND (ce.tiempoModificacion >= NOW()) GROUP BY idContenido;";
+                    sqlContenidos += " WHERE ug.correo = '" + usuario.getCorreo() + "' AND ug.aceptado = 1 AND ((ce.tiempoModificacion >= NOW() AND ce.liberado = 0) OR (ve.tiempoModificacion >= NOW() AND ve.liberado = 0)) GROUP BY idContenido;";
                 }
             }
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
@@ -194,13 +195,25 @@
                     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     for(i = 0; i < tablaContenidos.size(); i++){
                         Map<String, Object> columna = tablaContenidos.get(i);
+                        String idContenido = columna.get("idContenido").toString();
                         String nombreGrupo = (String)columna.get("nombreGrupo");
+                        String token = (String)columna.get("token");
                         String titulo = (String)columna.get("titulo");
                         String tema = (String)columna.get("tema");
                         String descripcion = (String)columna.get("descripcion");
+                        String idEtapa = columna.get("idEtapa").toString();
                         String etapa = (String)columna.get("nombre");
-                        String fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
-                        String fechaVotacion = "";//df.format((Timestamp)columna.get("tiempoVotacion"));
+                        String version = "";
+                        if(columna.get("version") != null){
+                            version = columna.get("version").toString();
+                        }
+                        String idRoomTogetherJS = token + idContenido;
+                        String fechaModificacion = "", fechaVotacion = "";
+                        if(columna.get("tiempoModificacion") != null){
+                            fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
+                        }else{
+                            fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
+                        }
             %>
             <div class="col-sm-6">
                 <div class="panel panel-default">
@@ -222,7 +235,11 @@
                                     Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
                                     Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                     <br/>
-                                    <button id="pwd_modify_button" type="button" class="btn btn-primary" onclick="modificarContrasenia()"><span class="glyphicon glyphicon-eye-close"></span>Ir al contenido</button>
+                                    <% if(fechaModificacion != ""){%>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                        <% }else if(!fechaVotacion.equals("")){%>
+                                        <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
