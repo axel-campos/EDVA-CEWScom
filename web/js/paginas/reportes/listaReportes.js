@@ -1,6 +1,7 @@
 var divs;
 
 $(document).ready(function(){
+    console.log("Holi!!! :V");
     var form = "#frmFiltros";
     var action = "listarReportes";
   
