@@ -232,8 +232,6 @@ var MDOFactories = (function() {
 						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>URL del video:</label>\n\
 						<input type='text' class='form-control input-sm' />\n\
-						<br>\n\
-						<button class='btn btn-primary'>O puedes subir un video</button>\n\
 					</li>";
 		}
 		
@@ -286,8 +284,6 @@ var MDOFactories = (function() {
 						<input type='text' class='form-control input-sm' /><br>\n\
 						<label>URL del artículo:</label>\n\
 						<input type='text' class='form-control input-sm' />\n\
-						<br>\n\
-						<button class='btn btn-primary'>O puedes subir un PDF</button>\n\
 					</li>";
 		}
 		

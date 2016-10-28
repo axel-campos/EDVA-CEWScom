@@ -749,28 +749,70 @@ var MDOTimeline = (function() {
 			
 			return {
 				parse: _parse
-			}
+			};
 		})();
 		
 		var _ConceptualizacionParser = (function() {
-			function DinamicaParser(contenido) {
-				return "";
-			}
-			
 			function PreguntasParser(contenido) {
-				return "";
+				return "<li class='mdo-conceptualizacion-preguntas event'>\n\
+						<h2 class='heading'>Preguntas</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Preguntas a realizar:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.preguntas + "' />\n\
+					</li>";
 			}
 			
 			function TutoriaParser(contenido) {
-				return "";
+				return "<li class='mdo-conceptualizacion-tutoria event'>\n\
+						<h2 class='heading'>Tutoría</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
+						<label>Temas a tratar:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.temas + "' /><br>\n\
+						<label>Material de apoyo:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.materialApoyo + "' />\n\
+					</li>";
 			}
 			
 			function LluviaIdeasParser(contenido) {
-				return "";
+				return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
+						<h2 class='heading'>Lluvia de Ideas</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Problemática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.problematica + "' /><br>\n\
+						<label>Preguntas clave:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.preguntasClave + "' />\n\
+					</li>";
 			}
 			
 			function GrupoEstudioParser(contenido) {
-				return "";
+				return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
+						<h2 class='heading'>Grupo de Estudio</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Integrantes por grupo:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.integrantes + "' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+					</li>";
 			}
 			
 			/**
@@ -781,9 +823,7 @@ var MDOTimeline = (function() {
 			 * @returns {string} Una cadena con la información del artefacto.
 			 */
 			function _parse(nombreArtefacto, contenido) {
-				if (nombreArtefacto.includes("dinamica"))
-					return DinamicaParser(contenido);
-				else if (nombreArtefacto.includes("preguntas"))
+				if (nombreArtefacto.includes("preguntas"))
 					return PreguntasParser(contenido);
 				else if (nombreArtefacto.includes("tutoria"))
 					return TutoriaParser(contenido);
@@ -795,32 +835,112 @@ var MDOTimeline = (function() {
 			
 			return {
 				parse: _parse
-			}
+			};
 		})();
 		
 		var _DocumentacionParser = (function() {
 			function PeliculaParser(contenido) {
-				return "";
+				return "<li class='mdo-documentacion-pelicula event'>\n\
+						<h2 class='heading'>Película</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Director:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.director + "' /><br>\n\
+						<label>Productora:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.productora + "' /><br>\n\
+						<label>País o región:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.pais + "' /><br>\n\
+						<label>Año:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.anyo + "' />\n\
+					</li>";
 			}
 			
 			function VideoParser(contenido) {
-				return "";
+				return "<li class='mdo-documentacion-video event'>\n\
+						<h2 class='heading'>Video</h2>\n\
+						<label>Nombre:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>URL del video:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.url + "' />\n\
+					</li>";
 			}
 			
 			function LibroParser(contenido) {
-				return "";
+				return "<li class='mdo-documentacion-libro event'>\n\
+						<h2 class='heading'>Libro</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Autor:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.autor + "' /><br>\n\
+						<label>Año:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.anyo + "' /><br>\n\
+						<label>Ciudad:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.ciudad + "' /><br>\n\
+						<label>Editorial:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.editorial + "' /><br>\n\
+						<label>Volumen:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.volumen + "' />\n\
+					</li>";
 			}
 			
 			function ArticuloWebParser(contenido) {
-				return "";
+				return "<li class='mdo-documentacion-articuloweb event'>\n\
+						<h2 class='heading'>Artículo Web</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Autor:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.autor + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Nombre del sitio Web:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.nombreSitioWeb + "' /><br>\n\
+						<label>Año en que se realizó la consulta:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.anyo + "' /><br>\n\
+						<label>Mes en el que se realizó la consulta:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.mes + "' /><br>\n\
+						<label>Día en el que se realizó la consulta:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.dia + "' /><br>\n\
+						<label>URL:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.url + "' />\n\
+					</li>";
 			}
 			
 			function ArticuloPDFParser(contenido) {
-				return "";
+				return "<li class='mdo-documentacion-articulopdf event'>\n\
+						<h2 class='heading'>Artículo PDF</h2>\n\
+						<label>Nombre:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.nombre + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>URL del artículo:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.url + "' />\n\
+					</li>";
 			}
 			
 			function RevistaParser(contenido) {
-				return "";
+				return "<li class='mdo-documentacion-revista event'>\n\
+						<h2 class='heading'>Revista</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Autor:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.autor + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Nombre de la revista:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.nombreRevista + "' /><br>\n\
+						<label>Año:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.anyo + "' /><br>\n\
+						<label>Páginas:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.paginas + "' /><br>\n\
+						<label>Volumen:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.volumen + "' /><br>\n\
+						<label>Número:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.numero + "' />\n\
+					</li>";
 			}
 			
 			/**
@@ -847,32 +967,114 @@ var MDOTimeline = (function() {
 			
 			return {
 				parse: _parse
-			}
+			};
 		})();
 		
 		var _AplicacionParser = (function() {
-			function EstudioCasosParser(contenido) {
-				return "";
+			function EstudioCasoParser(contenido) {
+				return "<li class='mdo-aplicacion-estudiocaso event'>\n\
+						<h2 class='heading'>Estudio de Caso</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
+						<label>Problemática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.problematica + "' /><br>\n\
+						<label>Métodos de investigación:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.metodosInvestigacion + "' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+					</li>";
 			}
 			
 			function MarcoLogicoParser(contenido) {
-				return "";
+				return "<li class='mdo-aplicacion-marcologico event'>\n\
+						<h2 class='heading'>Marco Lógico</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Objetivo general:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.objetivoGeneral + "' /><br>\n\
+						<label>Objetivos específicos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.objetivosEspecificos + "' /><br>\n\
+						<label>Resultados esperados:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.resultados + "' /><br>\n\
+						<label>Actividades a realizar:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.actividades + "' /><br>\n\
+						<label>Indicadores:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.indicadores + "' /><br>\n\
+						<label>Fuentes de verificación:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.fuentesVerificacion + "' /><br>\n\
+						<label>Supuestos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.supuestos + "' />\n\
+					</li>";
 			}
 			
 			function MapaConceptualParser(contenido) {
-				return "";
+				return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
+						<h2 class='heading'>Mapa Conceptual</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+					</li>";
 			}
 			
 			function ArbolProblemasParser(contenido) {
-				return "";
+				return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
+						<h2 class='heading'>Árbol de Problemas</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Problemática principal:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.problematicaCentral + "' /><br>\n\
+						<label>Causas:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.causas + "' /><br>\n\
+						<label>Problemas secundarios:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.problemasSecundarios + "' /><br>\n\
+						<label>Efectos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.efectos + "' />\n\
+					</li>";
 			}
 			
 			function ProyectoInvestigacionParser(contenido) {
-				return "";
+				return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
+						<h2 class='heading'>Proyecto de Investigación</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
+						<label>Marco teórico:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.marcoTeorico + "' /><br>\n\
+						<label>Hipótesis:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.hipotesis + "' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+					</li>";
 			}
 			
-			function ProyectoProduccionParser(contenido) {
-				return "";
+			function EjerciciosParser(contenido) {
+				return "<li class='mdo-aplicacion-ejercicios event'>\n\
+						<h2 class='heading'>Ejercicios</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Ejercicios:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.ejercicios + "' /><br>\n\
+						<label>Entregables:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+					</li>";
 			}
 			
 			/**
@@ -883,8 +1085,8 @@ var MDOTimeline = (function() {
 			 * @returns {string} Una cadena con la información del artefacto.
 			 */
 			function _parse(nombreArtefacto, contenido) {
-				if (nombreArtefacto.includes("estudiocasos"))
-					return EstudioCasosParser(contenido);
+				if (nombreArtefacto.includes("estudiocaso"))
+					return EstudioCasoParser(contenido);
 				else if (nombreArtefacto.includes("marcologico"))
 					return MarcoLogicoParser(contenido);
 				else if (nombreArtefacto.includes("mapaconceptual"))
@@ -893,32 +1095,76 @@ var MDOTimeline = (function() {
 					return ArbolProblemasParser(contenido);
 				else if (nombreArtefacto.includes("proyectoinvestigacion"))
 					return ProyectoInvestigacionParser(contenido);
-				else if (nombreArtefacto.includes("proyectoproduccion"))
-					return ProyectoProduccionParser(contenido);
 				else
 					return EjerciciosParser(contenido);
 			}
 			
 			return {
 				parse: _parse
-			}
+			};
 		})();
 		
 		var _AmpliacionParser = (function() {
 			function ConferenciaParser(contenido) {
-				return "";
+				return "<li class='mdo-ampliacion-conferencia event'>\n\
+						<h2 class='heading'>Conferencia</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Objetivos:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' />\n\
+					</li>";
 			}
 			
 			function MesaRedondaParser(contenido) {
-				return "";
+				return "<li class='mdo-ampliacion-mesaredonda event'>\n\
+						<h2 class='heading'>Mesa Redonda</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Número de integrantes:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.numeroIntegrantes + "' /><br>\n\
+						<label>Tiempo de exposición:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicion + "' />\n\
+					</li>";
 			}
 			
 			function PanelParser(contenido) {
-				return "";
+				return "<li class='mdo-ampliacion-panel event'>\n\
+						<h2 class='heading'>Panel</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Número de integrantes:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.numeroIntegrantes + "' /><br>\n\
+						<label>Tiempo de exposición:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicion + "' />\n\
+					</li>";
 			}
 			
 			function SimposioParser(contenido) {
-				return "";
+				return "<li class='mdo-ampliacion-simposio event'>\n\
+						<h2 class='heading'>Simposio</h2>\n\
+						<label>Título:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+						<label>Descripción:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
+						<label>Temática:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+						<label>Número de integrantes:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.numeroIntegrantes + "' /><br>\n\
+						<label>Tiempo de exposición por integrante:</label>\n\
+						<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicionPorintegrante + "' />\n\
+					</li>";
 			}
 			
 			/**
@@ -941,7 +1187,7 @@ var MDOTimeline = (function() {
 			
 			return {
 				parse: _parse
-			}
+			};
 		})();
 		
 		return {
