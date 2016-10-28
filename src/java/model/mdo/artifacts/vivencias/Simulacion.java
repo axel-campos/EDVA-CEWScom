@@ -11,52 +11,34 @@ public class Simulacion implements MDOArtifact {
     private String materialNecesario;
     private String procedimiento;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Simulacion setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Simulacion setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Simulacion setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
+    public Simulacion setRoles(String roles) {
         this.roles = roles;
+        return this;
     }
 
-    public String getMaterialNecesario() {
-        return materialNecesario;
-    }
-
-    public void setMaterialNecesario(String materialNecesario) {
+    public Simulacion setMaterialNecesario(String materialNecesario) {
         this.materialNecesario = materialNecesario;
+        return this;
     }
 
-    public String getProcedimiento() {
-        return procedimiento;
-    }
-
-    public void setProcedimiento(String procedimiento) {
+    public Simulacion setProcedimiento(String procedimiento) {
         this.procedimiento = procedimiento;
+        return this;
     }
 
     @Override

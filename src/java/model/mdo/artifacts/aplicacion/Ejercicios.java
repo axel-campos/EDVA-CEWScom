@@ -10,44 +10,29 @@ public class Ejercicios implements MDOArtifact {
     private String ejercicios;
     private String entregables;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Ejercicios setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Ejercicios setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Ejercicios setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getEjercicios() {
-        return ejercicios;
-    }
-
-    public void setEjercicios(String ejercicios) {
+    public Ejercicios setEjercicios(String ejercicios) {
         this.ejercicios = ejercicios;
+        return this;
     }
 
-    public String getEntregables() {
-        return entregables;
-    }
-
-    public void setEntregables(String entregables) {
+    public Ejercicios setEntregables(String entregables) {
         this.entregables = entregables;
+        return this;
     }
 
     

@@ -2,7 +2,7 @@ package model.mdo.parsers;
 
 import java.util.Map;
 import model.mdo.artifacts.MDOArtifact;
-import model.mdo.artifacts.documentacion.*;
+import model.mdo.artifacts.ampliacion.*;
 
 /**
  * Clase que se encarga de convertir arreglos asociativos en objetos
@@ -10,8 +10,53 @@ import model.mdo.artifacts.documentacion.*;
  */
 public class AmpliacionParser implements MDOParser {
 
+    private MDOArtifact getConferencia(Map<String, Object> artefacto) {
+        return new Conferencia()
+            .setTitulo((String) artefacto.get("titulo"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setObjetivos((String) artefacto.get("objetivos"))
+            .setTematica((String) artefacto.get("tematica"));
+    }
+    
+    private MDOArtifact getMesaRedonda(Map<String, Object> artefacto) {
+        return new MesaRedonda()
+            .setTitulo((String) artefacto.get("titulo"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setTematica((String) artefacto.get("tematica"))
+            .setNumeroDeIntegrantes((String) artefacto.get("numeroIntegrantes"))
+            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicion"));
+    }
+    
+    private MDOArtifact getPanel(Map<String, Object> artefacto) {
+        return new Panel()
+            .setTitulo((String) artefacto.get("titulo"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setTematica((String) artefacto.get("tematica"))
+            .setNumeroDeIntegrantes((String) artefacto.get("numeroIntegrantes"))
+            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicion"));
+    }
+    
+    private MDOArtifact getSimposio(Map<String, Object> artefacto) {
+        return new Simposio()
+            .setTitulo((String) artefacto.get("titulo"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setTematica((String) artefacto.get("tematica"))
+            .setNumeroDeIntegrantes((String) artefacto.get("numeroIntegrantes"))
+            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicionPorIntegrante"));
+    }
+    
 	@Override
 	public MDOArtifact parse(Map<String, Object> artefacto) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+        String nombre = (String) artefacto.get("artefacto");
+
+        if (nombre.contains("conferencia")) {
+            return getConferencia(artefacto);
+        } else if (nombre.contains("mesaredonda")) {
+            return getMesaRedonda(artefacto);
+        } else if (nombre.contains("ampliacion-panel")) {
+            return getPanel(artefacto);
+        } else {
+            return getSimposio(artefacto);
+        }
+    }
 }

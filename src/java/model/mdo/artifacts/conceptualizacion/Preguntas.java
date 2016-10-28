@@ -1,6 +1,5 @@
 package model.mdo.artifacts.conceptualizacion;
 
-import model.mdo.artifacts.vivencias.*;
 import model.mdo.artifacts.MDOArtifact;
 
 public class Preguntas implements MDOArtifact {
@@ -10,38 +9,25 @@ public class Preguntas implements MDOArtifact {
 	private String tematica;
     private String preguntasARealizar;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Preguntas setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Preguntas setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Preguntas setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getPreguntasARealizar() {
-        return preguntasARealizar;
-    }
-
-    public void setPreguntasARealizar(String preguntasARealizar) {
+    public Preguntas setPreguntasARealizar(String preguntasARealizar) {
         this.preguntasARealizar = preguntasARealizar;
+        return this;
     }
-    
     
 	
 	@Override

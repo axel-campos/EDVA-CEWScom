@@ -8,40 +8,27 @@ public class Demostracion implements MDOArtifact {
 	private String objetivo;
 	private String materialNecesario;
     private String procedimiento;
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getObjetivo() {
-        return objetivo;
-    }
-
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
-    }
-
-    public String getMaterialNecesario() {
-        return materialNecesario;
-    }
-
-    public void setMaterialNecesario(String materialNecesario) {
-        this.materialNecesario = materialNecesario;
-    }
-
-    public String getProcedimiento() {
-        return procedimiento;
-    }
-
-    public void setProcedimiento(String procedimiento) {
-        this.procedimiento = procedimiento;
-    }
-	
     
+
+    public Demostracion setTitulo(String titulo) {
+        this.titulo = titulo;
+        return this;
+    }
+
+    public Demostracion setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+        return this;
+    }
+
+    public Demostracion setMaterialNecesario(String materialNecesario) {
+        this.materialNecesario = materialNecesario;
+        return this;
+    }
+
+    public Demostracion setProcedimiento(String procedimiento) {
+        this.procedimiento = procedimiento;
+        return this;
+    }
     
 	@Override
 	public String toHtml() {

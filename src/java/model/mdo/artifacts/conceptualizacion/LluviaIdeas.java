@@ -1,6 +1,5 @@
 package model.mdo.artifacts.conceptualizacion;
 
-import model.mdo.artifacts.vivencias.*;
 import model.mdo.artifacts.MDOArtifact;
 
 public class LluviaIdeas implements MDOArtifact {
@@ -11,44 +10,29 @@ public class LluviaIdeas implements MDOArtifact {
     private String problematica;
     private String preguntasClave;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public LluviaIdeas setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public LluviaIdeas setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public LluviaIdeas setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getProblematica() {
-        return problematica;
-    }
-
-    public void setProblematica(String problematica) {
+    public LluviaIdeas setProblematica(String problematica) {
         this.problematica = problematica;
+        return this;
     }
 
-    public String getPreguntasClave() {
-        return preguntasClave;
-    }
-
-    public void setPreguntasClave(String preguntasClave) {
+    public LluviaIdeas setPreguntasClave(String preguntasClave) {
         this.preguntasClave = preguntasClave;
+        return this;
     }
 	
 	@Override

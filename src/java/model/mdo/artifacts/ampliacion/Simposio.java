@@ -11,48 +11,31 @@ public class Simposio implements MDOArtifact {
     private String numeroDeIntegrantes;
     private String tiempoDeExposicion;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Simposio setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Simposio setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Simposio setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getNumeroDeIntegrantes() {
-        return numeroDeIntegrantes;
-    }
-
-    public void setNumeroDeIntegrantes(String numeroDeIntegrantes) {
+    public Simposio setNumeroDeIntegrantes(String numeroDeIntegrantes) {
         this.numeroDeIntegrantes = numeroDeIntegrantes;
+        return this;
     }
 
-    public String getTiempoDeExposicion() {
-        return tiempoDeExposicion;
-    }
-
-    public void setTiempoDeExposicion(String tiempoDeExposicion) {
+    public Simposio setTiempoDeExposicion(String tiempoDeExposicion) {
         this.tiempoDeExposicion = tiempoDeExposicion;
+        return this;
     }
-
     
-	
 	@Override
 	public String toHtml() {
 		return String.format("");

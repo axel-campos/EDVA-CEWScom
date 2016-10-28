@@ -1,6 +1,5 @@
 package model.mdo.artifacts.aplicacion;
 
-import model.mdo.artifacts.vivencias.*;
 import model.mdo.artifacts.MDOArtifact;
 
 public class ProyectoInvestigacion implements MDOArtifact {
@@ -12,52 +11,34 @@ public class ProyectoInvestigacion implements MDOArtifact {
     private String hipotesis;
     private String entregables;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public ProyectoInvestigacion setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public ProyectoInvestigacion setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(String objetivos) {
+    public ProyectoInvestigacion setObjetivos(String objetivos) {
         this.objetivos = objetivos;
+        return this;
     }
 
-    public String getMarcoTeorico() {
-        return marcoTeorico;
-    }
-
-    public void setMarcoTeorico(String marcoTeorico) {
+    public ProyectoInvestigacion setMarcoTeorico(String marcoTeorico) {
         this.marcoTeorico = marcoTeorico;
+        return this;
     }
 
-    public String getHipotesis() {
-        return hipotesis;
-    }
-
-    public void setHipotesis(String hipotesis) {
+    public ProyectoInvestigacion setHipotesis(String hipotesis) {
         this.hipotesis = hipotesis;
+        return this;
     }
 
-    public String getEntregables() {
-        return entregables;
-    }
-
-    public void setEntregables(String entregables) {
+    public ProyectoInvestigacion setEntregables(String entregables) {
         this.entregables = entregables;
+        return this;
     }
 	
 	@Override

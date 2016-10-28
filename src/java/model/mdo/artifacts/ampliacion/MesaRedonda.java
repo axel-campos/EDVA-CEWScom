@@ -8,50 +8,34 @@ public class MesaRedonda implements MDOArtifact {
 	private String descripcion;
 	private String tematica;
     private String numeroDeIntegrantes;
-    private String posibleResultado;
+    private String tiempoDeExposicion;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public MesaRedonda setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public MesaRedonda setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
+        
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public MesaRedonda setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getNumeroDeIntegrantes() {
-        return numeroDeIntegrantes;
-    }
-
-    public void setNumeroDeIntegrantes(String numeroDeIntegrantes) {
+    public MesaRedonda setNumeroDeIntegrantes(String numeroDeIntegrantes) {
         this.numeroDeIntegrantes = numeroDeIntegrantes;
+        return this;
     }
 
-    public String getPosibleResultado() {
-        return posibleResultado;
-    }
-
-    public void setPosibleResultado(String posibleResultado) {
-        this.posibleResultado = posibleResultado;
+    public MesaRedonda setTiempoDeExposicion(String tiempoDeExposicion) {
+        this.tiempoDeExposicion = tiempoDeExposicion;
+        return this;
     }
     
-    
-	
 	@Override
 	public String toHtml() {
 		return String.format("");

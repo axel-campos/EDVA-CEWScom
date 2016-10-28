@@ -11,52 +11,34 @@ public class Visita implements MDOArtifact {
     private String objetivos;
     private String entregables;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Visita setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getLugarAVisitar() {
-        return lugarAVisitar;
-    }
-
-    public void setLugarAVisitar(String lugarAVisitar) {
+    public Visita setLugarAVisitar(String lugarAVisitar) {
         this.lugarAVisitar = lugarAVisitar;
+        return this;
     }
 
-    public String getTematicaDelLugar() {
-        return tematicaDelLugar;
-    }
-
-    public void setTematicaDelLugar(String tematicaDelLugar) {
+    public Visita setTematicaDelLugar(String tematicaDelLugar) {
         this.tematicaDelLugar = tematicaDelLugar;
+        return this;
     }
 
-    public String getProposito() {
-        return proposito;
-    }
-
-    public void setProposito(String proposito) {
+    public Visita setProposito(String proposito) {
         this.proposito = proposito;
+        return this;
     }
 
-    public String getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(String objetivos) {
+    public Visita setObjetivos(String objetivos) {
         this.objetivos = objetivos;
+        return this;
     }
 
-    public String getEntregables() {
-        return entregables;
-    }
-
-    public void setEntregables(String entregables) {
+    public Visita setEntregables(String entregables) {
         this.entregables = entregables;
+        return this;
     }
 
     

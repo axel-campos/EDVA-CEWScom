@@ -10,49 +10,30 @@ public class Panel implements MDOArtifact {
     private String numeroDeIntegrantes;
     private String tiempoDeExposicion;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Panel setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Panel setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Panel setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getNumeroDeIntegrantes() {
-        return numeroDeIntegrantes;
-    }
-
-    public void setNumeroDeIntegrantes(String numeroDeIntegrantes) {
+    public Panel setNumeroDeIntegrantes(String numeroDeIntegrantes) {
         this.numeroDeIntegrantes = numeroDeIntegrantes;
+        return this;
     }
 
-    public String getTiempoDeExposicion() {
-        return tiempoDeExposicion;
-    }
-
-    public void setTiempoDeExposicion(String tiempoDeExposicion) {
+    public Panel setTiempoDeExposicion(String tiempoDeExposicion) {
         this.tiempoDeExposicion = tiempoDeExposicion;
+        return this;
     }
-
-    
-
-    
 	
 	@Override
 	public String toHtml() {

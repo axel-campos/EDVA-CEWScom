@@ -10,44 +10,29 @@ public class Observacion implements MDOArtifact {
     private String posibleExplicacion;
     private String posibleResultado;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Observacion setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getPregunta() {
-        return pregunta;
-    }
-
-    public void setPregunta(String pregunta) {
+    public Observacion setPregunta(String pregunta) {
         this.pregunta = pregunta;
+        return this;
     }
 
-    public String getFenomenoAObservar() {
-        return fenomenoAObservar;
-    }
-
-    public void setFenomenoAObservar(String fenomenoAObservar) {
+    public Observacion setFenomenoAObservar(String fenomenoAObservar) {
         this.fenomenoAObservar = fenomenoAObservar;
+        return this;
     }
 
-    public String getPosibleExplicacion() {
-        return posibleExplicacion;
-    }
-
-    public void setPosibleExplicacion(String posibleExplicacion) {
+    public Observacion setPosibleExplicacion(String posibleExplicacion) {
         this.posibleExplicacion = posibleExplicacion;
+        return this;
     }
 
-    public String getPosibleResultado() {
-        return posibleResultado;
-    }
-
-    public void setPosibleResultado(String posibleResultado) {
+    public Observacion setPosibleResultado(String posibleResultado) {
         this.posibleResultado = posibleResultado;
+        return this;
     }
 	
 	@Override

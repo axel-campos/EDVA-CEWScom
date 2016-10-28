@@ -11,52 +11,34 @@ public class EstudioCaso implements MDOArtifact {
     private String metodosDeInvestigacion;
     private String entregables;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public EstudioCaso setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public EstudioCaso setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(String objetivos) {
+    public EstudioCaso setObjetivos(String objetivos) {
         this.objetivos = objetivos;
+        return this;
     }
 
-    public String getProblematica() {
-        return problematica;
-    }
-
-    public void setProblematica(String problematica) {
+    public EstudioCaso setProblematica(String problematica) {
         this.problematica = problematica;
+        return this;
     }
 
-    public String getMetodosDeInvestigacion() {
-        return metodosDeInvestigacion;
-    }
-
-    public void setMetodosDeInvestigacion(String metodosDeInvestigacion) {
+    public EstudioCaso setMetodosDeInvestigacion(String metodosDeInvestigacion) {
         this.metodosDeInvestigacion = metodosDeInvestigacion;
+        return this;
     }
 
-    public String getEntregables() {
-        return entregables;
-    }
-
-    public void setEntregables(String entregables) {
+    public EstudioCaso setEntregables(String entregables) {
         this.entregables = entregables;
+        return this;
     }
     
 	@Override

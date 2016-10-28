@@ -9,36 +9,24 @@ public class MapaConceptual implements MDOArtifact {
 	private String tematica;
     private String entregables;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public MapaConceptual setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public MapaConceptual setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public MapaConceptual setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getEntregables() {
-        return entregables;
-    }
-
-    public void setEntregables(String entregables) {
+    public MapaConceptual setEntregables(String entregables) {
         this.entregables = entregables;
+        return this;
     }
 
     

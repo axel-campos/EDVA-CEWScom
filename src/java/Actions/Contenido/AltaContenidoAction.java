@@ -43,7 +43,7 @@ public class AltaContenidoAction extends ActionSupport {
         String accion = "";
         Contenido contenido = new Contenido();
         Contenido viejo = new Contenido();
-        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion).setIdContenido(Integer.parseInt(id));
+        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion);
         if(tipo.equals("Guardar")){//Registrar            
             accion = "guardó";
         }else{//Modificar

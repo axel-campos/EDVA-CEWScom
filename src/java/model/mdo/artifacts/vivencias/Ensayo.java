@@ -10,44 +10,29 @@ public class Ensayo implements MDOArtifact {
     private String requisitos;
     private String tiempoDeRealizacion;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Ensayo setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Ensayo setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Ensayo setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getRequisitos() {
-        return requisitos;
-    }
-
-    public void setRequisitos(String requisitos) {
+    public Ensayo setRequisitos(String requisitos) {
         this.requisitos = requisitos;
+        return this;
     }
 
-    public String getTiempoDeRealizacion() {
-        return tiempoDeRealizacion;
-    }
-
-    public void setTiempoDeRealizacion(String tiempoDeRealizacion) {
+    public Ensayo setTiempoDeRealizacion(String tiempoDeRealizacion) {
         this.tiempoDeRealizacion = tiempoDeRealizacion;
+        return this;
     }
     
 	@Override

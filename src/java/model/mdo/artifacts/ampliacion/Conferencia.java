@@ -9,39 +9,25 @@ public class Conferencia implements MDOArtifact {
 	private String objetivos;
     private String tematica;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public Conferencia setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Conferencia setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(String objetivos) {
+    public Conferencia setObjetivos(String objetivos) {
         this.objetivos = objetivos;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public Conferencia setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
-
-    
 	
 	@Override
 	public String toHtml() {

@@ -13,71 +13,45 @@ public class MarcoLogico implements MDOArtifact {
     private String fuentesDeVerificacion;
     private String supuestos;
     
-    public String getResultadosEsperados() {
-        return resultadosEsperados;
-    }
-
-    public void setResultadosEsperados(String resultadosEsperados) {
-        this.resultadosEsperados = resultadosEsperados;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public MarcoLogico setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getObjetivoGeneral() {
-        return objetivoGeneral;
-    }
-
-    public void setObjetivoGeneral(String objetivoGeneral) {
+    public MarcoLogico setObjetivoGeneral(String objetivoGeneral) {
         this.objetivoGeneral = objetivoGeneral;
+        return this;
     }
 
-    public String getObjetivosEspecificos() {
-        return objetivosEspecificos;
-    }
-
-    public void setObjetivosEspecificos(String objetivosEspecificos) {
+    public MarcoLogico setObjetivosEspecificos(String objetivosEspecificos) {
         this.objetivosEspecificos = objetivosEspecificos;
+        return this;
+    }
+    
+    public MarcoLogico setResultadosEsperados(String resultadosEsperados) {
+        this.resultadosEsperados = resultadosEsperados;
+        return this;
     }
 
-    public String getActividadesArealizar() {
-        return actividadesArealizar;
-    }
-
-    public void setActividadesArealizar(String actividadesArealizar) {
+    public MarcoLogico setActividadesArealizar(String actividadesArealizar) {
         this.actividadesArealizar = actividadesArealizar;
+        return this;
     }
 
-    public String getIndicadores() {
-        return indicadores;
-    }
-
-    public void setIndicadores(String indicadores) {
+    public MarcoLogico setIndicadores(String indicadores) {
         this.indicadores = indicadores;
+        return this;
     }
 
-    public String getFuentesDeVerificacion() {
-        return fuentesDeVerificacion;
-    }
-
-    public void setFuentesDeVerificacion(String fuentesDeVerificacion) {
+    public MarcoLogico setFuentesDeVerificacion(String fuentesDeVerificacion) {
         this.fuentesDeVerificacion = fuentesDeVerificacion;
+        return this;
     }
 
-    public String getSupuestos() {
-        return supuestos;
-    }
-
-    public void setSupuestos(String supuestos) {
+    public MarcoLogico setSupuestos(String supuestos) {
         this.supuestos = supuestos;
+        return this;
     }
-    
-    
 	
 	@Override
 	public String toHtml() {

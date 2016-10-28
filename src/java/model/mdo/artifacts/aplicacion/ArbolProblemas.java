@@ -11,56 +11,36 @@ public class ArbolProblemas implements MDOArtifact {
     private String problemasSecundarios;
     private String efectos;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public ArbolProblemas setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public ArbolProblemas setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getProblematicaPrincipal() {
-        return problematicaPrincipal;
-    }
-
-    public void setProblematicaPrincipal(String problematicaPrincipal) {
+    public ArbolProblemas setProblematicaPrincipal(String problematicaPrincipal) {
         this.problematicaPrincipal = problematicaPrincipal;
+        return this;
     }
 
-    public String getCausas() {
-        return causas;
-    }
-
-    public void setCausas(String causas) {
+    public ArbolProblemas setCausas(String causas) {
         this.causas = causas;
+        return this;
     }
 
-    public String getProblemasSecundarios() {
-        return problemasSecundarios;
-    }
-
-    public void setProblemasSecundarios(String problemasSecundarios) {
+    public ArbolProblemas setProblemasSecundarios(String problemasSecundarios) {
         this.problemasSecundarios = problemasSecundarios;
+        return this;
     }
 
-    public String getEfectos() {
-        return efectos;
-    }
-
-    public void setEfectos(String efectos) {
+    public ArbolProblemas setEfectos(String efectos) {
         this.efectos = efectos;
+        return this;
     }
-
     
-	
 	@Override
 	public String toHtml() {
 		return String.format("");

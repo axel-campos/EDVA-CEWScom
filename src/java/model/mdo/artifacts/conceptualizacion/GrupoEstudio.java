@@ -1,6 +1,5 @@
 package model.mdo.artifacts.conceptualizacion;
 
-import model.mdo.artifacts.vivencias.*;
 import model.mdo.artifacts.MDOArtifact;
 
 public class GrupoEstudio implements MDOArtifact {
@@ -11,44 +10,29 @@ public class GrupoEstudio implements MDOArtifact {
     private String integrantesPorGrupo;
     private String entregables;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
+    public GrupoEstudio setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public GrupoEstudio setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
+    public GrupoEstudio setTematica(String tematica) {
         this.tematica = tematica;
+        return this;
     }
 
-    public String getIntegrantesPorGrupo() {
-        return integrantesPorGrupo;
-    }
-
-    public void setIntegrantesPorGrupo(String integrantesPorGrupo) {
+    public GrupoEstudio setIntegrantesPorGrupo(String integrantesPorGrupo) {
         this.integrantesPorGrupo = integrantesPorGrupo;
+        return this;
     }
 
-    public String getEntregables() {
-        return entregables;
-    }
-
-    public void setEntregables(String entregables) {
+    public GrupoEstudio setEntregables(String entregables) {
         this.entregables = entregables;
+        return this;
     }
 	
 	@Override
