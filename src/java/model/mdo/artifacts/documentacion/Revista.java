@@ -4,6 +4,7 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class Revista implements MDOArtifact {
 
+    private int paso;
 	private String autor;
 	private String titulo;
 	private String descripcion;
@@ -92,4 +93,10 @@ public class Revista implements MDOArtifact {
 	"			</div>\n" +
 	"		</div>", autor, titulo, descripcion, nombre, anyo, paginas, volumen, numero);
 	}
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

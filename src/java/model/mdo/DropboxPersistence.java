@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import model.mdo.artifacts.MDOArtifact;
+import model.mdo.parsers.MDOParser;
 import model.mdo.template.MDOTemplateUtil;
 
 /**
@@ -191,6 +193,40 @@ public final class DropboxPersistence implements FilePersistence {
         try {
 			client.files().delete(ruta);
 		} catch (DbxException e) {
+			throw new RuntimeException(e);
+		}
+    }
+
+    @Override
+    public void guardarHTML(String artefactosJSON) {
+        try {
+            File htmlTemplateFile = new File("path/template.html");
+            String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+            
+            
+            String stepHTML = "<li>\n" +
+"                          <a href=\"$s\">\n" +
+"                            <span class=\"step_no\">$s</span>\n" +
+"                          </a>\n" +
+"                        </li>";
+			Map<String, Object> map = obtenerMapaDeJson(artefactosJSON);
+			String ruta = (String)map.get("ruta");
+            MDOParser parser = MDOUtil.getParser(artefactosJSON);
+			List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>)map.get("lista");
+           
+            int num_paso = 1;
+            StringBuilder orderHTMLcode = new StringBuilder();
+            StringBuilder definitionHTMLcode = new StringBuilder();
+            for(Map<String, Object> artefacto : artefactosMap)
+            {
+                orderHTMLcode.append(String.format(stepHTML, num_paso));
+                
+                MDOArtifact artifact = parser.parse(artefacto);
+                definitionHTMLcode.append(artifact.setPaso(num_paso).toHtml());
+            }
+
+
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
     }

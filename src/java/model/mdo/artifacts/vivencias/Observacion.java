@@ -4,9 +4,10 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class Observacion implements MDOArtifact {
 
-	private String titulo;
-	private String pregunta;
-	private String fenomenoAObservar;
+    private int paso;
+    private String titulo;
+    private String pregunta;
+    private String fenomenoAObservar;
     private String posibleExplicacion;
     private String posibleResultado;
 
@@ -34,9 +35,25 @@ public class Observacion implements MDOArtifact {
         this.posibleResultado = posibleResultado;
         return this;
     }
-	
-	@Override
-	public String toHtml() {
-		return String.format("");
-	}
+
+    @Override
+    public String toHtml() {
+        return String.format("<div id=\"$s\">\n"
+            + "                          <span class=\"section\">Observación: <small>$s</small></span> \n"
+            + "							<h2 class=\"StepTitle\">Pregunta</h2>\n"
+            + "							<p>$s</p>\n"
+            + "							<h2 class=\"StepTitle\">Fenomeno a Observar</h2>\n"
+            + "							<p>$s</p>\n"
+            + "							<h2 class=\"StepTitle\">Posible Explicacion</h2>\n"
+            + "							<p>$s</p>\n"
+            + "							<h2 class=\"StepTitle\">Posible Resultado</h2>\n"
+            + "							<p>$s</p>\n"
+            + "                      </div>", paso, titulo, pregunta, fenomenoAObservar, posibleExplicacion, posibleResultado);
+    }
+
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

@@ -19,6 +19,15 @@ public interface FilePersistence {
 	 * @throws RuntimeException Si ocurre algún error al momento de almacenar el contenido.
 	 */
 	void guardar(Map<String, Object> detallesContenido, List<String> html);
+    
+    /**
+	 * Guarda el HTML del del contenido didáctico; es decir, con la siguiente estructura de carpeta
+	 * jerárquica: [Grupo] -> [Contenido] -> [Etapa].
+	 * 
+	 * @param artefactosJSON Una lista de los artefactos de la etapa a convertir en JSON.
+	 * @throws RuntimeException Si ocurre algún error al momento de almacenar el contenido.
+	 */
+	void guardarHTML(String artefactosJSON);
 	
 	/**
 	 * Crea un archivo JSON vacío dentro de la carpeta del contenido didáctico.

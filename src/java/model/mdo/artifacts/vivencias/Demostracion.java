@@ -4,6 +4,7 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class Demostracion implements MDOArtifact {
 
+    private int paso;
 	private String titulo;
 	private String objetivo;
 	private String materialNecesario;
@@ -32,7 +33,7 @@ public class Demostracion implements MDOArtifact {
     
 	@Override
 	public String toHtml() {
-		return String.format("<div id=\"$step_number\">\n" +
+		return String.format("<div id=\"$s\">\n" +
 "                          <span class=\"section\">Demostración: <small>$s</small></span> \n" +
 "							<h2 class=\"StepTitle\">Descripcion</h2>\n" +
 "							<p>$s</p>\n" +
@@ -40,6 +41,13 @@ public class Demostracion implements MDOArtifact {
 "							<p>$s</p>\n" +
 "							<h2 class=\"StepTitle\">Procedimiento</h2>\n" +
 "							<p>$s</p>\n" +
-"                      </div>", titulo,objetivo,materialNecesario,procedimiento);
+"                      </div>",paso, titulo,objetivo,materialNecesario,procedimiento);
 	}
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
+    
 }
