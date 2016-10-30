@@ -15,13 +15,16 @@
 		</interceptors>
 		<default-interceptor-ref name="secureStack" />
 		<global-results>
-            <result name="login" type="redirect">/loginform.action</result>
+            <result name="login" type="redirect">/cwescom.action</result>
 		</global-results>
 		<action name="index">
 			<result>/WEB-INF/index.jsp</result>
 		</action>
+        <action name="principal">
+            <result>WEB-INF/principal.jsp</result>
+        </action>
 		<action name="logout" class="Actions.LoginAction" method="logout">
-			<result>/WEB-INF/login.jsp</result>
+			<result>/WEB-INF/cwescom.jsp</result>
 		</action>
         <action name="indexAction" method="">
             <result>/WEB-INF/principal.jsp</result>

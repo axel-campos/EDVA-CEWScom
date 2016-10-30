@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	initWorkspace();
+	
     $("#btnGuardar").click(function () {
         var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
 
@@ -129,5 +131,5 @@ function initWorkspace()
     console.log(targetDiv + "::" + MDOfactory);
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
-    recrearTimeline(MDOfactory, ARTEFACTOS);
+    recrearTimeline(ARTEFACTOS);
 }

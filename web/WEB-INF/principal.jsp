@@ -146,7 +146,7 @@
                 </div>
             </div>
         </nav> 
-        <div class="main" id="contenidoGrupo">
+        <div id="contenidoGrupo">
         <%
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();

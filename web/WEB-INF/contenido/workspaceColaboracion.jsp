@@ -49,8 +49,6 @@
         <script>
             closeTogetherJS();
             cargando();
-            
-            console.log("Jamon")
 
             var APP_BASE = "${pageContext.request.contextPath}";
             var ETAPA = "<%=request.getParameter("etapa")%>";
@@ -76,7 +74,6 @@
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/jquery-resizable.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/funciones.js"></script>
-        <script> initWorkspace(); </script>
     </head>
     <body>
         <div id="header" class="container" align="center">
@@ -105,10 +102,7 @@
                         </div>
                     </div>
                     <button id="btnGuardar" class="btn btn-primary btn-block">Guardar</button>
-                    <br>
-                    <button id="btnDescargar" class="btn btn-primary btn-block">Descargar ZIP</button>
                 </div>
-
                 <%-- Rigth Panel --%>
                 <div class="col-md-12 col-sm-12 col-xs-12 scrollit">
                     <div class="container">
