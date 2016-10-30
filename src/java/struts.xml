@@ -6,11 +6,14 @@
     <constant name="struts.ui.theme" value="simple" />
     <!-- Configuration for the default package. -->
     <package name="cuentas" namespace="/" extends="struts-default">
+        <action name="cwescom">
+            <result>WEB-INF/cwescom.jsp</result>
+        </action>
+        <action name="about">
+            <result>WEB-INF/about.jsp</result>
+        </action>
         <action name="registrarseform">
             <result>/WEB-INF/registrarse.jsp</result>
-        </action>
-        <action name="loginform">
-            <result>/WEB-INF/login.jsp</result>
         </action>
         <action name="indexFacebook">
             <result>/WEB-INF/index.jsp</result>
@@ -23,8 +26,8 @@
         
         <action name="login" class="Actions.LoginAction">
             <result name="success" type="redirect">/index.action</result>
-            <result name="input">/WEB-INF/login.jsp</result>
-            <result name="error">/WEB-INF/login.jsp</result>
+            <result name="input">/WEB-INF/cwescom.jsp</result>
+            <result name="error">/WEB-INF/cwescom.jsp</result>
         </action>
         
         <action name="doUpload" class="Actions.UploadFile">
