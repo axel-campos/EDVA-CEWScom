@@ -14,7 +14,9 @@ $(document).ready(function () {
 
             console.log(artefactos);
             $.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
-                artefactos: JSON.stringify(artefactos)
+                artefactos: JSON.stringify(artefactos),
+                titulo: TITULO,
+                version: VERSION
             }, function (response) {
 
                 if (response.estatus) {

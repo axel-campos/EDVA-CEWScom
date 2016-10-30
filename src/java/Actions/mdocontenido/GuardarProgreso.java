@@ -1,6 +1,7 @@
 package Actions.mdocontenido;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.HashMap;
 import org.apache.struts2.ServletActionContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -50,6 +51,12 @@ public class GuardarProgreso extends ActionSupport {
 	private void guardar() throws Exception {
 		String json = request.getParameter("artefactos");
 		new DropboxPersistence().guardarJson(json);
+        
+        Map<String, Object> detalles_contenido = new HashMap<String, Object>();
+        detalles_contenido.put("titulo", request.getParameter("titulo"));
+        detalles_contenido.put("version", request.getParameter("version")); 
+        
+        new DropboxPersistence().guardarHTMLpreliminar(detalles_contenido,json);
 	}
 	
 	public String getMessage() {

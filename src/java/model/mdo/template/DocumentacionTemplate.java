@@ -4,27 +4,27 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import model.mdo.artifacts.MDOArtifact;
+import org.apache.commons.io.IOUtils;
 
 /**
  * Generador de plantillas HTML para la etapa de Documentación.
  */
 public class DocumentacionTemplate implements MDOTemplate {
 
-	private final String realPath;
-	
-	public DocumentacionTemplate(String realPath) {
-		this.realPath = realPath;
-	}
-	
-	@Override
-	public String generarPlantilla(List<String> html) {
-		try {
-			List<String> lineas = Files.readAllLines(Paths.get(realPath));
-			int bodyIndex = lineas.indexOf("\t</body>");
-			lineas.addAll(bodyIndex, html);
-			return String.join("", lineas);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    private final String realPath;
+
+    public DocumentacionTemplate(String realPath) {
+        this.realPath = realPath;
+    }
+
+    @Override
+    public String generarStepHTML(int paso, MDOArtifact artifact) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String generarPlantilla(List<String> bodyHTML) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
