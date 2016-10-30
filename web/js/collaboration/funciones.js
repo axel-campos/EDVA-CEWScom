@@ -1,60 +1,53 @@
-$(document).ready(function () {    
-    var targetDiv = "#" + ETAPA + "PanelBody";
-    var MDOfactory = ETAPA + "Factory";
-
-    console.log(targetDiv + "::" + MDOfactory);
-    
-    populate(targetDiv, MDOfactory);
-    agregarDragAndDrop(targetDiv, MDOfactory);
-	recrearTimeline(ARTEFACTOS);
-
+$(document).ready(function () {
+	initWorkspace();
+	
     $("#btnGuardar").click(function () {
         var listaArtefactos = MDOUtil.parseNodeList(document.querySelectorAll(".event"));
-		
-		if (listaArtefactos.length > 0) {
-			var artefactos = {
-				artefactos: {
-					ruta: RUTA_PERSISTENCIA,
-					lista: MDOUtil.getListaArtefactos(listaArtefactos)
-				}
-			};
-			
-			console.log(artefactos);
-			$.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
-				artefactos: JSON.stringify(artefactos)
-			}, function(response) {
-				
-				if (response.estatus) {
-					BootstrapDialog.show({
-						title: "Progreso Guardado",
-						message: response.message,
-						type: BootstrapDialog.TYPE_SUCCESS,
-						buttons: [{
-							label: "Continuar Colaborando",
-							icon: "glyphicon glyphicon-ok-circle",
-							cssClass: "btn-success",
-							action: function(dialog) {
-								dialog.close();
-							}
-						}]
-					});
-				} else {
-					BootstrapDialog.show({
-						title: "Error al Guardar Progreso",
-						message: response.message,
-						type: BootstrapDialog.TYPE_DANGER,
-						buttons: [{
-							label: "Cerrar",
-							icon: "glyphicon glyphicon-remove-circle",
-							cssClass: "btn-danger",
-							action: function(dialog) {
-								dialog.close();
-							}
-						}]
-					});
-				}
-			});
-		}
+
+        if (listaArtefactos.length > 0) {
+            var artefactos = {
+                artefactos: {
+                    ruta: RUTA_PERSISTENCIA,
+                    lista: MDOUtil.getListaArtefactos(listaArtefactos)
+                }
+            };
+
+            console.log(artefactos);
+            $.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
+                artefactos: JSON.stringify(artefactos)
+            }, function (response) {
+
+                if (response.estatus) {
+                    BootstrapDialog.show({
+                        title: "Progreso Guardado",
+                        message: response.message,
+                        type: BootstrapDialog.TYPE_SUCCESS,
+                        buttons: [{
+                                label: "Continuar Colaborando",
+                                icon: "glyphicon glyphicon-ok-circle",
+                                cssClass: "btn-success",
+                                action: function (dialog) {
+                                    dialog.close();
+                                }
+                            }]
+                    });
+                } else {
+                    BootstrapDialog.show({
+                        title: "Error al Guardar Progreso",
+                        message: response.message,
+                        type: BootstrapDialog.TYPE_DANGER,
+                        buttons: [{
+                                label: "Cerrar",
+                                icon: "glyphicon glyphicon-remove-circle",
+                                cssClass: "btn-danger",
+                                action: function (dialog) {
+                                    dialog.close();
+                                }
+                            }]
+                    });
+                }
+            });
+        }
     });
 });
 
@@ -64,10 +57,10 @@ $(document).ready(function () {
  * @param {object} artefactos Los artefactos recuperados del servidor.
  */
 function recrearTimeline(artefactos) {
-	var lista = artefactos.artefactos;
-	var body = MDOTimeline.obtenerNodos(lista).join("");
-	
-	$("#contenidoDidacticoBody").append(body);
+    var lista = artefactos.artefactos;
+    var body = MDOTimeline.obtenerNodos(lista).join("");
+
+    $("#contenidoDidacticoBody").append(body);
 }
 
 /**
@@ -78,9 +71,10 @@ function recrearTimeline(artefactos) {
  * @param {type} nombreFabrica El nombre de la fábrica MDO a utilizar.
  */
 function agregarDragAndDrop(selector, nombreFabrica) {
+    var MDOArtifactsContainer = '#contenidoDidacticoBody';
     dragula([
         document.querySelector(selector),
-        document.querySelector("#contenidoDidacticoBody")
+        document.querySelector(MDOArtifactsContainer)
     ], {
         copy: function (el, source) {
             return source === document.querySelector(selector);
@@ -91,7 +85,7 @@ function agregarDragAndDrop(selector, nombreFabrica) {
         removeOnSpill: true
     }).on("drag", function (el) {
         el.className = el.className.replace("ex-moved", "");
-        updateTogetherJS("#contenidoDidacticoBody");
+        updateTogetherJS(MDOArtifactsContainer);
     }).on("drop", function (el) {
         var nombreArtefacto = el.className.replace("gu-transit", "").trim();
         if (!el.className.includes("mdo-")) {
@@ -103,14 +97,15 @@ function agregarDragAndDrop(selector, nombreFabrica) {
         el.className += " ex-moved";
     }).on("over", function (el, container) {
         container.className += " ex-over";
-        updateTogetherJS("#contenidoDidacticoBody");
+        updateTogetherJS(MDOArtifactsContainer);
     }).on("out", function (el, container) {
         container.className = container.className.replace("ex-over", "");
-        updateTogetherJS("#contenidoDidacticoBody");
+        updateTogetherJS(MDOArtifactsContainer);
+
     }).on("dragend", function (el, container) {
-        updateTogetherJS("#contenidoDidacticoBody");
+        updateTogetherJS(MDOArtifactsContainer);
     }).on("shadow", function (el, container) {
-        updateTogetherJS("#contenidoDidacticoBody");
+        updateTogetherJS(MDOArtifactsContainer);
     });
 }
 
@@ -120,7 +115,7 @@ function agregarDragAndDrop(selector, nombreFabrica) {
  * @param {string} selector ID de jQuery del selector de artefactos
  * @param {string} nombreFabrica El nombre de la fábrica MDO a utilizar.
  */
-function populate(selector , nombreFabrica) {
+function populate(selector, nombreFabrica) {
     var body = $(selector);
     var lista = MDOFactories[nombreFabrica].listaArtefactos();
     lista.forEach(function (e) {
@@ -134,8 +129,7 @@ function initWorkspace()
     var MDOfactory = ETAPA + "Factory";
 
     console.log(targetDiv + "::" + MDOfactory);
-    
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
-	recrearTimeline(MDOfactory, ARTEFACTOS);
+    recrearTimeline(ARTEFACTOS);
 }

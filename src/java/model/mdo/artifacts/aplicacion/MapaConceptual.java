@@ -1,0 +1,38 @@
+package model.mdo.artifacts.aplicacion;
+
+import model.mdo.artifacts.MDOArtifact;
+
+public class MapaConceptual implements MDOArtifact {
+
+	private String titulo;
+	private String descripcion;
+	private String tematica;
+    private String entregables;
+
+    public MapaConceptual setTitulo(String titulo) {
+        this.titulo = titulo;
+        return this;
+    }
+
+    public MapaConceptual setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public MapaConceptual setTematica(String tematica) {
+        this.tematica = tematica;
+        return this;
+    }
+
+    public MapaConceptual setEntregables(String entregables) {
+        this.entregables = entregables;
+        return this;
+    }
+
+    
+	
+	@Override
+	public String toHtml() {
+		return String.format("");
+	}
+}

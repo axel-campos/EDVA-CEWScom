@@ -149,7 +149,7 @@
                                             <br><br>
                                         </s:if>                
                                         <% if(fechaModificacion != ""){%>
-										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
                                         <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
                                         <% } %>
