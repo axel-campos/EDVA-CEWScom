@@ -125,7 +125,7 @@
             <result>/WEB-INF/grupos/homeGrupos.jsp</result>
         </action>
         <action name="contenidosGrupo">
-            <result>WEB-INF/grupos/contenidoGrupo.jsp</result>
+            <result>/WEB-INF/grupos/contenidoGrupo.jsp</result>
         </action>
         <action name="mandarSolicitudAction" class="Actions.Groups.AccesoGrupoAction">
             <result name="success" type="redirectAction">
