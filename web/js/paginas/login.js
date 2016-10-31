@@ -23,9 +23,9 @@ $(document).ready(function(){
    });
 });
 
-function inicioSesionFacebook(correo, nombre, apellido, fecha){
+function inicioSesionFacebook(correo, nombre, apellido, fecha, imagen){
     var action_ajax = "verificarUsuarioFacebook.action";
-    $.post(action_ajax, {"correo": correo, "nombre": nombre, "apellido" : apellido, "fecha": fecha}).done(function(data) 
+    $.post(action_ajax, {"correo": correo, "nombre": nombre, "apellido" : apellido, "fecha": fecha, "imagen": imagen}).done(function(data) 
     {
         $('#contenidos_invisibles').html(data);
         if("Listo" === data.toString().substring(0,5)){
