@@ -9,16 +9,16 @@ import java.util.List;
  * de archivos.
  */
 public interface FilePersistence {
-	
-	/**
-	 * Guarda el contenido didáctico de manera encapsulada; es decir, con la siguiente estructura de carpeta
+    
+    /**
+	 * Guarda el HTML del la versión preliminar de cierta versión de una etapa.
 	 * jerárquica: [Grupo] -> [Contenido] -> [Etapa].
 	 * 
-	 * @param detallesContenido Contiene la etapa, el nombre del contenido y el nombre del grupo que lo editó.
-	 * @param html Contiene el código HTML de los artefactos a guardar.
+     * @param detallesContenido Contiene la etapa, el nombre del contenido y el nombre del grupo que lo editó.
+	 * @param artefactosJSON Una lista de los artefactos de la etapa a convertir en JSON.
 	 * @throws RuntimeException Si ocurre algún error al momento de almacenar el contenido.
 	 */
-	void guardar(Map<String, Object> detallesContenido, List<String> html);
+	void guardarHTMLpreliminar(Map<String, Object> detallesContenido, String artefactosJSON);
 	
 	/**
 	 * Crea un archivo JSON vacío dentro de la carpeta del contenido didáctico.

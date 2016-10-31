@@ -4,6 +4,7 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class MesaRedonda implements MDOArtifact {
 
+    private int paso;
 	private String titulo;
 	private String descripcion;
 	private String tematica;
@@ -40,4 +41,10 @@ public class MesaRedonda implements MDOArtifact {
 	public String toHtml() {
 		return String.format("");
 	}
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

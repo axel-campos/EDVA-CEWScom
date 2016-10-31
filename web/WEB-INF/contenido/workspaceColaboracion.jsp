@@ -54,6 +54,9 @@
             var ETAPA = "<%=request.getParameter("etapa")%>";
             var ARTEFACTOS = JSON.parse('<%=json%>');
             var RUTA_PERSISTENCIA = '<%=ruta%>';
+            
+            var TITULO = "<%=request.getParameter("titulo")%>";
+            var VERSION = "<%=version%>";
 
             var TogetherJSConfig_getUserName = function () {
                 return "${session.usuario.nombre} ${session.usuario.APaterno}";

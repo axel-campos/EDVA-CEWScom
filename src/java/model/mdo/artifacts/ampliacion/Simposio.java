@@ -1,10 +1,10 @@
 package model.mdo.artifacts.ampliacion;
 
-import model.mdo.artifacts.vivencias.*;
 import model.mdo.artifacts.MDOArtifact;
 
 public class Simposio implements MDOArtifact {
 
+    private int paso;
 	private String titulo;
 	private String descripcion;
 	private String tematica;
@@ -40,4 +40,10 @@ public class Simposio implements MDOArtifact {
 	public String toHtml() {
 		return String.format("");
 	}
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

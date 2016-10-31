@@ -14,8 +14,11 @@ $(document).ready(function () {
 
             console.log(artefactos);
             $.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
-                artefactos: JSON.stringify(artefactos)
-            }, function (response) {	
+                artefactos: JSON.stringify(artefactos),
+                titulo: TITULO,
+                version: VERSION
+            }, function (response) {
+
                 if (response.estatus) {
                     BootstrapDialog.show({
                         title: "Progreso Guardado",
@@ -126,7 +129,6 @@ function initWorkspace()
     var targetDiv = "#" + ETAPA + "PanelBody";
     var MDOfactory = ETAPA + "Factory";
 
-    console.log(targetDiv + "::" + MDOfactory);
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
     recrearTimeline(ARTEFACTOS);

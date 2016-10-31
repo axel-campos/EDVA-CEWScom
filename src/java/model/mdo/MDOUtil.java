@@ -52,7 +52,7 @@ public final class MDOUtil {
 	 * @return Un objeto MDOParser que pueda convertir dicho artefacto
 	 * en un objeto MDOArtifact.
 	 */
-	private static MDOParser getParser(String artefacto) {
+	public static MDOParser getParser(String artefacto) {
 		if (artefacto.contains("vivencia"))
 			return new VivenciaParser();
 		else if (artefacto.contains("conceptualizacion"))
