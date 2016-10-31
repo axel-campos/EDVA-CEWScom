@@ -29,7 +29,7 @@ public class EliminarContenidoAction extends ActionSupport{
                 contenidoDAO.desconectar();
                 //Eliminamos la carpeta de Dropbox
                 FilePersistence persistence = new DropboxPersistence();	
-                persistence.borrarCarpeta("/" + contenido.getToken() + "/" + nombre.replace(" ", ""));
+                persistence.borrarCarpeta("/" + contenido.getToken() + "/" + contenido.getIdContenido());
                 //Regresamos                
                 type = "success";
                 message = "El contenido didáctico <b>" + nombre + "</b> se eliminó con éxito.";

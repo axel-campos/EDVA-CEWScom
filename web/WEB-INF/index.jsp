@@ -53,6 +53,30 @@
                  new WOW().init();
             </script>
         <!--//end-animate-->
+		<%-- JS resources  --%>
+		<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap/ekko-lightbox.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
+		<script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-config.js"></script>
+		<script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-min.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-comChannel.js" type="text/javascript"></script>
+
+		<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery/locale_es.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datetimepicker.min.js"></script> 
+		<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
+		<script>
+			$(document).ready(function () {
+				closeTogetherJS();
+			});
+
+			window.onbeforeunload = function () {
+				closeTogetherJS();
+			};
+		</script>
     </head>
     <body>
         <%@include file="header.jsp"%>
@@ -68,28 +92,4 @@
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
     </body>
-    <%-- JS resources  --%>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery/carousel.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/ekko-lightbox.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-table.min.js"></script> 
-    <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-config.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/js/tjsCWEScom/togetherjs-comChannel.js" type="text/javascript"></script>
-
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrapValidator.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery/moment.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery/locale_es.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-datetimepicker.min.js"></script> 
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/js/paginas/funciones.js"></script>
-    <script>
-        $(document).ready(function () {
-            closeTogetherJS();
-        });
-
-        window.onbeforeunload = function () {
-            closeTogetherJS();
-        };
-    </script>
 </html>

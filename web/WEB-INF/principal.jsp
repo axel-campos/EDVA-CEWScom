@@ -236,7 +236,7 @@
                                     Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
                                     <br/>
                                     <% if(fechaModificacion != ""){%>
-										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(!fechaVotacion.equals("")){%>
                                         <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
                                     <% } %>
