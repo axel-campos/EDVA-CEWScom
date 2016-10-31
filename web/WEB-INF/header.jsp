@@ -5,6 +5,7 @@
 <%@page import="modelo.dao.*"%>
 <%@page import="modelo.pojo.*"%>
 <%@page import="java.util.List"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <div class="page-head">
     <div class="header-nav ">
         <div class="logo wow fadeInUp animated" data-wow-delay=".5s">
@@ -50,7 +51,13 @@
                 %>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">
-                            <img src="${pageContext.request.contextPath}/images/${session.usuario.avatar}" width="25" class="img-circle"/> <%= nombre%> <span class='caret'></span>
+                            <s:if test="%{#session.usuario.facebook == 1}">
+                                <img src="${session.usuario.avatar}" width="25" class="img-circle"/> <%= nombre%> <span class='caret'></span>
+                            </s:if>
+                            <s:else>
+                                <img src="${pageContext.request.contextPath}/images/${session.usuario.avatar}" width="25" class="img-circle"/> <%= nombre%> <span class='caret'></span>
+                            </s:else>
+                            
                         </a>
                         <ul class="dropdown-menu">
                             <li><a onclick="cambiarContenidos('modInformacion','#contenido')" style="cursor:pointer">Mi cuenta</a></li>
