@@ -140,7 +140,7 @@
                                         Fecha votación: <%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
-                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-calendar"></span> Agregar versión</button>
+                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> Agregar versión</button>
                                             <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
                                             <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>
                                             <% if(idEtapa != null){%>
