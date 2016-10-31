@@ -30,7 +30,6 @@ public class VivenciaTemplate implements MDOTemplate {
     public String generarPlantilla(List<String> html) {
         try {
             File htmlTemplateFile = new File(ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/vivencias_template.html");
-            ;
             String template_string = FileUtils.readFileToString(htmlTemplateFile);
             template_string = template_string.replace("$ruta","http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
             return String.format(template_string,titulo, titulo, version, html.get(0),html.get(1));

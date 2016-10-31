@@ -10,6 +10,7 @@ public class AmpliacionTemplate implements MDOTemplate {
 
     @Override
     public String generarStepHTML(int paso, MDOArtifact artifact) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
