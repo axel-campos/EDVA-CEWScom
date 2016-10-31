@@ -1,0 +1,108 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> %s | Visualización Previa </title>
+        <!-- Bootstrap -->
+        <link href="$ruta/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Font Awesome -->
+        <link href="$ruta/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Custom Theme Style -->
+        <link href="$ruta/css/gentella/custom_gentellela.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body class="nav-md">
+        <div class="container body">
+            <!-- page content -->
+            <div role="main">
+                <div class="page-title">
+                    <h3>%s <small>(VersiU+00F3n: %s)</small> </h3> 
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- Vivencias Panel -->
+                    <div id="vivencias_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2>Vivencias <small>Suponen confrontar a los estudiantes con situaciones reales y desafiantes que producen conflictos cognitivos y alta motivación para buscar y construir soluciones.</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStep();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStep();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li>
+                                    <a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_vivencias" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    <!-- StepsOrder -->
+                                    %s
+                                    <!-- End StepOrder -->
+                                </ul>
+                                <!-- StepsDefinitions -->
+                                %s
+                                <!-- End StepsDefinitions -->
+                                
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Viviencias -->
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+        <!-- jQuery -->
+        <script src="$ruta/js/jquery/jquery-2.2.4.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="$ruta/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        <!-- FastClick -->
+        <script src="$ruta/js/plantillas/fastclick.js" type="text/javascript"></script>
+        <!-- jQuery Smart Wizard -->
+        <script src="$ruta/js/plantillas/jquery.smartWizard.js" type="text/javascript"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="$ruta/js/collaboration/custom_gentellela.js" type="text/javascript"></script>
+        <!-- jQuery Smart Wizard -->
+        <script>
+            $(document).ready(function () {
+                $('#wizard_verticle_vivencias').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    noForwardJumping: true,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                            reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+            });
+            function nextStep()
+            {
+                $('#wizard_verticle_vivencias').smartWizard('goForward');
+            }
+            function backStep()
+            {
+                $('#wizard_verticle_vivencias').smartWizard('goBackward');
+            }
+        </script>
+        <!-- /jQuery Smart Wizard -->
+    </body>
+</html>

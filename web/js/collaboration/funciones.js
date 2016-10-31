@@ -14,7 +14,9 @@ $(document).ready(function () {
 
             console.log(artefactos);
             $.post(APP_BASE + "/mdocontenido/GuardarProgreso", {
-                artefactos: JSON.stringify(artefactos)
+                artefactos: JSON.stringify(artefactos),
+                titulo: TITULO,
+                version: VERSION
             }, function (response) {
 
                 if (response.estatus) {
@@ -84,7 +86,7 @@ function agregarDragAndDrop(selector, nombreFabrica) {
         },
         removeOnSpill: true
     }).on("drag", function (el) {
-        el.className = el.className.replace("ex-moved", "");
+        el.className = el.className.replace("ex-moved", "").trim();
         updateTogetherJS(MDOArtifactsContainer);
     }).on("drop", function (el) {
         var nombreArtefacto = el.className.replace("gu-transit", "").trim();
@@ -93,15 +95,14 @@ function agregarDragAndDrop(selector, nombreFabrica) {
             var div = document.createElement("div");
             div.innerHTML = artefacto;
             el.parentNode.replaceChild(div.firstChild, el);
-        }
-        el.className += " ex-moved";
+		}
+		el.className += " ex-moved";
     }).on("over", function (el, container) {
         container.className += " ex-over";
         updateTogetherJS(MDOArtifactsContainer);
     }).on("out", function (el, container) {
-        container.className = container.className.replace("ex-over", "");
+        container.className = container.className.replace("ex-over", "").trim();
         updateTogetherJS(MDOArtifactsContainer);
-
     }).on("dragend", function (el, container) {
         updateTogetherJS(MDOArtifactsContainer);
     }).on("shadow", function (el, container) {
@@ -128,7 +129,6 @@ function initWorkspace()
     var targetDiv = "#" + ETAPA + "PanelBody";
     var MDOfactory = ETAPA + "Factory";
 
-    console.log(targetDiv + "::" + MDOfactory);
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
     recrearTimeline(ARTEFACTOS);

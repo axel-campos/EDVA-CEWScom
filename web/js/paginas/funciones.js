@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    window.location.hash="no-back-button";
+    window.location.hash="Again-No-back-button" //chrome
+    window.onhashchange=function(){window.location.hash="no-back-button";} 
+});
 // Tipos de mensajes a mostrar
 var TIPO_MENSAJE = {
     DEFAULT: 0,
@@ -22,7 +27,12 @@ function cambiarContenidos(pagina, target){
             }
             
             finalizar();
-            $(target).html(data);
+            if(data.toString().indexOf("Regístrate") === -1){
+                $(target).html(data); 
+            }else{
+                var cwescom = "cwescom.action";
+                window.open(cwescom,'_top');
+            }
             
         }, 1000);
     }).fail(function(data){

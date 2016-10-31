@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="${pageContext.request.contextPath}/js/paginas/contenido/altaEtapasVersion.js"></script>
+        <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <title>JSP Page</title>
     </head>
     <body>

@@ -4,6 +4,7 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class Tutoria implements MDOArtifact {
 
+    private int paso;
 	private String titulo;
 	private String descripcion;
 	private String objetivos;
@@ -39,4 +40,10 @@ public class Tutoria implements MDOArtifact {
 	public String toHtml() {
 		return String.format("");
 	}
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

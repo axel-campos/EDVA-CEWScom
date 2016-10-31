@@ -4,6 +4,7 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class Video implements MDOArtifact {
 	
+    private int paso;
 	private String nombre;
 	private String descripcion;
 	private String url;
@@ -47,4 +48,10 @@ public class Video implements MDOArtifact {
 	"			</div>\n" +
 	"		</div>", nombre, descripcion, url);
 	}	
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

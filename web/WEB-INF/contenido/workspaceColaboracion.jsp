@@ -54,6 +54,9 @@
             var ETAPA = "<%=request.getParameter("etapa")%>";
             var ARTEFACTOS = JSON.parse('<%=json%>');
             var RUTA_PERSISTENCIA = '<%=ruta%>';
+            
+            var TITULO = "<%=request.getParameter("titulo")%>";
+            var VERSION = "<%=version%>";
 
             var TogetherJSConfig_getUserName = function () {
                 return "${session.usuario.nombre} ${session.usuario.APaterno}";
@@ -81,8 +84,6 @@
                 <h1><%=request.getParameter("titulo")%> - <%=request.getParameter("etapa")%> (Versión <%=version%>)</h1>
             </div>
         </div>
-
-
         <div class="container-fluid">
             <div class="row">
                 <%-- Left Panel --%>
@@ -101,10 +102,16 @@
                             </div>
                         </div>
                     </div>
-                    <button id="btnGuardar" class="btn btn-primary btn-block">Guardar</button>
+                    <button id="btnGuardar" class="btn btn-primary btn-block">Guardar Progreso</button>
+					<br>
+					<button id="btnTerminarColaboracion" class="btn btn-danger btn-block" onclick="cambiarContenidos('ListarContenidosGrupoAction?token=<%=token%>', '#contenido');" disabled>
+						Terminar Colaboración
+					</button>
                 </div>
-                <%-- Rigth Panel --%>
-                <div class="col-md-12 col-sm-12 col-xs-12 scrollit">
+				<br>
+				<br>
+                <%-- Right Panel --%>
+                <div class="col-md-10 col-sm-10 col-xs-8 scrollit">
                     <div class="container">
                         <ul id="contenidoDidacticoBody" class="timeline">
                             <li class="year">Inicio</li>

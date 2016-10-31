@@ -98,17 +98,7 @@ function cargarFormulario(id, etapa, version){
     if(version === "null"){version = "";}
     BootstrapDialog.show({
         message: $('<div id="ventana"></div>').load("cargaEtapas", {"idContenido": id, etapa: etapa, version: version}),
-        title: "Establecer tiempo de modificación",
-        buttons: [{
-            id: 'btn-cancel',   
-            icon: 'glyphicon glyphicon-thumbs-up',       
-            label: 'OK',
-            cssClass: 'btn-primary', 
-            autospin: false,
-            action: function(dialogRef){    
-                dialogRef.close();
-            }
-        }]
+        title: "Establecer tiempo de modificación"
     });
 }
 

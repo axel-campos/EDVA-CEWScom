@@ -3,7 +3,8 @@ package model.mdo.artifacts.vivencias;
 import model.mdo.artifacts.MDOArtifact;
 
 public class Simulacion implements MDOArtifact {
-
+   
+    private int paso;
     private String titulo;
     private String tematica;
     private String descripcion;
@@ -43,9 +44,25 @@ public class Simulacion implements MDOArtifact {
 
     @Override
     public String toHtml() {
-        return String.format("");
+        return String.format("                      <div id=\"%s\">\n" +
+"                          <span class=\"section\">Simulación: <small>%s</small></span> \n" +
+"							<h2 class=\"StepTitle\">Temática</h2>\n" +
+"							<p>%s</p>\n" +
+"							<h2 class=\"StepTitle\">Descripcion</h2>\n" +
+"							<p>%s</p>\n" +
+"							<h2 class=\"StepTitle\">Roles</h2>\n" +
+"							<p>%s</p>\n" +
+"							<h2 class=\"StepTitle\">Material Necesario</h2>\n" +
+"							<p>%s</p>\n" +
+"							<h2 class=\"StepTitle\">Procedimiento</h2>\n" +
+"							<p>%s</p>\n" +
+"                      </div>",paso,titulo,tematica,descripcion, roles, materialNecesario, procedimiento );
     }
     
-    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
     
 }
