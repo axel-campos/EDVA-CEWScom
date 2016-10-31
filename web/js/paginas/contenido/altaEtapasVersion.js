@@ -7,15 +7,20 @@ $(document).ready(function(){
         var numeroVersion = ($("#tablaVersiones tr").length);
         var fila = "<tr>"
             + "<td style='text-align: center'>" + numeroVersion + "<input type='hidden' value='" + numeroVersion + "' id='version' name='version'></td>"
-            + "<td style='padding-left: 26%'><div class='form-group row-fluid'><input type='text' placeholder='Ingresa fecha' id='fecha' name='fecha' class='form-control' style='width: 60%'></div></td>"
+            + "<td><div class='input-group date' id='datetimepicker1'>"
+            + "<input type='text' placeholder='Ingresa fecha' id='fecha' name='fecha' class='form-control'><span class='input-group-addon'><span class='glyphicon glyphicon-edit'></span></span>"
+            + "</div></td>"
             + "</tr>";
         $("#tablaVersiones tr:last").after(fila);//Agregamos la fila
-
+        $('#datetimepicker1').datetimepicker({
+                
+            });
+        
         $("#btnAgregar").hide();//Ocultamos esta opción.
         $("#btnCancelar").show();
         $("#btnSubmit").show();
         //Agregamos la validación
-        $(form).bootstrapValidator('destroy')
+        $(form)/*.bootstrapValidator('destroy')*/
                 .bootstrapValidator({
                     fields:{
                         fecha:{
@@ -79,33 +84,10 @@ $(document).ready(function(){
             $("#btnCancelar").hide();
             $("#btnSubmit").hide();
         });
+        var caquitita = "<input type='text' class='fecha'>";
+        //$("table:last").append(caquitita);
+        ponerCalendario();
         
-        
-        
-        $("#fecha").datetimepicker({
-            locale: 'es',
-            format: 'YYYY-MM-DD HH:mm',
-            minDate: moment().add(1, 'days').format('YYYY-MM-DD'),
-            defaultDate: moment().add(1, 'days').format('YYYY-MM-DD'),
-            tooltips: {
-                today: 'Hoy',
-                clear: 'Limpiar selección',
-                close: 'Cerrar el calendario',
-                selectMonth: 'Seleccionar mes',
-                prevMonth: 'Mes previo',
-                nextMonth: 'Próximo mes',
-                selectYear: 'Selecciona año',
-                prevYear: 'Año previo',
-                nextYear: 'Próximo año',
-                selectDecade: 'Selecciona década',
-                prevDecade: 'Década previa',
-                nextDecade: 'Próxima década',
-                prevCentury: 'Siglo previo',
-                nextCentury: 'Próximo siglo'
-            }
-        }).show().on("dp.change",function(e){
-            $("#frmTiempos").bootstrapValidator('revalidateField', $("#fecha"));//Revalidamos el campo cada vez que cambie
-        }); 
     });
     //Para lo de la edición
     $("#btnEditar").on('click',function(event){
@@ -249,5 +231,32 @@ function cargarVersiones(etapa){
         }else{
             
         }
+    });
+}
+
+function ponerCalendario(){
+    $(".fecha").datetimepicker({
+        locale: 'es',
+        format: 'YYYY-MM-DD HH:mm',
+        minDate: moment().add(1, 'days').format('YYYY-MM-DD'),
+        defaultDate: moment().add(1, 'days').format('YYYY-MM-DD'),
+        tooltips: {
+            today: 'Hoy',
+            clear: 'Limpiar selección',
+            close: 'Cerrar el calendario',
+            selectMonth: 'Seleccionar mes',
+            prevMonth: 'Mes previo',
+            nextMonth: 'Próximo mes',
+            selectYear: 'Selecciona año',
+            prevYear: 'Año previo',
+            nextYear: 'Próximo año',
+            selectDecade: 'Selecciona década',
+            prevDecade: 'Década previa',
+            nextDecade: 'Próxima década',
+            prevCentury: 'Siglo previo',
+            nextCentury: 'Próximo siglo'
+        }
+    }).show().on("dp.change",function(e){
+        $("#frmTiempos").bootstrapValidator('revalidateField', $("#fecha"));//Revalidamos el campo cada vez que cambie
     });
 }

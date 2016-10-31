@@ -89,6 +89,8 @@ ul{
 }
 .nav > li > ul {
     top: 20px;/*Antes era 44px*/
+    /*right: 0px;*/
+    /*margin-right: -150px;*/
 }
 .nav > li {
     margin: 0 4px;

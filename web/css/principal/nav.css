@@ -92,16 +92,21 @@ li.dropdown1:hover{
 	margin-top:30px;
 	padding: 0px;
 	z-index: 99;	
+    /*left: -134px;*/
+    left: -57px;
 }
 /* First level appear */
 .nav > li:hover > ul {
 	  opacity: 1;
   visibility: visible;
-  margin-top: 15px;   
+  margin-top: 15px;
+  
 }
 /* Style for dropdown links */
 .nav li > ul li{	
 	position: relative;
+    /*right:75%;
+    margin-right:0px;*/
  }
 .nav li > ul li a{
   background: orange;
@@ -117,6 +122,7 @@ li.dropdown1:hover{
   -o-transition: all 0.2s linear;
   -ms-transition: all 0.2s linear;
   z-index: 22;
+  /*right: 150px;*/
 }
 .nav li > ul li a span.arrow{
 	width:15px;
