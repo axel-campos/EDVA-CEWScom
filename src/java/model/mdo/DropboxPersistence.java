@@ -205,7 +205,7 @@ public final class DropboxPersistence implements FilePersistence {
             List<String> parametro = new ArrayList<String>();
             parametro.add(orderHTMLcode.toString());
             parametro.add(definitionHTMLcode.toString());
-            String tempi = template.generarPlantilla(parametro, detalles_contenido.get("app_base").toString() );
+            String tempi = template.generarPlantilla(parametro);
             
             subirArchivoTexto(ruta, "prueba.html", tempi);
         } catch (Exception e) {

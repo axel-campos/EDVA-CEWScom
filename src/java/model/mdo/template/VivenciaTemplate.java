@@ -27,12 +27,12 @@ public class VivenciaTemplate implements MDOTemplate {
     }
 
     @Override
-    public String generarPlantilla(List<String> html, String rutaRecursos) {
+    public String generarPlantilla(List<String> html) {
         try {
             File htmlTemplateFile = new File(ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/vivencias_template.html");
             ;
             String template_string = FileUtils.readFileToString(htmlTemplateFile);
-            template_string = template_string.replace("$ruta", ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() );
+            template_string = template_string.replace("$ruta","http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
             return String.format(template_string,titulo, titulo, version, html.get(0),html.get(1));
         } catch (IOException ex) {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,7 +57,7 @@ public class VivenciaTemplate implements MDOTemplate {
         }
 
         return String.format("<li>\n"
-            + "                          <a href=\"%s\">\n"
+            + "                          <a href=\"#%s\">\n"
             + "                            <span class=\"step_no\">%s</span>\n"
             + "                          </a>\n"
             + "                        </li>", paso, artifactString);

@@ -28,5 +28,5 @@ public interface MDOTemplate {
      * @param rutaRecursos Cadena donde se le indicará al HTML la ruta de los .js's y .css´s que se van a cargar.
 	 * @return Un archivo HTML en forma de cadena.
 	 */
-	String generarPlantilla(List<String> html, String rutaRecursos);
+	String generarPlantilla(List<String> html);
 }
