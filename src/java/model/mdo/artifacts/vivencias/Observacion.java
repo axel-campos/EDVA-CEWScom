@@ -38,16 +38,16 @@ public class Observacion implements MDOArtifact {
 
     @Override
     public String toHtml() {
-        return String.format("<div id=\"$s\">\n"
-            + "                          <span class=\"section\">Observación: <small>$s</small></span> \n"
+        return String.format("<div id=\"%s\">\n"
+            + "                          <span class=\"section\">Observación: <small>%s</small></span> \n"
             + "							<h2 class=\"StepTitle\">Pregunta</h2>\n"
-            + "							<p>$s</p>\n"
+            + "							<p>%s</p>\n"
             + "							<h2 class=\"StepTitle\">Fenomeno a Observar</h2>\n"
-            + "							<p>$s</p>\n"
+            + "							<p>%s</p>\n"
             + "							<h2 class=\"StepTitle\">Posible Explicacion</h2>\n"
-            + "							<p>$s</p>\n"
+            + "							<p>%s</p>\n"
             + "							<h2 class=\"StepTitle\">Posible Resultado</h2>\n"
-            + "							<p>$s</p>\n"
+            + "							<p>%s</p>\n"
             + "                      </div>", paso, titulo, pregunta, fenomenoAObservar, posibleExplicacion, posibleResultado);
     }
 

@@ -129,7 +129,6 @@ function initWorkspace()
     var targetDiv = "#" + ETAPA + "PanelBody";
     var MDOfactory = ETAPA + "Factory";
 
-    console.log(targetDiv + "::" + MDOfactory);
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
     recrearTimeline(ARTEFACTOS);

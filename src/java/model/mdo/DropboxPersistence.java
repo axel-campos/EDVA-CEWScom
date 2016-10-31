@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -133,7 +134,7 @@ public final class DropboxPersistence implements FilePersistence {
         String token = ruta.split("/")[1];
         String tempFile = appRoot + ruta + "/" + nombre;
         File temp = new File(tempFile);
-        FileUtils.writeStringToFile(temp, contenido);
+        FileUtils.writeStringToFile(temp, contenido, "UTF-8");
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
                 .files()
@@ -189,7 +190,6 @@ public final class DropboxPersistence implements FilePersistence {
 
             Map<String, Object> map = obtenerMapaDeJson(artefactosJSON);
             String ruta = (String) map.get("ruta");
-            
             MDOParser parser = MDOUtil.getParser(artefactosJSON);
             List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
@@ -200,9 +200,14 @@ public final class DropboxPersistence implements FilePersistence {
                 MDOArtifact artifact = parser.parse(artefacto);
                 orderHTMLcode.append(template.generarStepHTML(num_paso, artifact));
                 definitionHTMLcode.append(artifact.setPaso(num_paso).toHtml());
+                num_paso = num_paso + 1;
             }
+            List<String> parametro = new ArrayList<String>();
+            parametro.add(orderHTMLcode.toString());
+            parametro.add(definitionHTMLcode.toString());
+            String tempi = template.generarPlantilla(parametro, detalles_contenido.get("app_base").toString() );
             
-            subirArchivoTexto(ruta, "prueba.html", template.generarPlantilla(Arrays.<String>asList(orderHTMLcode.toString(), definitionHTMLcode.toString())));
+            subirArchivoTexto(ruta, "prueba.html", tempi);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

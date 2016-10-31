@@ -1,12 +1,15 @@
 package model.mdo.template;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.mdo.artifacts.MDOArtifact;
 import model.mdo.artifacts.vivencias.*;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 /**
  * Generador de plantillas HTML para la etapa de Vivencia.
@@ -21,14 +24,16 @@ public class VivenciaTemplate implements MDOTemplate {
         this.realPath = realPath;
         this.titulo = titulo;
         this.version = version;
-
     }
 
     @Override
-    public String generarPlantilla(List<String> html) {
+    public String generarPlantilla(List<String> html, String rutaRecursos) {
         try {
-            String template_string = IOUtils.toString(DocumentacionTemplate.class.getClass().getResourceAsStream(realPath), "UTF-8");
-            return String.format(template_string, titulo, version, html.get(0),html.get(1));
+            File htmlTemplateFile = new File(ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/vivencias_template.html");
+            ;
+            String template_string = FileUtils.readFileToString(htmlTemplateFile);
+            template_string = template_string.replace("$ruta", ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() );
+            return String.format(template_string,titulo, titulo, version, html.get(0),html.get(1));
         } catch (IOException ex) {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
             return String.format("Error creating template.");
@@ -52,8 +57,8 @@ public class VivenciaTemplate implements MDOTemplate {
         }
 
         return String.format("<li>\n"
-            + "                          <a href=\"$s\">\n"
-            + "                            <span class=\"step_no\">$s</span>\n"
+            + "                          <a href=\"%s\">\n"
+            + "                            <span class=\"step_no\">%s</span>\n"
             + "                          </a>\n"
             + "                        </li>", paso, artifactString);
     }

@@ -14,7 +14,7 @@ public final class MDOTemplateUtil {
 	 * @return La implementación MDOTemplate para la etapa.
 	 */
 	public static MDOTemplate getTemplate(String etapa, String path, String titulo, String version) {
-		if (etapa.contains("vivencias"))
+		if (etapa.contains("vivencia"))
 			return new VivenciaTemplate(path,titulo,version);
 		else if (etapa.contains("conceptualizacion"))
 			return new ConceptualizacionTemplate();

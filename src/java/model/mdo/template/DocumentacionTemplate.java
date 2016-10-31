@@ -24,7 +24,7 @@ public class DocumentacionTemplate implements MDOTemplate {
     }
 
     @Override
-    public String generarPlantilla(List<String> bodyHTML) {
+    public String generarPlantilla(List<String> html, String rutaRecursos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -44,18 +44,18 @@ public class Simulacion implements MDOArtifact {
 
     @Override
     public String toHtml() {
-        return String.format("                      <div id=\"$s\">\n" +
-"                          <span class=\"section\">Simulación: <small>$s</small></span> \n" +
+        return String.format("                      <div id=\"%s\">\n" +
+"                          <span class=\"section\">Simulación: <small>%s</small></span> \n" +
 "							<h2 class=\"StepTitle\">Temática</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "							<h2 class=\"StepTitle\">Descripcion</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "							<h2 class=\"StepTitle\">Roles</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "							<h2 class=\"StepTitle\">Material Necesario</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "							<h2 class=\"StepTitle\">Procedimiento</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "                      </div>",paso,titulo,tematica,descripcion, roles, materialNecesario, procedimiento );
     }
     

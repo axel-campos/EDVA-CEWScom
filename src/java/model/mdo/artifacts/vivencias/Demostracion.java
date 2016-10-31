@@ -33,14 +33,14 @@ public class Demostracion implements MDOArtifact {
     
 	@Override
 	public String toHtml() {
-		return String.format("<div id=\"$s\">\n" +
-"                          <span class=\"section\">Demostración: <small>$s</small></span> \n" +
+		return String.format("<div id=\"%s\">\n" +
+"                          <span class=\"section\">Demostración: <small>%s</small></span> \n" +
 "							<h2 class=\"StepTitle\">Descripcion</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "							<h2 class=\"StepTitle\">Objetivo</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "							<h2 class=\"StepTitle\">Procedimiento</h2>\n" +
-"							<p>$s</p>\n" +
+"							<p>%s</p>\n" +
 "                      </div>",paso, titulo,objetivo,materialNecesario,procedimiento);
 	}
     
