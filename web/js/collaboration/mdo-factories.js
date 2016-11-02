@@ -1,84 +1,99 @@
 var MDOFactories = (function() {
 	var _VivenciaFactory = (function() {
 		function Observacion() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-observacion event'>\n\
-						<h2 class='heading'>Observación</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Pregunta:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Fenómeno a observar:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Posible explicación:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Posible resultado:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Observación</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Pregunta:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Fenómeno a observar:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Posible explicación:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Posible resultado:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Visita() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-visita event'>\n\
-						<h2 class='heading'>Visita</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Lugar a visitar:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática del lugar:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Propósito:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Entregables:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Visita</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Lugar a visitar:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática del lugar:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Propósito:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Demostracion() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-demostracion event'>\n\
-						<h2 class='heading'>Demostración</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivo:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Material necesario:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Procedimiento:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Demostración</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivo:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Material necesario:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Procedimiento:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Ensayo() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-ensayo event'>\n\
-						<h2 class='heading'>Ensayo</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Requisitos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Tiempo de realización:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Ensayo</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Requisitos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Tiempo de realización:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Simulacion() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-simulacion event'>\n\
-						<h2 class='heading'>Simulación</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Roles:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Material necesario:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Procedimiento:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Simulación</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Roles:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Material necesario:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Procedimiento:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
@@ -115,64 +130,76 @@ var MDOFactories = (function() {
 	
 	var _ConceptualizacionFactory = (function() {
 		function Preguntas() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-preguntas event'>\n\
-						<h2 class='heading'>Preguntas</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Preguntas a realizar:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Preguntas</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Preguntas a realizar:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Tutoria() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-tutoria event'>\n\
-						<h2 class='heading'>Tutoría</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temas a tratar:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Material de apoyo:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Tutoría</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temas a tratar:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Material de apoyo:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function LluviaIdeas() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
-						<h2 class='heading'>Lluvia de Ideas</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Problemática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Preguntas clave:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Lluvia de Ideas</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Problemática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Preguntas clave:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function GrupoEstudio() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
-						<h2 class='heading'>Grupo de Estudio</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Integrantes por grupo:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Entregables:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Grupo de Estudio</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Integrantes por grupo:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+						</div>\n\
 					</li>";
 		}
 		
@@ -206,106 +233,124 @@ var MDOFactories = (function() {
 	
 	var _DocumentacionFactory = (function() {
 		function Pelicula() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-pelicula event'>\n\
-						<h2 class='heading'>Película</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Director:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Productora:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>País o región:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Año:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Película</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Director:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Productora:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>País o región:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Año:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Video() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-video event'>\n\
-						<h2 class='heading'>Video</h2>\n\
-						<label>Nombre:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>URL del video:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Video</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Nombre:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>URL del video:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Libro() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-libro event'>\n\
-						<h2 class='heading'>Libro</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Autor:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Año:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Ciudad:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Editorial:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Volumen:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Libro</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Autor:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Año:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Ciudad:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Editorial:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Volumen:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function ArticuloWeb() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-articuloweb event'>\n\
-						<h2 class='heading'>Artículo Web</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Autor:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Nombre del sitio Web:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Año en que se realizó la consulta:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Mes en el que se realizó la consulta:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Día en el que se realizó la consulta:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>URL:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Artículo Web</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Autor:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Nombre del sitio Web:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Año en que se realizó la consulta:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Mes en el que se realizó la consulta:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Día en el que se realizó la consulta:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>URL:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function ArticuloPDF() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-articulopdf event'>\n\
-						<h2 class='heading'>Artículo PDF</h2>\n\
-						<label>Nombre:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>URL del artículo:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Artículo PDF</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Nombre:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>URL del artículo:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Revista() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-revista event'>\n\
-						<h2 class='heading'>Revista</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Autor:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Nombre de la revista:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Año:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Páginas:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Volumen:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Número:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Revista</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Autor:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Nombre de la revista:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Año:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Páginas:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Volumen:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Número:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
@@ -345,108 +390,126 @@ var MDOFactories = (function() {
 	
 	var _AplicacionFactory = (function() {
 		function EstudioCaso() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-estudiocaso event'>\n\
-						<h2 class='heading'>Estudio de Caso</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Problemática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Métodos de investigación:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Entregables:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Estudio de Caso</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Problemática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Métodos de investigación:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function MarcoLogico() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-marcologico event'>\n\
-						<h2 class='heading'>Marco Lógico</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivo general:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivos específicos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Resultados esperados:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Actividades a realizar:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Indicadores:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Fuentes de verificación:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Supuestos:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Marco Lógico</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivo general:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivos específicos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Resultados esperados:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Actividades a realizar:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Indicadores:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Fuentes de verificación:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Supuestos:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function MapaConceptual() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
-						<h2 class='heading'>Mapa Conceptual</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Entregables:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Mapa Conceptual</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function ArbolProblemas() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
-						<h2 class='heading'>Árbol de Problemas</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Problemática principal:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Causas:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Problemas secundarios:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Efectos:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Árbol de Problemas</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Problemática principal:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Causas:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Problemas secundarios:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Efectos:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function ProyectoInvestigacion() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
-						<h2 class='heading'>Proyecto de Investigación</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Marco teórico:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Hipótesis:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Entregables:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Proyecto de Investigación</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Marco teórico:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Hipótesis:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Ejercicios() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-ejercicios event'>\n\
-						<h2 class='heading'>Ejercicios</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Ejercicios:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Entregables:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Ejercicios</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Ejercicios:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Entregables:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
@@ -486,64 +549,76 @@ var MDOFactories = (function() {
 	
 	var _AmpliacionFactory = (function() {
 		function Conferencia() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-conferencia event'>\n\
-						<h2 class='heading'>Conferencia</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Objetivos:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Conferencia</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Objetivos:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function MesaRedonda() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-mesaredonda event'>\n\
-						<h2 class='heading'>Mesa Redonda</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Número de integrantes:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Tiempo de exposición:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Mesa Redonda</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Número de integrantes:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Tiempo de exposición:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Panel() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-panel event'>\n\
-						<h2 class='heading'>Panel</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Número de integrantes:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Tiempo de exposición:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Panel</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Número de integrantes:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Tiempo de exposición:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
 		function Simposio() {
+			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-simposio event'>\n\
-						<h2 class='heading'>Simposio</h2>\n\
-						<label>Título:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Descripción:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Temática:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Número de integrantes:</label>\n\
-						<input type='text' class='form-control input-sm' /><br>\n\
-						<label>Tiempo de exposición por integrante:</label>\n\
-						<input type='text' class='form-control input-sm' />\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Simposio</a></h2>\n\
+						<div id='" + id + "' class='collapse'>\n\
+							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Temática:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Número de integrantes:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Tiempo de exposición por integrante:</label>\n\
+							<input type='text' class='form-control input-sm' />\n\
+						</div>\n\
 					</li>";
 		}
 		
