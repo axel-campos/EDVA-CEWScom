@@ -1,7 +1,3 @@
-<%@page import="java.nio.file.Files"%>
-<%@page import="java.nio.file.Paths"%>
-<%@page import="java.nio.file.Paths"%>
-<%@page import="java.nio.file.Path"%>
 <%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
