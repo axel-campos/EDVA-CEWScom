@@ -8,6 +8,9 @@
         <title>Solicitudes</title>
     </head>
     <body>
+        <div class="container-fluid">
+            <a class="btn btn-link" onclick="mostrarLista('ListarContenidosGrupoAction','<s:property value="token"/>');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
+        </div>
         <table id="tabla" style="width: 100%">
             <thead>
                 <th width="90%" data-align="center" data-sortable='true' data-field='Nombre'>Nombre</th>

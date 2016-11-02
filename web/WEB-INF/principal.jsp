@@ -10,6 +10,7 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@page import="modelo.dao.ConexionDAO"%>
 <%@page import="modelo.dao.UsuarioGrupoDAO"%>
+<% Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +29,7 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-default sidebar" role="navigation">
+        <!--nav class="navbar navbar-default sidebar" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
@@ -43,7 +44,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actualizaciones de grupos <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-refresh"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
-                                <%
+                                <!%
                                 List<String> tipo = Arrays.asList("","Coordinador","Administrador","Colaborador");
                                 Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
                                 UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
@@ -82,11 +83,11 @@
                             </a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 <div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="width: 100%; height:100%;">
-                                    <!-- Wrapper for slides -->
+                                    <!-- Wrapper for slides ->
                                     <div class="row">
                                         <div class="col-xs-offset-3 col-xs-6">
                                             <div class="carousel-inner">
-                                                <%
+                                                <!%
                                                     String sql = "SELECT ug.correo, CONCAT_WS(' ',u.nombre,u.aPaterno,u.aMaterno) AS NombreCompleto, ug.token, g.nombre " +
                                                         "FROM usuariogrupo AS ug " +
                                                         "INNER JOIN usuario AS u ON ug.correo = u.correo " +
@@ -132,7 +133,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Controls --> 
+                                    <!-- Controls > 
                                     <a class="left carousel-control" href="#text-carousel" data-slide="prev">
                                         <span class="glyphicon glyphicon-chevron-left"></span>
                                     </a>
@@ -145,7 +146,7 @@
                     </ul>
                 </div>
             </div>
-        </nav> 
+        </nav--> 
         <div id="contenidoGrupo">
         <%
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
@@ -193,7 +194,7 @@
             <%
                 }else{
                     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    for(i = 0; i < tablaContenidos.size(); i++){
+                    for(int i = 0; i < tablaContenidos.size(); i++){
                         Map<String, Object> columna = tablaContenidos.get(i);
                         String idContenido = columna.get("idContenido").toString();
                         String nombreGrupo = (String)columna.get("nombreGrupo");

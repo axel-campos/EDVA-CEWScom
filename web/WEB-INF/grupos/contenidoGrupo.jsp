@@ -26,7 +26,11 @@
                 </div>
             </s:if>
             <s:if test="esAdministrador">
-            <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
+                <s:if test="esCoordinador">
+                    <a class="btn btn-link" onclick="mostrarLista('ListRoles','<s:property value="token"/>');">Roles del grupo</a>
+                </s:if>
+                <a class="btn btn-link" onclick="mostrarLista('ListSolicitudes','<s:property value="token"/>');">Solicitudes</a>
+                <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
             </s:if>
             <input type="hidden" id="token" value="<s:property value="token"/>">
             <input type="hidden" id="message" value="<s:property value="message"/>">

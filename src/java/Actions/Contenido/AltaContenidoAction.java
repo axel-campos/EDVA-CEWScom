@@ -32,8 +32,8 @@ public class AltaContenidoAction extends ActionSupport {
         if(tema.length() > 20){
             addActionError("El campo tema no debe contener más de 20 letras.");
         }
-        if(descripcion.length() > 100){
-            addActionError("El campo descripción no debe contener más de 100 letras.");
+        if(descripcion.length() > 1000){
+            addActionError("El campo descripción no debe contener más de 1000 letras.");
         }
     }
     
@@ -44,7 +44,7 @@ public class AltaContenidoAction extends ActionSupport {
         Contenido contenido = new Contenido();
         Contenido viejo = new Contenido();
         contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion);
-        if(tipo.equals("Guardar")){//Registrar            
+        if(tipo.equals("Guardar")){//Registrar        
             accion = "guardó";
         }else{//Modificar
             viejo.setIdContenido(Integer.parseInt(id));
@@ -68,6 +68,8 @@ public class AltaContenidoAction extends ActionSupport {
                 for(int it = 1; it <= 5; it++){
                     persistence.crearCarpeta(ruta + "/" + it);
                 }*/
+                
+                
             }else{//Modificar
                 contenidoDAO.modificar(viejo, contenido);
             }

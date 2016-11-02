@@ -111,18 +111,17 @@ public class EstablecerFechasAction extends ActionSupport  {
             List<ContenidoEtapa> versiones = contEtapaDAO.buscarTodos().stream()
                     .filter(p -> p.getIdContenido() == Integer.parseInt(idContenido)).filter(p -> p.getIdEtapa() == Integer.parseInt(etapa)).collect(Collectors.toList());
             contEtapaDAO.desconectar();
-            String txt = "<thead> <tr> <th style=\"width: 30%; text-align: center\">Versión</th><th style=\"width: 70%; text-align: center\">Tiempo Límite Creación</th>" +
-            "</tr></thead><tbody>";
+            /*String txt = "<thead> <tr> <th style=\"width: 30%; text-align: center\">Versión</th><th style=\"width: 70%; text-align: center\">Tiempo Límite Creación</th>" +
+            "</tr></thead><tbody>";*/
+            String txt = "";
             Locale espanol = new Locale("es","ES");
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE d MMMM yyyy, HH:mm:ss", espanol);
             for(ContenidoEtapa version1 : versiones){
-                txt += "<tr>"
-					+ "<td style='text-align: center;'>" + version1.getVersion() + "</td>"
-					+ "<td style='text-align: center;'>" + dateFormat.format(version1.getTiempoModificacion()) + "</td>"
-					+ "</tr>";
+                txt += "<div class='form-group version'><label class='col-md-4 control-label'><p align='center'>" + version1.getVersion() + "</p></label>"
+                    + "<div class='col-md-8'><p align='center'>" + dateFormat.format(version1.getTiempoModificacion()) + "</p></div></div>";
             }
 			
-            txt += "</tbody>";
+            /*txt += "</tbody>";*/
             out.println(txt);
         }catch(RuntimeException e){
             contEtapaDAO.desconectar();
@@ -140,20 +139,22 @@ public class EstablecerFechasAction extends ActionSupport  {
                     .filter(p -> p.getIdContenido() == Integer.parseInt(idContenido)).filter(p -> p.getIdEtapa() == Integer.parseInt(etapa))
                     .filter(p -> p.getVersion() == Integer.parseInt(version)).collect(Collectors.toList());
             contEtapaDAO.desconectar();
-            String txt = "<thead> <tr> <th style=\"width: 30%; text-align: center\">Versión</th><th style=\"width: 70%; text-align: center\">Tiempo Límite Creación</th>" +
-            "</tr></thead><tbody>";
+            /*String txt = "<thead> <tr> <th style=\"width: 30%; text-align: center\">Versión</th><th style=\"width: 70%; text-align: center\">Tiempo Límite Creación</th>" +
+            "</tr></thead><tbody>";*/
+            String txt = "";
             Locale espanol = new Locale("es","ES");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             for(ContenidoEtapa version1 : versiones){
                 String fechaEstablecida = dateFormat.format(version1.getTiempoModificacion());
-                txt += "<tr>"
+                txt += "<div class='form-group version'><label class='col-md-4 control-label'><p align='center'>" + version1.getVersion() + "</p>"
+                    + "<input type='hidden' value='" + version1.getVersion() + "' id='version' name='version'></label>"
+                    + "<div class='col-md-2'></div><div class='col-md-4'><input type='text' id='fecha' name='fecha' class='form-control'/></div></div>";
+                /*txt += "<tr>"
                 + "<td style='text-align: center'>" + version1.getVersion() + "<input type='hidden' value='" + version1.getVersion() + "' id='version' name='version'></td>"
                 + "<td style='padding-left: 26%'><div class='form-group row-fluid'><input type='text' placeholder='Ingresa fecha' id='fecha' name='fecha' class='form-control' "
                 + "style='width: 60%' value='" + fechaEstablecida + "'></div></td>"
-                + "</tr>";
+                + "</tr>";*/
             }
-			
-            txt += "</tbody>";
             out.println(txt);
         }catch(RuntimeException e){
             contEtapaDAO.desconectar();
