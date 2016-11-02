@@ -186,10 +186,11 @@ public final class DropboxPersistence implements FilePersistence {
     @Override
     public void guardarHTMLpreliminar(Map<String,Object> detalles_contenido, String artefactosJSON) {
         try {
-            MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON, "/model/mdo/template/html", detalles_contenido.get("titulo").toString(), detalles_contenido.get("version").toString());
-
+            MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON, detalles_contenido);
+            
             Map<String, Object> map = obtenerMapaDeJson(artefactosJSON);
             String ruta = (String) map.get("ruta");
+            
             MDOParser parser = MDOUtil.getParser(artefactosJSON);
             List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
@@ -198,16 +199,25 @@ public final class DropboxPersistence implements FilePersistence {
             StringBuilder definitionHTMLcode = new StringBuilder();
             for (Map<String, Object> artefacto : artefactosMap) {
                 MDOArtifact artifact = parser.parse(artefacto);
-                orderHTMLcode.append(template.generarStepHTML(num_paso, artifact));
+                orderHTMLcode.append(MDOTemplateUtil.generarStepHTML(num_paso, template, artifact));
                 definitionHTMLcode.append(artifact.setPaso(num_paso).toHtml());
                 num_paso = num_paso + 1;
             }
-            List<String> parametro = new ArrayList<String>();
-            parametro.add(orderHTMLcode.toString());
-            parametro.add(definitionHTMLcode.toString());
-            String tempi = template.generarPlantilla(parametro);
             
-            subirArchivoTexto(ruta, "prueba.html", tempi);
+            String HTML = template.generarPlantilla(Arrays.<String>asList(orderHTMLcode.toString(),definitionHTMLcode.toString()));
+            subirArchivoTexto(ruta, "preview.html", HTML);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void guardarHTMLContenidoDidacticoLiberado(String token,String idContenido, List<String> versiones_escogidas )
+    {
+        try {
+            
+            
+            String HTML = new String();
+            subirArchivoTexto(token + idContenido, "contenido_didactico_liberado.html", HTML);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
