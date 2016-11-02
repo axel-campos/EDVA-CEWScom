@@ -53,6 +53,7 @@
                 "(CASE WHEN ce.tiempoModificacion > NOW() THEN e.idEtapa ELSE NULL END) AS idEtapa, " +
                 "(CASE WHEN ce.tiempoModificacion > NOW() THEN ce.version ELSE NULL END) AS version, " +
                 "(CASE WHEN ve.tiempoModificacion > NOW() THEN ve.idEtapa ELSE NULL END) AS idEtapa2," +
+                "(CASE WHEN ve.tiempoModificacion < NOW() THEN '1' ELSE '0' END) AS finalizaVotacion," +
                 " ve.tiempoModificacion AS tiempoVotacion FROM contenido con " +
                 " LEFT JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
                 " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa AND ce.idEtapa != 6 " +
@@ -96,6 +97,7 @@
                                 cerrarDiv = true;
                             }
                             Map<String, Object> columna = tablaContenidos.get(i);
+                            int finalizaVotacion = Integer.parseInt(columna.get("finalizaVotacion").toString());
                             String nombreGrupo = (String)columna.get("nombreGrupo");
                             String titulo = (String)columna.get("titulo");
                             String tema = (String)columna.get("tema");
@@ -149,9 +151,11 @@
                                             <br><br>
                                         </s:if>                
                                         <% if(fechaModificacion != ""){%>
-										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                            <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
-                                        <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
+                                            <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
+                                        <% }else if(finalizaVotacion == 1){ %>
+                                        
                                         <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                         <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">

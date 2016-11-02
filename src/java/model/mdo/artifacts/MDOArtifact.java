@@ -16,4 +16,13 @@ public interface MDOArtifact {
 	 * @return Cadena HTML con los atributos del artefacto.
 	 */
 	String toHtml();
+    
+    /**
+	 * Establece el paso en el codigo HTML
+     * en el cual va a ser estructurado en la etapa.
+	 * 
+	 * @param paso Paso al que pertenece el MDO Artifact.
+     * @return La referencia a MDOArtifact.
+	 */
+    MDOArtifact setPaso(int paso);
 }

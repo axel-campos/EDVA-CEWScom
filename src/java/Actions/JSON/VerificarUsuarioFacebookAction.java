@@ -15,6 +15,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
     private String apellido;
     private String correo;
     private String fecha;
+    private String imagen;
     
     public VerificarUsuarioFacebookAction() {
     }
@@ -27,13 +28,12 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
             usuarioDAO.conectar();
             usuario = usuarioDAO.buscar(new Usuario().setCorreo(correo));
 
-            System.out.println(fecha);
             if(usuario == null){
                 //Sí el resultado es nulo, vamos a registrar al usuario en la base de datos.
                 Date initDate = new SimpleDateFormat("MM/dd/yyyy").parse(fecha);
                 String formatter = new SimpleDateFormat("yyyy-MM-dd").format(initDate);
                 Date fechaNacimiento = new SimpleDateFormat("yyyy-MM-dd").parse(formatter);
-
+                
                 usuarioDAO.registrar(new Usuario()
                         .setCorreo(correo)
                         .setNombre(nombre)
@@ -41,6 +41,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
                         .setFechaNacimiento(new java.sql.Date(fechaNacimiento.getTime()))
                         .setTipo(2)
                         .setFacebook(1)
+                        .setAvatar(imagen)
                         .setPassword("asdasdasd"));
             }
 
@@ -101,4 +102,14 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
 }
+

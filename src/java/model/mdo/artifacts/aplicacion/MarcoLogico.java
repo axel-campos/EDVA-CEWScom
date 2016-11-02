@@ -4,6 +4,7 @@ import model.mdo.artifacts.MDOArtifact;
 
 public class MarcoLogico implements MDOArtifact {
 
+    private int paso;
 	private String titulo;
 	private String objetivoGeneral;
 	private String objetivosEspecificos;
@@ -57,4 +58,10 @@ public class MarcoLogico implements MDOArtifact {
 	public String toHtml() {
 		return String.format("");
 	}
+    
+    @Override
+    public MDOArtifact setPaso(int paso) {
+        this.paso = paso;
+        return this;
+    }
 }

@@ -25,7 +25,7 @@
     // Button.  See the onlogin handler attached to it in the sample
     // code below.
     function checkLoginState() {
-        FB.login(statusChangeCallback, {scope:'user_birthday, email'});
+        FB.login(statusChangeCallback, {scope:'public_profile,user_birthday, email'});
     }
 
     // Here we run a very simple test of the Graph API after login is
@@ -34,10 +34,10 @@
         FB.api(
             '/me',
             'GET',
-            {"fields":"id,first_name,last_name,email,birthday"},
+            {"fields":"id,first_name,last_name,email,birthday,picture"},
             function(response) {
                 // Insert your code here
-                inicioSesionFacebook(response['email'], response['first_name'], response['last_name'], response['birthday']);
+                inicioSesionFacebook(response['email'], response['first_name'], response['last_name'], response['birthday'], response['picture']['data']['url']);
             }
           );
     }

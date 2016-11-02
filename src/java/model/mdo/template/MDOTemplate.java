@@ -1,6 +1,7 @@
 package model.mdo.template;
 
 import java.util.List;
+import model.mdo.artifacts.MDOArtifact;
 
 /**
  * Contiene un método para generar un archivo completo HTML,
@@ -13,7 +14,18 @@ public interface MDOTemplate {
 	 * Genera un archivo HTML completo con los artefactos MDO
 	 * ya incrustados en su interior.
 	 * 
-	 * @param html Lista de códigos HTML generados por los artefactos MDO.
+	 * @param paso Paso del MDOArtifact.
+     * @param artifact Artefacto de la etapa correspondiente (para poner el nombre se utiliza este artefacto).
+	 * @return Una cadena con el codigo HTML de los steps para el artefacto.
+	 */
+    String generarStepHTML(int paso, MDOArtifact artifact);
+    
+    /**
+	 * Genera un archivo HTML completo con los artefactos MDO
+	 * ya incrustados en su interior.
+	 * 
+	 * @param html Una lista de cadenas las cuales se ocuparan para substituir el body (Primer el orden de los pasos y despues su definicion).
+     * @param rutaRecursos Cadena donde se le indicará al HTML la ruta de los .js's y .css´s que se van a cargar.
 	 * @return Un archivo HTML en forma de cadena.
 	 */
 	String generarPlantilla(List<String> html);
