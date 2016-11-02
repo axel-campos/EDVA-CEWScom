@@ -25,7 +25,7 @@
             <div role="main">
                 <div class="jumbotron text-center">
                     <h1>%s</h1>
-					<p>%s</p>
+                    <p>%s</p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <!-- Vivencias Panel -->
@@ -58,8 +58,8 @@
                         </div>
                     </div>
                     <!-- End of etapa Viviencias -->
-					
-					<!-- Conceptualizacion Panel -->
+
+                    <!-- Conceptualizacion Panel -->
                     <div id="conceptualizacion_panel" class="x_panel">
                         <div class="x_title">
                             <h2>%s <small>%s</small></h2>
@@ -92,8 +92,8 @@
                         </div>
                     </div>
                     <!-- End of etapa Conceptualizacion -->
-					
-					<!-- Documentacion Panel -->
+
+                    <!-- Documentacion Panel -->
                     <div id="documentacion_panel" class="x_panel">
                         <div class="x_title">
                             <h2>%s <small>%s</small></h2>
@@ -126,8 +126,8 @@
                         </div>
                     </div>
                     <!-- End of etapa Documentacion -->
-					
-					<!-- Ampliacion Panel -->
+
+                    <!-- Ampliacion Panel -->
                     <div id="ampliacion_panel" class="x_panel">
                         <div class="x_title">
                             <h2>%s <small>%s</small></h2>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <!-- End of etapa Ampliacion -->
-                    
+
                     <!-- Aplicacion Panel -->
                     <div id="aplicacion_panel" class="x_panel">
                         <div class="x_title">
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <!-- End of etapa Aplicacion -->
-                    
+
                 </div>
             </div>
             <!-- /page content -->
@@ -215,100 +215,100 @@
 
         <!-- jQuery Smart Wizard -->
         <script>
-			$(document).ready(function () {
-				$('#wizard_verticle_vivencias').smartWizard({
-					selected: 0,
-					includeFinishButton: false,
-					transitionEffect: 'fade',
-					enableAllSteps: true,
-					cycleSteps: true,
-					noForwardJumping: false,
-					reverseButtonsOrder: true,
-					labelNext: 'S',
-					labelPrevious: 'A'
-				});
-				$('#wizard_verticle_conceptualizacion').smartWizard({
-					selected: 0,
-					includeFinishButton: false,
-					transitionEffect: 'fade',
-					enableAllSteps: true,
-					cycleSteps: true,
-					noForwardJumping: false,
-					reverseButtonsOrder: true,
-					labelNext: 'S',
-					labelPrevious: 'A'
-				});
-				$('#wizard_verticle_documentacion').smartWizard({
-					selected: 0,
-					includeFinishButton: false,
-					transitionEffect: 'fade',
-					enableAllSteps: true,
-					cycleSteps: true,
-					noForwardJumping: false,
-					reverseButtonsOrder: true,
-					labelNext: 'S',
-					labelPrevious: 'A'
-				});
-				$('#wizard_verticle_aplicacion').smartWizard({
-					selected: 0,
-					includeFinishButton: false,
-					transitionEffect: 'fade',
-					enableAllSteps: true,
-					cycleSteps: true,
-					noForwardJumping: false,
-					reverseButtonsOrder: true,
-					labelNext: 'S',
-					labelPrevious: 'A'
-				});
-				$('#wizard_verticle_ampliacion').smartWizard({
-					selected: 0,
-					includeFinishButton: false,
-					transitionEffect: 'fade',
-					enableAllSteps: true,
-					cycleSteps: true,
-					noForwardJumping: false,
-					reverseButtonsOrder: true,
-					labelNext: 'S',
-					labelPrevious: 'A'
-				});
+            $(document).ready(function () {
+                $('#wizard_verticle_vivencias').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_conceptualizacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_documentacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_aplicacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_ampliacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
 
-				$('.buttonNext').addClass('fa fa-chevron-circle-right');
-				$('.buttonPrevious').addClass('fa fa-chevron-circle-left');
-			});
-			function nextStepVivencias() {
-				$('#wizard_verticle_vivencias').smartWizard('goForward');
-			}
-			function backStepVivencias() {
-				$('#wizard_verticle_vivencias').smartWizard('goBackward');
-			}
+                $('.buttonNext').addClass('fa fa-chevron-circle-right');
+                $('.buttonPrevious').addClass('fa fa-chevron-circle-left');
+            });
+            function nextStepVivencias() {
+                $('#wizard_verticle_vivencias').smartWizard('goForward');
+            }
+            function backStepVivencias() {
+                $('#wizard_verticle_vivencias').smartWizard('goBackward');
+            }
 
-			function nextStepConceptualizacion() {
-				$('#wizard_verticle_conceptualizacion').smartWizard('goForward');
-			}
-			function backStepConceptualizacion() {
-				$('#wizard_verticle_conceptualizacion').smartWizard('goBackward');
-			}
+            function nextStepConceptualizacion() {
+                $('#wizard_verticle_conceptualizacion').smartWizard('goForward');
+            }
+            function backStepConceptualizacion() {
+                $('#wizard_verticle_conceptualizacion').smartWizard('goBackward');
+            }
 
-			function nextStepDocumentacion() {
-				$('#wizard_verticle_documentacion').smartWizard('goForward');
-			}
-			function backStepDocumentacion() {
-				$('#wizard_verticle_documentacion').smartWizard('goBackward');
-			}
+            function nextStepDocumentacion() {
+                $('#wizard_verticle_documentacion').smartWizard('goForward');
+            }
+            function backStepDocumentacion() {
+                $('#wizard_verticle_documentacion').smartWizard('goBackward');
+            }
 
-			function nextStepAplicacion() {
-				$('#wizard_verticle_aplicacion').smartWizard('goForward');
-			}
-			function backStepAplicacion() {
-				$('#wizard_verticle_aplicacion').smartWizard('goBackward');
-			}
+            function nextStepAplicacion() {
+                $('#wizard_verticle_aplicacion').smartWizard('goForward');
+            }
+            function backStepAplicacion() {
+                $('#wizard_verticle_aplicacion').smartWizard('goBackward');
+            }
 
-			function nextStepAmpliacion() {
-				$('#wizard_verticle_ampliacion').smartWizard('goForward');
-			}
-			function backStepAmpliacion() {
-				$('#wizard_verticle_ampliacion').smartWizard('goBackward');
-			}
+            function nextStepAmpliacion() {
+                $('#wizard_verticle_ampliacion').smartWizard('goForward');
+            }
+            function backStepAmpliacion() {
+                $('#wizard_verticle_ampliacion').smartWizard('goBackward');
+            }
         </script>
         <!-- /jQuery Smart Wizard -->
     </body>

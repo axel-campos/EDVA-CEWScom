@@ -29,7 +29,7 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
     private String pwd;
     private String avatar = "default-avatar.png";
     private final int LOG_ROUNDS = 13;
-    
+
     //Avatar image properties
     private String avatarImageURL;
     private final String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
@@ -72,15 +72,15 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
         UsuarioDAO usuariodao = new UsuarioDAO();
         try {
             usuariodao.conectar();
-            
+
             if (usuariodao.buscar(new Usuario().setCorreo(correo)) != null) {
                 usuariodao.desconectar();
                 addActionError("Ya existe un usuario con ese correo. Por favor, elija otro.");
                 return INPUT;
             }
-            
+
             //If an image was uploaded, write on destPath
-            if(!avatarImageURL.equals("")){
+            if (!avatarImageURL.equals("")) {
                 byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageURL.substring(avatarImageURL.indexOf(",") + 1));
                 BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
                 ImageIO.write(bufferedImage, "png", new File(destPath + correo + ".png"));
@@ -88,15 +88,16 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
             }
 
             Usuario usuario = new Usuario()
-                                .setCorreo(correo)
-                                .setNombre(nombre)
-                                .setAPaterno(paterno)
-                                .setAMaterno(materno)
-                                .setCedula(cedula)
-                                .setFechaNacimiento(Date.valueOf(fechaN))
-                                .setTipo(TipoUsuario.PROFESOR)
-                                .setPassword(BCrypt.hashpw(password, BCrypt.gensalt(LOG_ROUNDS)))
-                                .setAvatar(avatar);
+                    .setCorreo(correo)
+                    .setNombre(nombre)
+                    .setAPaterno(paterno)
+                    .setAMaterno(materno)
+                    .setCedula(cedula)
+                    .setFechaNacimiento(Date.valueOf(fechaN))
+                    .setTipo(TipoUsuario.PROFESOR)
+                    .setPassword(BCrypt.hashpw(password, BCrypt.gensalt(LOG_ROUNDS)))
+                    .setAvatar(avatar);
+            
             usuariodao.registrar(usuario);
             usuariodao.desconectar();
             session.put("usuario", usuario);
@@ -113,12 +114,12 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
             usuariodao.desconectar();
             addActionError("Ocurrió un error al registrar al nuevo usuario.");
             return ERROR;
-        } 
+        }
     }
 
     @Override
     public void setSession(Map<String, Object> session) {
-            this.session = session;
+        this.session = session;
     }
 
     public String getCorreo() {
@@ -178,13 +179,13 @@ public class RegistrarAction extends ActionSupport implements SessionAware {
     }
 
     public String getPwd() {
-            return pwd;
+        return pwd;
     }
 
     public void setPwd(String pwd) {
-            this.pwd = pwd;
+        this.pwd = pwd;
     }
-    
+
     public String getAvatarImageURL() {
         return avatarImageURL;
     }

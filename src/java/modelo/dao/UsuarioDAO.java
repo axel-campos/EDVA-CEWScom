@@ -37,7 +37,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
     @Override
     public void modificar(Usuario viejo, Usuario nuevo) {
         String sql = "UPDATE Usuario SET correo = ?, nombre = ?, aPaterno = ?, aMaterno = ?, "
-            + "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ?, facebook = ?, avatar = ? WHERE correo = ?";
+                + "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ?, facebook = ?, avatar = ? WHERE correo = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, nuevo.getCorreo());
@@ -79,16 +79,16 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new Usuario()
-                        .setCorreo(rs.getString("correo"))
-                        .setNombre(rs.getString("nombre"))
-                        .setAPaterno(rs.getString("aPaterno"))
-                        .setAMaterno(rs.getString("aMaterno"))
-                        .setCedula(rs.getString("cedula"))
-                        .setTipo(rs.getInt("tipoUsuario"))
-                        .setFechaNacimiento(rs.getDate("fechaNacimiento"))
-                        .setPassword(rs.getString("password"))
-                        .setFacebook(rs.getInt("facebook"))
-                        .setAvatar(rs.getString("avatar"));
+                            .setCorreo(rs.getString("correo"))
+                            .setNombre(rs.getString("nombre"))
+                            .setAPaterno(rs.getString("aPaterno"))
+                            .setAMaterno(rs.getString("aMaterno"))
+                            .setCedula(rs.getString("cedula"))
+                            .setTipo(rs.getInt("tipoUsuario"))
+                            .setFechaNacimiento(rs.getDate("fechaNacimiento"))
+                            .setPassword(rs.getString("password"))
+                            .setFacebook(rs.getInt("facebook"))
+                            .setAvatar(rs.getString("avatar"));
                 } else {
                     return null;
                 }
@@ -104,20 +104,20 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
         List<Usuario> lista = new ArrayList<>();
 
         try (
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();) {
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();) {
             while (rs.next()) {
                 lista.add(new Usuario()
-                    .setCorreo(rs.getString("correo"))
-                    .setNombre(rs.getString("nombre"))
-                    .setAPaterno(rs.getString("aPaterno"))
-                    .setAMaterno(rs.getString("aMaterno"))
-                    .setCedula(rs.getString("cedula"))
-                    .setTipo(rs.getInt("tipoUsuario"))
-                    .setFechaNacimiento(rs.getDate("fechaNacimiento"))
-                    .setPassword(rs.getString("password"))
-                    .setFacebook(rs.getInt("facebook"))
-                    .setAvatar(rs.getString("avatar")));
+                        .setCorreo(rs.getString("correo"))
+                        .setNombre(rs.getString("nombre"))
+                        .setAPaterno(rs.getString("aPaterno"))
+                        .setAMaterno(rs.getString("aMaterno"))
+                        .setCedula(rs.getString("cedula"))
+                        .setTipo(rs.getInt("tipoUsuario"))
+                        .setFechaNacimiento(rs.getDate("fechaNacimiento"))
+                        .setPassword(rs.getString("password"))
+                        .setFacebook(rs.getInt("facebook"))
+                        .setAvatar(rs.getString("avatar")));
             }
 
             return lista;
@@ -131,20 +131,20 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
         List<Usuario> lista = new ArrayList<>();
 
         try (
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();) {
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();) {
             while (rs.next()) {
                 lista.add(new Usuario()
-                    .setCorreo(rs.getString("correo"))
-                    .setNombre(rs.getString("nombre"))
-                    .setAPaterno(rs.getString("aPaterno"))
-                    .setAMaterno(rs.getString("aMaterno"))
-                    .setCedula(rs.getString("cedula"))
-                    .setTipo(rs.getInt("tipoUsuario"))
-                    .setFechaNacimiento(rs.getDate("fechaNacimiento"))
-                    .setPassword(rs.getString("password"))
-                    .setFacebook(rs.getInt("facebook"))
-                    .setAvatar(rs.getString("avatar")));
+                        .setCorreo(rs.getString("correo"))
+                        .setNombre(rs.getString("nombre"))
+                        .setAPaterno(rs.getString("aPaterno"))
+                        .setAMaterno(rs.getString("aMaterno"))
+                        .setCedula(rs.getString("cedula"))
+                        .setTipo(rs.getInt("tipoUsuario"))
+                        .setFechaNacimiento(rs.getDate("fechaNacimiento"))
+                        .setPassword(rs.getString("password"))
+                        .setFacebook(rs.getInt("facebook"))
+                        .setAvatar(rs.getString("avatar")));
             }
 
             return lista;

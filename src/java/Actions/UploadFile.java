@@ -13,22 +13,22 @@ import java.util.List;
  *
  * @author Axel
  */
-public class UploadFile extends ActionSupport{
+public class UploadFile extends ActionSupport {
 
     private List<File> files;
     private List<String> filesContentType;
-    private List<String> filesFileName;     
-    
+    private List<String> filesFileName;
+
     @Override
-    public String execute() throws Exception{
+    public String execute() throws Exception {
         System.out.print("\n\n---------------------------------------\n");
-        int i=0;
+        int i = 0;
         System.out.print("Archivos subidos " + files.size());
-        for (File file : files){
-            System.out.print("\nFile ["+i+"] ");
-            System.out.print("; name:"         + filesFileName.get(i));
+        for (File file : files) {
+            System.out.print("\nFile [" + i + "] ");
+            System.out.print("; name:" + filesFileName.get(i));
             System.out.print("; contentType: " + filesContentType.get(i));
-            System.out.print("; length: "      + file.length());
+            System.out.print("; length: " + file.length());
             i++;
         }
         System.out.println("\n---------------------------------------\n");
@@ -58,7 +58,5 @@ public class UploadFile extends ActionSupport{
     public void setFilesFileName(List<String> filesFileName) {
         this.filesFileName = filesFileName;
     }
-    
-    
 
 }
