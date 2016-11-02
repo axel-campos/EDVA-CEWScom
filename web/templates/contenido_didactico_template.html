@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>%s | Contenido Did&#225;ctico</title>
+
+        <!-- Icon Application -->  
+        <link rel="shortcut icon" href="$ruta/images/principal/CWEScom.ico">
+        <!-- Bootstrap -->
+        <link href="$ruta/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Font Awesome -->
+        <link href="$ruta/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Custom Theme Style -->
+        <link href="$ruta/css/gentella/custom_gentellela.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body class="nav-md">
+        <div class="container body">
+            <!-- page content -->
+            <div role="main">
+                <div class="jumbotron text-center">
+                    <h1>%s</h1>
+                    <p>%s</p>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- Vivencias Panel -->
+                    <div id="vivencias_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2>%s <small>%s</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStepVivencias();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStepVivencias();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content"> 
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_vivencias" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    %s
+                                </ul>
+                                <!-- StepsDefinitions -->
+                                %s
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Viviencias -->
+
+                    <!-- Conceptualizacion Panel -->
+                    <div id="conceptualizacion_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2>%s <small>%s</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStepConceptualizacion();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStepConceptualizacion();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content"> 
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_conceptualizacion" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    <!-- StepsOrder -->
+                                    %s
+                                    <!-- End StepOrder -->
+                                </ul>
+                                <!-- StepsDefinitions -->
+                                %s
+                                <!-- End StepsDefinitions -->
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Conceptualizacion -->
+
+                    <!-- Documentacion Panel -->
+                    <div id="documentacion_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2>%s <small>%s</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStepDocumentacion();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStepDocumentacion();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content"> 
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_documentacion" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    <!-- StepsOrder -->
+                                    %s
+                                    <!-- End StepOrder -->
+                                </ul>
+                                <!-- StepsDefinitions -->
+                                %s
+                                <!-- End StepsDefinitions -->
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Documentacion -->
+
+                    <!-- Ampliacion Panel -->
+                    <div id="ampliacion_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2>%s <small>%s</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStepAmpliacion();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStepAmpliacion();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content"> 
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_ampliacion" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    <!-- StepsOrder -->
+                                    %s
+                                    <!-- End StepOrder -->
+                                </ul>
+                                <!-- StepsDefinitions -->
+                                %s
+                                <!-- End StepsDefinitions -->
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Ampliacion -->
+
+                    <!-- Aplicacion Panel -->
+                    <div id="aplicacion_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2>%s <small>%s</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStepAplicacion();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStepAplicacion();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content"> 
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_aplicacion" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    <!-- StepsOrder -->
+                                    %s
+                                    <!-- End StepOrder -->
+                                </ul>
+                                <!-- StepsDefinitions -->
+                                %s
+                                <!-- End StepsDefinitions -->
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Aplicacion -->
+
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+
+        <!-- jQuery -->
+        <script src="$ruta/js/jquery/jquery-2.2.4.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="$ruta/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        <!-- FastClick -->
+        <script src="$ruta/js/plantillas/fastclick.js" type="text/javascript"></script>
+        <!-- jQuery Smart Wizard -->
+        <script src="$ruta/js/plantillas/jquery.smartWizard.js" type="text/javascript"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="$ruta/js/collaboration/custom_gentellela.js" type="text/javascript"></script>
+
+        <!-- jQuery Smart Wizard -->
+        <script>
+            $(document).ready(function () {
+                $('#wizard_verticle_vivencias').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_conceptualizacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_documentacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_aplicacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+                $('#wizard_verticle_ampliacion').smartWizard({
+                    selected: 0,
+                    includeFinishButton: false,
+                    transitionEffect: 'fade',
+                    enableAllSteps: true,
+                    cycleSteps: true,
+                    noForwardJumping: false,
+                    reverseButtonsOrder: true,
+                    labelNext: 'S',
+                    labelPrevious: 'A'
+                });
+
+                $('.buttonNext').addClass('fa fa-chevron-circle-right');
+                $('.buttonPrevious').addClass('fa fa-chevron-circle-left');
+            });
+            function nextStepVivencias() {
+                $('#wizard_verticle_vivencias').smartWizard('goForward');
+            }
+            function backStepVivencias() {
+                $('#wizard_verticle_vivencias').smartWizard('goBackward');
+            }
+
+            function nextStepConceptualizacion() {
+                $('#wizard_verticle_conceptualizacion').smartWizard('goForward');
+            }
+            function backStepConceptualizacion() {
+                $('#wizard_verticle_conceptualizacion').smartWizard('goBackward');
+            }
+
+            function nextStepDocumentacion() {
+                $('#wizard_verticle_documentacion').smartWizard('goForward');
+            }
+            function backStepDocumentacion() {
+                $('#wizard_verticle_documentacion').smartWizard('goBackward');
+            }
+
+            function nextStepAplicacion() {
+                $('#wizard_verticle_aplicacion').smartWizard('goForward');
+            }
+            function backStepAplicacion() {
+                $('#wizard_verticle_aplicacion').smartWizard('goBackward');
+            }
+
+            function nextStepAmpliacion() {
+                $('#wizard_verticle_ampliacion').smartWizard('goForward');
+            }
+            function backStepAmpliacion() {
+                $('#wizard_verticle_ampliacion').smartWizard('goBackward');
+            }
+        </script>
+        <!-- /jQuery Smart Wizard -->
+    </body>
+</html>

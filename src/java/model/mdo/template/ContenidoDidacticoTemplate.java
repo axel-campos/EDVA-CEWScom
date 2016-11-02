@@ -1,0 +1,66 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.mdo.template;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.dao.EtapaDAO;
+import modelo.pojo.Etapa;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+
+/**
+ *
+ * @author Axel
+ */
+public class ContenidoDidacticoTemplate implements MDOTemplate {
+
+    private String titulo = "Sin título";
+    private String tema = "Sin tema";
+    private String descripcion = "Sin descripción";
+    private String grupo = "Grupo anónimo";
+
+    public ContenidoDidacticoTemplate(Map<String, Object> detalles_contenido) {
+        this.titulo = detalles_contenido.get("titulo").toString();
+        this.tema = detalles_contenido.get("tema").toString();
+        this.descripcion = detalles_contenido.get("descripcion").toString();
+        this.grupo = detalles_contenido.get("grupo").toString();
+    }
+
+    @Override
+    public String generarPlantilla(List<String> html) {
+        try {
+            String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/contenido_didactico_template.html";
+            File htmlTemplateFile = new File(ruta_template);
+
+            String template_string = FileUtils.readFileToString(htmlTemplateFile).replace("$ruta", "http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
+
+            EtapaDAO dao = new EtapaDAO();
+            Etapa etapa_1 = dao.buscar(new Etapa().setIdEtapa((short) 1));
+            Etapa etapa_2 = dao.buscar(new Etapa().setIdEtapa((short) 2));
+            Etapa etapa_3 = dao.buscar(new Etapa().setIdEtapa((short) 3));
+            Etapa etapa_4 = dao.buscar(new Etapa().setIdEtapa((short) 4));
+            Etapa etapa_5 = dao.buscar(new Etapa().setIdEtapa((short) 5));
+
+            return String.format(template_string, titulo, tema, descripcion,
+                    etapa_1.getNombre(), etapa_1.getDescripcion(), html.get(0), html.get(1),
+                    etapa_2.getNombre(), etapa_2.getDescripcion(), html.get(2), html.get(3),
+                    etapa_3.getNombre(), etapa_3.getDescripcion(), html.get(4), html.get(5),
+                    etapa_4.getNombre(), etapa_4.getDescripcion(), html.get(6), html.get(7),
+                    etapa_5.getNombre(), etapa_5.getDescripcion(), html.get(8), html.get(9),
+                    grupo);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            return String.format("Error creating template.");
+        }
+    }
+
+}

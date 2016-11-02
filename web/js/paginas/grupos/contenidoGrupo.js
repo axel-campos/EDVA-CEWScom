@@ -159,6 +159,7 @@ function eliminaContenido(id){
         }]
     });
 }
+
 function terminaVersion(id, etapa, version){
     var token = $("#token").val();
     BootstrapDialog.show({
@@ -187,6 +188,35 @@ function terminaVersion(id, etapa, version){
     });
 }
 
+function finalizarVotacion(idContenido){
+    BootstrapDialog.show({
+        message: $('<div id="ventanaFinalizaVotacion"></div>').load("finalizarVotacion", {"idContenido": idContenido}),
+        title: "Finalizar Votación",
+        draggable: true,
+        buttons: [{
+            id: 'btn-info',   
+            icon: 'glyphicon glyphicon-ok',       
+            label: 'Votar',
+            cssClass: 'btn-success', 
+            autospin: false,
+            action: function(dialogRef){
+                var resultado = submitFormGeneral("#votacionForm");
+                if(resultado){//true, quiere decir que todo bien
+                    dialogRef.close();
+                }
+            }
+        },{
+            id: 'btn-cancel',   
+            icon: 'glyphicon glyphicon-remove',       
+            label: 'Cancelar',
+            cssClass: 'btn-danger', 
+            autospin: false,
+            action: function(dialogRef){    
+                dialogRef.close();
+            }
+        }]
+    });    
+}
 function mostrarInfoGrupo(nombre, descripcion){
     BootstrapDialog.show({
         /*size: BootstrapDialog.SIZE_LARGE,*/

@@ -35,7 +35,7 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     private String cedula;
     private String fechaN;
     private String avatar = "default-avatar.png";
-    
+
     //Avatar image properties
     private String avatarImageURL;
     private final String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
@@ -61,27 +61,25 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
         UsuarioDAO usuariodao = new UsuarioDAO();
         try {
             usuariodao.conectar();
-            
+
             //If an image was modified...
-            if(!avatarImageURL.equals("not modified"))
-            {
-               if(!avatarImageURL.equals("")){
-                byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageURL.substring(avatarImageURL.indexOf(",") + 1));
-                BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
-                ImageIO.write(bufferedImage, "png", new File(destPath + correo + ".png"));
-                avatar = correo + ".png";
-                }
-                else
-                {
+            if (!avatarImageURL.equals("not modified")) {
+                if (!avatarImageURL.equals("")) {
+                    byte[] imagedata = DatatypeConverter.parseBase64Binary(avatarImageURL.substring(avatarImageURL.indexOf(",") + 1));
+                    BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
+                    ImageIO.write(bufferedImage, "png", new File(destPath + correo + ".png"));
+                    avatar = correo + ".png";
+                } else {
                     File file = new File(destPath + correo + ".png");
                     file.delete();
-                } 
-            }
-            else
-            {
+                }
+            } else {
                 avatar = usuario.getAvatar();
             }
-            
+
+            if (cedula == null || cedula.trim().isEmpty()) {
+                setCedula(null);
+            }
 
             Usuario usuario_modificado = new Usuario()
                     .setFechaNacimiento(Date.valueOf(fechaN))
@@ -103,13 +101,13 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
         } catch (IllegalArgumentException e) {
             usuariodao.desconectar();
             addActionError("El formato de la fecha de nacimiento es incorrecto.");
-            e.printStackTrace();
             return INPUT;
         } catch (RuntimeException e) {
             usuariodao.desconectar();
             addActionError("Ocurrió un error al modificar al nuevo usuario.");
-            e.printStackTrace();
             return ERROR;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -174,7 +172,7 @@ public class ModUsuarioAction extends ActionSupport implements AuthenticatedUser
     public void setSession(Map<String, Object> userSession) {
         this.userSession = userSession;
     }
-    
+
     public String getAvatarImageURL() {
         return avatarImageURL;
     }
