@@ -12,9 +12,9 @@ $(document).ready(function(){
             + "</div></td>"
             + "</tr>";
         $("#tablaVersiones tr:last").after(fila);//Agregamos la fila
-        $('#datetimepicker1').datetimepicker({
+        /*$('#datetimepicker1').datetimepicker({
                 
-            });
+            });*/
         
         $("#btnAgregar").hide();//Ocultamos esta opción.
         $("#btnCancelar").show();
@@ -235,7 +235,7 @@ function cargarVersiones(etapa){
 }
 
 function ponerCalendario(){
-    $(".fecha").datetimepicker({
+    $("#fecha").datetimepicker({
         locale: 'es',
         format: 'YYYY-MM-DD HH:mm',
         minDate: moment().add(1, 'days').format('YYYY-MM-DD'),

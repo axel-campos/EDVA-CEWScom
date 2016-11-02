@@ -1,8 +1,3 @@
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -11,7 +6,11 @@ and open the template in the editor.
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> %s | Visualizaci&#243;n Previa </title>
+        
+        <title>Visualizaci&#243;n Previa | %s</title>
+        
+        <!-- Icon Application -->  
+        <link rel="shortcut icon" href="$ruta/images/principal/CWEScom.ico">
         <!-- Bootstrap -->
         <link href="$ruta/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Font Awesome -->
@@ -24,13 +23,13 @@ and open the template in the editor.
             <!-- page content -->
             <div role="main">
                 <div class="page-title">
-                    <h3>%s <small>(Versi&#243;n: %s)</small> </h3> 
+                    <h3>Visualizaci&#243;n Previa: %s <small>(Versi&#243;n: %s)</small> </h3> 
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <!-- Vivencias Panel -->
                     <div id="vivencias_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>Vivencias <small>Suponen confrontar a los estudiantes con situaciones reales y desafiantes que producen conflictos cognitivos y alta motivaci&#243;n para buscar y construir soluciones.</small></h2>
+                            <h2>%s <small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStep();" class="fa fa-chevron-circle-left"></i></a>
@@ -49,7 +48,7 @@ and open the template in the editor.
                         </div>
                         <div class="x_content">
                             <!-- Wizard verticle tabs -->
-                            <div id="wizard_verticle_vivencias" class="form_wizard wizard_verticle">
+                            <div id="wizard_verticle" class="form_wizard wizard_verticle">
                                 <ul class="list-unstyled wizard_steps">
                                     <!-- StepsOrder -->
                                     %s
@@ -58,7 +57,6 @@ and open the template in the editor.
                                 <!-- StepsDefinitions -->
                                 %s
                                 <!-- End StepsDefinitions -->
-                                
                             </div>
                             <!-- End SmartWizard Content -->
                         </div>
@@ -68,6 +66,7 @@ and open the template in the editor.
             </div>
             <!-- /page content -->
         </div>
+        
         <!-- jQuery -->
         <script src="$ruta/js/jquery/jquery-2.2.4.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
@@ -78,10 +77,11 @@ and open the template in the editor.
         <script src="$ruta/js/plantillas/jquery.smartWizard.js" type="text/javascript"></script>
         <!-- Custom Theme Scripts -->
         <script src="$ruta/js/collaboration/custom_gentellela.js" type="text/javascript"></script>
+        
         <!-- jQuery Smart Wizard -->
         <script>
             $(document).ready(function () {
-                $('#wizard_verticle_vivencias').smartWizard({
+                $('#wizard_verticle').smartWizard({
                     selected: 0,
                     includeFinishButton: false,
                     noForwardJumping: true,
@@ -96,11 +96,11 @@ and open the template in the editor.
             });
             function nextStep()
             {
-                $('#wizard_verticle_vivencias').smartWizard('goForward');
+                $('#wizard_verticle').smartWizard('goForward');
             }
             function backStep()
             {
-                $('#wizard_verticle_vivencias').smartWizard('goBackward');
+                $('#wizard_verticle').smartWizard('goBackward');
             }
         </script>
         <!-- /jQuery Smart Wizard -->

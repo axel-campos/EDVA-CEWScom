@@ -52,7 +52,7 @@ public class GuardarProgreso extends ActionSupport {
 		String json = request.getParameter("artefactos");
 		new DropboxPersistence().guardarJson(json);
         
-        Map<String, Object> detalles_contenido = new HashMap<String, Object>();
+        Map<String, Object> detalles_contenido = new HashMap<>();
         detalles_contenido.put("titulo", request.getParameter("titulo"));
         detalles_contenido.put("version", request.getParameter("version"));
         new DropboxPersistence().guardarHTMLpreliminar(detalles_contenido,json);
