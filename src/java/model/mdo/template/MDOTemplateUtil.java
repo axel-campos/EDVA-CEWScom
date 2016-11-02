@@ -20,20 +20,18 @@ public final class MDOTemplateUtil {
      * Regresa el generador de plantillas indicado.
      *
      * @param etapa El nombre de la etapa MDO.
-     * @param detalles_template Detalles para el template para hacerlo mas
-     * personalizado.
      */
-    public static MDOTemplate getTemplate(String etapa, Map<String, Object> detalles_template) {
+    public static MDOTemplate getTemplate(String etapa) {
         if (etapa.contains("vivencia")) {
-            return new VivenciaTemplate(detalles_template);
+            return new VivenciaTemplate();
         } else if (etapa.contains("conceptualizacion")) {
-            return new ConceptualizacionTemplate(detalles_template);
+            return new ConceptualizacionTemplate();
         } else if (etapa.contains("documentacion")) {
-            return new DocumentacionTemplate(detalles_template);
+            return new DocumentacionTemplate();
         } else if (etapa.contains("aplicacion")) {
-            return new AplicacionTemplate(detalles_template);
+            return new AplicacionTemplate();
         } else {
-            return new AmpliacionTemplate(detalles_template);
+            return new AmpliacionTemplate();
         }
     }
 

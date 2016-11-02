@@ -25,14 +25,7 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
     private String titulo = "Sin título";
     private String tema = "Sin tema";
     private String descripcion = "Sin descripción";
-    private String grupo = "Grupo anónimo";
-
-    public ContenidoDidacticoTemplate(Map<String, Object> detalles_contenido) {
-        this.titulo = detalles_contenido.get("titulo").toString();
-        this.tema = detalles_contenido.get("tema").toString();
-        this.descripcion = detalles_contenido.get("descripcion").toString();
-        this.grupo = detalles_contenido.get("grupo").toString();
-    }
+    private String grupo_nombre = "Grupo anónimo";
 
     @Override
     public String generarPlantilla(List<String> html) {
@@ -55,12 +48,21 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
                     etapa_3.getNombre(), etapa_3.getDescripcion(), html.get(4), html.get(5),
                     etapa_4.getNombre(), etapa_4.getDescripcion(), html.get(6), html.get(7),
                     etapa_5.getNombre(), etapa_5.getDescripcion(), html.get(8), html.get(9),
-                    grupo);
+                    grupo_nombre);
             
         } catch (IOException ex) {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
             return String.format("Error creating template.");
         }
+    }
+
+    @Override
+    public MDOTemplate setDetalles(Map<String, Object> detalles_plantilla) {
+        this.titulo = detalles_plantilla.get("titulo").toString();
+        this.tema = detalles_plantilla.get("tema").toString();
+        this.descripcion = detalles_plantilla.get("descripcion").toString();
+        this.grupo_nombre = detalles_plantilla.get("grupo_nombre").toString();
+        return this;
     }
 
 }

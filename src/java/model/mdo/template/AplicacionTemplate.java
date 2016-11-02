@@ -16,18 +16,8 @@ import org.apache.struts2.ServletActionContext;
  */
 public class AplicacionTemplate implements MDOTemplate {
 
-    private final String titulo;
-    private final String version;
-
-    public AplicacionTemplate(String titulo, String version) {
-        this.titulo = titulo;
-        this.version = version;
-    }
-    
-    public AplicacionTemplate(Map<String,Object> detalles_contenido) {
-        this.titulo = detalles_contenido.get("titulo").toString();
-        this.version = detalles_contenido.get("version").toString();
-    }
+    private String titulo;
+    private String version;
     
     @Override
     public String generarPlantilla(List<String> html) {
@@ -43,6 +33,14 @@ public class AplicacionTemplate implements MDOTemplate {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
             return String.format("Error creating template.");
         }
-
     }
+
+    @Override
+    public MDOTemplate setDetalles(Map<String, Object> detalles_plantilla) {
+        this.titulo = detalles_plantilla.get("titulo").toString();
+        this.version = detalles_plantilla.get("version").toString();
+        return this;
+    }
+    
+    
 }
