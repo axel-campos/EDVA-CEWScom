@@ -151,6 +151,7 @@ function mostrarVotacion(idContenido){
     BootstrapDialog.show({
         message: $('<div id="ventanaVotacion"></div>').load("verVotacion", {"idContenido": idContenido}),
         title: "Votación por etapas",
+        draggable: true,
         buttons: [{
             id: 'btn-info',   
             icon: 'glyphicon glyphicon-ok',       

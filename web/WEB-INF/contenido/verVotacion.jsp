@@ -87,7 +87,7 @@
             <form name="votacionForm" id="votacionForm" class="form-horizontal">
             <input type="hidden" id="idContenido" name="idContenido" value="<%=idContenido%>"/>
             <%=hiddenModificar%>
-            <table class="table" border="0">
+            <table class="table table-condensed" border="0">
                 <thead>
                     <tr>
                         <%
@@ -104,17 +104,17 @@
                     out.println("<td>Etapa " + n);
                     int tdUsados = 0;
                     List<ContenidoEtapa> lista = versionesPorIdEtapa.get(n);
-                    out.println("<div class=\"form-group\">");
                     out.println("<div class=\"btn-group\">");
                     for(ContenidoEtapa elemento: lista){
                         tdUsados++;
                         out.println("<td align='center'>"
                                 + "<input type='radio' name='etapa" + n + "' id='etapa" + n + "' value='" + elemento.getVersion() + "'checked>"
+                                + ""
                                 + "</td>");
                     }
-                    out.println("</div></div>");
+                    out.println("</div>");
                     if(versionMaxima2 > tdUsados){
-                        out.println("<td colspan='" + (versionMaxima2 - tdUsados) + "'");
+                        out.println("<td colspan='" + (versionMaxima2 - tdUsados) + "' ></td>");
                     }
                     out.println("</tr>");
                 }

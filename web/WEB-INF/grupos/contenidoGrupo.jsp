@@ -53,7 +53,7 @@
                 "(CASE WHEN ce.tiempoModificacion > NOW() THEN e.idEtapa ELSE NULL END) AS idEtapa, " +
                 "(CASE WHEN ce.tiempoModificacion > NOW() THEN ce.version ELSE NULL END) AS version, " +
                 "(CASE WHEN ve.tiempoModificacion > NOW() THEN ve.idEtapa ELSE NULL END) AS idEtapa2," +
-                "(CASE WHEN ve.tiempoModificacion < NOW() THEN '1' ELSE '0' END) AS finalizaVotacion," +
+                "(CASE WHEN ve.tiempoModificacion <= NOW() THEN '1' ELSE '0' END) AS finalizaVotacion," +
                 " ve.tiempoModificacion AS tiempoVotacion FROM contenido con " +
                 " LEFT JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
                 " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa AND ce.idEtapa != 6 " +
@@ -142,20 +142,25 @@
                                         Fecha votación: <%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
-                                            <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> Agregar versión</button>
+                                            <% if(finalizaVotacion == 1 ){ %>
+                                                <a onclick="finalizarVotacion('<%=idContenido%>')" class="btn btn-success">Finalizar contenido</a>
+                                            <% } %>
+                                            <% if(idEtapa == null && columna.get("tiempoVotacion") == null){ %>
+                                                <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> Agregar versión</button>
+                                            <% }%>
                                             <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
                                             <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>
                                             <% if(idEtapa != null){%>
-                                            <button type="button" class="btn btn-warning" onclick="terminaVersion(<%= idContenido %>, <%= idEtapa %>, <%= version %>)"><span class="glyphicon glyphicon-filter"></span> Terminar versión</button>
-                                            <% }%>
+                                                <button type="button" class="btn btn-warning" onclick="terminaVersion(<%= idContenido %>, <%= idEtapa %>, <%= version %>)"><span class="glyphicon glyphicon-filter"></span> Terminar versión</button>
+                                            <% }else if(columna.get("tiempoVotacion") != null && finalizaVotacion == 0){ %>
+                                                <button type="button" class="btn btn-warning" onclick="terminaVersion(<%= idContenido %>, 6, 1)"><span class="glyphicon glyphicon-filter"></span> Terminar votación</button>
+                                            <% } %>
                                             <br><br>
                                         </s:if>                
                                         <% if(fechaModificacion != ""){%>
                                             <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
                                             <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
-                                        <% }else if(finalizaVotacion == 1){ %>
-                                        
                                         <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                         <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">

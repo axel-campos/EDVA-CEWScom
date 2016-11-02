@@ -224,6 +224,9 @@
         <action name="verVotacion">
 			<result>WEB-INF/contenido/verVotacion.jsp</result>
 		</action>
+        <action name="finalizarVotacion">
+			<result>WEB-INF/contenido/finalizarVotacion.jsp</result>
+		</action>
         <action name="registrarVotacion" class="Actions.Contenido.RegistrarVotacionAction">
             <result name="success">WEB-INF/grupos/contenidoGrupo.jsp</result>
             <result name="error">WEB-INF/grupos/contenidoGrupo.jsp</result>
