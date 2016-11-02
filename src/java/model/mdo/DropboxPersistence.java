@@ -161,6 +161,22 @@ public final class DropboxPersistence implements FilePersistence {
         return file;
     }
 
+    public File descargarArchivoHTML(String ruta) throws IOException, DbxException {
+        String nombre = "preview.html";
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        String token = ruta.split("/")[1];
+        String tempFile = appRoot + ruta + "/" + nombre;
+        File temp = new File(tempFile);
+        FileUtils.writeStringToFile(temp, "");
+
+        try (FileOutputStream fos = new FileOutputStream(temp)) {
+            client.files().download(ruta + "/" + nombre).download(fos);
+        }
+
+        //String file = FileUtils.readFileToString(temp);
+        //FileUtils.deleteDirectory(new File(appRoot + token));
+        return temp;
+    }
     /**
      * Regresa un mapa con el contenido del JSON dado.
      *

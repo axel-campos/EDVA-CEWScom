@@ -147,9 +147,9 @@ function submitForm2(){
     return respuesta; //Nos regresará si el formulario estaba correcto o no.
 }
 
-function mostrarVotacion(idContenido){
+function mostrarVotacion(idContenido, token){
     BootstrapDialog.show({
-        message: $('<div id="ventanaVotacion"></div>').load("verVotacion", {"idContenido": idContenido}),
+        message: $('<div id="ventanaVotacion"></div>').load("verVotacion", {"idContenido": idContenido, "token": token}),
         title: "Votación por etapas",
         draggable: true,
         buttons: [{

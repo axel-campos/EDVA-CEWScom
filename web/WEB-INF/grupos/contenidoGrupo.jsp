@@ -61,6 +61,7 @@
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
                 " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY idContenido;";
+            System.out.println(sqlContenidos);
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
             contenidoDAO.desconectar();
             if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
@@ -106,8 +107,13 @@
                             String fechaModificacion = "";
                             String fechaVotacion = "Aún no se ha llegado a la etapa de votación";
                             String idContenido = columna.get("idContenido").toString();
-							Integer idEtapa = (Integer)columna.get("idEtapa");
-							Integer version = (Integer)columna.get("version");
+                            String idEtapa = null, version = null;
+                            if(columna.get("idEtapa") != null){
+                                idEtapa = columna.get("idEtapa").toString();
+                            }   
+                            if(columna.get("version") != null){
+                                version = columna.get("version").toString();
+                            }   
                             if(columna.get("nombre") != null){
                                 etapa = (String)columna.get("nombre");
                             }
@@ -160,7 +166,7 @@
                                         <% if(fechaModificacion != ""){%>
                                             <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
-                                            <a onclick="mostrarVotacion('<%=idContenido%>')" class="btn btn-success">Ir a votación</a>
+                                            <a onclick="mostrarVotacion('<%=idContenido%>','<%=token2%>')" class="btn btn-success">Ir a votación</a>
                                         <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
                                         <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">

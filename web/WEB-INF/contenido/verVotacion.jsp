@@ -4,6 +4,8 @@
     Author     : Víctor
 --%>
 
+<%@page import="java.io.File"%>
+<%@page import="model.mdo.DropboxPersistence"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="modelo.dao.UsuarioVotacionDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,13 +28,16 @@
     <body>
         <%
             UsuarioVotacionDAO usuarioVotacionDAO = new UsuarioVotacionDAO();
-            int idContenido = 0;
-            int versionMaxima2 = 1;
+            int idContenido = 0, versionMaxima2 = 1;
+            String token = "";
             int []versionMaxima = new int[5];
             String correo = "", hiddenModificar = "", ocultarDiv = "";
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             if(request.getParameter("idContenido") != null){
                 idContenido = Integer.parseInt(request.getParameter("idContenido"));
+            }
+            if(request.getParameter("token") != null){
+                token = request.getParameter("token").toString();
             }
             usuarioVotacionDAO.conectar();
             if(session.getAttribute("usuario") != null){
@@ -106,10 +111,12 @@
                     List<ContenidoEtapa> lista = versionesPorIdEtapa.get(n);
                     out.println("<div class=\"btn-group\">");
                     for(ContenidoEtapa elemento: lista){
+                        String ruta = String.format("/%s/%s/%s/%s", token, idContenido, elemento.getIdEtapa() + "", elemento.getVersion() + "");
+                        File f = new DropboxPersistence().descargarArchivoHTML(ruta);
                         tdUsados++;
                         out.println("<td align='center'>"
                                 + "<input type='radio' name='etapa" + n + "' id='etapa" + n + "' value='" + elemento.getVersion() + "'checked>"
-                                + ""
+                                + "<a href='" + f.getAbsolutePath() + "' target='_blank>aasdasd</a>"
                                 + "</td>");
                     }
                     out.println("</div>");
