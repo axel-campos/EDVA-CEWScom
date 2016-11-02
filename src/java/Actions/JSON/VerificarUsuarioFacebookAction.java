@@ -47,6 +47,8 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
 
             //Vamos a obtener al usuario para darlo de alta en la sesión, lo buscamos de nuevo en caso de que haya sido null la primera vez
             usuario = usuarioDAO.buscar(new Usuario().setCorreo(correo));
+            usuario.setAvatar(imagen);
+            usuarioDAO.modificar(usuario, usuario);
             usuarioDAO.desconectar();
             
             HttpSession session = ServletActionContext.getRequest().getSession();
