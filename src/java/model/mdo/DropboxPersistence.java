@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -214,7 +213,6 @@ public final class DropboxPersistence implements FilePersistence {
     public void guardarHTMLContenidoDidacticoLiberado(String token,String idContenido, List<String> versiones_escogidas )
     {
         try {
-            
             
             String HTML = new String();
             subirArchivoTexto(token + idContenido, "contenido_didactico_liberado.html", HTML);
