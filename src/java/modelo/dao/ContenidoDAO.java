@@ -15,7 +15,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 
 	@Override
 	public void registrar(Contenido registro) {
-		String sql = "INSERT INTO Contenido VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Contenido VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -23,7 +23,8 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 			stmt.setString(3, registro.getTitulo());
 			stmt.setString(4, registro.getTema());
 			stmt.setString(5, registro.getDescripcion());
-			stmt.setBoolean(6, registro.getFinalizado());
+            stmt.setString(6, registro.getCompetencia());
+			stmt.setBoolean(7, registro.getFinalizado());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -33,7 +34,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 	@Override
 	public void modificar(Contenido viejo, Contenido nuevo) {
 		String sql = "UPDATE Contenido SET idContenido = ?, token = ?, titulo = ?, tema = ?, "
-			+ "descripcion = ?, finalizado = ? WHERE idContenido = ?";
+			+ "descripcion = ?, competencia = ?, finalizado = ? WHERE idContenido = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, nuevo.getIdContenido());
@@ -41,8 +42,9 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 			stmt.setString(3, nuevo.getTitulo());
 			stmt.setString(4, nuevo.getTema());
 			stmt.setString(5, nuevo.getDescripcion());
-			stmt.setBoolean(6, nuevo.getFinalizado());
-			stmt.setInt(7, viejo.getIdContenido());
+            stmt.setString(6, nuevo.getCompetencia());
+			stmt.setBoolean(7, nuevo.getFinalizado());
+			stmt.setInt(8, viejo.getIdContenido());
 			stmt.executeUpdate();
 		} catch (SQLException | NullPointerException e) {
 			throw new RuntimeException(e);
@@ -75,7 +77,8 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 						.setTitulo(rs.getString("titulo"))
 						.setTema(rs.getString("tema"))
 						.setDescripcion(rs.getString("descripcion"))
-						.setFinalizado(rs.getBoolean("finalizado"));
+						.setFinalizado(rs.getBoolean("finalizado"))
+                        .setCompetencia(rs.getString("competencia"));
 				} else
 					return null;
 			}
@@ -100,7 +103,8 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 					.setTitulo(rs.getString("titulo"))
 					.setTema(rs.getString("tema"))
 					.setDescripcion(rs.getString("descripcion"))
-					.setFinalizado(rs.getBoolean("finalizado")));
+					.setFinalizado(rs.getBoolean("finalizado"))
+                    .setCompetencia(rs.getString("competencia")));
 			}
 			
 			return lista;

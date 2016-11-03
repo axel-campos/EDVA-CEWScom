@@ -60,7 +60,7 @@
                 "(CASE WHEN ve.tiempoModificacion <= NOW() THEN '1' ELSE '0' END) AS finalizaVotacion," +
                 " ve.tiempoModificacion AS tiempoVotacion FROM contenido con " +
                 " LEFT JOIN etapa AS e ON e.idEtapa = (SELECT ce2.idEtapa FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1) " +
-                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa AND ce.idEtapa != 6 " +
+                " LEFT JOIN contenidoetapa AS ce ON ce.idContenido = con.idContenido AND ce.idEtapa = e.idEtapa AND ce.idEtapa != 6 AND ce.version = (SELECT ce2.version FROM contenidoetapa ce2 WHERE con.idContenido = ce2.idContenido ORDER BY ce2.tiempoModificacion DESC LIMIT 1)" +
                 " LEFT JOIN contenidoetapa AS ve ON ve.idContenido = con.idContenido AND ve.idEtapa = 6" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
@@ -112,8 +112,10 @@
                             String fechaVotacion = "Aún no se ha llegado a la etapa de votación";
                             String idContenido = columna.get("idContenido").toString();
                             String idEtapa = null, version = null;
+                            String nombreBoton = "Agregar versión";
                             if(columna.get("idEtapa") != null){
                                 idEtapa = columna.get("idEtapa").toString();
+                                nombreBoton = "Editar versión";
                             }   
                             if(columna.get("version") != null){
                                 version = columna.get("version").toString();
@@ -155,8 +157,8 @@
                                             <% if(finalizaVotacion == 1 ){ %>
                                                 <a onclick="finalizarVotacion('<%=idContenido%>')" class="btn btn-success">Finalizar contenido</a>
                                             <% } %>
-                                            <% if(idEtapa == null && columna.get("tiempoVotacion") == null){ %>
-                                                <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> Agregar versión</button>
+                                            <% if(columna.get("tiempoVotacion") == null){ %>
+                                                <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> <%= nombreBoton%></button>
                                             <% }%>
                                             <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
                                             <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>
