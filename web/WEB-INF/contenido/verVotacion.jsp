@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="java.io.File"%>
-<%@page import="model.mdo.DropboxPersistence"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="modelo.dao.UsuarioVotacionDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -111,12 +110,13 @@
                     List<ContenidoEtapa> lista = versionesPorIdEtapa.get(n);
                     out.println("<div class=\"btn-group\">");
                     for(ContenidoEtapa elemento: lista){
-                        String ruta = String.format("/%s/%s/%s/%s", token, idContenido, elemento.getIdEtapa() + "", elemento.getVersion() + "");
-                        File f = new DropboxPersistence().descargarArchivoHTML(ruta);
                         tdUsados++;
-                        out.println("<td align='center'>"
-                                + "<input type='radio' name='etapa" + n + "' id='etapa" + n + "' value='" + elemento.getVersion() + "'checked>"
-                                + "<a href='" + f.getAbsolutePath() + "' target='_blank>aasdasd</a>"
+                        out.println("<td align='center'><input type='radio' name='etapa" + n + "' id='etapa" + n + "' value='" + elemento.getVersion() + "'checked>"
+                            + "<a style='cursor: pointer' onclick=\"visualizarContenido('" + token + "','" + idContenido + "','" + elemento.getIdEtapa() + "','" + elemento.getVersion() + "')\" >");
+                %>
+                    <img src="${pageContext.request.contextPath}/images/ojo.png" style="width: 15px;height: 15px ">
+                <%
+                        out.println("</a>"
                                 + "</td>");
                     }
                     out.println("</div>");

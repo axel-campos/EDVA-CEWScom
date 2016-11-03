@@ -163,8 +163,7 @@ public final class DropboxPersistence implements FilePersistence {
         return file;
     }
 
-    public File descargarArchivoHTML(String ruta) throws IOException, DbxException {
-        String nombre = "preview.html";
+    public File descargarArchivoHTML(String ruta, String nombre) throws IOException, DbxException {
         String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
         String token = ruta.split("/")[1];
         String tempFile = appRoot + ruta + "/" + nombre;

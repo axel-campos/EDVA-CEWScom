@@ -101,10 +101,12 @@
                     </tr>
                 </thead>
                 <%
+                int [] versionGanador = new int[5];
+                Map<Integer,List<Integer>> versionesConflicto = new HashMap<Integer,List<Integer>>();
                 for(int n = 1; n <= 5; n++){
                     out.println("<tr>");
                     out.println("<td>Etapa " + n);
-                    int tdUsados = 0;
+                    int tdUsados = 0, numeroMaximoVotos = 0;
                     List<ContenidoEtapa> lista = versionesPorIdEtapa.get(n);
                     for(ContenidoEtapa elemento: lista){
                         String query = "SELECT COUNT(*) AS votos FROM usuariovotacion WHERE idVotacion = "
@@ -113,6 +115,23 @@
                         List<Map<String,Object>> votos = contenidoEtapaDAO.consultaGenerica(query);
                         for(Map<String, Object> voto: votos){
                             out.println("<td align='center'>" + voto.get("votos") + "</td>");
+                            int numVotos = Integer.parseInt(voto.get("votos").toString());
+                            if(numVotos > numeroMaximoVotos){
+                                numeroMaximoVotos = numVotos;
+                                if(versionesConflicto.get(n) != null){
+                                    List<Integer> aux = versionesConflicto.get(n);
+                                    aux.clear();
+                                    aux.add(elemento.getVersion());
+                                }else{
+                                    List<Integer> aux = new ArrayList<>();
+                                    aux.add(elemento.getVersion());
+                                    versionesConflicto.remove(n);
+                                    versionesConflicto.put(n, aux);
+                                }
+                            }else if(numVotos == numeroMaximoVotos && numVotos != 0){
+                               List<Integer> aux = versionesConflicto.get(n);
+                               aux.add(elemento.getVersion());
+                            }
                         }
                     }
                     if(versionMaxima2 > tdUsados){
@@ -122,6 +141,26 @@
                 }
                 %>
             <table>
+            <table class="table table-condensed" border="0">
+                <tr>
+                <%
+                    for(int n = 1; n <= 5; n++){
+                        if(versionesConflicto.get(n).size() == 1){
+                            out.println("<input type='hidden' id='etapa" + n + "' name='etapa" + n + "'>");
+                        }else{
+                            List<Integer> rama = versionesConflicto.get(n);
+                            out.println("<td>Etapa: " + n + "<td/>");
+                            out.println("<td><select class='form-control' id='etapa" + n + "' name='etapa" + n + "'>");
+                            for(Integer ramita : rama){
+                                out.println("<option value='" + ramita + "'> Version " + ramita + "</option>");
+                            }
+                            out.println("</select>"
+                                    + "</td>");
+                        }
+                    }
+                %>
+                </tr>
+            </table>
             </form>
         </div>
     </body>
