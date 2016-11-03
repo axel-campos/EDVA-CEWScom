@@ -2,6 +2,7 @@ package Actions.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 import model.mdo.DropboxPersistence;
@@ -39,6 +40,23 @@ public class DescargarHTML extends ActionSupport {
         return SUCCESS;
     }
 
+    public String finalizado() throws IOException{
+        HttpServletResponse response = ServletActionContext.getResponse();
+        try{
+            String ruta = String.format("/%s/%s", token, idContenido);
+            File f = new DropboxPersistence().descargarArchivoHTML(ruta,"contenido_didactico_liberado.html");
+            try(PrintWriter out = response.getWriter()) {
+                out.println(ruta.substring(1) + "/contenido_didactico_liberado.html");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            try(PrintWriter out = response.getWriter()) {
+                out.println("Error: Hubo un problema al descargar el HTML");
+            }
+        }
+        return SUCCESS;
+    }
+    
     public String getToken() {
         return token;
     }

@@ -245,7 +245,6 @@ public final class DropboxPersistence implements FilePersistence {
                 String ruta = String.format("/%s/%s/%s/%s", token, idContenido, i+1 , versiones_escogidas.get(i));
                 String artefactosJSON = descargarArchivoTexto(ruta, "artefactos.json");
                 MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON);
-                System.out.println(artefactosJSON);
                 List<Map<String, Object>> artefactosMap = obtenerArtefactosDeJson(artefactosJSON);
                 MDOParser parser = MDOUtil.getParser(artefactosJSON);
 

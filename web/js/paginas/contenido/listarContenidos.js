@@ -63,10 +63,20 @@ $(document).ready(function(){
             }
         });
     });
-    
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox();
-    });
 });
+
+function visualizarContenidoFinalizado(token, idContenido){
+    var action_ajax = "descargarHTMLFinalizado.action";
+    $.post(action_ajax, {"token": token, "idContenido": idContenido}).done(function(data) 
+    {
+        if (data.toString().indexOf("Error:") === -1) {//En caso de que no hay error
+            window.open(
+              data,
+              '_blank' // <- This is what makes it open in a new window.
+            );
+        }else{
+            mensajes(data,TIPO_MENSAJE.WARNING);
+        }    
+    });
+}
 

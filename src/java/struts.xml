@@ -68,6 +68,9 @@
         <action name="descargarHTML" class="Actions.JSON.DescargarHTML">
             <result type="json">WEB-INF/contenido/verVotacion.jsp</result>
         </action>
+        <action name="descargarHTMLFinalizado" class="Actions.JSON.DescargarHTML" method="finalizado">
+            <result type="json">WEB-INF/contenido/verVotacion.jsp</result>
+        </action>
     </package>
     
     <include file="interceptores.xml" />
