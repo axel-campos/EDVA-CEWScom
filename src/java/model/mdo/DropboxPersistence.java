@@ -245,7 +245,7 @@ public final class DropboxPersistence implements FilePersistence {
                 HTMLbodies.addAll(generarHTMLString(artefactosMap, parser, template));
             }
             
-            subirArchivoTexto(token + idContenido, "contenido_didactico_liberado.html", new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
+            subirArchivoTexto(token + "/" + idContenido, "contenido_didactico_liberado.html", new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
