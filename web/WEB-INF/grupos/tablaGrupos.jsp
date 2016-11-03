@@ -64,7 +64,7 @@
                 <s:actionerror />
             </div>
         </s:if>
-        <a onclick="crearGrupo()" class="btn btn-link">Crear Nuevo Grupo </a>
+        <a onclick="crearGrupo()" class="btn btn-link">Crear nuevo grupo</a>
         <a onclick="solicitarIngreso()" class="btn btn-link">Solicitar entrada a grupo</a>
     </div>
     <div id="filtros" class="container-fluid">
@@ -118,20 +118,24 @@
                             <td><a onclick="cambiarContenidos('ListarMiembrosAction?token=<s:property value="%{#resultado[3]}"/>','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
-                            <td><a onclick="modificarGrupo('<s:property value="%{#resultado[3]}" />')" style="cursor:pointer;">
-                                    <span class="glyphicon glyphicon-pencil" style="min-width: 20px; min-height: 20px"></span></a>
+                            <td><a onclick="modificarGrupo('<s:property value="%{#resultado[3]}" />')">
+                                <!--span class="glyphicon glyphicon-pencil" style="min-width: 20px; min-height: 20px"></span-->
+                                <img src="${pageContext.request.contextPath}/images/lapiz.png" style="cursor:pointer;width: 25px">  
+                                </a>
                             </td>
                             <td><s:if test="%{#resultado[4] != 1}" >
-                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;">
-                                <span class="glyphicon glyphicon-log-out" style="min-width: 20px; min-height: 20px"></span></a>    
+                                <a onclick="estasSeguro('SalirGroup?token=<s:property value="%{#resultado[3]}" />','#contenido')" style="cursor:pointer;" >
+                                    <img src="${pageContext.request.contextPath}/images/salida.png" title="Salir del grupo" style="cursor:pointer;width: 25px">
+                                </a>
                             </s:if></td>
                             <td><s:if test="%{#resultado[4] == 1}" >
-                                <a href="#" onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">
-                                <span class="glyphicon glyphicon-trash" style="min-width: 20px; min-height: 20px"></span></a>    
+                                <a onclick="verificarGrupoVacio('<s:property value="%{#resultado[3]}" />')">
+                                    <img src="${pageContext.request.contextPath}/images/goma-de-borrar.png" title="Eliminar grupo" style="cursor:pointer;width: 25px">
+                                </a>    
                             </s:if></td>
                             <td>
-                                <a onclick="crearReporte('2','<s:property value="%{#resultado[3]}"/>','');" class="btn btn-link">
-                                    <span class="glyphicon glyphicon-warning-sign" style="min-width: 20px; min-height: 20px"></span>
+                                <a onclick="crearReporte('2','<s:property value="%{#resultado[3]}"/>','');">
+                                    <img src="${pageContext.request.contextPath}/images/reporte.png" title="Reportar grupo" style="cursor:pointer;width: 25px">
                                 </a>
                             </td>
                         </tr>

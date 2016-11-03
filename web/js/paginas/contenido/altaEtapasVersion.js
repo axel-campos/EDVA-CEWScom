@@ -3,25 +3,21 @@ $(document).ready(function(){
     var action = "registraVersion";
     $("#btnAgregar").on('click',function(event){
         event.preventDefault();
-       //Aquí nos dedicamos a ingresar la nueva fila a la tabla.
-        var numeroVersion = ($("#tablaVersiones tr").length);
-        var fila = "<tr>"
-            + "<td style='text-align: center'>" + numeroVersion + "<input type='hidden' value='" + numeroVersion + "' id='version' name='version'></td>"
-            + "<td><div class='input-group date' id='datetimepicker1'>"
-            + "<input type='text' placeholder='Ingresa fecha' id='fecha' name='fecha' class='form-control'><span class='input-group-addon'><span class='glyphicon glyphicon-edit'></span></span>"
-            + "</div></td>"
-            + "</tr>";
-        $("#tablaVersiones tr:last").after(fila);//Agregamos la fila
-        /*$('#datetimepicker1').datetimepicker({
-                
-            });*/
+        //Aquí nos dedicamos a ingresar la nueva fila a la tabla.
+        var numeroVersion = $(".version").size() + 1;
+        var temporal = "<div class='form-group version'><label class='col-md-4 control-label'><p align='center'>" + numeroVersion + "</p>"
+                    + "<input type='hidden' value='" + numeroVersion + "' id='version' name='version'></label>"
+                    + "<div class='col-md-2'></div><div class='col-md-4'>"
+                    + "<input type='text' id='fecha' name='fecha' class='form-control'/></div></div>";
+        $(".form-group:last").after(temporal);
         
         $("#btnAgregar").hide();//Ocultamos esta opción.
         $("#btnCancelar").show();
         $("#btnSubmit").show();
         //Agregamos la validación
-        $(form)/*.bootstrapValidator('destroy')*/
+        $(form).bootstrapValidator('destroy')
                 .bootstrapValidator({
+                    autofocus: true,
                     fields:{
                         fecha:{
                             validators:{
@@ -73,19 +69,7 @@ $(document).ready(function(){
                     }
                 }
             });
-        }).on('click','#btnCancelar',function(){
-            //Quitamos la validación
-            $(form).bootstrapValidator('removeField',$("#fecha"));
-            //Quitamos la fila que habíamos agregado a la tabla
-            $("#tablaVersiones tr:last").remove();
-            //Mostramos los botones
-            $("#btnAgregar").show();
-            //Quitamos los botones
-            $("#btnCancelar").hide();
-            $("#btnSubmit").hide();
         });
-        var caquitita = "<input type='text' class='fecha'>";
-        //$("table:last").append(caquitita);
         ponerCalendario();
         
     });
@@ -95,8 +79,10 @@ $(document).ready(function(){
         //Aquí nos dedicamos a poner la fila
         var idContenido = $("#idContenido").val(), etapa = $("#etapa").val(), version = $("#version").val();
         $.post("cargaVersionEditar",{idContenido: idContenido, etapa:etapa, version:version}).done(function(data){
+            //Removemos el último
+            $(".form-group:last").remove();
             //Cargamos la etapa
-            $("#tablaVersiones").html(data);           
+            $(".form-group:last").after(data);       
             //Quitamos/Ponemos botones
             $("#btnEditar").hide();
             $("#CancelarEdicion").show();
@@ -135,12 +121,7 @@ $(document).ready(function(){
                                 //Refrecamos la ventana
                                 $("#ventana").load("cargaEtapas",{"idContenido": idContenido, "etapa": etapa, "version": version}, function(response, status, xhr){
                                     if(status === "success"){
-                                        //Cargamos las versiones de la etapa en la que se cargo el nuevo
-                                        //cargarVersiones(etapa);
-                                        //
                                         cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
-                                        /*var target = "#contenidoGrupo";
-                                        cambiarContenidos('ListarMiembrosAction?token='+token,target);*/
                                     }
 
                                 });
@@ -156,39 +137,9 @@ $(document).ready(function(){
                         }
                     }
                 });
-            }).on('click','#CancelarEdicion',function(){
-                //Quitamos la validación
-                $(form).bootstrapValidator('removeField',$("#fecha"));
-                //Quitamos la fila que habíamos agregado a la tabla
-                cargarVersiones(etapa);
-                //Quitamos los botones
-                $("#CancelarEdicion").hide();
-                $("#SubmitEdicion").hide();
             });
             
-            //Ponemos el datetimepicker
-            $("#fecha").datetimepicker({
-                locale: 'es',
-                format: 'YYYY-MM-DD HH:mm',
-                tooltips: {
-                    today: 'Hoy',
-                    clear: 'Limpiar selección',
-                    close: 'Cerrar el calendario',
-                    selectMonth: 'Seleccionar mes',
-                    prevMonth: 'Mes previo',
-                    nextMonth: 'Próximo mes',
-                    selectYear: 'Selecciona año',
-                    prevYear: 'Año previo',
-                    nextYear: 'Próximo año',
-                    selectDecade: 'Selecciona década',
-                    prevDecade: 'Década previa',
-                    nextDecade: 'Próxima década',
-                    prevCentury: 'Siglo previo',
-                    nextCentury: 'Próximo siglo'
-                }
-            }).show().on("dp.change",function(e){
-                $("#frmTiempos").bootstrapValidator('revalidateField', $("#fecha"));//Revalidamos el campo cada vez que cambie
-            }); 
+            ponerCalendarioEditar();
         });
          
     });
@@ -212,7 +163,10 @@ function cargarVersiones(etapa){
     $("#btnSubmit").hide();
     $.post(action, {"idContenido": idContenido, "etapa": etapa}).done(function(data) 
     {
-        $("#tablaVersiones").html(data);
+        //$("#tablaVersiones").html(data);
+        //Primero quitamos todo los divs anteriores
+        $(".version").remove();
+        $(".form-group:last").after(data);
         if(data.toString() !== ""){//No error
             var version = $("#version").val();
             if(version === ""){//Entonces pueden crear una nueva versión
@@ -259,4 +213,53 @@ function ponerCalendario(){
     }).show().on("dp.change",function(e){
         $("#frmTiempos").bootstrapValidator('revalidateField', $("#fecha"));//Revalidamos el campo cada vez que cambie
     });
+}
+
+function ponerCalendarioEditar(){
+    $("#fecha").datetimepicker({
+        locale: 'es',
+        format: 'YYYY-MM-DD HH:mm',
+        tooltips: {
+            today: 'Hoy',
+            clear: 'Limpiar selección',
+            close: 'Cerrar el calendario',
+            selectMonth: 'Seleccionar mes',
+            prevMonth: 'Mes previo',
+            nextMonth: 'Próximo mes',
+            selectYear: 'Selecciona año',
+            prevYear: 'Año previo',
+            nextYear: 'Próximo año',
+            selectDecade: 'Selecciona década',
+            prevDecade: 'Década previa',
+            nextDecade: 'Próxima década',
+            prevCentury: 'Siglo previo',
+            nextCentury: 'Próximo siglo'
+        }
+    }).show().on("dp.change",function(e){
+        $("#frmTiempos").bootstrapValidator('revalidateField', $("#fecha"));//Revalidamos el campo cada vez que cambie
+    });
+}
+
+function cancelarGuardar(){
+    var form = "#frmTiempos";
+    $(form).bootstrapValidator('removeField',$("#fecha"));
+    //Quitamos la fila que habíamos agregado a la tabla
+    $("div.version:last").remove();
+    //Mostramos los botones
+    $("#btnAgregar").show();
+    //Quitamos los botones
+    $("#btnCancelar").hide();
+    $("#btnSubmit").hide();
+}
+
+function cancelarEditar(){
+    var form = "#frmTiempos";
+    var etapa = $("#etapa").val();
+    //Quitamos la validación
+    $(form).bootstrapValidator('removeField',$("#fecha"));
+    //Quitamos la fila que habíamos agregado a la tabla
+    cargarVersiones(etapa);
+    //Quitamos los botones
+    $("#CancelarEdicion").hide();
+    $("#SubmitEdicion").hide();
 }

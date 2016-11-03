@@ -55,7 +55,8 @@ function crearContenido(){
             action: function(dialogRef){    
                 dialogRef.close();
             }
-        }]
+        }],
+        draggable: true
     });    
 }
 
@@ -76,7 +77,8 @@ function mostrarDisqus(idContenido){
                     dialogRef.close();
                 }
             }
-        }]
+        }],
+        draggable: true
     });    
 }
 
@@ -128,7 +130,8 @@ function modificarContenido(id){
             action: function(dialogRef){    
                 dialogRef.close();
             }
-        }]
+        }],
+        draggable: true
     }); 
 }
 
@@ -156,7 +159,8 @@ function eliminaContenido(id){
             action: function(dialogItself){
                 dialogItself.close();
             }
-        }]
+        }],
+        draggable: true
     });
 }
 
@@ -184,23 +188,25 @@ function terminaVersion(id, etapa, version){
             action: function(dialogItself){
                 dialogItself.close();
             }
-        }]
+        }],
+        draggable: true
     });
 }
 
-function finalizarVotacion(idContenido){
+function finalizarVotacion(idContenido, token){
     BootstrapDialog.show({
-        message: $('<div id="ventanaFinalizaVotacion"></div>').load("finalizarVotacion", {"idContenido": idContenido}),
+        message: $('<div id="ventanaFinalizaVotacion"></div>').load("finalizarVotacion", {"idContenido": idContenido, "token": token}),
         title: "Finalizar Votación",
         draggable: true,
         buttons: [{
             id: 'btn-info',   
-            icon: 'glyphicon glyphicon-ok',       
+            icon: 'glyphicon glyphicon-ok',     
+            draggable: true,
             label: 'Votar',
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){
-                var resultado = submitFormGeneral("#votacionForm");
+                var resultado = submitFormGeneral("#finalizarVotacionForm");
                 if(resultado){//true, quiere decir que todo bien
                     dialogRef.close();
                 }
@@ -216,4 +222,30 @@ function finalizarVotacion(idContenido){
             }
         }]
     });    
+}
+
+function mostrarInfoGrupo(nombre, descripcion){
+    BootstrapDialog.show({
+        /*size: BootstrapDialog.SIZE_LARGE,*/
+        message: 'Hi Apple!',
+        title: 'Información del grupo',
+        buttons: [{
+            label: 'Button 1'
+        }, {
+            label: 'Button 2',
+            cssClass: 'btn-primary',
+            action: function(){
+                alert('Hi Orange!');
+            }
+        }, {
+            icon: 'glyphicon glyphicon-ban-circle',
+            label: 'Button 3',
+            cssClass: 'btn-warning'
+        }, {
+            label: 'Close',
+            action: function(dialogItself){
+                dialogItself.close();
+            }
+        }]
+    });
 }

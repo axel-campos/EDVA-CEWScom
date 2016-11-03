@@ -26,7 +26,11 @@
                 </div>
             </s:if>
             <s:if test="esAdministrador">
-            <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
+                <s:if test="esCoordinador">
+                    <a class="btn btn-link" onclick="mostrarLista('ListRoles','<s:property value="token"/>');">Roles del grupo</a>
+                </s:if>
+                <a class="btn btn-link" onclick="mostrarLista('ListSolicitudes','<s:property value="token"/>');">Solicitudes</a>
+                <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
             </s:if>
             <input type="hidden" id="token" value="<s:property value="token"/>">
             <input type="hidden" id="message" value="<s:property value="message"/>">
@@ -108,8 +112,10 @@
                             String fechaVotacion = "Aún no se ha llegado a la etapa de votación";
                             String idContenido = columna.get("idContenido").toString();
                             String idEtapa = null, version = null;
+                            String nombreBoton = "Agregar versión";
                             if(columna.get("idEtapa") != null){
                                 idEtapa = columna.get("idEtapa").toString();
+                                nombreBoton = "Editar versión";
                             }   
                             if(columna.get("version") != null){
                                 version = columna.get("version").toString();
@@ -149,10 +155,10 @@
                                         <br/>
                                         <s:if test="esAdministrador">
                                             <% if(finalizaVotacion == 1 ){ %>
-                                                <a onclick="finalizarVotacion('<%=idContenido%>')" class="btn btn-success">Finalizar contenido</a>
+                                                <a onclick="finalizarVotacion('<%=idContenido%>','<%=token2%>')" class="btn btn-success">Finalizar contenido</a>
                                             <% } %>
-                                            <% if(idEtapa == null && columna.get("tiempoVotacion") == null){ %>
-                                                <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> Agregar versión</button>
+                                            <% if(columna.get("tiempoVotacion") == null){ %>
+                                                <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> <%= nombreBoton%></button>
                                             <% }%>
                                             <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
                                             <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>

@@ -18,22 +18,12 @@ import org.apache.struts2.ServletActionContext;
  * Generador de plantillas HTML para la etapa de Vivencia.
  */
 public class VivenciaTemplate implements MDOTemplate {
-    private final String titulo;
-    private final String version;
-
-    public VivenciaTemplate(String titulo, String version) {
-        this.titulo = titulo;
-        this.version = version;
-    }
-    
-    public VivenciaTemplate(Map<String,Object> detalles_contenido) {
-        this.titulo = detalles_contenido.get("titulo").toString();
-        this.version = detalles_contenido.get("version").toString();
-    }
-    
+    private String titulo;
+    private String version;
 
     @Override
     public String generarPlantilla(List<String> html) {
+        
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/preview_template.html";
             File htmlTemplateFile = new File(ruta_template);
@@ -52,5 +42,12 @@ public class VivenciaTemplate implements MDOTemplate {
             return String.format("Error creating template.");
         }
 
+    }
+
+    @Override
+    public MDOTemplate setDetalles(Map<String, Object> detalles_plantilla) {
+        this.titulo = detalles_plantilla.get("titulo").toString();
+        this.version = detalles_plantilla.get("version").toString();
+        return this;
     }
 }

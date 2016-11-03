@@ -49,8 +49,17 @@ $(document).ready(function(){
                 validators:{
                     stringLength:{
                         min: 0,
-                        max: 100,
-                        message: 'La cantidad máxima de letras para la descripción es de 100.'
+                        max: 1000,
+                        message: 'La cantidad máxima de letras para la descripción es de 1000.'
+                    }
+                }
+            },
+            competencia: {
+                validators:{
+                    stringLength:{
+                        min: 0,
+                        max: 1000,
+                        message: 'La cantidad máxima de letras para la competencia es de 1000.'
                     }
                 }
             }

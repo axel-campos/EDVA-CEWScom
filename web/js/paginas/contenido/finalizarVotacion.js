@@ -35,15 +35,15 @@ $(document).ready(function(){
             data: datos,
             success: function(data){
                 var token = $("#token").val();
-                //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
-                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
-                var target = "#contenidoGrupo";
+                mensajes("Su contenido ha sido publicado con éxito", 3);
+                var target = "#contenido";
                 $(target).html(data);
             },
             error: function(data){
                 var token = $("#token").val();
                 //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
                 cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                mensajes("Ha ocurrido un problema al registrar su contenido", 3);
                 var target = "#contenidoGrupo";
                 $(target).html(data);
             }

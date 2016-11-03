@@ -8,6 +8,9 @@
         <title>Solicitudes</title>
     </head>
     <body>
+        <div class="container-fluid">
+            <a class="btn btn-link" onclick="mostrarLista('ListarContenidosGrupoAction','<s:property value="token"/>');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
+        </div>
         <table id="tabla" style="width: 100%">
             <thead>
                 <th width="90%" data-align="center" data-sortable='true' data-field='Nombre'>Nombre</th>
@@ -19,8 +22,16 @@
                 <s:iterator value="solicitantes" var="solicitante">
                 <tr>
                     <td id="nombre_<%= x%>"><s:property value="%{#solicitante[1]}"/></td>
-                    <td><a onclick="procesarSolicitud('<s:property value="%{#solicitante[0]}"/>','0','<%= x%>')" class="btn btn-link"><span class="glyphicon glyphicon-ok"></span></a></td>
-                    <td><a onclick="procesarSolicitud('<s:property value="%{#solicitante[0]}"/>','1','<%= x%>')" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></a></td>
+                    <td>
+                        <a onclick="procesarSolicitud('<s:property value="%{#solicitante[0]}"/>','0','<%= x%>')">
+                            <img src="${pageContext.request.contextPath}/images/aceptado.png" title="Aceptar" style="cursor:pointer;width: 25px">
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="procesarSolicitud('<s:property value="%{#solicitante[0]}"/>','1','<%= x%>')">
+                            <img src="${pageContext.request.contextPath}/images/rechazado.png" title="Rechazar" style="cursor:pointer;width: 25px">
+                        </a>
+                    </td>
                 </tr>
                 <% x += 1; %>
                 </s:iterator>

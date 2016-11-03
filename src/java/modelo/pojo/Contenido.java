@@ -13,6 +13,7 @@ public class Contenido implements EDVADB {
 	private String titulo;
 	private String tema;
 	private String descripcion;
+    private String competencia;
 	private boolean finalizado;
 	
 	/**
@@ -134,4 +135,24 @@ public class Contenido implements EDVADB {
 		this.finalizado = finalizado;
 		return this;
 	}
+
+    /**
+     * Regresa las competencias que esperan obtener con el Contenido Didáctico
+     * @return La competencia a obtener con el contenido.
+     */
+    public String getCompetencia() {
+        return competencia;
+    }
+
+    /**
+     * Asigna una competencia al contenido
+     * @param competencia
+     * @return La competencia a obtener con el contenido
+     */
+    public Contenido setCompetencia(String competencia) {
+        this.competencia = competencia;
+        return this;
+    }
+    
+    
 }

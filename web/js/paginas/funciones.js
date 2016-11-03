@@ -31,7 +31,9 @@ function cambiarContenidos(pagina, target){
                 $(target).html(data); 
             }else{
                 var cwescom = "cwescom.action";
+                
                 window.open(cwescom,'_top');
+                BootstrapDialog.alert("Su sesión ha expirado.");
             }
             
         }, 1000);

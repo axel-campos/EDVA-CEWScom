@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.List"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -21,6 +21,8 @@
                     <s:actionerror />
                 </div>
             </s:if>
+            <a class="btn btn-link" onclick="mostrarLista('ListarContenidosGrupoAction','<s:property value="token"/>');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
+            <a class="btn btn-link" onclick="mostrarLista('ListSolicitudes','<s:property value="token"/>');">Solicitudes</a>
         </div>
         <div class="table-responsive">
             <form id="frmRoles" name="frmRoles">
@@ -39,7 +41,11 @@
                             <td style="text-align:center;display: none;" id="rowCoordinador_<%= x%>"><input type="radio" id="txt_result_<%= x%>" name="txt_result_<%= x%>" value="1" disabled/></td>
                             <td style="text-align: center;"><input type="radio" id="txt_result_<%= x%>" name="txt_result_<%= x%>" value="2" <s:property value='%{#result[2]}'/> disabled/></td>              
                             <td style="text-align: center;"><input type="radio" id="txt_result_<%= x%>" name="txt_result_<%= x%>" value="3" <s:property value='%{#result[3]}'/> disabled/></td>
-                            <td style="display:none; text-align: center;" id="rowEliminar_<%= x%>"><a onclick="eliminarMiembro('<%= x %>')" class="btn btn-link"><span class="glyphicon glyphicon-trash" style="min-width: 20px; min-height: 20px"></span></a></td>
+                            <td style="display:none; text-align: center;" id="rowEliminar_<%= x%>">
+                                <a onclick="eliminarMiembro('<%= x %>')">
+                                    <img src="${pageContext.request.contextPath}/images/goma-de-borrar.png" title="Eliminar miembro" style="cursor:pointer;width: 25px">
+                                </a>
+                            </td>
                         </tr>    
                         <% x += 1;%>
                     </s:iterator>

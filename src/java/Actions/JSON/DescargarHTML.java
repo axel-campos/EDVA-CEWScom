@@ -25,7 +25,7 @@ public class DescargarHTML extends ActionSupport {
         
         HttpServletResponse response = ServletActionContext.getResponse();
         try{
-            String ruta = String.format("/%s/%s/%s/%s", token, idContenido, idEtapa + "", version + "");
+            String ruta = String.format("/%s/%s/%s/%s", token, idContenido, idEtapa, version);
             File f = new DropboxPersistence().descargarArchivoHTML(ruta,"preview.html");
             try(PrintWriter out = response.getWriter()) {
                 out.println(ruta.substring(1) + "/preview.html");

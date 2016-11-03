@@ -23,6 +23,10 @@
         <%
             int idContenido = 0, totalProfesores = 0, totalVotantes = 0;
             int versionEtapa [] = new int[5];
+            String token = "";
+            if(request.getParameter("token") != null){
+                token = request.getParameter("token").toString();
+            }
             if(request.getParameter("idContenido") != null){
                 idContenido = Integer.parseInt(request.getParameter("idContenido"));
             }
@@ -65,6 +69,7 @@
             <br/>
             <form name="finalizarVotacionForm" id="finalizarVotacionForm" class="form-horizontal">
             <input type="hidden" id="idContenido" name="idContenido" value="<%=idContenido%>"/>
+            <input type="hidden" id="token" name="token" value="<%=token%>"/>
             <%
                 int []versionMaxima = new int[5];
                 int versionMaxima2 = 1;
@@ -146,7 +151,7 @@
                 <%
                     for(int n = 1; n <= 5; n++){
                         if(versionesConflicto.get(n).size() == 1){
-                            out.println("<input type='hidden' id='etapa" + n + "' name='etapa" + n + "'>");
+                            out.println("<input type='hidden' id='etapa" + n + "' name='etapa" + n + "' value='" + versionesConflicto.get(n).get(0) + "' >");
                         }else{
                             List<Integer> rama = versionesConflicto.get(n);
                             out.println("<td>Etapa: " + n + "<td/>");

@@ -25,29 +25,23 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
     private String titulo = "Sin título";
     private String tema = "Sin tema";
     private String descripcion = "Sin descripción";
-    private String grupo = "Grupo anónimo";
-
-    public ContenidoDidacticoTemplate(Map<String, Object> detalles_contenido) {
-        this.titulo = detalles_contenido.get("titulo").toString();
-        this.tema = detalles_contenido.get("tema").toString();
-        this.descripcion = detalles_contenido.get("descripcion").toString();
-        this.grupo = detalles_contenido.get("grupo").toString();
-    }
+    private String grupo_nombre = "Grupo anónimo";
 
     @Override
     public String generarPlantilla(List<String> html) {
+        EtapaDAO dao = new EtapaDAO();
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/contenido_didactico_template.html";
             File htmlTemplateFile = new File(ruta_template);
 
             String template_string = FileUtils.readFileToString(htmlTemplateFile).replace("$ruta", "http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
-
-            EtapaDAO dao = new EtapaDAO();
+            dao.conectar();
             Etapa etapa_1 = dao.buscar(new Etapa().setIdEtapa((short) 1));
             Etapa etapa_2 = dao.buscar(new Etapa().setIdEtapa((short) 2));
             Etapa etapa_3 = dao.buscar(new Etapa().setIdEtapa((short) 3));
             Etapa etapa_4 = dao.buscar(new Etapa().setIdEtapa((short) 4));
             Etapa etapa_5 = dao.buscar(new Etapa().setIdEtapa((short) 5));
+            dao.desconectar();
 
             return String.format(template_string, titulo, tema, descripcion,
                     etapa_1.getNombre(), etapa_1.getDescripcion(), html.get(0), html.get(1),
@@ -55,12 +49,22 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
                     etapa_3.getNombre(), etapa_3.getDescripcion(), html.get(4), html.get(5),
                     etapa_4.getNombre(), etapa_4.getDescripcion(), html.get(6), html.get(7),
                     etapa_5.getNombre(), etapa_5.getDescripcion(), html.get(8), html.get(9),
-                    grupo);
+                    grupo_nombre);
             
         } catch (IOException ex) {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            dao.desconectar();
             return String.format("Error creating template.");
         }
+    }
+
+    @Override
+    public MDOTemplate setDetalles(Map<String, Object> detalles_plantilla) {
+        this.titulo = detalles_plantilla.get("titulo").toString();
+        this.tema = detalles_plantilla.get("tema").toString();
+        this.descripcion = detalles_plantilla.get("descripcion").toString();
+        this.grupo_nombre = detalles_plantilla.get("grupo_nombre").toString();
+        return this;
     }
 
 }

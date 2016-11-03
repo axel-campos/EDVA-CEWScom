@@ -18,9 +18,13 @@ import java.util.List;
 import java.util.Map;
 import model.mdo.artifacts.MDOArtifact;
 import model.mdo.parsers.MDOParser;
+import model.mdo.template.ContenidoDidacticoTemplate;
 import model.mdo.template.MDOTemplate;
 import model.mdo.template.MDOTemplateUtil;
+import modelo.dao.ContenidoDAO;
 import modelo.dao.GrupoDAO;
+import modelo.pojo.Contenido;
+import modelo.pojo.Grupo;
 
 /**
  * Permite almacenar y descargar archivos desde Dropbox por medio de su API
@@ -139,10 +143,10 @@ public final class DropboxPersistence implements FilePersistence {
         FileUtils.writeStringToFile(temp, contenido, "UTF-8");
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
-                    .files()
-                    .uploadBuilder(ruta + "/" + nombre)
-                    .withMode(WriteMode.OVERWRITE)
-                    .uploadAndFinish(fis);
+                .files()
+                .uploadBuilder(ruta + "/" + nombre)
+                .withMode(WriteMode.OVERWRITE)
+                .uploadAndFinish(fis);
         }
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
@@ -165,19 +169,17 @@ public final class DropboxPersistence implements FilePersistence {
 
     public File descargarArchivoHTML(String ruta, String nombre) throws IOException, DbxException {
         String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
-        String token = ruta.split("/")[1];
-        String tempFile = appRoot + ruta + "/" + nombre;
-        File temp = new File(tempFile);
-        FileUtils.writeStringToFile(temp, "");
-
-        try (FileOutputStream fos = new FileOutputStream(temp)) {
-            client.files().download(ruta + "/" + nombre).download(fos);
+        File temp = new File(appRoot + ruta + "/" + nombre);
+        if(!temp.exists())
+        {
+            FileUtils.writeStringToFile(temp, "");
+            try (FileOutputStream fos = new FileOutputStream(temp)) {
+                client.files().download(ruta + "/" + nombre).download(fos);
+            }
         }
-
-        //String file = FileUtils.readFileToString(temp);
-        //FileUtils.deleteDirectory(new File(appRoot + token));
         return temp;
     }
+
     /**
      * Regresa un mapa con el contenido del JSON dado.
      *
@@ -187,8 +189,14 @@ public final class DropboxPersistence implements FilePersistence {
      */
     private Map<String, Object> obtenerMapaDeJson(String json) {
         return ((Map<String, Map<String, Object>>) gson
-                .fromJson(json, new TypeToken<Map<String, Object>>() {
-                }.getType())).get("artefactos");
+            .fromJson(json, new TypeToken<Map<String, Object>>() {
+            }.getType())).get("artefactos");
+    }
+    
+    private List<Map<String, Object>> obtenerArtefactosDeJson(String json) {
+        return ((Map<String, List<Map<String, Object>>>) gson
+            .fromJson(json, new TypeToken<Map<String, Object>>() {
+            }.getType())).get("artefactos");
     }
 
     @Override
@@ -203,42 +211,56 @@ public final class DropboxPersistence implements FilePersistence {
     @Override
     public void guardarHTMLpreliminar(Map<String, Object> detalles_contenido, String artefactosJSON) {
         try {
-            MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON, detalles_contenido);
+            MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON);
             Map<String, Object> map = obtenerMapaDeJson(artefactosJSON);
             MDOParser parser = MDOUtil.getParser(artefactosJSON);
             List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
-            subirArchivoTexto((String) map.get("ruta"), "preview.html", template.generarPlantilla(generateHTMLString(artefactosMap, parser, template)));
+            subirArchivoTexto((String) map.get("ruta"), "preview.html", template.setDetalles(detalles_contenido).generarPlantilla(generarHTMLString(artefactosMap, parser, template)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public void guardarHTMLContenidoDidacticoLiberado(String token, String idContenido, List<String> versiones_escogidas) {
+        GrupoDAO grupoDAO = new GrupoDAO();
+        ContenidoDAO contenidoDAO = new ContenidoDAO();
         try {
-            GrupoDAO grupodao = new GrupoDAO();
+            grupoDAO.conectar();
+            Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+            contenidoDAO.conectar();
+            Contenido contenido = contenidoDAO.buscarContenidoConToken(new Contenido().setToken(token).setIdContenido(Integer.parseInt(idContenido)));
             List<String> HTMLbodies = new ArrayList<>();
-            Map<String,Object> detalles_contenido = new HashMap<String,Object>();
-            //detalles_contenido.put("titulo", );
-
+            Map<String, Object> detalles_contenido = new HashMap<String, Object>();
+            detalles_contenido.put("titulo", contenido.getTitulo());
+            detalles_contenido.put("grupo_nombre", grupo.getNombre());
+            detalles_contenido.put("tema", contenido.getTema());
+            detalles_contenido.put("descripcion", contenido.getDescripcion());
+            
+            grupoDAO.desconectar();
+            contenidoDAO.desconectar();
+            
+            
             for (int i = 0; i < 5; i++) {
-                String ruta = token + "/" + idContenido + "/" + i + "/" + versiones_escogidas.get(i);
+                String ruta = String.format("/%s/%s/%s/%s", token, idContenido, i+1 , versiones_escogidas.get(i));
                 String artefactosJSON = descargarArchivoTexto(ruta, "artefactos.json");
-                MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON, detalles_contenido);
-                Map<String, Object> map = obtenerMapaDeJson(artefactosJSON);
+                MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON);
+                System.out.println(artefactosJSON);
+                List<Map<String, Object>> artefactosMap = obtenerArtefactosDeJson(artefactosJSON);
                 MDOParser parser = MDOUtil.getParser(artefactosJSON);
-                List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
-                HTMLbodies.addAll(i * 2, HTMLbodies);
+                HTMLbodies.addAll(generarHTMLString(artefactosMap, parser, template));
             }
-            String HTML = new String();
-            subirArchivoTexto(token + idContenido, "contenido_didactico_liberado.html", HTML);
+           
+            subirArchivoTexto("/" + token + "/" + idContenido, "contenido_didactico_liberado.html", new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
         } catch (Exception e) {
+            grupoDAO.desconectar();
+            contenidoDAO.desconectar();
             throw new RuntimeException(e);
         }
     }
 
-    private List<String> generateHTMLString(List<Map<String, Object>> artefactosMap, MDOParser parser, MDOTemplate template) {
+    private List<String> generarHTMLString(List<Map<String, Object>> artefactosMap, MDOParser parser, MDOTemplate template) {
         int num_paso = 1;
         StringBuilder orderHTMLcode = new StringBuilder();
         StringBuilder definitionHTMLcode = new StringBuilder();
