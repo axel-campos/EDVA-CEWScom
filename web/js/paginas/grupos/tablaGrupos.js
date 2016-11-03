@@ -105,7 +105,8 @@ function solicitarIngreso(){
             action: function(dialogRef){    
                 dialogRef.close();
             }
-        }]
+        }],
+        draggable: true
     });
 }
 
@@ -134,7 +135,8 @@ function crearGrupo(){
             action: function(dialogRef){    
                 dialogRef.close();
             }
-        }]
+        }],
+        draggable: true
     });
 }
 

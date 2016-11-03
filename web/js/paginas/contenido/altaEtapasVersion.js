@@ -88,7 +88,7 @@ $(document).ready(function(){
             $("#CancelarEdicion").show();
             $("#SubmitEdicion").show();
             //Ponemos la validación
-            $(form)/*.bootstrapValidator('destroy')*/
+            $(form).bootstrapValidator('destroy')
                 .bootstrapValidator({
                     fields:{
                         fecha:{
@@ -139,7 +139,7 @@ $(document).ready(function(){
                 });
             });
             
-            ponerCalendario();
+            ponerCalendarioEditar();
         });
          
     });
@@ -194,6 +194,31 @@ function ponerCalendario(){
         format: 'YYYY-MM-DD HH:mm',
         minDate: moment().add(1, 'days').format('YYYY-MM-DD'),
         defaultDate: moment().add(1, 'days').format('YYYY-MM-DD'),
+        tooltips: {
+            today: 'Hoy',
+            clear: 'Limpiar selección',
+            close: 'Cerrar el calendario',
+            selectMonth: 'Seleccionar mes',
+            prevMonth: 'Mes previo',
+            nextMonth: 'Próximo mes',
+            selectYear: 'Selecciona año',
+            prevYear: 'Año previo',
+            nextYear: 'Próximo año',
+            selectDecade: 'Selecciona década',
+            prevDecade: 'Década previa',
+            nextDecade: 'Próxima década',
+            prevCentury: 'Siglo previo',
+            nextCentury: 'Próximo siglo'
+        }
+    }).show().on("dp.change",function(e){
+        $("#frmTiempos").bootstrapValidator('revalidateField', $("#fecha"));//Revalidamos el campo cada vez que cambie
+    });
+}
+
+function ponerCalendarioEditar(){
+    $("#fecha").datetimepicker({
+        locale: 'es',
+        format: 'YYYY-MM-DD HH:mm',
         tooltips: {
             today: 'Hoy',
             clear: 'Limpiar selección',

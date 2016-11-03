@@ -13,6 +13,7 @@ public class AltaContenidoAction extends ActionSupport {
     
     private String titulo;
     private String tema;
+    private String competencia;
     private String descripcion;
     private String token;
     private String tipo;
@@ -35,6 +36,9 @@ public class AltaContenidoAction extends ActionSupport {
         if(descripcion.length() > 1000){
             addActionError("El campo descripción no debe contener más de 1000 letras.");
         }
+        if(competencia.length() > 1000){
+            addActionError("El campo competencia no debe contener más de 1000 letras.");
+        }
     }
     
     @Override
@@ -43,7 +47,7 @@ public class AltaContenidoAction extends ActionSupport {
         String accion = "";
         Contenido contenido = new Contenido();
         Contenido viejo = new Contenido();
-        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion);
+        contenido.setToken(token).setTitulo(titulo).setTema(tema).setFinalizado(false).setDescripcion(descripcion).setCompetencia(competencia);
         if(tipo.equals("Guardar")){//Registrar        
             accion = "guardó";
         }else{//Modificar
@@ -53,13 +57,7 @@ public class AltaContenidoAction extends ActionSupport {
         try{
             contenidoDAO.conectar();        
             if(tipo.equals("Guardar")){//Registrar
-                if(contenidoDAO.buscarContenidoxTitulo(contenido)){//existe, entonces no podemos guardar
-                    //addActionError("El contenido " + titulo + " no se guardó debido a que este grupo ya creo un contenido con el mismo título.");
-                    type = "info";
-                    message = "El contenido <b>" + titulo + "</b> no se guardó debido a que este grupo ya creo un contenido con el mismo título.";
-                    contenidoDAO.desconectar();
-                    return INPUT;
-                }
+                //addActionError("El contenido " + titulo + " no se guardó debido a que este grupo ya creo un contenido con el mismo título.");
                 contenidoDAO.registrar(contenido);
                 /*
                 //Ahora creamos las cinco carpetas en DropBox
@@ -148,6 +146,14 @@ public class AltaContenidoAction extends ActionSupport {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getCompetencia() {
+        return competencia;
+    }
+
+    public void setCompetencia(String competencia) {
+        this.competencia = competencia;
     }
     
     

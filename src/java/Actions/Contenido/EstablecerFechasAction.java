@@ -3,6 +3,7 @@ package Actions.Contenido;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -148,7 +149,7 @@ public class EstablecerFechasAction extends ActionSupport  {
                 String fechaEstablecida = dateFormat.format(version1.getTiempoModificacion());
                 txt += "<div class='form-group version'><label class='col-md-4 control-label'><p align='center'>" + version1.getVersion() + "</p>"
                     + "<input type='hidden' value='" + version1.getVersion() + "' id='version' name='version'></label>"
-                    + "<div class='col-md-2'></div><div class='col-md-4'><input type='text' id='fecha' name='fecha' class='form-control'/></div></div>";
+                    + "<div class='col-md-2'></div><div class='col-md-4'><input type='text' id='fecha' name='fecha' value='" + fechaEstablecida + "' class='form-control'/></div></div>";
                 /*txt += "<tr>"
                 + "<td style='text-align: center'>" + version1.getVersion() + "<input type='hidden' value='" + version1.getVersion() + "' id='version' name='version'></td>"
                 + "<td style='padding-left: 26%'><div class='form-group row-fluid'><input type='text' placeholder='Ingresa fecha' id='fecha' name='fecha' class='form-control' "
@@ -198,8 +199,12 @@ public class EstablecerFechasAction extends ActionSupport  {
                     .setIdEtapa(Short.parseShort(etapa)).setVersion(Integer.parseInt(version)));
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-d HH:mm");
             Date hoy = new Date();
+            //Le quitamos un minuto a la fecha
+            Calendar calendario = Calendar.getInstance();
+            calendario.setTime(hoy);
+            calendario.add(Calendar.MINUTE, -1);
             //Date acaba = formatter.parse(hoy.toString());
-            viejo.setTiempoModificacion(hoy);
+            viejo.setTiempoModificacion(calendario.getTime());
             contenidoetapaDAO.modificar(viejo, viejo);
         }catch(RuntimeException e){
             contenidoetapaDAO.desconectar();

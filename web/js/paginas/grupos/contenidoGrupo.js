@@ -55,7 +55,8 @@ function crearContenido(){
             action: function(dialogRef){    
                 dialogRef.close();
             }
-        }]
+        }],
+        draggable: true
     });    
 }
 
@@ -76,7 +77,8 @@ function mostrarDisqus(idContenido){
                     dialogRef.close();
                 }
             }
-        }]
+        }],
+        draggable: true
     });    
 }
 
@@ -128,7 +130,8 @@ function modificarContenido(id){
             action: function(dialogRef){    
                 dialogRef.close();
             }
-        }]
+        }],
+        draggable: true
     }); 
 }
 
@@ -156,7 +159,8 @@ function eliminaContenido(id){
             action: function(dialogItself){
                 dialogItself.close();
             }
-        }]
+        }],
+        draggable: true
     });
 }
 
@@ -184,7 +188,8 @@ function terminaVersion(id, etapa, version){
             action: function(dialogItself){
                 dialogItself.close();
             }
-        }]
+        }],
+        draggable: true
     });
 }
 
@@ -195,7 +200,8 @@ function finalizarVotacion(idContenido){
         draggable: true,
         buttons: [{
             id: 'btn-info',   
-            icon: 'glyphicon glyphicon-ok',       
+            icon: 'glyphicon glyphicon-ok',     
+            draggable: true,
             label: 'Votar',
             cssClass: 'btn-success', 
             autospin: false,

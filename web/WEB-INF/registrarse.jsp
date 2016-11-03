@@ -60,7 +60,6 @@
                         <ul class="nav">
                             <li><a href="cwescom">Inicio</a></li>
                             <li><a href="about">¿Qué es CWEScom?</a></li>
-                            <li><a class="active" href="registrarseform">Regístrate</a></li>
                             <li><a href="#loginModal" data-toggle="modal" data-target="">Inicia Sesión</a></li>
                         </ul>
                 </div>
