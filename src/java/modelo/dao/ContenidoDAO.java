@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import modelo.pojo.Contenido;
 
 /**
- * Clase que sirve para realizar operaciones entre la base de datos EDVADB y la relación
- * Contenido, por medio del POJO Contenido.
- * 
+ * Clase que sirve para realizar operaciones entre la base de datos EDVADB y la
+ * relación Contenido, por medio del POJO Contenido.
+ *
  * @author kikemon
  */
 public class ContenidoDAO extends ConexionDAO<Contenido> {
@@ -116,17 +116,13 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
     public boolean buscarContenidoxTitulo(Contenido registro){
         String sql = "SELECT * FROM Contenido WHERE titulo = ? AND token = ?";
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, registro.getTitulo());
+            stmt.setInt(1, registro.getIdContenido());
             stmt.setString(2, registro.getToken());
-			try (ResultSet rs = stmt.executeQuery()) {
-				if (rs.next()) { 
-                    return true;
-				} else{
-					return false;
-                }
-			}
-		} catch (SQLException | NullPointerException e) {
-			throw new RuntimeException(e);
-		}
+            stmt.executeUpdate();
+        } catch (SQLException | NullPointerException e) {
+            return false;
+        }
+        return true;
     }
+
 }
