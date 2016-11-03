@@ -113,16 +113,46 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 		}
 	}
     
-    public boolean buscarContenidoxTitulo(Contenido registro){
+    public void buscarContenidoxTitulo(Contenido registro){
         String sql = "SELECT * FROM Contenido WHERE titulo = ? AND token = ?";
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, registro.getIdContenido());
             stmt.setString(2, registro.getToken());
             stmt.executeUpdate();
         } catch (SQLException | NullPointerException e) {
-            return false;
+            throw new RuntimeException(e);
         }
-        return true;
     }
 
+    /**
+     * Regresa un Contenido a partir de su ID y su token.
+     *
+     * @param registro Registro Contenido con el token y el idContenido dentro
+     * del éste.
+     * @return Contenido con los datos completos de acuerdo a su al IdContenido
+     * y al token proporcionado.
+     */
+    public Contenido buscarContenidoConToken(Contenido registro) {
+        String sql = "SELECT * FROM Contenido WHERE idContenido = ? and token = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, registro.getIdContenido());
+            stmt.setString(2, registro.getToken());
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Contenido()
+                        .setIdContenido(rs.getInt("idContenido"))
+                        .setToken(rs.getString("token"))
+                        .setTitulo(rs.getString("titulo"))
+                        .setTema(rs.getString("tema"))
+                        .setDescripcion(rs.getString("descripcion"))
+                        .setFinalizado(rs.getBoolean("finalizado"));
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException | NullPointerException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
