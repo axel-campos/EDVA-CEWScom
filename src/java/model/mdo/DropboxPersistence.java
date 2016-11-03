@@ -216,12 +216,19 @@ public final class DropboxPersistence implements FilePersistence {
         }
     }
 
+    /**
+     * Regresa un mapa con el contenido del JSON dado.
+     *
+     * @param token Token del del grupo al cual pertence el contenido
+     * @param idContenido Contenido didactico de que se va a guardar
+     * @param versiones_escogidas Una lista con las 5 versiones que se escogieron para cada etapa.
+     */
     public void guardarHTMLContenidoDidacticoLiberado(String token, String idContenido, List<String> versiones_escogidas) {
         try {
             Grupo grupo = new GrupoDAO().buscar(new Grupo().setToken(token));
             Contenido contenido = new ContenidoDAO().buscarContenidoConToken(new Contenido().setToken(token).setIdContenido(Integer.parseInt(idContenido)));
             List<String> HTMLbodies = new ArrayList<>();
-            Map<String, Object> detalles_contenido = new HashMap<String, Object>();
+            Map<String, Object> detalles_contenido = new HashMap<>();
             detalles_contenido.put("titulo", contenido.getTitulo());
             detalles_contenido.put("grupo_nombre", grupo.getNombre());
             detalles_contenido.put("tema", contenido.getTema());

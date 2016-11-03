@@ -5,9 +5,9 @@ import model.mdo.artifacts.MDOArtifact;
 public class Ejercicios implements MDOArtifact {
 
     private int paso;
-	private String titulo;
-	private String descripcion;
-	private String tematica;
+    private String titulo;
+    private String descripcion;
+    private String tematica;
     private String ejercicios;
     private String entregables;
 
@@ -35,12 +35,23 @@ public class Ejercicios implements MDOArtifact {
         this.entregables = entregables;
         return this;
     }
-    
-	@Override
-	public String toHtml() {
-		return String.format("");
-	}
-    
+
+    @Override
+    public String toHtml() {
+        return String.format(
+            "                                <div id=\"aplicacion2_%s\">\n"
+            + "                                    <span class=\"section\">Ejercicios: <small>%s</small></span> \n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Temática</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Ejercicios</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Entregables</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                </div>", paso, titulo, descripcion, tematica, ejercicios, entregables);
+    }
+
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;

@@ -5,9 +5,9 @@ import model.mdo.artifacts.MDOArtifact;
 public class Simposio implements MDOArtifact {
 
     private int paso;
-	private String titulo;
-	private String descripcion;
-	private String tematica;
+    private String titulo;
+    private String descripcion;
+    private String tematica;
     private String numeroDeIntegrantes;
     private String tiempoDeExposicion;
 
@@ -35,12 +35,23 @@ public class Simposio implements MDOArtifact {
         this.tiempoDeExposicion = tiempoDeExposicion;
         return this;
     }
-    
-	@Override
-	public String toHtml() {
-		return String.format("");
-	}
-    
+
+    @Override
+    public String toHtml() {
+        return String.format(
+            "                                <div id=\"ampliacion4_%s\">\n"
+            + "                                    <span class=\"section\">Simposio: <small>%s</small></span> \n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Temática</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Número de Integrantes</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Tiempo de Exposición</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                </div>", paso, titulo, descripcion, tematica, numeroDeIntegrantes, tiempoDeExposicion);
+    }
+
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;

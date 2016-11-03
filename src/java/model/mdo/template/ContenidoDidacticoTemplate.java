@@ -42,7 +42,7 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
             Etapa etapa_4 = dao.buscar(new Etapa().setIdEtapa((short) 4));
             Etapa etapa_5 = dao.buscar(new Etapa().setIdEtapa((short) 5));
 
-            return String.format(template_string, titulo, tema, descripcion,
+            return String.format(template_string, titulo, titulo, tema, descripcion,
                     etapa_1.getNombre(), etapa_1.getDescripcion(), html.get(0), html.get(1),
                     etapa_2.getNombre(), etapa_2.getDescripcion(), html.get(2), html.get(3),
                     etapa_3.getNombre(), etapa_3.getDescripcion(), html.get(4), html.get(5),
