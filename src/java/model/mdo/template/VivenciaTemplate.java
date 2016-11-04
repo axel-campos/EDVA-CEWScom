@@ -23,7 +23,7 @@ public class VivenciaTemplate implements MDOTemplate {
 
     @Override
     public String generarPlantilla(List<String> html) {
-        
+        EtapaDAO conexionDAO = new EtapaDAO();
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/preview_template.html";
             File htmlTemplateFile = new File(ruta_template);
@@ -33,11 +33,13 @@ public class VivenciaTemplate implements MDOTemplate {
             String ruta_servidor_recursos = "http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath();
             template_string = template_string.replace("$ruta",ruta_servidor_recursos);
             
-            EtapaDAO conexionDAO = new EtapaDAO();
+            conexionDAO.conectar();
             Etapa etapa = conexionDAO.buscar(new Etapa().setIdEtapa((short) 1));
+            conexionDAO.desconectar();
             return String.format(template_string,titulo, titulo, version,etapa.getNombre(),etapa.getDescripcion(), html.get(0),html.get(1));
             
         } catch (IOException ex) {
+            conexionDAO.desconectar();
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
             return String.format("Error creating template.");
         }

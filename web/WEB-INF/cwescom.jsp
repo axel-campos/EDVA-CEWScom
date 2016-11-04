@@ -162,7 +162,7 @@
         <!--footer-top-->
         <div id="faculty" class="footer-top wow fadeInLeft animated" data-wow-delay=".5s">
             <div class="container">
-                <h3>Conozca a los desarrolladores de esta increible herramienta</h3>
+                <h3>Conozca a los desarrolladores de esta increísble herramienta</h3>
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
                     <div id="myTabContent" class="tab-content">
