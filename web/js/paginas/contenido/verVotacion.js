@@ -57,4 +57,19 @@ function modificarVotacion(){
     $("#modificarVoto").html($("#principalVotacion"));
 }
 
+function visualizarContenido(token, idContenido, idEtapa, version){
+    var action_ajax = "descargarHTML.action";
+    $.post(action_ajax, {"token": token, "idContenido": idContenido, "idEtapa": idEtapa, "version": version}).done(function(data) 
+    {
+        if (data.toString().indexOf("Error:") === -1) {//En caso de que no hay error
+            window.open(
+              data,
+              '_blank' // <- This is what makes it open in a new window.
+            );
+        }else{
+            mensajes(data,TIPO_MENSAJE.WARNING);
+        }    
+    });
+}
+
 

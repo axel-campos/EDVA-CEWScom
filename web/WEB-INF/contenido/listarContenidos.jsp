@@ -101,9 +101,10 @@
         {
             for(Map<String, Object> contenido: contenidos){
                 String idContenido = (Integer)contenido.get("idContenido") + "";
+                String tokenContenido = contenido.get("token").toString();
                 String tituloContenido = (String)contenido.get("titulo");
                 String temaContenido = (String)contenido.get("tema");
-                String descripcion = (String)contenido.get("descripcion") + "asdnaskjdlskjdnnasd asdkj asd cñjasd  asdcl asdkjc als cjadsncklas cnasdc kalsdncjasnd ckasdckjasn dkn ";
+                String descripcion = (String)contenido.get("descripcion");
                 String descripcionCompleta = descripcion;
                 if(descripcion.length() > 50){
                     descripcion = descripcion.substring(0, 100) + "...";
@@ -126,7 +127,7 @@
             <div class="col-md-3">
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
-                    <a href="http://saber9y11.edu.co/recursos/algebrabaldor.pdf" data-toggle="lightbox" data-title="<%=tituloContenido%>" data-footer="<%=descripcionCompleta%>">
+                    <a <a style='cursor: pointer' onclick="visualizarContenidoFinalizado('<%=tokenContenido%>','<%=idContenido%>')">
                         <div class="row" id="box-search">
                             <div class="thumbnail text-center">
                                 <img src="${pageContext.request.contextPath}/images/marco3.JPG" class="img-responsive">

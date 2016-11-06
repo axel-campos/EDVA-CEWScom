@@ -192,6 +192,12 @@ public final class DropboxPersistence implements FilePersistence {
             .fromJson(json, new TypeToken<Map<String, Object>>() {
             }.getType())).get("artefactos");
     }
+    
+    private List<Map<String, Object>> obtenerArtefactosDeJson(String json) {
+        return ((Map<String, List<Map<String, Object>>>) gson
+            .fromJson(json, new TypeToken<Map<String, Object>>() {
+            }.getType())).get("artefactos");
+    }
 
     @Override
     public void borrarCarpeta(String ruta) {
@@ -224,29 +230,38 @@ public final class DropboxPersistence implements FilePersistence {
      * @param versiones_escogidas Una lista con las 5 versiones que se escogieron para cada etapa.
      */
     public void guardarHTMLContenidoDidacticoLiberado(String token, String idContenido, List<String> versiones_escogidas) {
+        GrupoDAO grupoDAO = new GrupoDAO();
+        ContenidoDAO contenidoDAO = new ContenidoDAO();
         try {
-            Grupo grupo = new GrupoDAO().buscar(new Grupo().setToken(token));
-            Contenido contenido = new ContenidoDAO().buscarContenidoConToken(new Contenido().setToken(token).setIdContenido(Integer.parseInt(idContenido)));
+            grupoDAO.conectar();
+            Grupo grupo = grupoDAO.buscar(new Grupo().setToken(token));
+            contenidoDAO.conectar();
+            Contenido contenido = contenidoDAO.buscarContenidoConToken(new Contenido().setToken(token).setIdContenido(Integer.parseInt(idContenido)));
             List<String> HTMLbodies = new ArrayList<>();
             Map<String, Object> detalles_contenido = new HashMap<>();
             detalles_contenido.put("titulo", contenido.getTitulo());
             detalles_contenido.put("grupo_nombre", grupo.getNombre());
             detalles_contenido.put("tema", contenido.getTema());
             detalles_contenido.put("descripcion", contenido.getDescripcion());
-
+            
+            grupoDAO.desconectar();
+            contenidoDAO.desconectar();
+            
+            
             for (int i = 0; i < 5; i++) {
-                String ruta = token + "/" + idContenido + "/" + (i+1) + "/" + versiones_escogidas.get(i);
+                String ruta = String.format("/%s/%s/%s/%s", token, idContenido, i+1 , versiones_escogidas.get(i));
                 String artefactosJSON = descargarArchivoTexto(ruta, "artefactos.json");
                 MDOTemplate template = MDOTemplateUtil.getTemplate(artefactosJSON);
-                Map<String, Object> map = obtenerMapaDeJson(artefactosJSON);
+                List<Map<String, Object>> artefactosMap = obtenerArtefactosDeJson(artefactosJSON);
                 MDOParser parser = MDOUtil.getParser(artefactosJSON);
-                List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
                 HTMLbodies.addAll(generarHTMLString(artefactosMap, parser, template));
             }
-            
-            subirArchivoTexto(token + "/" + idContenido, "contenido_didactico_liberado.html", new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
+           
+            subirArchivoTexto("/" + token + "/" + idContenido, "contenido_didactico_liberado.html", new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
         } catch (Exception e) {
+            grupoDAO.desconectar();
+            contenidoDAO.desconectar();
             throw new RuntimeException(e);
         }
     }

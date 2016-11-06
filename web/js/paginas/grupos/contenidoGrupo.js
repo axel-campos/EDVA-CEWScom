@@ -193,9 +193,9 @@ function terminaVersion(id, etapa, version){
     });
 }
 
-function finalizarVotacion(idContenido){
+function finalizarVotacion(idContenido, token){
     BootstrapDialog.show({
-        message: $('<div id="ventanaFinalizaVotacion"></div>').load("finalizarVotacion", {"idContenido": idContenido}),
+        message: $('<div id="ventanaFinalizaVotacion"></div>').load("finalizarVotacion", {"idContenido": idContenido, "token": token}),
         title: "Finalizar Votación",
         draggable: true,
         buttons: [{
@@ -206,7 +206,7 @@ function finalizarVotacion(idContenido){
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){
-                var resultado = submitFormGeneral("#votacionForm");
+                var resultado = submitFormGeneral("#finalizarVotacionForm");
                 if(resultado){//true, quiere decir que todo bien
                     dialogRef.close();
                 }
@@ -223,6 +223,7 @@ function finalizarVotacion(idContenido){
         }]
     });    
 }
+
 function mostrarInfoGrupo(nombre, descripcion){
     BootstrapDialog.show({
         /*size: BootstrapDialog.SIZE_LARGE,*/

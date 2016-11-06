@@ -65,6 +65,12 @@
         <action name="modificaVersion" class="Actions.Contenido.EstablecerFechasAction" method="editaVersion">
             <result type="json">WEB-INF/contenido/formEtapas.jsp</result>
         </action>
+        <action name="descargarHTML" class="Actions.JSON.DescargarHTML">
+            <result type="json">WEB-INF/contenido/verVotacion.jsp</result>
+        </action>
+        <action name="descargarHTMLFinalizado" class="Actions.JSON.DescargarHTML" method="finalizado">
+            <result type="json">WEB-INF/contenido/verVotacion.jsp</result>
+        </action>
     </package>
     
     <include file="interceptores.xml" />

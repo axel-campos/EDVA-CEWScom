@@ -29,18 +29,19 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
 
     @Override
     public String generarPlantilla(List<String> html) {
+        EtapaDAO dao = new EtapaDAO();
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/contenido_didactico_template.html";
             File htmlTemplateFile = new File(ruta_template);
 
             String template_string = FileUtils.readFileToString(htmlTemplateFile).replace("$ruta", "http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
-
-            EtapaDAO dao = new EtapaDAO();
+            dao.conectar();
             Etapa etapa_1 = dao.buscar(new Etapa().setIdEtapa((short) 1));
             Etapa etapa_2 = dao.buscar(new Etapa().setIdEtapa((short) 2));
             Etapa etapa_3 = dao.buscar(new Etapa().setIdEtapa((short) 3));
             Etapa etapa_4 = dao.buscar(new Etapa().setIdEtapa((short) 4));
             Etapa etapa_5 = dao.buscar(new Etapa().setIdEtapa((short) 5));
+            dao.desconectar();
 
             return String.format(template_string, titulo, titulo, tema, descripcion,
                     etapa_1.getNombre(), etapa_1.getDescripcion(), html.get(0), html.get(1),
@@ -52,6 +53,7 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
             
         } catch (IOException ex) {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            dao.desconectar();
             return String.format("Error creating template.");
         }
     }
