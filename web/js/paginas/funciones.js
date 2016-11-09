@@ -37,6 +37,32 @@ function cambiarContenidos(pagina, target){
             }
             
         }, 1000);
+        $("#navegacion").empty();
+        if(pagina.toString() === "principal"){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Inicio</a></li>");
+        }else if(pagina.toString() === "ListGroup"){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Mis grupos</a></li>");
+        }else if(pagina.toString() === "listarReportes"){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Reportes</a></li>");
+        }else if(pagina.toString() === "listarContenidos"){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Contenidos</a></li>");
+        }else if(pagina.toString() === "ListaProfesor"){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Profesores</a></li>");
+        }else if(pagina.toString().indexOf("ListarMiembrosAction") !== -1){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Mis grupos</a></li>" +
+                    "<li><a href=\"#\">Contenidos grupo</a></li>");
+        }else if(pagina.toString().indexOf("workspaceColaboracion") !== -1){
+            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                    "<li><a href=\"#\">Mis grupos</a></li>" +
+                    "<li><a href=\"#\">Contenidos grupo</a></li>" +
+                    "<li><a href=\"#\">Colaboración contenido</a></li>");
+        }
     }).fail(function(data){
         errorCargando();
     });

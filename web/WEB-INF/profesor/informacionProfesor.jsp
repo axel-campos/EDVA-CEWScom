@@ -62,17 +62,17 @@
                                 if(tipo == 1){
                                     numReportesUsuario = Integer.parseInt(String.valueOf(elemento.get("numReportes")));
                                     if(numReportesUsuario != 0){
-                                        reportesUsuario = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "<h5>";
+                                        reportesUsuario = "<h5>Último reporte con fecha " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a " + (String)elemento.get("causa") + "<h5>";
                                     }
                                 }else if(tipo == 2){
                                     numReportesGrupo = Integer.parseInt(String.valueOf(elemento.get("numReportes")));
                                     if(numReportesGrupo != 0){
-                                        reportesGrupo = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "</h5>";
+                                        reportesGrupo = "<h5>Último reporte con fecha " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a " + (String)elemento.get("causa") + "</h5>";
                                     }
                                 }else if(tipo == 3){
                                     numReportesContenido = Integer.parseInt(String.valueOf(elemento.get("numReportes")));
                                     if(numReportesContenido != 0){
-                                        reportesContenido = "<h5>Fecha: " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a: " + (String)elemento.get("causa") + "</h5>";
+                                        reportesContenido = "<h5>Último reporte con fecha " + df.format((Timestamp)elemento.get("fechaReporte")) + " debido a " + (String)elemento.get("causa") + "</h5>";
                                     }
                                 }
                             }
