@@ -5,9 +5,9 @@ import model.mdo.artifacts.MDOArtifact;
 public class MesaRedonda implements MDOArtifact {
 
     private int paso;
-	private String titulo;
-	private String descripcion;
-	private String tematica;
+    private String titulo;
+    private String descripcion;
+    private String tematica;
     private String numeroDeIntegrantes;
     private String tiempoDeExposicion;
 
@@ -19,7 +19,7 @@ public class MesaRedonda implements MDOArtifact {
     public MesaRedonda setDescripcion(String descripcion) {
         this.descripcion = descripcion;
         return this;
-        
+
     }
 
     public MesaRedonda setTematica(String tematica) {
@@ -36,12 +36,23 @@ public class MesaRedonda implements MDOArtifact {
         this.tiempoDeExposicion = tiempoDeExposicion;
         return this;
     }
-    
-	@Override
-	public String toHtml() {
-		return String.format("");
-	}
-    
+
+    @Override
+    public String toHtml() {
+        return String.format(
+            "                                <div id=\"ampliacion2_%s\">\n"
+            + "                                    <span class=\"section\">Mesa Redonda: <small>%s</small></span> \n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Temática</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Numero de Integrantes</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                    <h2 class=\"StepTitle\">Tiempo De Exposición</h2>\n"
+            + "                                    <p>%s</p>\n"
+            + "                                </div>",paso,titulo,descripcion,tematica,numeroDeIntegrantes,tiempoDeExposicion);
+    }
+
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;

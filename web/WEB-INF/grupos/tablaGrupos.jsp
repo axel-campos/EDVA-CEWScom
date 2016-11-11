@@ -13,7 +13,7 @@
 
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
-    String cabeceras[] = {"Nombre","Descripcion","Rol","Editar","Salir","Eliminar","Reportar"}; 
+    String cabeceras[] = {"Nombre","Token","Descripcion","Rol","Editar","Salir","Eliminar","Reportar"}; 
     String cabeceraMExito = "<div class='alert alert-success'><span class='glyphicon glyphicon-ok'></span>  ";
     String cabeceraMError = "<div class='alert alert-danger'><span class='glyphicon glyphicon-alert'></span>  ";
     String cierreM = "</div>";
@@ -99,7 +99,7 @@
             </div>
         </form>
     </div>
-    <div class="table-responsive" id='div1'>
+    <div class="table-responsive container-fluid" id='div1'>
         <% if(busco){%>
             <table id="tabla">
                 <thead>
@@ -116,6 +116,7 @@
                     <s:iterator value="resultados" var="resultado">
                         <tr>
                             <td><a onclick="cambiarContenidos('ListarMiembrosAction?token=<s:property value="%{#resultado[3]}"/>','#contenido');" class="btn btn-link"><s:property value="%{#resultado[0]}" /></a></td>
+                            <td><s:property value="%{#resultado[3]}" /></td>
                             <td><s:property value="%{#resultado[1]}" /></td>
                             <td><s:property value="%{#resultado[2]}" /></td>
                             <td><a onclick="modificarGrupo('<s:property value="%{#resultado[3]}" />')">

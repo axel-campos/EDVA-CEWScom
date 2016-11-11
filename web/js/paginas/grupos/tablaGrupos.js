@@ -99,7 +99,7 @@ function solicitarIngreso(){
         buttons: [{
             id: 'btn-cancel',   
             icon: 'glyphicon glyphicon-remove',       
-            label: 'Cancelar',
+            label: 'Cerrar',
             cssClass: 'btn-danger', 
             autospin: false,
             action: function(dialogRef){    

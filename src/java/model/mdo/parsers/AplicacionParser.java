@@ -26,7 +26,7 @@ public class AplicacionParser implements MDOParser {
             .setObjetivoGeneral((String) artefacto.get("objetivoGeneral"))
             .setObjetivosEspecificos((String) artefacto.get("objetivosEspecificos"))
             .setResultadosEsperados((String) artefacto.get("resultados"))
-            .setActividadesArealizar((String) artefacto.get("actividades"))
+            .setActividadesARealizar((String) artefacto.get("actividades"))
             .setIndicadores((String) artefacto.get("indicadores"))
             .setFuentesDeVerificacion((String) artefacto.get("fuentesVerificacion"))
             .setSupuestos((String) artefacto.get("supuestos"));
