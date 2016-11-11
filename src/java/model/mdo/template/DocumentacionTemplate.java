@@ -21,13 +21,16 @@ public class DocumentacionTemplate implements MDOTemplate {
 
     @Override
     public String generarPlantilla(List<String> html) {
+        EtapaDAO conexionDAO = new EtapaDAO();
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/preview_template.html";
             File htmlTemplateFile = new File(ruta_template);
             
             String template_string = FileUtils.readFileToString(htmlTemplateFile).replace("$ruta","http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
             
-            Etapa etapa = new EtapaDAO().buscar(new Etapa().setIdEtapa((short) 3));
+            conexionDAO.conectar();
+            Etapa etapa = conexionDAO.buscar(new Etapa().setIdEtapa((short) 3));
+            conexionDAO.desconectar();
             return String.format(template_string,titulo, titulo, version,etapa.getNombre(),etapa.getDescripcion(), html.get(0),html.get(1));
         } catch (IOException ex) {
             Logger.getLogger(VivenciaTemplate.class.getName()).log(Level.SEVERE, null, ex);
