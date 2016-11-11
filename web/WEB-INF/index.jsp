@@ -28,6 +28,7 @@
         <!--link href="{pageContext.request.contextPath}/css/miSidebar.css" rel="stylesheet" type="text/css"-->
         <link href="${pageContext.request.contextPath}/css/ekko-lightbox.min.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/css/cargando.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/paginas/breadcrumbBarra.css" rel="stylesheet" type="text/css"/>
         
         <!-- JS -->
         <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>
@@ -80,6 +81,10 @@
     </head>
     <body>
         <%@include file="header.jsp"%>
+        <ul class="barraNavegacion" id="navegacion">
+            <li><a href="#">CWEScom</a></li>
+			<li><a href="#">Inicio</a></li>
+		</ul>
         <div class="spinner" id="cargando" style="display: none;">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
