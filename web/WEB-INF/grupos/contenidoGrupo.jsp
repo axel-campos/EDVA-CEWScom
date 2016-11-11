@@ -140,7 +140,7 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                            Contenido: <%=titulo%> <br/> Grupo: <%=nombreGrupo%></a>
+                                            Contenido: <%=titulo%>
                                     </h4>
                                 </div>
                                 <div id="collapse<%=i%>" class="panel-collapse collapse">
