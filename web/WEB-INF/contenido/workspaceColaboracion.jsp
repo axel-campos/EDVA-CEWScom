@@ -12,18 +12,24 @@
     Usuario user = (Usuario) session.getAttribute("usuario");
     String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
     File file = new File(destPath + user.getAvatar());
-    // Reading a Image file from file system
-    FileInputStream imageInFile = new FileInputStream(file);
-    byte imageData[] = new byte[(int) file.length()];
-    imageInFile.read(imageData);
+    String imageDataString = "";
+    
+    if(user.getFacebook() == 0){
+        // Reading a Image file from file system
+        FileInputStream imageInFile = new FileInputStream(file);
+        byte imageData[] = new byte[(int) file.length()];
+        imageInFile.read(imageData);
 
-    // Converting Image byte array into Base64 String
-    StringBuilder sb = new StringBuilder();
-    sb.append("data:image/png;base64,");
-    sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(imageData, false)));
-    String imageDataString = sb.toString();
+        // Converting Image byte array into Base64 String
+        StringBuilder sb = new StringBuilder();
+        sb.append("data:image/png;base64,");
+        sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(imageData, false)));
+        imageDataString = sb.toString();
 
-    imageInFile.close();
+        imageInFile.close();
+    }else{
+        imageDataString = user.getAvatar();
+    }
 
     // Obteniendo el archivo JSON de Dropbox.
     String token = request.getParameter("token");
