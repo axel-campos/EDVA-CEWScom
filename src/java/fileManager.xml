@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="fileManagement" namespace="/fileManager" extends="struts-default">
+        <action name="zipMe" class="Actions.zip.actionZip">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">zipInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}.zip"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+    </package>
+    
+    <package name="filePages" namespace="/" extends="struts-default">
+        <action name="addFiles">
+            <result>/WEB-INF/fileManager/FileList.jsp</result>
+        </action>
+        <action name="addFilesPlugin">
+            <result>/WEB-INF/fileManager/fileUploader.jsp</result>
+        </action>
+    </package>
+    
+    
+    <constant name="struts.multipart.maxSize" value="26214400" />
+    <package name="Actions.FileManagement" namespace="/files" extends="json-default">
+        <action name="doUpload" class="Actions.FileManagement.UploadFiles">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+                <param name="includeProperties">
+                    message,
+                    status
+                </param>
+            </result>
+        </action>
+        <action name="listFiles" class="Actions.FileManagement.ListFiles">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="root">filesJson</param>
+            </result>
+        </action>
+    </package>
+    
+    <!--    <constant name="struts.devMode" value="true" />-->
+    <package name="Actions.FileManagement.sendJSON" namespace="/filesJSON" extends="json-default">
+        <interceptors>
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="json">
+                    <param name="enableSMD">true</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <action name="deleteFiles" class="Actions.FileManagement.DeleteFiles">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+                <param name="includeProperties">
+                    message,
+                    status
+                </param>
+            </result>
+        </action>
+        <action name="renameFiles" class="Actions.FileManagement.RenameFiles">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+                <param name="includeProperties">
+                    message,
+                    status
+                </param>
+            </result>
+        </action>
+    </package>
+</struts>
+
