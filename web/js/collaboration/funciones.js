@@ -18,20 +18,19 @@ $(document).ready(function () {
                 titulo: TITULO,
                 version: VERSION
             }, function (response) {
-
                 if (response.estatus) {
                     BootstrapDialog.show({
                         title: "Progreso Guardado",
                         message: response.message,
                         type: BootstrapDialog.TYPE_SUCCESS,
                         buttons: [{
-                                label: "Continuar Colaborando",
-                                icon: "glyphicon glyphicon-ok-circle",
-                                cssClass: "btn-success",
-                                action: function (dialog) {
-                                    dialog.close();
-                                }
-                            }]
+							label: "Continuar Colaborando",
+							icon: "glyphicon glyphicon-ok-circle",
+							cssClass: "btn-success",
+							action: function (dialog) {
+								dialog.close();
+							}
+						}]
                     });
                 } else {
                     BootstrapDialog.show({
@@ -39,13 +38,13 @@ $(document).ready(function () {
                         message: response.message,
                         type: BootstrapDialog.TYPE_DANGER,
                         buttons: [{
-                                label: "Cerrar",
-                                icon: "glyphicon glyphicon-remove-circle",
-                                cssClass: "btn-danger",
-                                action: function (dialog) {
-                                    dialog.close();
-                                }
-                            }]
+							label: "Cerrar",
+							icon: "glyphicon glyphicon-remove-circle",
+							cssClass: "btn-danger",
+							action: function (dialog) {
+								dialog.close();
+							}
+						}]
                     });
                 }
             });
