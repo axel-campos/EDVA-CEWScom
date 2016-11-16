@@ -15,8 +15,7 @@
         <link href="${pageContext.request.contextPath}/css/fileManager/demo.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/css/fileManager/uploader.css" rel="stylesheet" type="text/css"/>
         <script>
-            var token_group = "<%=request.getParameter("token")%>";
-            var id_contenido = "<%=request.getParameter("token")%>";
+            var RUTA = "/<%=request.getParameter("token")%>/<%=request.getParameter("idContenido")%>";
         </script>
     </head>
     <body>
@@ -25,11 +24,16 @@
         </div>
         <div class="table-responsive container-fluid" id='div1'>
             <div id="toolbar">
-                <button type="button" class="btn btn-default" onclick="dialogFileUploader.open();">
-                    <i class="glyphicon glyphicon-plus"></i>
-                </button>
                 <button id="remove" type="button" class="btn btn-default">
                     <i class="glyphicon glyphicon-trash"></i>
+                </button>
+                <button type="button" class="btn btn-default" onclick="dialogFileUploader.open();">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Subir Archivos</span>
+                </button>
+                <button id="zipMe" type="button" class="btn btn-default">
+                    <i class="glyphicon glyphicon-download"></i>
+                    <span>Descargar ZIP</span>
                 </button>
             </div>
             <table id="tabla"
@@ -45,14 +49,13 @@
                    data-show-footer="false"
                    data-url="files/listFiles"
                    data-side-pagination="client"
-                   data-query-params="requestParams"
                    data-cache="false">
             </table>
         </div>
     </body>
-    <script src="${pageContext.request.contextPath}/js/fileManager/fileManagement.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/fileManager/bootstrap-table-editable.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/fileManager/bootstrap-editable.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/fileManager/demo.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/fileManager/dmuploader.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/fileManager/fileManagement.js" type="text/javascript"></script>
 </html>

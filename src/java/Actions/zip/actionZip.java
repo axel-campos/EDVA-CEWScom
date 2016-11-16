@@ -10,21 +10,26 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Map;
+import org.apache.struts2.interceptor.ParameterAware;
 import zip.file.*;
 
 /**
  *
  * @author Christian Campos
  */
-public class actionZip extends ActionSupport {
+public class actionZip extends ActionSupport implements ParameterAware {
 
     private String message;
     private boolean estatus;
     private InputStream zipInputStream;
     private String fileName;
 
+    private String path;
+
     @Override
     public String execute() throws Exception {
+        System.out.println("Path: " + path);
         try {
             FileZipper.zip("C:\\Users\\Christian Campos\\Downloads\\Reporte1.docx", "C:\\Users\\Christian Campos\\Downloads\\Jamon.zip");
             message = "Listo, cara de pene.";
@@ -52,5 +57,10 @@ public class actionZip extends ActionSupport {
 
     public String getFileName() {
         return fileName;
+    }
+
+    @Override
+    public void setParameters(Map<String, String[]> maps) {
+        this.path = maps.get("path")[0];
     }
 }
