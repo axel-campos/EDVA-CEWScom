@@ -177,11 +177,12 @@
                         </div>
                         <div role="tabpanel" class="tabs-para tab-pane fade" id="profile" aria-labelledby="profile-tab">                           
                             <h4>Víctor Hugo Garrido Gutiérrez</h4>
-                            <h5><span class="quote1"></span>Voluptatem ut perspiciatis unde omnis iste natus error sit 
-                                voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam. Sed ut perspiciatis 
-                                unde omnis iste natus error sit voluptatem accusantium
-                                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.<span class="quote2"></span></h5>
+                            <h5><span class="quote1"></span>El conocimiento de una ingeniería en específico o licenciatura
+                                no es nada hasta que empieza a interactuar con otras, lo fascinante de las ciencias de la
+                                computación es lo fácil y adaptable que puede ser relacionarse con otra área.
+                                La educación es la herramienta principal de una sociedad inteligente, nosotros buscamos
+                                darle una herramienta a la educación.
+                                <span class="quote2"></span></h5>
                             
                             <div class="clearfix"></div>
                         </div>

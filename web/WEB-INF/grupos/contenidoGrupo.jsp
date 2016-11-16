@@ -140,7 +140,8 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                            Contenido: <%=titulo%> <br/> Grupo: <%=nombreGrupo%></a>
+                                            Contenido: <%=titulo%>
+                                        </a>
                                     </h4>
                                 </div>
                                 <div id="collapse<%=i%>" class="panel-collapse collapse">
@@ -154,23 +155,30 @@
                                         Fecha votación: <%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
-                                            <% if(finalizaVotacion == 1 ){ %>
-                                                <a onclick="finalizarVotacion('<%=idContenido%>','<%=token2%>')" class="btn btn-success">Finalizar contenido</a>
-                                            <% } %>
-                                            <% if(columna.get("tiempoVotacion") == null){ %>
-                                                <button type="button" class="btn btn-primary" onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')"><span class="glyphicon glyphicon-time"></span> <%= nombreBoton%></button>
-                                            <% }%>
-                                            <button type="button" class="btn btn-info" onclick="modificarContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-edit"></span> Modificar información</button>
-                                            <button type="button" class="btn btn-danger" onclick="eliminaContenido(<%= idContenido %>)"><span class="glyphicon glyphicon-remove"></span> Eliminar contenido</button>
-                                            <% if(idEtapa != null){%>
-                                                <button type="button" class="btn btn-warning" onclick="terminaVersion(<%= idContenido %>, <%= idEtapa %>, <%= version %>)"><span class="glyphicon glyphicon-filter"></span> Terminar versión</button>
-                                            <% }else if(columna.get("tiempoVotacion") != null && finalizaVotacion == 0){ %>
-                                                <button type="button" class="btn btn-warning" onclick="terminaVersion(<%= idContenido %>, 6, 1)"><span class="glyphicon glyphicon-filter"></span> Terminar votación</button>
-                                            <% } %>
-                                            <br><br>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Administrar
+                                                    <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                <% if(finalizaVotacion == 1 ){ %>
+                                                <li><a onclick="finalizarVotacion('<%=idContenido%>','<%=token2%>')" style="cursor:pointer">Finalizar contenido</a></li>
+                                                <% } %>
+                                                <% if(columna.get("tiempoVotacion") == null){ %>
+                                                <li><a onclick="cargarFormulario(<%= idContenido %>,'<%= idEtapa%>','<%= version%>')" style="cursor:pointer"><%= nombreBoton%></a></li>
+                                                <% }%>
+                                                <li><a onclick="modificarContenido(<%= idContenido %>)" style="cursor:pointer">Modificar información</a></li>
+                                                <li><a onclick="eliminaContenido(<%= idContenido %>)" style="cursor:pointer">Eliminar contenido</a></li>
+                                                <% if(idEtapa != null){%>
+                                                <li><a onclick="terminaVersion(<%= idContenido %>, <%= idEtapa %>, <%= version %>)" style="cursor:pointer">Terminar versión</a></li>
+                                                <% }else if(columna.get("tiempoVotacion") != null && finalizaVotacion == 0){ %>
+                                                <li><a onclick="terminaVersion(<%= idContenido %>, 6, 1)" style="cursor:pointer"> Terminar votación</a></li>
+                                                <% } %>
+                                                    </ul>
+                                            </div>
+                                            <!--br><br-->
                                         </s:if>                
                                         <% if(fechaModificacion != ""){%>
                                             <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+                                            <a onclick="cambiarContenidos('fileList?token=<%=token2%>&idContenido=<%=idContenido%>', '#contenido')" class="btn btn-primary">Administrar Recursos</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
                                             <a onclick="mostrarVotacion('<%=idContenido%>','<%=token2%>')" class="btn btn-success">Ir a votación</a>
                                         <% } %>

@@ -20,15 +20,26 @@ function cambiarContenidos(pagina, target){
         setTimeout(
         function() 
         {
+            
+            var TJScorriendo = false;
             if (TogetherJS.running) {
                 TogetherJS();
                 TogetherJS.require("storage").tab.clear("status");
                 console.log("End Of Together");
+                var index = "index.action";
+                //window.open(index,"_top");
+                TJScorriendo = true;
+                //BootstrapDialog.alert("Good Lord " + TJScorriendo);
             }
             
             finalizar();
             if(data.toString().indexOf("Regístrate") === -1){
-                $(target).html(data); 
+                /*if(TJScorriendo){
+                    window.location.href = "index.action";
+                }*/
+                //else{
+                    $(target).html(data); 
+                //}
             }else{
                 var cwescom = "cwescom.action";
                 
@@ -37,6 +48,7 @@ function cambiarContenidos(pagina, target){
             }
             
         }, 1000);
+        
         $("#navegacion").empty();
         if(pagina.toString() === "principal"){
             $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +

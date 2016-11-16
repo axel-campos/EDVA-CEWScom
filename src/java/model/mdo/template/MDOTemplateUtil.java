@@ -47,74 +47,103 @@ public final class MDOTemplateUtil {
      * @return Una cadena con el codigo HTML de los steps para el artefacto.
      */
     public static String generarStepHTML(int paso, MDOTemplate template, MDOArtifact artifact) {
-        String artifactString = "";
+        String artifactName = "", artifactString = "", artifactID = "";
         if (template instanceof VivenciaTemplate) {
+            artifactString = "vivencias";
             if (artifact instanceof Demostracion) {
-                artifactString = "Demostración";
+                artifactName = "Demostración";
+                artifactID = "1";
             } else if (artifact instanceof Ensayo) {
-                artifactString = "Ensayo";
+                artifactName = "Ensayo";
+                artifactID = "2";
             } else if (artifact instanceof Observacion) {
-                artifactString = "Observación";
+                artifactName = "Observación";
+                artifactID = "3";
             } else if (artifact instanceof Simulacion) {
-                artifactString = "Simulación";
+                artifactName = "Simulación";
+                artifactID = "4";
             } else if (artifact instanceof Visita) {
-                artifactString = "Visita";
+                artifactName = "Visita";
+                artifactID = "5";
             }
         } else if (template instanceof ConceptualizacionTemplate) {
+            artifactString = "conceptualizacion";
             if (artifact instanceof GrupoEstudio) {
-                artifactString = "Grupo de Estudio";
+                artifactName = "Grupo de Estudio";
+                artifactID = "1";
             } else if (artifact instanceof LluviaIdeas) {
-                artifactString = "Lluvia de ideas";
+                artifactName = "Lluvia de ideas";
+                artifactID = "2";
             } else if (artifact instanceof Preguntas) {
-                artifactString = "Preguntas";
+                artifactName = "Preguntas";
+                artifactID = "3";
             } else if (artifact instanceof Tutoria) {
-                artifactString = "Tutoría";
+                artifactName = "Tutoría";
+                artifactID = "4";
             }
         } else if (template instanceof DocumentacionTemplate) {
+            artifactString = "documentacion";
             if (artifact instanceof ArticuloPDF) {
-                artifactString = "Articulo PDF";
+                artifactName = "Articulo PDF";
+                artifactID = "1";
             } else if (artifact instanceof ArticuloWeb) {
-                artifactString = "Aplicación";
+                artifactName = "Aplicación";
+                artifactID = "2";
             } else if (artifact instanceof Libro) {
-                artifactString = "Libro";
+                artifactName = "Libro";
+                artifactID = "3";
             } else if (artifact instanceof Pelicula) {
-                artifactString = "Película";
+                artifactName = "Película";
+                artifactID = "4";
             } else if (artifact instanceof Revista) {
-                artifactString = "Revista";
+                artifactName = "Revista";
+                artifactID = "5";
             } else if (artifact instanceof Video) {
-                artifactString = "Video";
-            }
-        } else if (template instanceof AmpliacionTemplate) {
-            if (artifact instanceof Conferencia) {
-                artifactString = "Conferencia";
-            } else if (artifact instanceof MesaRedonda) {
-                artifactString = "Mesa Redonda";
-            } else if (artifact instanceof Panel) {
-                artifactString = "Panel";
-            } else if (artifact instanceof Simposio) {
-                artifactString = "Simposio";
+                artifactName = "Video";
+                artifactID = "6";
             }
         } else if (template instanceof AplicacionTemplate) {
+            artifactString = "ampliacion";
             if (artifact instanceof ArbolProblemas) {
-                artifactString = "Arbol de Problemas";
+                artifactName = "Arbol de Problemas";
+                artifactID = "1";
             } else if (artifact instanceof Ejercicios) {
-                artifactString = "Ejercicios";
+                artifactName = "Ejercicios";
+                artifactID = "2";
             } else if (artifact instanceof EstudioCaso) {
-                artifactString = "Estudio de Caso";
+                artifactName = "Estudio de Caso";
+                artifactID = "3";
             } else if (artifact instanceof MapaConceptual) {
-                artifactString = "Mapa Conceptual";
+                artifactName = "Mapa Conceptual";
+                artifactID = "4";
             } else if (artifact instanceof MarcoLogico) {
-                artifactString = "Marco Lógico";
+                artifactName = "Marco Lógico";
+                artifactID = "5";
             } else if (artifact instanceof ProyectoInvestigacion) {
-                artifactString = "Proyecto de Investigación";
+                artifactName = "Proyecto de Investigación";
+                artifactID = "6";
+            }
+        } else if (template instanceof AmpliacionTemplate) {
+            artifactString = "aplicacion";
+            if (artifact instanceof Conferencia) {
+                artifactName = "Conferencia";
+                artifactID = "1";
+            } else if (artifact instanceof MesaRedonda) {
+                artifactName = "Mesa Redonda";
+                artifactID = "2";
+            } else if (artifact instanceof Panel) {
+                artifactName = "Panel";
+                artifactID = "3";
+            } else if (artifact instanceof Simposio) {
+                artifactName = "Simposio";
+                artifactID = "4";
             }
         }
 
-        return String.format("<li>\n"
-            + "                          <a href=\"#%s\">\n"
-            + "                            <span class=\"step_no\">%s</span>\n"
-            + "                          </a>\n"
-            + "                        </li>", paso, artifactString);
+        return String.format("                                    <li>\n"
+            + "                                        <a href=\"#%s%s_%s\">\n"
+            + "                                            <span class=\"step_no\">%s</span>\n"
+            + "                                        </a>\n"
+            + "                                    </li>", artifactString, artifactID, paso, artifactName);
     }
 }
-

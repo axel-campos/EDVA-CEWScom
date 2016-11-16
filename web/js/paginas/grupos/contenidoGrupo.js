@@ -202,7 +202,7 @@ function finalizarVotacion(idContenido, token){
             id: 'btn-info',   
             icon: 'glyphicon glyphicon-ok',     
             draggable: true,
-            label: 'Votar',
+            label: 'Finalizar Votación',
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){

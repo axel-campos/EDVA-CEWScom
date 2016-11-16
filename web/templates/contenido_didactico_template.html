@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>%s | Contenido Did&#225;ctico</title>
+        <title>%s | Contenido Didáctico</title>
 
         <!-- Icon Application -->  
         <link rel="shortcut icon" href="$ruta/images/principal/CWEScom.ico">
@@ -28,10 +28,37 @@
                     <p>%s</p>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- Detalles Panel -->
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2><i class="fa fa-bars"></i> Detalles <small>Datos sobre éste contenido didáctico</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#tab_content1" id="descripcion-tab" role="tab" data-toggle="tab" aria-expanded="true">Descripción</a>
+                                    </li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                        <p>%s</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Detalles Panel -->
+
                     <!-- Vivencias Panel -->
                     <div id="vivencias_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>%s <small>%s</small></h2>
+                            <h2><i class="fa fa-eye"></i> %s <small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepVivencias();" class="fa fa-chevron-circle-left"></i></a>
@@ -48,11 +75,14 @@
                         <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_vivencias" class="form_wizard wizard_verticle">
+                                <!-- StepsOrder -->
                                 <ul class="list-unstyled wizard_steps">
                                     %s
                                 </ul>
+                                <!-- End StepsOrder -->
                                 <!-- StepsDefinitions -->
                                 %s
+                                <!-- End StepsDefinitions -->
                             </div>
                             <!-- End SmartWizard Content -->
                         </div>
@@ -62,7 +92,7 @@
                     <!-- Conceptualizacion Panel -->
                     <div id="conceptualizacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>%s <small>%s</small></h2>
+                            <h2><i class="fa fa-lightbulb-o"></i> %s <small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepConceptualizacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -79,11 +109,11 @@
                         <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_conceptualizacion" class="form_wizard wizard_verticle">
+                                <!-- StepsOrder -->
                                 <ul class="list-unstyled wizard_steps">
-                                    <!-- StepsOrder -->
                                     %s
-                                    <!-- End StepOrder -->
                                 </ul>
+                                <!-- End StepsOrder -->
                                 <!-- StepsDefinitions -->
                                 %s
                                 <!-- End StepsDefinitions -->
@@ -96,7 +126,7 @@
                     <!-- Documentacion Panel -->
                     <div id="documentacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>%s <small>%s</small></h2>
+                            <h2><i class="fa fa-book"></i> %s <small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepDocumentacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -113,11 +143,11 @@
                         <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_documentacion" class="form_wizard wizard_verticle">
+                                <!-- StepsOrder -->
                                 <ul class="list-unstyled wizard_steps">
-                                    <!-- StepsOrder -->
                                     %s
-                                    <!-- End StepOrder -->
                                 </ul>
+                                <!-- End StepsOrder -->
                                 <!-- StepsDefinitions -->
                                 %s
                                 <!-- End StepsDefinitions -->
@@ -127,45 +157,10 @@
                     </div>
                     <!-- End of etapa Documentacion -->
 
-                    <!-- Ampliacion Panel -->
-                    <div id="ampliacion_panel" class="x_panel">
-                        <div class="x_title">
-                            <h2>%s <small>%s</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a><i onclick="backStepAmpliacion();" class="fa fa-chevron-circle-left"></i></a>
-                                </li>
-                                <li>
-                                    <a><i onclick="nextStepAmpliacion();" class="fa fa-chevron-circle-right"></i></a>
-                                </li>
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-
-                        <div class="x_content"> 
-                            <!-- Wizard verticle tabs -->
-                            <div id="wizard_verticle_ampliacion" class="form_wizard wizard_verticle">
-                                <ul class="list-unstyled wizard_steps">
-                                    <!-- StepsOrder -->
-                                    %s
-                                    <!-- End StepOrder -->
-                                </ul>
-                                <!-- StepsDefinitions -->
-                                %s
-                                <!-- End StepsDefinitions -->
-                            </div>
-                            <!-- End SmartWizard Content -->
-                        </div>
-                    </div>
-                    <!-- End of etapa Ampliacion -->
-
                     <!-- Aplicacion Panel -->
                     <div id="aplicacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>%s <small>%s</small></h2>
+                            <h2><i class="fa fa-wrench"></i> %s <small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepAplicacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -183,11 +178,11 @@
                         <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_aplicacion" class="form_wizard wizard_verticle">
+                                <!-- StepsOrder -->
                                 <ul class="list-unstyled wizard_steps">
-                                    <!-- StepsOrder -->
                                     %s
-                                    <!-- End StepOrder -->
                                 </ul>
+                                <!-- End StepsOrder -->
                                 <!-- StepsDefinitions -->
                                 %s
                                 <!-- End StepsDefinitions -->
@@ -197,7 +192,49 @@
                     </div>
                     <!-- End of etapa Aplicacion -->
 
+                    <!-- Ampliacion Panel -->
+                    <div id="ampliacion_panel" class="x_panel">
+                        <div class="x_title">
+                            <h2><i class="fa fa-group"></i> %s <small>%s</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a><i onclick="backStepAmpliacion();" class="fa fa-chevron-circle-left"></i></a>
+                                </li>
+                                <li>
+                                    <a><i onclick="nextStepAmpliacion();" class="fa fa-chevron-circle-right"></i></a>
+                                </li>
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content"> 
+                            <!-- Wizard verticle tabs -->
+                            <div id="wizard_verticle_ampliacion" class="form_wizard wizard_verticle">
+                                <!-- StepsOrder -->
+                                <ul class="list-unstyled wizard_steps">
+                                    %s
+                                </ul>
+                                <!-- End StepsOrder -->
+                                <!-- StepsDefinitions -->
+                                %s
+                                <!-- End StepsDefinitions -->
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                    <!-- End of etapa Ampliacion -->
                 </div>
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Contenido Didáctico hecho por <strong>%s</strong>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
             </div>
             <!-- /page content -->
         </div>

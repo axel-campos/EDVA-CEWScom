@@ -105,9 +105,8 @@
                 String tituloContenido = (String)contenido.get("titulo");
                 String temaContenido = (String)contenido.get("tema");
                 String descripcion = (String)contenido.get("descripcion");
-                String descripcionCompleta = descripcion;
                 if(descripcion.length() > 50){
-                    descripcion = descripcion.substring(0, 100) + "...";
+                    descripcion = descripcion.substring(0, 50) + "...";
                 }
                 if(contador % 20 == 0){
                     div++;
