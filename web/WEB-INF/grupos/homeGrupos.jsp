@@ -90,12 +90,4 @@
         </div>
             
     </body>
-    <script>
-            
-            /*$("#divInfo1").height((height * 0.335));
-            $("#divInfo2").height((height * 0.335));*/
-            /*$("#sidebar").height(height * 0.825);
-            $("#content").height(height * 0.83);*/
-        //});
-    </script>
 </html>
