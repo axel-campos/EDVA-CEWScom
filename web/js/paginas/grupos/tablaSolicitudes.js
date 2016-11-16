@@ -50,6 +50,7 @@ function procesarSolicitud(correo, tipo, numero){
         buttons: [{
             label: 'Sí',
             cssClass: 'btn-primary',
+            draggable: true,
             action: function(dialogItself) {
                 dialogItself.close();
                 var action_ajax = "responderSolicitudGrupo.action";
@@ -58,13 +59,14 @@ function procesarSolicitud(correo, tipo, numero){
                     if (data.toString().indexOf("Error:") === -1) {//En caso de que no hay error
                         $('#contenidos_invisibles').html(data); //Es forzoso mostrar el data de respuesta
                         //cambiarContenidos('ListarMiembrosAction?token=' + token,'#contenido');
+                        var texto = data.toString();
                         $.post('ListarMiembrosAction',{token: token}).done(function(data){
                             $("#contenido").html(data);
                             mostrarLista('ListSolicitudes',token);
-                            mensajes(data,TIPO_MENSAJE.SUCCESS);
+                            mensajes(texto,TIPO_MENSAJE.SUCCESS);
                         });
                     }else{
-                        mensajes(data,TIPO_MENSAJE.WARNING);
+                        mensajes("Hubo un error al procesar la solicitud. Inténtelo de nuevo.",TIPO_MENSAJE.WARNING);
                     }    
                 });
             }
