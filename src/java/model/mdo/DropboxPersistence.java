@@ -133,7 +133,10 @@ public final class DropboxPersistence implements FilePersistence {
 
         FileUtils.writeStringToFile(temp, pagina, "UTF-8");
         try (FileInputStream fis = new FileInputStream(temp)) {
-            client.files().uploadBuilder(ruta + "/" + etapa + ".html").uploadAndFinish(fis);
+            client
+				.files()
+				.uploadBuilder(ruta + "/" + etapa + ".html")
+				.uploadAndFinish(fis);
         }
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
@@ -152,7 +155,7 @@ public final class DropboxPersistence implements FilePersistence {
         String token = ruta.split("/")[1];
         String tempFile = appRoot + ruta + "/" + nombre;
         File temp = new File(tempFile);
-        FileUtils.writeStringToFile(temp, contenido, "UTF-8");
+        FileUtils.writeStringToFile(temp, contenido);
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
                 .files()
