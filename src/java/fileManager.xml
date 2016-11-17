@@ -10,7 +10,7 @@
             <result name="success" type="stream">
                 <param name="contentType">application/octet-stream</param>
                 <param name="inputName">zipInputStream</param>
-                <param name="contentDisposition">attachment;filename="${fileName}.zip"</param>
+                <param name="contentDisposition">attachment;filename="${OutputZipFileName}.zip"</param>
                 <param name="bufferSize">1024</param>
             </result>
         </action>
@@ -41,7 +41,7 @@
         <action name="listFiles" class="Actions.FileManagement.ListFiles">
             <result type="json">
                 <param name="noCache">true</param>
-                <param name="root">filesJson</param>
+                <param name="root">filesJSONforTable</param>
             </result>
         </action>
     </package>

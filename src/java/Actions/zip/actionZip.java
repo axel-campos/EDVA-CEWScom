@@ -5,12 +5,18 @@
  */
 package Actions.zip;
 
+import Actions.FileManagement.DropboxFile;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import model.mdo.DropboxPersistence;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ParameterAware;
 import zip.file.*;
 
@@ -21,25 +27,49 @@ import zip.file.*;
 public class actionZip extends ActionSupport implements ParameterAware {
 
     private String message;
-    private boolean estatus;
-    private InputStream zipInputStream;
-    private String fileName;
+    private boolean status;
+    private final DropboxPersistence DP = new DropboxPersistence();
+    private List<DropboxFile> files = new ArrayList<>();
 
     private String path;
+    private InputStream zipInputStream;
+    private String OutputZipFileName;
 
     @Override
     public String execute() throws Exception {
-        System.out.println("Path: " + path);
+        System.out.println("Path to download: " + path);
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        File tempDir = new File(appRoot + File.separator + path);
+        OutputZipFileName = path.split("/")[1] + "_" + path.split("/")[2];
+        System.out.println("Writing on temp directory: " + tempDir.getPath());
+
+        System.out.println("Is directory?: " + tempDir.isDirectory());
+        System.out.println("Can write?: " + tempDir.canWrite());
+        System.out.println("Can read?: " + tempDir.canRead());
+        System.out.println("Writing on temp directory: " + tempDir.getPath());
         try {
-            FileZipper.zip("C:\\Users\\Christian Campos\\Downloads\\Reporte1.docx", "C:\\Users\\Christian Campos\\Downloads\\Jamon.zip");
-            message = "Listo, cara de pene.";
-            estatus = true;
+            if (tempDir.mkdirs()) {
+                files = DP.listarArchivosDropbox(path);
+
+                for (DropboxFile droppyFile : files) {
+                    DP.descargarArchivoGenerico(path, droppyFile.getName());
+                }
+                
+                message = "Listo, cara de pene.";
+                status = true;
+                FileZipper.zip(tempDir + File.separator, appRoot + File.separator + OutputZipFileName + ".zip");
+                zipInputStream = new FileInputStream(appRoot + File.separator + OutputZipFileName + ".zip");
+                
+            } else {
+                message = "No se pudo descagar el archivo";
+                status = false;
+            }
         } catch (Exception e) {
-            message = "Ocurrió un error al guardar su contenido: " + e.getMessage();
-            estatus = false;
+            message = "Ocurrio un error: " + e.getMessage();
+            e.printStackTrace();
+            status = false;
         }
-        zipInputStream = new FileInputStream(new File("C:\\Users\\Christian Campos\\Downloads\\Jamon.zip"));
-        fileName = "Recursos_chingones";
+        FileUtils.deleteDirectory(new File(appRoot + File.separator + path.split("/")[1]));
         return SUCCESS;
     }
 
@@ -48,15 +78,15 @@ public class actionZip extends ActionSupport implements ParameterAware {
     }
 
     public boolean getEstatus() {
-        return estatus;
+        return status;
     }
 
     public InputStream getZipInputStream() {
         return zipInputStream;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getOutputZipFileName() {
+        return OutputZipFileName;
     }
 
     @Override

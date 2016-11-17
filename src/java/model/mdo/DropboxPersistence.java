@@ -1,29 +1,26 @@
 package model.mdo;
 
-import Actions.FileManagement.FileDropbox;
+import Actions.FileManagement.DropboxFile;
 import org.apache.struts2.ServletActionContext;
 import org.apache.commons.io.FileUtils;
 import com.dropbox.core.*;
 import com.dropbox.core.v2.*;
 import com.dropbox.core.v2.files.FileMetadata;
-import com.dropbox.core.v2.files.FolderMetadata;
 import com.dropbox.core.v2.files.ListFolderResult;
-import static com.dropbox.core.v2.files.MediaInfo.metadata;
 import com.dropbox.core.v2.files.Metadata;
-import com.dropbox.core.v2.files.UploadErrorException;
 import com.dropbox.core.v2.files.WriteMode;
-import static com.dropbox.core.v2.sharing.GetFileMetadataIndividualResult.metadata;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
-import java.text.DecimalFormat;
+import static java.nio.file.StandardOpenOption.CREATE;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,9 +131,9 @@ public final class DropboxPersistence implements FilePersistence {
         FileUtils.writeStringToFile(temp, pagina, "UTF-8");
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
-				.files()
-				.uploadBuilder(ruta + "/" + etapa + ".html")
-				.uploadAndFinish(fis);
+                .files()
+                .uploadBuilder(ruta + "/" + etapa + ".html")
+                .uploadAndFinish(fis);
         }
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
@@ -347,34 +344,38 @@ public final class DropboxPersistence implements FilePersistence {
         client.files().delete(path + "/" + fileToDelete);
     }
 
-    public List<FileDropbox> listarArchivosDropbox(String path) throws DbxException, IOException {
+    public List<DropboxFile> listarArchivosDropbox(String path) throws DbxException, IOException {
         System.out.println("Requesting data to dropbox...");
         ListFolderResult result = client.files().listFolderBuilder(path)
             .withIncludeDeleted(false)
             .withRecursive(false)
             .withIncludeMediaInfo(false)
             .start();
-        List<FileDropbox> files = new ArrayList<>();
+        List<DropboxFile> files = new ArrayList<>();
         for (Metadata metadata : result.getEntries()) {
             if (metadata instanceof FileMetadata) {
                 System.out.println(metadata.getPathDisplay());
                 File file = new File(metadata.getPathDisplay());
-                files.add(new FileDropbox(
-                    FilenameUtils.getBaseName(file.getName()),
-                    readableFileSize(((FileMetadata) metadata).getSize()),
-                    Files.probeContentType(file.toPath()) + " (." + FilenameUtils.getExtension(file.getName()) + ")"
+                files.add(new DropboxFile(
+                    file.getName(),
+                    ((FileMetadata) metadata).getSize(),
+                    FilenameUtils.getExtension(file.getName()),
+                    Files.probeContentType(file.toPath())
                 ));
             }
         }
         return files;
     }
 
-    private static String readableFileSize(long size) {
-        if (size <= 0) {
-            return "0";
+    public File descargarArchivoGenerico(String ruta, String nombre) throws IOException, DbxException {
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        File tempFile = new File(appRoot + ruta + File.separator + nombre);
+        if (!tempFile.exists()) {
+            try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(tempFile.toPath(), CREATE))) {
+                client.files().download(ruta + "/" + nombre).download(out);
+            }
         }
-        final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
-        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
-        return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+        return tempFile;
     }
+
 }

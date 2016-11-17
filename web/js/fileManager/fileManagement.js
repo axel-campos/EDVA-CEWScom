@@ -1,4 +1,4 @@
-/* global RUTA */
+/* global RUTA, BootstrapDialog */
 
 var dialogFileUploader = new BootstrapDialog({
     title: 'Subir Archivos',
@@ -23,14 +23,9 @@ var dialogFileUploader = new BootstrapDialog({
 });
 
 var dialogWait = new BootstrapDialog({
-    title: 'Ejecutando acción...',
+    title: 'Preparando archivo Zip',
     message: 'Por favor, espere...',
-    closable: false,
-    buttons: [{
-            cssClass: 'btn-primary',
-            autospin: true
-        }]
-
+    closable: false
 });
 
 
@@ -51,13 +46,13 @@ $(document).ready(function () {
             return "Buscar...";
         },
         formatRecordsPerPage: function (pageNumber) {
-            return pageNumber + " registros por página";
+            return pageNumber + " archivos por página";
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return "Mostrando " + pageFrom + " a " + pageTo + " de " + totalRows + " registros";
+            return "Mostrando " + pageFrom + " a " + pageTo + " de " + totalRows + " archivos";
         },
         formatNoMatches: function () {
-            return "¡Esto se ve muy vacío! Agrega nuevos archivos o actualiza tus filtros";
+            return "¡Esto se ve muy vacío! Actualiza tus filtros o agrega nuevos archivos";
         },
         formatLoadingMessage: function () {
             return "Cargando archivos, por favor espere...";
@@ -68,6 +63,9 @@ $(document).ready(function () {
         formatColumns: function ()
         {
             return "Columnas";
+        },
+        onLoadError: function (status, res) {
+            showAlert(false, "Fallo al hacer conexión con servidor. Intenté mas tarde");
         },
         columns: [
             {
@@ -126,12 +124,6 @@ $(document).ready(function () {
                 sortable: true,
                 align: 'center'
             }
-//            , {
-//                field: 'operate',
-//                title: 'Operaciones a archivo',
-//                align: 'center',
-//                formatter: operateFormatter
-//            }
         ]
     });
 
@@ -188,26 +180,24 @@ $(document).ready(function () {
             });
     });
 
-    $zipFiles.click(function () {
-        var idElementsArray = $.map($tableFiles.bootstrapTable('getSelections'), function (row) {
-            return row.name + row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
-        });
-
-        if (idElementsArray.length > 0)
-        {
-            dialogWait.open();
-            $.ajax({
-                url: "zipFiles/zipMe",
-                data: $.param({path: RUTA}),
-                type: 'POST',
-                success: function (){
-                    dialogWait.cloe();
-                }
-            }).fail(function () {
-                dialogRef.close();
-                showAlert(false, "Hubo un error al procesar su petición. Por favor, avise a los administradores.");
-            });
-        }
+    $zipFiles.click(function (e) {
+        e.preventDefault();
+        window.location.href = 'zipFiles/zipMe?path='+RUTA;
+//        dialogWait.open();
+//        $.ajax({
+//            url: "zipFiles/zipMe",
+//            data: $.param({path: RUTA}),
+//            type: 'POST',
+//            success: function () {
+//                dialogWait.close();
+//            }
+//        }).done(function () {
+//            alert("success");
+//        }).fail(function () {
+//            alert("error");
+//        }).always(function () {
+//            alert("complete");
+//        });
     });
 
     dialogFileUploader.realize();

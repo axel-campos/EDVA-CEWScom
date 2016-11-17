@@ -1,6 +1,5 @@
 package Actions.FileManagement;
 
-import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import model.mdo.DropboxPersistence;
@@ -30,7 +29,7 @@ public class DeleteFiles extends ActionSupport {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "Ocurrió un error: " + e;
+            message = "Ocurrio un error: " + e;
             status = false;
         }
         return SUCCESS;
