@@ -60,6 +60,9 @@
         <script type="text/javascript">
             $('#drag-and-drop-zone').dmUploader({
                 url: 'files/doUpload',
+                extraData: {
+                    path: RUTA
+                },
                 fileName: "files",
 //                maxFiles: 10,
                 maxFileSize: 26214400, //25mb per file

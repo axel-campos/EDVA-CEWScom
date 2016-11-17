@@ -1,3 +1,5 @@
+/* global RUTA */
+
 var dialogFileUploader = new BootstrapDialog({
     title: 'Subir Archivos',
     cssClass: 'best-position',
@@ -20,14 +22,31 @@ var dialogFileUploader = new BootstrapDialog({
     }
 });
 
+var dialogWait = new BootstrapDialog({
+    title: 'Ejecutando acción...',
+    message: 'Por favor, espere...',
+    closable: false,
+    buttons: [{
+            cssClass: 'btn-primary',
+            autospin: true
+        }]
+
+});
+
 
 var $tableFiles = $('#tabla'),
-        $removeFiles = $('#remove');
+        $removeFiles = $('#remove'),
+        $zipFiles = $('#zipMe');
 
 $(document).ready(function () {
     cargando();
     $tableFiles.bootstrapTable({
         height: getHeight(),
+        method: 'GET',
+        queryParams: function (params) {
+            params["path"] = RUTA;
+            return params;
+        },
         formatSearch: function () {
             return "Buscar...";
         },
@@ -38,7 +57,7 @@ $(document).ready(function () {
             return "Mostrando " + pageFrom + " a " + pageTo + " de " + totalRows + " registros";
         },
         formatNoMatches: function () {
-            return "Ningún registro coincide con la búsqueda";
+            return "¡Esto se ve muy vacío! Agrega nuevos archivos o actualiza tus filtros";
         },
         formatLoadingMessage: function () {
             return "Cargando archivos, por favor espere...";
@@ -71,7 +90,8 @@ $(document).ready(function () {
                         var extension = typeRow.substring(typeRow.indexOf("(") + 1, typeRow.indexOf(")"));
                         var data = JSON.stringify({
                             fileToRename: params.pk.toString() + extension,
-                            newName: params.value.toString() + extension
+                            newName: params.value.toString() + extension,
+                            path: RUTA
                         });
                         $.ajax({
                             url: "filesJSON/renameFiles",
@@ -104,14 +124,14 @@ $(document).ready(function () {
                 field: 'type',
                 title: 'Tipo de Archivo',
                 sortable: true,
-                align: 'center',
-            }, {
-                field: 'operate',
-                title: 'Operaciones a archivo',
-                align: 'center',
-                events: operateEvents,
-                formatter: operateFormatter
+                align: 'center'
             }
+//            , {
+//                field: 'operate',
+//                title: 'Operaciones a archivo',
+//                align: 'center',
+//                formatter: operateFormatter
+//            }
         ]
     });
 
@@ -128,7 +148,6 @@ $(document).ready(function () {
                 message: '¿Eliminar <strong>' + idElementsArray.length + '</strong> archivo(s) seleccionado(s)?',
                 type: BootstrapDialog.TYPE_WARNING,
                 buttons: [{
-                        icon: 'glyphicon glyphicon-send',
                         label: 'Confirmar',
                         cssClass: 'btn-warning',
                         autospin: true,
@@ -136,7 +155,10 @@ $(document).ready(function () {
                             dialogRef.enableButtons(false);
                             dialogRef.setClosable(false);
                             dialogRef.getModalBody().html('Eliminando archivos...');
-                            var data = JSON.stringify({listFilesToDelete: idElementsArray});
+                            var data = JSON.stringify({
+                                listFilesToDelete: idElementsArray,
+                                path: RUTA
+                            });
                             console.log(idElementsArray);
                             $.ajax({
                                 url: "filesJSON/deleteFiles",
@@ -166,7 +188,30 @@ $(document).ready(function () {
             });
     });
 
+    $zipFiles.click(function () {
+        var idElementsArray = $.map($tableFiles.bootstrapTable('getSelections'), function (row) {
+            return row.name + row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
+        });
+
+        if (idElementsArray.length > 0)
+        {
+            dialogWait.open();
+            $.ajax({
+                url: "zipFiles/zipMe",
+                data: $.param({path: RUTA}),
+                type: 'POST',
+                success: function (){
+                    dialogWait.cloe();
+                }
+            }).fail(function () {
+                dialogRef.close();
+                showAlert(false, "Hubo un error al procesar su petición. Por favor, avise a los administradores.");
+            });
+        }
+    });
+
     dialogFileUploader.realize();
+    dialogWait.realize();
     finalizar();
 });
 function getHeight() {
@@ -178,13 +223,6 @@ function getHeight() {
     } else {
         return y.outerHeight(true);
     }
-}
-
-function requestParams(params)
-{
-    params['token'] = token_group;
-    params['idContenido'] = id_contenido;
-    return params;
 }
 
 function operateFormatter(value, row, index) {
@@ -210,7 +248,10 @@ window.operateEvents = {
                         dialogRef.enableButtons(false);
                         dialogRef.setClosable(false);
                         dialogRef.getModalBody().html('Eliminando archivo...');
-                        var data = JSON.stringify({listFilesToDelete: [row.name + extension]});
+                        var data = JSON.stringify({
+                            listFilesToDelete: [row.name + extension],
+                            path: RUTA
+                        });
                         console.log(row.name + extension);
                         $.ajax({
                             url: "filesJSON/deleteFiles",
