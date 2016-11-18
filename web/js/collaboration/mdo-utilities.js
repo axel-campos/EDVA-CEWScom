@@ -1,7 +1,7 @@
 var MDOUtil = (function() {
 	var MDOParser = (function() {
 		var _VivenciaParser = (function() {
-			function ObservacionParser(nombreArtefacto, contenido) {
+			function ObservacionParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var pregunta = contenido[1].value;
 				var fenomenoAObservar = contenido[2].value;
@@ -10,6 +10,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					pregunta: pregunta,
 					fenomenoAObservar: fenomenoAObservar,
@@ -18,7 +19,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function VisitaParser(nombreArtefacto, contenido) {
+			function VisitaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var lugarAVisitar = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -28,6 +29,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					lugarAVisitar: lugarAVisitar,
 					tematica: tematica,
@@ -37,7 +39,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function DemostracionParser(nombreArtefacto, contenido) {
+			function DemostracionParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var objetivo = contenido[1].value;
 				var materialNecesario = contenido[2].value;
@@ -45,6 +47,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					objetivo: objetivo,
 					materialNecesario: materialNecesario,
@@ -52,7 +55,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function EnsayoParser(nombreArtefacto, contenido) {
+			function EnsayoParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -61,6 +64,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -69,7 +73,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function SimulacionParser(nombreArtefacto, contenido) {
+			function SimulacionParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var tematica = contenido[1].value;
 				var descripcion = contenido[2].value;
@@ -79,6 +83,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					tematica: tematica,
 					descripcion: descripcion,
@@ -93,20 +98,21 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Vivencia.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido) {
+			function _parse(nombreArtefacto, contenido, id) {
 				if (nombreArtefacto.includes("observacion"))
-					return ObservacionParser(nombreArtefacto, contenido);
+					return ObservacionParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("visita"))
-					return VisitaParser(nombreArtefacto, contenido);
+					return VisitaParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("demostracion"))
-					return DemostracionParser(nombreArtefacto, contenido);
+					return DemostracionParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("ensayo"))
-					return EnsayoParser(nombreArtefacto, contenido);
+					return EnsayoParser(nombreArtefacto, contenido, id);
 				else
-					return SimulacionParser(nombreArtefacto, contenido);
+					return SimulacionParser(nombreArtefacto, contenido, id);
 			}
 			
 			return {
@@ -115,7 +121,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _ConceptualizacionParser = (function() {
-			function PreguntasParser(nombreArtefacto, contenido) {
+			function PreguntasParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -123,6 +129,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -130,7 +137,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function TutoriaParser(nombreArtefacto, contenido) {
+			function TutoriaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -139,6 +146,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					objetivos: objetivos,
@@ -147,7 +155,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function LluviaIdeasParser(nombreArtefacto, contenido) {
+			function LluviaIdeasParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -156,6 +164,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -164,7 +173,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function GrupoEstudioParser(nombreArtefacto, contenido) {
+			function GrupoEstudioParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -173,6 +182,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -187,17 +197,18 @@ var MDOUtil = (function() {
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
+			 * @param {string} id El ID del artefacto.
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido) {
+			function _parse(nombreArtefacto, contenido, id) {
 				if (nombreArtefacto.includes("preguntas"))
-					return PreguntasParser(nombreArtefacto, contenido);
+					return PreguntasParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("tutoria"))
-					return TutoriaParser(nombreArtefacto, contenido);
+					return TutoriaParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("lluviaideas"))
-					return LluviaIdeasParser(nombreArtefacto, contenido);
+					return LluviaIdeasParser(nombreArtefacto, contenido, id);
 				else
-					return GrupoEstudioParser(nombreArtefacto, contenido);
+					return GrupoEstudioParser(nombreArtefacto, contenido, id);
 			}
 			
 			return {
@@ -206,7 +217,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _DocumentacionParser = (function() {
-			function PeliculaParser(nombreArtefacto, contenido) {
+			function PeliculaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var director = contenido[2].value;
@@ -216,6 +227,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					director: director,
@@ -225,20 +237,21 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function VideoParser(nombreArtefacto, contenido) {
+			function VideoParser(nombreArtefacto, contenido, id) {
 				var nombre = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var url = contenido[2].value;
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					nombre: nombre,
 					descripcion: descripcion,
 					url: url
 				};
 			}
 			
-			function LibroParser(nombreArtefacto, contenido) {
+			function LibroParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var autor = contenido[1].value;
 				var anyo = contenido[2].value;
@@ -248,6 +261,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					autor: autor,
 					titulo: titulo,
 					anyo: anyo,
@@ -257,7 +271,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function ArticuloWebParser(nombreArtefacto, contenido) {
+			function ArticuloWebParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var autor = contenido[1].value;
 				var descripcion = contenido[2].value;
@@ -269,6 +283,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					autor: autor,
 					titulo: titulo,
 					descripcion: descripcion,
@@ -280,20 +295,21 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function ArticuloPDFParser(nombreArtefacto, contenido) {
+			function ArticuloPDFParser(nombreArtefacto, contenido, id) {
 				var nombre = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var url = contenido[2].value;
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					nombre: nombre,
 					descripcion: descripcion,
 					url: url
 				};
 			}
 			
-			function RevistaParser(nombreArtefacto, contenido) {
+			function RevistaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var autor = contenido[1].value;
 				var descripcion = contenido[2].value;
@@ -305,6 +321,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					autor: autor,
 					titulo: titulo,
 					descripcion: descripcion,
@@ -321,22 +338,23 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Documentación.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido) {
+			function _parse(nombreArtefacto, contenido, id) {
 				if (nombreArtefacto.includes("pelicula"))
-					return PeliculaParser(nombreArtefacto, contenido);
+					return PeliculaParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("video"))
-					return VideoParser(nombreArtefacto, contenido);
+					return VideoParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("libro"))
-					return LibroParser(nombreArtefacto, contenido);
+					return LibroParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("articuloweb"))
-					return ArticuloWebParser(nombreArtefacto, contenido);
+					return ArticuloWebParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("articulopdf"))
-					return ArticuloPDFParser(nombreArtefacto, contenido);
+					return ArticuloPDFParser(nombreArtefacto, contenido, id);
 				else
-					return RevistaParser(nombreArtefacto, contenido);
+					return RevistaParser(nombreArtefacto, contenido, id);
 			}
 			
 			return {
@@ -345,7 +363,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _AplicacionParser = (function() {
-			function EstudioCasoParser(nombreArtefacto, contenido) {
+			function EstudioCasoParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -355,6 +373,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					objetivos: objetivos,
@@ -364,7 +383,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function MarcoLogicoParser(nombreArtefacto, contenido) {
+			function MarcoLogicoParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var objetivoGeneral = contenido[1].value;
 				var objetivosEspecificos = contenido[2].value;
@@ -376,6 +395,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					objetivoGeneral: objetivoGeneral,
 					objetivosEspecificos: objetivosEspecificos,
@@ -387,7 +407,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function MapaConceptualParser(nombreArtefacto, contenido) {
+			function MapaConceptualParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -395,6 +415,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -402,7 +423,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function ArbolProblemasParser(nombreArtefacto, contenido) {
+			function ArbolProblemasParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var problematicaCentral = contenido[2].value;
@@ -412,6 +433,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					problematicaCentral: problematicaCentral,
@@ -421,7 +443,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function ProyectoInvestigacionParser(nombreArtefacto, contenido) {
+			function ProyectoInvestigacionParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -431,6 +453,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					objetivos: objetivos,
@@ -440,7 +463,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function EjerciciosParser(nombreArtefacto, contenido) {
+			function EjerciciosParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -449,6 +472,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -462,22 +486,23 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Aplicación.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido) {
+			function _parse(nombreArtefacto, contenido, id) {
 				if (nombreArtefacto.includes("estudiocaso"))
-					return EstudioCasoParser(nombreArtefacto, contenido);
+					return EstudioCasoParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("marcologico"))
-					return MarcoLogicoParser(nombreArtefacto, contenido);
+					return MarcoLogicoParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("mapaconceptual"))
-					return MapaConceptualParser(nombreArtefacto, contenido);
+					return MapaConceptualParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("arbolproblemas"))
-					return ArbolProblemasParser(nombreArtefacto, contenido);
+					return ArbolProblemasParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("proyectoinvestigacion"))
-					return ProyectoInvestigacionParser(nombreArtefacto, contenido);
+					return ProyectoInvestigacionParser(nombreArtefacto, contenido, id);
 				else
-					return EjerciciosParser(nombreArtefacto, contenido);
+					return EjerciciosParser(nombreArtefacto, contenido, id);
 			}
 			
 			return {
@@ -486,7 +511,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _AmpliacionParser = (function() {
-			function ConferenciaParser(nombreArtefacto, contenido) {
+			function ConferenciaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -494,6 +519,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					objetivos: objetivos,
@@ -501,7 +527,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function MesaRedondaParser(nombreArtefacto, contenido) {
+			function MesaRedondaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -510,6 +536,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -518,7 +545,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function PanelParser(nombreArtefacto, contenido) {
+			function PanelParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -527,6 +554,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -535,7 +563,7 @@ var MDOUtil = (function() {
 				};
 			}
 			
-			function SimposioParser(nombreArtefacto, contenido) {
+			function SimposioParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -544,6 +572,7 @@ var MDOUtil = (function() {
 				
 				return {
 					artefacto: nombreArtefacto,
+					id: id,
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
@@ -557,18 +586,19 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Ampliación.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido) {
+			function _parse(nombreArtefacto, contenido, id) {
 				if (nombreArtefacto.includes("conferencia"))
-					return ConferenciaParser(nombreArtefacto, contenido);
+					return ConferenciaParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("mesaredonda"))
-					return MesaRedondaParser(nombreArtefacto, contenido);
+					return MesaRedondaParser(nombreArtefacto, contenido, id);
 				else if (nombreArtefacto.includes("ampliacion-panel"))
-					return PanelParser(nombreArtefacto, contenido);
+					return PanelParser(nombreArtefacto, contenido, id);
 				else
-					return SimposioParser(nombreArtefacto, contenido);
+					return SimposioParser(nombreArtefacto, contenido, id);
 			}
 			
 			return {
@@ -607,6 +637,7 @@ var MDOUtil = (function() {
 	function _parseNode(node) {
 		var nombreArtefacto = node.className.split(" ")[0];
 		var contenido = $(node).children("div").children("input");
+		var id = $(node).children("div")[0].id;
 		var tipoParser;
 		
 		if (nombreArtefacto.includes("vivencia"))
@@ -620,7 +651,7 @@ var MDOUtil = (function() {
 		else
 			tipoParser = "AmpliacionParser";
 		
-		return MDOParser[tipoParser].parse(nombreArtefacto, contenido);
+		return MDOParser[tipoParser].parse(nombreArtefacto, contenido, id);
 	}
 	
 	/**
@@ -646,10 +677,9 @@ var MDOTimeline = (function() {
 	var MDOParser = (function() {
 		var _VivenciaParser = (function() {
 			function ObservacionParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-vivencia-observacion event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Observación</a></h2>\n\
-							<div id='" + id + "' class='collapse'>\n\
+							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Observación</a></h2>\n\
+							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 								<label>Pregunta:</label>\n\
@@ -665,10 +695,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function VisitaParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-vivencia-visita event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Visita</a></h2>\n\
-							<div id='" + id + "' class='collapse'>\n\
+							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Visita</a></h2>\n\
+							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 								<label>Lugar a visitar:</label>\n\
@@ -686,10 +715,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function DemostracionParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-vivencia-demostracion event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Demostración</a></h2>\n\
-							<div id='" + id + "' class='collapse'>\n\
+							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Demostración</a></h2>\n\
+							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 								<label>Objetivo:</label>\n\
@@ -703,10 +731,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function EnsayoParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-vivencia-ensayo event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Ensayo</a></h2>\n\
-							<div id='" + id + "' class='collapse'>\n\
+							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Ensayo</a></h2>\n\
+							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 								<label>Descripción:</label>\n\
@@ -722,10 +749,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function SimulacionParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-vivencia-simulacion event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Simulación</a></h2>\n\
-							<div id='" + id + "' class='collapse'>\n\
+							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Simulación</a></h2>\n\
+							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 								<label>Temática:</label>\n\
@@ -769,10 +795,9 @@ var MDOTimeline = (function() {
 		
 		var _ConceptualizacionParser = (function() {
 			function PreguntasParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-conceptualizacion-preguntas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Preguntas</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Preguntas</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -786,10 +811,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function TutoriaParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-conceptualizacion-tutoria event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Tutoría</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Tutoría</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -805,10 +829,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function LluviaIdeasParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Lluvia de Ideas</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Lluvia de Ideas</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -824,10 +847,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function GrupoEstudioParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Grupo de Estudio</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Grupo de Estudio</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -867,10 +889,9 @@ var MDOTimeline = (function() {
 		
 		var _DocumentacionParser = (function() {
 			function PeliculaParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-documentacion-pelicula event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Película</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Película</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -888,10 +909,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function VideoParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-documentacion-video event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Video</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Video</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.nombre + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -903,10 +923,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function LibroParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-documentacion-libro event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Libro</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Libro</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Autor:</label>\n\
@@ -924,10 +943,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function ArticuloWebParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-documentacion-articuloweb event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Artículo Web</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Artículo Web</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Autor:</label>\n\
@@ -949,10 +967,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function ArticuloPDFParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-documentacion-articulopdf event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Artículo PDF</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Artículo PDF</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.nombre + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -964,10 +981,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function RevistaParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-documentacion-revista event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Revista</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Revista</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Autor:</label>\n\
@@ -1017,10 +1033,9 @@ var MDOTimeline = (function() {
 		
 		var _AplicacionParser = (function() {
 			function EstudioCasoParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-aplicacion-estudiocaso event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Estudio de Caso</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Estudio de Caso</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1038,10 +1053,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function MarcoLogicoParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-aplicacion-marcologico event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Marco Lógico</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Marco Lógico</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Objetivo general:</label>\n\
@@ -1063,10 +1077,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function MapaConceptualParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Mapa Conceptual</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Mapa Conceptual</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1080,10 +1093,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function ArbolProblemasParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Árbol de Problemas</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Árbol de Problemas</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1101,10 +1113,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function ProyectoInvestigacionParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Proyecto de Investigación</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Proyecto de Investigación</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1122,10 +1133,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function EjerciciosParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-aplicacion-ejercicios event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Ejercicios</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Ejercicios</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1169,10 +1179,9 @@ var MDOTimeline = (function() {
 		
 		var _AmpliacionParser = (function() {
 			function ConferenciaParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-ampliacion-conferencia event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Conferencia</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Conferencia</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1186,10 +1195,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function MesaRedondaParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-ampliacion-mesaredonda event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Mesa Redonda</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Mesa Redonda</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1205,10 +1213,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function PanelParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-ampliacion-panel event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Panel</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Panel</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\
@@ -1224,10 +1231,9 @@ var MDOTimeline = (function() {
 			}
 			
 			function SimposioParser(contenido) {
-				var id = Math.random().toString(36).substring(2);
 				return "<li class='mdo-ampliacion-simposio event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Simposio</a></h2>\n\
-						<div id='" + id + "' class='collapse'>\n\
+						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Simposio</a></h2>\n\
+						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
 							<label>Descripción:</label>\n\

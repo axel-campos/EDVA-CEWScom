@@ -5,23 +5,23 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <package name="fileManagement" namespace="/fileManager" extends="struts-default">
+    <package name="zipFiles" namespace="/zipFiles" extends="struts-default">
         <action name="zipMe" class="Actions.zip.actionZip">
             <result name="success" type="stream">
                 <param name="contentType">application/octet-stream</param>
                 <param name="inputName">zipInputStream</param>
-                <param name="contentDisposition">attachment;filename="${fileName}.zip"</param>
+                <param name="contentDisposition">attachment;filename="${OutputZipFileName}.zip"</param>
                 <param name="bufferSize">1024</param>
             </result>
         </action>
     </package>
     
-    <package name="filePages" namespace="/" extends="struts-default">
-        <action name="addFiles">
-            <result>/WEB-INF/fileManager/FileList.jsp</result>
+    <package name="fileManagerDropbox" namespace="/" extends="struts-default">
+        <action name="fileList">
+            <result>WEB-INF/fileManagement/fileManager.jsp</result>
         </action>
         <action name="addFilesPlugin">
-            <result>/WEB-INF/fileManager/fileUploader.jsp</result>
+            <result>WEB-INF/fileManagement/fileUploader.jsp</result>
         </action>
     </package>
     
@@ -41,7 +41,7 @@
         <action name="listFiles" class="Actions.FileManagement.ListFiles">
             <result type="json">
                 <param name="noCache">true</param>
-                <param name="root">filesJson</param>
+                <param name="root">filesJSONforTable</param>
             </result>
         </action>
     </package>

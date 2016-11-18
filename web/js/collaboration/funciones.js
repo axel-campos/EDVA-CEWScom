@@ -18,20 +18,19 @@ $(document).ready(function () {
                 titulo: TITULO,
                 version: VERSION
             }, function (response) {
-
                 if (response.estatus) {
                     BootstrapDialog.show({
                         title: "Progreso Guardado",
                         message: response.message,
                         type: BootstrapDialog.TYPE_SUCCESS,
                         buttons: [{
-                                label: "Continuar Colaborando",
-                                icon: "glyphicon glyphicon-ok-circle",
-                                cssClass: "btn-success",
-                                action: function (dialog) {
-                                    dialog.close();
-                                }
-                            }]
+							label: "Continuar Colaborando",
+							icon: "glyphicon glyphicon-ok-circle",
+							cssClass: "btn-success",
+							action: function (dialog) {
+								dialog.close();
+							}
+						}]
                     });
                 } else {
                     BootstrapDialog.show({
@@ -39,13 +38,13 @@ $(document).ready(function () {
                         message: response.message,
                         type: BootstrapDialog.TYPE_DANGER,
                         buttons: [{
-                                label: "Cerrar",
-                                icon: "glyphicon glyphicon-remove-circle",
-                                cssClass: "btn-danger",
-                                action: function (dialog) {
-                                    dialog.close();
-                                }
-                            }]
+							label: "Cerrar",
+							icon: "glyphicon glyphicon-remove-circle",
+							cssClass: "btn-danger",
+							action: function (dialog) {
+								dialog.close();
+							}
+						}]
                     });
                 }
             });
@@ -56,13 +55,12 @@ $(document).ready(function () {
 /**
  * Recrea la línea del tiempo a partir de los artefactos obtenidos del servidor.
  * 
- * @param {object} artefactos Los artefactos recuperados del servidor.
+ * @param {array} artefactos Los artefactos recuperados del servidor.
+ * @param {string} container El contenedor donde se insertarán los artefactos.
  */
-function recrearTimeline(artefactos) {
-    var lista = artefactos.artefactos;
-    var body = MDOTimeline.obtenerNodos(lista).join("");
-
-    $("#contenidoDidacticoBody").append(body);
+function recrearTimeline(artefactos, container) {
+    var body = MDOTimeline.obtenerNodos(artefactos).join("");
+	$(container).empty().html("<li class='year'>Inicio</li>").append(body);
 }
 
 /**
@@ -124,12 +122,10 @@ function populate(selector, nombreFabrica) {
     });
 }
 
-function initWorkspace()
-{
+function initWorkspace() {
     var targetDiv = "#" + ETAPA + "PanelBody";
     var MDOfactory = ETAPA + "Factory";
 
     populate(targetDiv, MDOfactory);
     agregarDragAndDrop(targetDiv, MDOfactory);
-    recrearTimeline(ARTEFACTOS);
 }

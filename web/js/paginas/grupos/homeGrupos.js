@@ -35,6 +35,10 @@ function mostrarLista(pagina,token){
                 "<li><a href=\"#\">Mis grupos</a></li>" +
                 "<li><a href=\"#\">Contenidos grupo</a></li>" +
                 "<li><a href=\"#\">Solicitudes de grupo</a></li>");
+    }else if(pagina.toString().indexOf("ListarContenidosGrupoAction") !== -1){
+        $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                "<li><a href=\"#\">Mis grupos</a></li>" +
+                "<li><a href=\"#\">Contenidos grupo</a></li>");
     }
     $("#contenidoGrupo").load(pagina,{"token": token});
 }

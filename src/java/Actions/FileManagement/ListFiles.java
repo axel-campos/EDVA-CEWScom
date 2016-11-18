@@ -1,64 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Actions.FileManagement;
 
+import com.dropbox.core.DbxException;
+import com.dropbox.core.v2.files.FileMetadata;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import model.mdo.DropboxPersistence;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.struts2.interceptor.ParameterAware;
 
 /**
  *
  * @author Axel
  */
-public class ListFiles extends ActionSupport {
+public class ListFiles extends ActionSupport implements ParameterAware {
 
-    private boolean status;
-    private final List<FileDropbox> filesJson = new ArrayList<>();
-    private final String path = "C:\\Users\\Axel\\Dropbox\\ArchivosPrueba";
-    //private final String path = "C:\\Users\\Christian Campos\\Dropbox\\ArchivosPrueba";
-    
+    private final DropboxPersistence DP = new DropboxPersistence();
+    private final List<FileListTable> filesJSONforTable = new ArrayList<>();
+    private String path;
+
     @Override
     public String execute() {
         try {
             System.out.println("------ Lista de archivos en directorio: " + path + " -----");
-            for (File file : new File(path).listFiles()) {
-                if (file.isFile()) {
-                    filesJson.add(new FileDropbox(
-                        FilenameUtils.getBaseName(file.getName()),
-                        readableFileSize(file.length()),
-                        Files.probeContentType(file.toPath()) + " (." + FilenameUtils.getExtension(file.getName()) + ")")
-                    );
-                    System.out.println("File: " + file.getName());
-                } else if (file.isDirectory()) {
-                    System.out.println("Directory: " + file.getName());
-                }
+            List<DropboxFile> ListDF = DP.listarArchivosDropbox(path);
+            for (DropboxFile file : ListDF) {
+                filesJSONforTable.add(file.toFileListTable());
             }
-            status = true;
             System.out.println("------------------------------------------------------------");
-
-        } catch (Exception e) {
+        } catch (DbxException | IOException | NumberFormatException e) {
             System.out.println("Ocurrió un error: " + e);
             e.printStackTrace();
-            status = false;
         }
         return SUCCESS;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public List<FileDropbox> getFilesJson() {
-        return filesJson;
+    public List<FileListTable> getFilesJSONforTable() {
+        return filesJSONforTable;
     }
 
     private String getFileTypeString(File file) throws IOException {
@@ -66,13 +51,8 @@ public class ListFiles extends ActionSupport {
         return "QuienSabe";
     }
 
-    private static String readableFileSize(long size) {
-        if (size <= 0) {
-            return "0";
-        }
-        final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
-        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
-        return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    @Override
+    public void setParameters(Map<String, String[]> maps) {
+        this.path = maps.get("path")[0];
     }
-
 }

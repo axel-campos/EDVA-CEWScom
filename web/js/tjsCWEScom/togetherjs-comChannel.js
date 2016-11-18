@@ -1,38 +1,35 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-function updateTogetherJS(container)
-{
+function updateTogetherJS(container) {
+	var artefactos = MDOUtil.getListaArtefactos(MDOUtil.parseNodeList(document.querySelectorAll(".event")));
+	
     if (TogetherJS.running) {
         TogetherJS.send({
             type: 'drop',
             idcontainer: container,
-            htmlcontainer: $(container).html()
+			htmlcontainer: artefactos
         });
     }
+	
     TogetherJS.reinitialize();
 }
 
 TogetherJS.hub.on('drop', function (msg) {
-    if (!msg.sameUrl) {
-        return;
-    }
-    $(msg.idcontainer).html(msg.htmlcontainer);
-    TogetherJS.reinitialize();
+	if (msg.sameUrl) {
+		recrearTimeline(msg.htmlcontainer, msg.idcontainer);
+		TogetherJS.reinitialize();
+	}
 });
 
-
-TogetherJS.hub.on("togetherjs.hello", function (msg) {
-    var container = "#contenidoDidacticoBody";
-    TogetherJS.send({
-        type: 'drop',
-        container: $(container).html()
-    });
-    TogetherJS.reinitialize();
+TogetherJS.hub.on("togetherjs.init-connection", function(msg) {
+	if (msg.peerCount === 0) {
+		// Recrear Timeline desde el servidor
+		recrearTimeline(ARTEFACTOS.artefactos, "#contenidoDidacticoBody");
+	}
 });
 
-
-
+TogetherJS.hub.on("togetherjs.hello", function(msg) {
+	if (msg.sameUrl) {
+		// Ya no se recrea el Timeline, solo se copia lo que lleven los demás.
+		var container = "#contenidoDidacticoBody";
+		updateTogetherJS(container);
+	}
+});

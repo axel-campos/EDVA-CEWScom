@@ -9,12 +9,13 @@ package Actions.FileManagement;
  *
  * @author Axel
  */
-public class FileDropbox {
+public class FileListTable {
+
     private String name;
     private String size;
     private String type;
-    
-    public FileDropbox(String name, String size, String type) {
+
+    public FileListTable(String name, String size, String type) {
         this.name = name;
         this.size = size;
         this.type = type;
@@ -43,6 +44,4 @@ public class FileDropbox {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
 }

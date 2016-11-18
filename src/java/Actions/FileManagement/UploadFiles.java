@@ -1,8 +1,12 @@
 package Actions.FileManagement;
 
+import com.dropbox.core.DbxException;
+import com.dropbox.core.v2.files.UploadErrorException;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import model.mdo.DropboxPersistence;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -11,16 +15,17 @@ import org.apache.commons.io.FileUtils;
  */
 public class UploadFiles extends ActionSupport {
 
+    private final DropboxPersistence DP = new DropboxPersistence();
     private List<File> files;
     private List<String> filesContentType;
     private List<String> filesFileName;
     private String message;
     private boolean status;
-    //private final String path = "C:\\Users\\Axel\\Dropbox\\ArchivosPrueba";
-    private final String path = "C:\\Users\\Christian Campos\\Dropbox\\ArchivosPrueba";
+
+    private String path;
 
     @Override
-    public String execute(){
+    public String execute() {
         try {
             System.out.print("\n\n--------Archivos a subir---------------\n");
             int i = 0;
@@ -31,14 +36,22 @@ public class UploadFiles extends ActionSupport {
                 System.out.print("; contentType: " + filesContentType.get(i));
                 System.out.print("; length: " + file.length());
 
-                File destFile = new File(path, filesFileName.get(i));
-                FileUtils.copyFile(files.get(i), destFile);
+                DP.subirArchivoDropbox(file, path, filesFileName.get(i));
                 i++;
             }
             System.out.println("\n---------------------------------------\n");
-            message = "Se subio el archivo correctamente";
+            message = "Se subieron los archivos correctamente";
             status = true;
 
+        } catch (UploadErrorException ex) {
+            message = "Error uploading to Dropbox" + ex;
+            status = false;
+        } catch (DbxException ex) {
+            message = "Error subiendo al Dropbox: " + ex;
+            status = false;
+        } catch (IOException ex) {
+            message = "Error leyendo el archivo: " + ex;
+            status = false;
         } catch (Exception e) {
             System.out.println("Ocurrió un error: " + e);
             e.printStackTrace();
@@ -70,6 +83,10 @@ public class UploadFiles extends ActionSupport {
 
     public void setFilesFileName(List<String> filesFileName) {
         this.filesFileName = filesFileName;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getMessage() {

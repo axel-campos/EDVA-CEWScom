@@ -2,7 +2,7 @@ package Actions.FileManagement;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
-import java.io.File;
+import model.mdo.DropboxPersistence;
 
 /**
  *
@@ -10,31 +10,21 @@ import java.io.File;
  */
 public class RenameFiles extends ActionSupport {
 
+    private final DropboxPersistence DP = new DropboxPersistence();
     private String fileToRename;
     private String newName;
     private String message;
     private boolean status;
 
-    private final String path = "C:\\Users\\Axel\\Dropbox\\ArchivosPrueba";
+    private String path;
 
     @Override
     public String execute() throws Exception {
         try {
             System.out.println("Renaming file " + fileToRename + " to " + newName);
-            File f = new File(path, fileToRename);
-            if (f.exists() && !f.isDirectory()) {
-                if (f.renameTo(new File(path, newName))) {
-                    message = "El archivo <strong>" + fileToRename + "</strong> ha sido renombrado a <strong>" + newName + "</strong>.";
-                    status = true;
-                } else {
-                    message = "La edición del archivo ha fallado debido a permisos.";
-                    status = false;
-                }
-            } else {
-                message = "El archivo " + fileToRename + " no existe. Por favor, recarge la lista.";
-                status = false;
-            }
-
+            DP.editarNombreArchivoDropbox(fileToRename, newName, path);
+            message = "El archivo <strong>" + fileToRename + "</strong> ha sido renombrado a <strong>" + newName + "</strong>.";
+            status = true;
         } catch (Exception e) {
             e.printStackTrace();
             message = "Ocurrió un error: " + e;
@@ -53,6 +43,10 @@ public class RenameFiles extends ActionSupport {
 
     public String getMessage() {
         return message;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public boolean isStatus() {
