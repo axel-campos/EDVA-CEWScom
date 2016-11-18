@@ -27,11 +27,12 @@
             </s:if>
             <s:if test="esAdministrador">
                 <s:if test="esCoordinador">
-                    <a class="btn btn-link" onclick="mostrarLista('ListRoles','<s:property value="token"/>');">Roles del grupo</a>
+                    <a class="btn btn-link" onclick="cambiarContenidos('ListRoles?token=<s:property value="token"/>','#contenido');">Roles del grupo</a>
                 </s:if>
-                <a class="btn btn-link" onclick="mostrarLista('ListSolicitudes','<s:property value="token"/>');">Solicitudes</a>
+                <a class="btn btn-link" onclick="cambiarContenidos('ListSolicitudes?token=<s:property value="token"/>','#contenido');">Solicitudes</a>
                 <a onclick="crearContenido()" class="btn btn-link">Crear Contenido Didáctico</a>
             </s:if>
+            <a onclick="cambiarContenidos('ListarMiembrosAction?token=<s:property value="token"/>','#contenido')" class="btn btn-link">Ver miembros</a>    
             <input type="hidden" id="token" value="<s:property value="token"/>">
             <input type="hidden" id="message" value="<s:property value="message"/>">
             <input type="hidden" id="type" value="<s:property value="type"/>">
@@ -113,6 +114,7 @@
                             String idContenido = columna.get("idContenido").toString();
                             String idEtapa = null, version = null;
                             String nombreBoton = "Agregar versión";
+                            String tipoPanel = "default";
                             if(columna.get("idEtapa") != null){
                                 idEtapa = columna.get("idEtapa").toString();
                                 nombreBoton = "Editar versión";
@@ -126,17 +128,19 @@
                             if(columna.get("tiempoModificacion") != null)
                             {
                                 fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
+                                tipoPanel = "success";
                             }
                             if(columna.get("tiempoVotacion") != null)
                             {
                                 fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
+                                tipoPanel = "info";
                             }
                             String idRoomTogetherJS = token2 + idContenido;
                 %>
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-body" style="overflow: auto">
-                            <div class="panel panel-default">
+                            <div class="panel panel-<%= tipoPanel%>">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
@@ -175,7 +179,8 @@
                                                     </ul>
                                             </div>
                                             <!--br><br-->
-                                        </s:if>                
+                                        </s:if>      
+                                            <br>
                                         <% if(fechaModificacion != ""){%>
                                             <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
@@ -185,6 +190,7 @@
                                         <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">
                                             <span style="font-size:16px;" class="glyphicon glyphicon-warning-sign"></span> Reportar contenido
                                         </a>
+                                            <br><br>
                                     </div>
                                 </div>
                             </div>

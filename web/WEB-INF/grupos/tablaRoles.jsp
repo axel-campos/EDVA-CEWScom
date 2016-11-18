@@ -21,8 +21,8 @@
                     <s:actionerror />
                 </div>
             </s:if>
-            <a class="btn btn-link" onclick="mostrarLista('ListarContenidosGrupoAction','<s:property value="token"/>');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
-            <a class="btn btn-link" onclick="mostrarLista('ListSolicitudes','<s:property value="token"/>');">Solicitudes</a>
+            <a class="btn btn-link" onclick="cambiarContenidos('ListarContenidosGrupoAction?token=<s:property value="token"/>','#contenido');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
+            <a class="btn btn-link" onclick="cambiarContenidos('ListSolicitudes?token=<s:property value="token"/>','#contenido');">Solicitudes</a>
         </div>
         <div class="table-responsive">
             <form id="frmRoles" name="frmRoles">

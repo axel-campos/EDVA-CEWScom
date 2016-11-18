@@ -42,10 +42,8 @@ $(document).ready(function(){
             error: function(data){
                 var token = $("#token").val();
                 //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
-                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                 mensajes("Ha ocurrido un problema al registrar su contenido", 3);
-                var target = "#contenidoGrupo";
-                $(target).html(data);
             }
         });
     });

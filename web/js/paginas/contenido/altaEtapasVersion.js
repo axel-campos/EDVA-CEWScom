@@ -51,7 +51,7 @@ $(document).ready(function(){
                                     //Cargamos las versiones de la etapa en la que se cargo el nuevo
                                     //cargarVersiones(etapa);
                                     //
-                                    cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                                    cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                                     /*var target = "#contenidoGrupo";
                                     cambiarContenidos('ListarMiembrosAction?token='+token,target);*/
                                 }
@@ -121,7 +121,7 @@ $(document).ready(function(){
                                 //Refrecamos la ventana
                                 $("#ventana").load("cargaEtapas",{"idContenido": idContenido, "etapa": etapa, "version": version}, function(response, status, xhr){
                                     if(status === "success"){
-                                        cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                                        cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                                     }
 
                                 });

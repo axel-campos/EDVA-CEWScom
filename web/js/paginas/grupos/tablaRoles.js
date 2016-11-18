@@ -123,7 +123,7 @@ function guardarCambiosRoles(){
         url: action,
         data: datos,
         success: function(data){
-            $("#contenidoGrupo").html(data);
+            $("#contenido").html(data);
         }
     });
 }
@@ -194,7 +194,7 @@ function eliminarMiembro(numRow){
                 dialogItself.close();
                 var token = $("#token").val();
                 var correo = $("#txt_correo_" + numRow).val();
-                cambiarContenidos("eliminarMiembroAction?correo="+correo+"&token="+token,"#contenidoGrupo");
+                cambiarContenidos("eliminarMiembroAction?correo="+correo+"&token="+token,"#contenido");
             }
         }, {
             label: 'No',

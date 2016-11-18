@@ -146,9 +146,7 @@ function eliminaContenido(id){
             action: function(dialogItself) {
                 dialogItself.close();
                 $.post("eliminarContenido",{id: id}).done(function(data){
-                    cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
-                    var target = "#contenidoGrupo";
-                    $(target).html(data);
+                    cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                 });
                 
                 
@@ -175,9 +173,7 @@ function terminaVersion(id, etapa, version){
             action: function(dialogItself) {
                 dialogItself.close();
                 $.post("terminaVersion",{"idContenido": id, etapa: etapa, version: version}).done(function(data){
-                    cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
-                    var target = "#contenidoGrupo";
-                    $(target).html(data);
+                    cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                 });
                 
                 

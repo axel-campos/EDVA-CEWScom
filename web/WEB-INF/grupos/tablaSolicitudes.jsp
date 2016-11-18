@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <a class="btn btn-link" onclick="mostrarLista('ListarContenidosGrupoAction', '<s:property value="token"/>');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
+            <a class="btn btn-link" onclick="cambiarContenidos('ListarContenidosGrupoAction?token=<s:property value="token"/>','#contenido');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
         </div>
         <div class="container-fluid">
             <table id="tabla" style="width: 100%">

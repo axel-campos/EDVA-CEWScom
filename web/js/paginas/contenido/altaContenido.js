@@ -31,8 +31,8 @@ $(document).ready(function(){
                         message: "Por favor, ingrese el titulo del contenido."
                     },
                     stringLength:{
-                        max: 20,
-                        message: 'La cantidad máxima de letras para el título es de 20.'
+                        max: 50,
+                        message: 'La cantidad máxima de letras para el título es de 50.'
                     }
                 }
             },
@@ -40,8 +40,8 @@ $(document).ready(function(){
                 validators:{
                     stringLength:{
                         min: 0,
-                        max: 20,
-                        message: 'La cantidad máxima de letras para el tema es de 20.'
+                        max: 50,
+                        message: 'La cantidad máxima de letras para el tema es de 50.'
                     }
                 }
             },
@@ -76,9 +76,13 @@ $(document).ready(function(){
             success: function(data){
                 var token = $("#token").val();
                 //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
-                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
-                var target = "#contenidoGrupo";
-                $(target).html(data);
+                cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
+                if($("#id").val() === ""){//Crear
+                    mensajes("El contenido se ha creado con éxito", TIPO_MENSAJE.SUCCESS);
+                }else{
+                    mensajes("El contenido se ha modificado con éxito", TIPO_MENSAJE.SUCCESS);
+                }
+                
             }
         });
     });

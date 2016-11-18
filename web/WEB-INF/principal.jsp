@@ -205,6 +205,7 @@
                         String idEtapa = columna.get("idEtapa").toString();
                         String etapa = (String)columna.get("nombre");
                         String version = "";
+                        String nombrePanel = "default";
                         if(columna.get("version") != null){
                             version = columna.get("version").toString();
                         }
@@ -212,14 +213,16 @@
                         String fechaModificacion = "", fechaVotacion = "";
                         if(columna.get("tiempoModificacion") != null){
                             fechaModificacion = df.format((Timestamp)columna.get("tiempoModificacion"));
+                            nombrePanel = "success";
                         }else{
                             fechaVotacion = df.format((Timestamp)columna.get("tiempoVotacion"));
+                            nombrePanel = "info";
                         }
             %>
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-body" style="overflow: auto">
-                        <div class="panel panel-default">
+                        <div class="panel panel-<%= nombrePanel%>">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">

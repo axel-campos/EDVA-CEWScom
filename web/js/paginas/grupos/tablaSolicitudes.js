@@ -60,9 +60,8 @@ function procesarSolicitud(correo, tipo, numero){
                         $('#contenidos_invisibles').html(data); //Es forzoso mostrar el data de respuesta
                         //cambiarContenidos('ListarMiembrosAction?token=' + token,'#contenido');
                         var texto = data.toString();
-                        $.post('ListarMiembrosAction',{token: token}).done(function(data){
+                        $.post('ListSolicitudes',{token: token}).done(function(data){
                             $("#contenido").html(data);
-                            mostrarLista('ListSolicitudes',token);
                             mensajes(texto,TIPO_MENSAJE.SUCCESS);
                         });
                     }else{

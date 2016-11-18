@@ -14,70 +14,59 @@ var TIPO_MENSAJE = {
 };
 
 function cambiarContenidos(pagina, target){
-    cargando();
-    $.post(pagina)
-    .done(function(data){
-        setTimeout(
-        function() 
-        {
-            
-            var TJScorriendo = false;
-            if (TogetherJS.running) {
-                TogetherJS();
-                TogetherJS.require("storage").tab.clear("status");
-                console.log("End Of Together");
-                var index = "index.action";
-                //window.open(index,"_top");
-                TJScorriendo = true;
-                //BootstrapDialog.alert("Good Lord " + TJScorriendo);
+    if (TogetherJS.running) {
+        TogetherJS();
+        //TogetherJS.require("storage").tab.clear("status");
+        TogetherJS.on("close", function(){
+            $("body").load("index.action", function(){
+                $(target).load(pagina);
+            });
+        });
+    }else{
+        cargando();
+        $.post(pagina)
+        .done(function(data){
+            setTimeout(
+            function() 
+            {    
+                finalizar();        
+                if(verificarSesion(data)){
+                    $(target).html(data);
+                }else{
+                    muestraAvisoSesionTermino();
+                }
+            }, 1000);
+
+            $("#navegacion").empty();
+            if(pagina.toString() === "principal"){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Inicio</a></li>");
+            }else if(pagina.toString() === "ListGroup"){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Mis grupos</a></li>");
+            }else if(pagina.toString() === "listarReportes"){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Reportes</a></li>");
+            }else if(pagina.toString() === "listarContenidos"){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Contenidos</a></li>");
+            }else if(pagina.toString() === "ListaProfesor"){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Profesores</a></li>");
+            }else if(pagina.toString().indexOf("ListarMiembrosAction") !== -1){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\">Contenidos grupo</a></li>");
+            }else if(pagina.toString().indexOf("workspaceColaboracion") !== -1){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\">Contenidos grupo</a></li>" +
+                        "<li><a href=\"#\">Colaboración contenido</a></li>");
             }
-            
-            finalizar();
-            if(data.toString().indexOf("Regístrate") === -1){
-                /*if(TJScorriendo){
-                    window.location.href = "index.action";
-                }*/
-                //else{
-                    $(target).html(data); 
-                //}
-            }else{
-                var cwescom = "cwescom.action";
-                
-                window.open(cwescom,'_top');
-                BootstrapDialog.alert("Su sesión ha expirado.");
-            }
-            
-        }, 1000);
-        
-        $("#navegacion").empty();
-        if(pagina.toString() === "principal"){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Inicio</a></li>");
-        }else if(pagina.toString() === "ListGroup"){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Mis grupos</a></li>");
-        }else if(pagina.toString() === "listarReportes"){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Reportes</a></li>");
-        }else if(pagina.toString() === "listarContenidos"){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Contenidos</a></li>");
-        }else if(pagina.toString() === "ListaProfesor"){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Profesores</a></li>");
-        }else if(pagina.toString().indexOf("ListarMiembrosAction") !== -1){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Mis grupos</a></li>" +
-                    "<li><a href=\"#\">Contenidos grupo</a></li>");
-        }else if(pagina.toString().indexOf("workspaceColaboracion") !== -1){
-            $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                    "<li><a href=\"#\">Mis grupos</a></li>" +
-                    "<li><a href=\"#\">Contenidos grupo</a></li>" +
-                    "<li><a href=\"#\">Colaboración contenido</a></li>");
-        }
-    }).fail(function(data){
-        errorCargando();
-    });
+        }).fail(function(data){
+            errorCargando();
+        });
+    }
 }
 
 function cargando(){
@@ -224,3 +213,29 @@ function submitFormGeneral(form){
     return respuesta; //Nos regresará si el formulario estaba correcto o no.
 }
 
+function verificarSesion(pagina){
+    if(pagina.toString().indexOf("Regístrate") === -1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function muestraAvisoSesionTermino(){
+    BootstrapDialog.show({
+        message: 'Su sesión ha expirado. Por favor, inicie sesión de nuevo.',
+        closable: false,
+        draggable: true,
+        buttons: [{
+            id: 'btn-cerrar',
+            icon: 'glyphicon glyphicon-log-out',
+            label: 'De acuerdo',
+            cssClass: 'btn-primary',
+            autospin: false,
+            action: function(dialogRef){
+                dialogRef.close();
+                location.reload();
+            }
+        }]
+    });
+}

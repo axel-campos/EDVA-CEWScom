@@ -27,11 +27,11 @@ public class AltaContenidoAction extends ActionSupport {
     public void validate(){
         if(titulo == null || titulo.trim().isEmpty()){
             addActionError("El campo título es requerido.");
-        }else if(titulo.length() > 20){
-            addActionError("El campo título no debe contener más de 20 letras.");
+        }else if(titulo.length() > 50){
+            addActionError("El campo título no debe contener más de 50 letras.");
         }
-        if(tema.length() > 20){
-            addActionError("El campo tema no debe contener más de 20 letras.");
+        if(tema.length() > 50){
+            addActionError("El campo tema no debe contener más de 50 letras.");
         }
         if(descripcion.length() > 1000){
             addActionError("El campo descripción no debe contener más de 1000 letras.");
@@ -52,6 +52,7 @@ public class AltaContenidoAction extends ActionSupport {
             accion = "guardó";
         }else{//Modificar
             viejo.setIdContenido(Integer.parseInt(id));
+            contenido.setIdContenido(Integer.parseInt(id));
             accion = "modificó";
         }
         try{
