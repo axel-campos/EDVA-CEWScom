@@ -4,6 +4,8 @@ $(document).ready(function(){
     window.onhashchange=function(){window.location.hash="no-back-button";} 
 });
 // Tipos de mensajes a mostrar
+
+var linkGrupo = "";
 var TIPO_MENSAJE = {
     DEFAULT: 0,
     INFO: 1,
@@ -53,15 +55,36 @@ function cambiarContenidos(pagina, target){
             }else if(pagina.toString() === "ListaProfesor"){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
                         "<li><a href=\"#\">Profesores</a></li>");
-            }else if(pagina.toString().indexOf("ListarMiembrosAction") !== -1){
+            }else if(pagina.toString().indexOf("ListarContenidosGrupoAction") !== -1){
+                linkGrupo = pagina;
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\" >Mis grupos</a></li>" +
                         "<li><a href=\"#\">Contenidos grupo</a></li>");
             }else if(pagina.toString().indexOf("workspaceColaboracion") !== -1){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\">Mis grupos</a></li>" +
-                        "<li><a href=\"#\">Contenidos grupo</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
                         "<li><a href=\"#\">Colaboración contenido</a></li>");
+            }else if(pagina.toString().indexOf("ListRoles") !== -1){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
+                        "<li><a href=\"#\">Roles de grupo</a></li>");
+            }else if(pagina.toString().indexOf("ListSolicitudes") !== -1){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
+                        "<li><a href=\"#\">Solicitudes de grupo</a></li>");
+            }else if(pagina.toString().indexOf("ListarMiembrosAction") !== -1){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
+                        "<li><a href=\"#\">Miembros del grupo</a></li>");
+            }else if(pagina.toString().indexOf("fileList") !== -1){
+                $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
+                        "<li><a href=\"#\">Recursos del contenido</a></li>");
             }
         }).fail(function(data){
             errorCargando();

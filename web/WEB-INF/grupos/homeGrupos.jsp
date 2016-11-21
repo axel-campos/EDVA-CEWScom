@@ -10,9 +10,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container-fluid">
+        <!--div class="container-fluid">
             <a class="btn btn-link" onclick="cambiarContenidos('ListarContenidosGrupoAction?token=<s:property value="token"/>','#contenido');"><span class="glyphicon glyphicon-home"></span> Contenidos del grupo</a>
-        </div>
+        </div-->
         <div class="container-fluid">
             <table id="tabla" style="width: 100%">
                 <thead>
