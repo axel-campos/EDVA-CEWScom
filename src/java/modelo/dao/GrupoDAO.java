@@ -15,7 +15,7 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 
 	@Override
 	public void registrar(Grupo registro) {
-		String sql = "INSERT INTO Grupo VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO grupo VALUES (?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getToken());
@@ -30,7 +30,7 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 
 	@Override
 	public void modificar(Grupo viejo, Grupo nuevo) {
-		String sql = "UPDATE Grupo SET token = ?, nombre = ?, "
+		String sql = "UPDATE grupo SET token = ?, nombre = ?, "
 			+ "descripcion = ?, totalProfesores = ? WHERE token = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -47,7 +47,7 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 
 	@Override
 	public void eliminar(Grupo registro) {
-		String sql = "DELETE FROM Grupo WHERE token = ?";
+		String sql = "DELETE FROM grupo WHERE token = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getToken());
@@ -60,7 +60,7 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 
 	@Override
 	public Grupo buscar(Grupo registro) {
-		String sql = "SELECT * FROM Grupo WHERE token = ?";
+		String sql = "SELECT * FROM grupo WHERE token = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getToken());
@@ -81,7 +81,7 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 
 	@Override
 	public List<Grupo> buscarTodos() {
-		String sql = "SELECT * FROM Grupo";
+		String sql = "SELECT * FROM grupo";
 		List<Grupo> lista = new ArrayList<>();
 		
 		try (
@@ -103,7 +103,7 @@ public class GrupoDAO extends ConexionDAO<Grupo> {
 	}
     
     public List<Grupo> buscarTodosLimite() {
-		String sql = "SELECT * FROM Grupo LIMIT 100";
+		String sql = "SELECT * FROM grupo LIMIT 100";
 		List<Grupo> lista = new ArrayList<>();
 		
 		try (

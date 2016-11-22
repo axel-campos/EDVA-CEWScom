@@ -15,7 +15,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
     @Override
     public void registrar(Usuario registro) {
-        String sql = "INSERT INTO Usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, registro.getCorreo());
@@ -36,7 +36,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
     @Override
     public void modificar(Usuario viejo, Usuario nuevo) {
-        String sql = "UPDATE Usuario SET correo = ?, nombre = ?, aPaterno = ?, aMaterno = ?, "
+        String sql = "UPDATE usuario SET correo = ?, nombre = ?, aPaterno = ?, aMaterno = ?, "
                 + "cedula = ?, tipoUsuario = ?, fechaNacimiento = ?, password = ?, facebook = ?, avatar = ? WHERE correo = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -59,7 +59,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
     @Override
     public void eliminar(Usuario registro) {
-        String sql = "DELETE FROM Usuario WHERE correo = ?";
+        String sql = "DELETE FROM usuario WHERE correo = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, registro.getCorreo());
@@ -72,7 +72,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
     @Override
     public Usuario buscar(Usuario registro) {
-        String sql = "SELECT * FROM Usuario WHERE correo = ?";
+        String sql = "SELECT * FROM usuario WHERE correo = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, registro.getCorreo());
@@ -100,7 +100,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
 
     @Override
     public List<Usuario> buscarTodos() {
-        String sql = "SELECT * FROM Usuario";
+        String sql = "SELECT * FROM usuario";
         List<Usuario> lista = new ArrayList<>();
 
         try (
@@ -127,7 +127,7 @@ public class UsuarioDAO extends ConexionDAO<Usuario> {
     }
 
     public List<Usuario> buscarProfesores() {
-        String sql = "SELECT * FROM Usuario WHERE tipoUsuario = 2";
+        String sql = "SELECT * FROM usuario WHERE tipoUsuario = 2";
         List<Usuario> lista = new ArrayList<>();
 
         try (

@@ -15,7 +15,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 
 	@Override
 	public void registrar(UsuarioVotacion registro) {
-		String sql = "INSERT INTO UsuarioVotacion VALUES (?, ?, ?)";
+		String sql = "INSERT INTO usuariovotacion VALUES (?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdVotacion());
@@ -29,7 +29,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 
 	@Override
 	public void modificar(UsuarioVotacion viejo, UsuarioVotacion nuevo) {
-		String sql = "UPDATE UsuarioVotacion SET idVotacion = ?, correo = ?, version = ? "
+		String sql = "UPDATE usuariovotacion SET idVotacion = ?, correo = ?, version = ? "
 			+ "WHERE idVotacion = ? AND correo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -46,7 +46,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 
 	@Override
 	public void eliminar(UsuarioVotacion registro) {
-		String sql = "DELETE FROM UsuarioVotacion WHERE idVotacion = ? AND correo = ?";
+		String sql = "DELETE FROM usuariovotacion WHERE idVotacion = ? AND correo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdVotacion());
@@ -59,7 +59,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 
 	@Override
 	public UsuarioVotacion buscar(UsuarioVotacion registro) {
-		String sql = "SELECT * FROM UsuarioVotacion WHERE idVotacion = ? AND correo = ?";
+		String sql = "SELECT * FROM usuariovotacion WHERE idVotacion = ? AND correo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdVotacion());
@@ -80,7 +80,7 @@ public class UsuarioVotacionDAO extends ConexionDAO<UsuarioVotacion> {
 
 	@Override
 	public List<UsuarioVotacion> buscarTodos() {
-		String sql = "SELECT * FROM UsuarioVotacion";
+		String sql = "SELECT * FROM usuariovotacion";
 		List<UsuarioVotacion> lista = new ArrayList<>();
 		
 		try (

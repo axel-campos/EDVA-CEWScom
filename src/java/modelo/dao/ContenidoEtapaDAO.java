@@ -17,7 +17,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public void registrar(ContenidoEtapa registro) {
-		String sql = "INSERT INTO ContenidoEtapa () VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO contenidoetapa () VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -34,7 +34,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public void modificar(ContenidoEtapa viejo, ContenidoEtapa nuevo) {
-		String sql = "UPDATE ContenidoEtapa SET idContenido = ?, version = ?, idEtapa = ?, "
+		String sql = "UPDATE contenidoetapa SET idContenido = ?, version = ?, idEtapa = ?, "
 			+ "tiempoModificacion = ?, rutaRecursos = ?, liberado = ? "
 			+ "WHERE idContenido = ? AND version = ? AND idEtapa = ?";
 		
@@ -56,7 +56,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public void eliminar(ContenidoEtapa registro) {
-		String sql = "DELETE FROM ContenidoEtapa WHERE idContenido = ? AND version = ? AND idEtapa = ?";
+		String sql = "DELETE FROM contenidoetapa WHERE idContenido = ? AND version = ? AND idEtapa = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -70,7 +70,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public ContenidoEtapa buscar(ContenidoEtapa registro) {
-		String sql = "SELECT * FROM ContenidoEtapa WHERE idContenido = ? AND version = ? AND idEtapa = ?";
+		String sql = "SELECT * FROM contenidoetapa WHERE idContenido = ? AND version = ? AND idEtapa = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -95,7 +95,7 @@ public class ContenidoEtapaDAO extends ConexionDAO<ContenidoEtapa> {
 
 	@Override
 	public List<ContenidoEtapa> buscarTodos() {
-		String sql = "SELECT * FROM ContenidoEtapa";
+		String sql = "SELECT * FROM contenidoetapa";
 		List<ContenidoEtapa> lista = new ArrayList<>();
 		
 		try (

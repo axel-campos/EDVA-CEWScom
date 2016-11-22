@@ -28,7 +28,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         }
 
         UsuarioDAO usuariodao = new UsuarioDAO();
-        try {
+        //try {
             usuariodao.conectar();
             Usuario usuario = usuariodao.buscar(new Usuario().setCorreo(correo));
             if (usuario != null) {
@@ -43,12 +43,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
             usuariodao.desconectar();
             addActionError("El correo o la contraseña son incorrectas.");
             return INPUT;
-        } catch (RuntimeException e) {
+        /*} catch (RuntimeException e) {
             usuariodao.desconectar();
             e.printStackTrace();
             addActionError("Ocurrió un error al buscar al usuario.");
             return ERROR;
-        }
+        }*/
     }
 
     public String logout() throws Exception {

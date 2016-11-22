@@ -15,7 +15,7 @@ public class TipoUsuarioDAO extends ConexionDAO<TipoUsuario> {
 
 	@Override
 	public void registrar(TipoUsuario registro) {
-		String sql = "INSERT INTO tipoUsuario VALUES (?, ?)";
+		String sql = "INSERT INTO tipousuario VALUES (?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdTipoUsuario());
@@ -28,7 +28,7 @@ public class TipoUsuarioDAO extends ConexionDAO<TipoUsuario> {
 
 	@Override
 	public void modificar(TipoUsuario viejo, TipoUsuario nuevo) {
-		String sql = "UPDATE tipoUsuario SET idtipoUsuario = ?, nombre = ? WHERE idtipoUsuario = ?";
+		String sql = "UPDATE tipousuario SET idtipoUsuario = ?, nombre = ? WHERE idtipoUsuario = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, nuevo.getIdTipoUsuario());
@@ -42,7 +42,7 @@ public class TipoUsuarioDAO extends ConexionDAO<TipoUsuario> {
 
 	@Override
 	public void eliminar(TipoUsuario registro) {
-		String sql = "DELETE FROM tipoUsuario WHERE idtipoUsuario = ?";
+		String sql = "DELETE FROM tipousuario WHERE idtipoUsuario = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdTipoUsuario());
@@ -54,7 +54,7 @@ public class TipoUsuarioDAO extends ConexionDAO<TipoUsuario> {
 
 	@Override
 	public TipoUsuario buscar(TipoUsuario registro) {
-		String sql = "SELECT * FROM tipoUsuario WHERE idtipoUsuario = ?";
+		String sql = "SELECT * FROM tipousuario WHERE idtipoUsuario = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdTipoUsuario());
@@ -73,7 +73,7 @@ public class TipoUsuarioDAO extends ConexionDAO<TipoUsuario> {
 
 	@Override
 	public List<TipoUsuario> buscarTodos() {
-		String sql = "SELECT * FROM tipoUsuario";
+		String sql = "SELECT * FROM tipousuario";
 		List<TipoUsuario> lista = new ArrayList<>();
 		
 		try (

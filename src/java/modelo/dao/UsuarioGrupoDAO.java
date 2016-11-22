@@ -16,7 +16,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 
 	@Override
 	public void registrar(UsuarioGrupo registro) {
-		String sql = "INSERT INTO UsuarioGrupo VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO usuariogrupo VALUES (?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getCorreo());
@@ -31,7 +31,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 
 	@Override
 	public void modificar(UsuarioGrupo viejo, UsuarioGrupo nuevo) {
-		String sql = "UPDATE UsuarioGrupo SET correo = ?, token = ?, aceptado = ?, "
+		String sql = "UPDATE usuariogrupo SET correo = ?, token = ?, aceptado = ?, "
 			+ "idtipoUsuarioGrupo = ? WHERE correo = ? AND token = ?";
 
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -50,7 +50,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 
 	@Override
 	public void eliminar(UsuarioGrupo registro) {
-		String sql = "DELETE FROM UsuarioGrupo WHERE correo = ? AND token = ?";
+		String sql = "DELETE FROM usuariogrupo WHERE correo = ? AND token = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getCorreo());
@@ -63,7 +63,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 
 	@Override
 	public UsuarioGrupo buscar(UsuarioGrupo registro) {
-		String sql = "SELECT * FROM UsuarioGrupo WHERE correo = ? AND token = ?";
+		String sql = "SELECT * FROM usuariogrupo WHERE correo = ? AND token = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, registro.getCorreo());
@@ -85,7 +85,7 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 
 	@Override
 	public List<UsuarioGrupo> buscarTodos() {
-		String sql = "SELECT * FROM UsuarioGrupo";
+		String sql = "SELECT * FROM usuariogrupo";
 		List<UsuarioGrupo> lista = new ArrayList<>();
 		
 		try (
@@ -107,8 +107,8 @@ public class UsuarioGrupoDAO extends ConexionDAO<UsuarioGrupo> {
 	}
         
         public List<Usuario> getProfesoresDeGrupo(String token){
-        String sql = "SELECT * FROM Usuario u " + 
-                    "INNER JOIN UsuarioGrupo AS ug ON ug.correo = u.correo " +
+        String sql = "SELECT * FROM usuario u " + 
+                    "INNER JOIN usuariogrupo AS ug ON ug.correo = u.correo " +
                     "WHERE ug.token = ?";
         List<Usuario> usuarios = new ArrayList<>();
         
