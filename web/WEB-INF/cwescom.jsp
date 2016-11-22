@@ -69,11 +69,6 @@
         <script src="${pageContext.request.contextPath}/js/principal/jquery.vide.min.js"></script>
     </head>
     <body>
-        <s:if test="hasActionErrors()">
-            <div class="alert alert-danger" id="msjError">
-                <s:actionerror />
-            </div>
-        </s:if>
         <div data-vide-bg="${pageContext.request.contextPath}/images/principal/training">
             <div class="center-container">
                 <div class="ban-shade">
