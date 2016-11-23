@@ -43,7 +43,7 @@
                 Usuario usuario = (Usuario)session.getAttribute("usuario");
                 correo = usuario.getCorreo();
             }
-            String votoUsuarioSql = "SELECT * FROM usuarioVotacion WHERE correo = '" + correo + "' "
+            String votoUsuarioSql = "SELECT * FROM usuariovotacion WHERE correo = '" + correo + "' "
                     + "AND idVotacion = (SELECT idVotacion FROM votacion WHERE idContenido = " + idContenido + " AND idEtapa = 1)";
             List<Map<String,Object>> flagUsuarioVoto = usuarioVotacionDAO.consultaGenerica(votoUsuarioSql);
             if(flagUsuarioVoto.size() > 0){

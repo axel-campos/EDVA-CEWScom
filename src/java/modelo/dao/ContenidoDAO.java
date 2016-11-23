@@ -15,7 +15,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 
 	@Override
 	public void registrar(Contenido registro) {
-		String sql = "INSERT INTO Contenido VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO contenido VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -33,7 +33,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 
 	@Override
 	public void modificar(Contenido viejo, Contenido nuevo) {
-		String sql = "UPDATE Contenido SET idContenido = ?, token = ?, titulo = ?, tema = ?, "
+		String sql = "UPDATE contenido SET idContenido = ?, token = ?, titulo = ?, tema = ?, "
 			+ "descripcion = ?, competencia = ?, finalizado = ? WHERE idContenido = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -53,7 +53,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 
 	@Override
 	public void eliminar(Contenido registro) {
-		String sql = "DELETE FROM Contenido WHERE idContenido = ?";
+		String sql = "DELETE FROM contenido WHERE idContenido = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -65,7 +65,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 
 	@Override
 	public Contenido buscar(Contenido registro) {
-		String sql = "SELECT * FROM Contenido WHERE idContenido = ?";
+		String sql = "SELECT * FROM contenido WHERE idContenido = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdContenido());
@@ -89,7 +89,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 
 	@Override
 	public List<Contenido> buscarTodos() {
-		String sql = "SELECT * FROM Contenido";
+		String sql = "SELECT * FROM contenido";
 		List<Contenido> lista = new ArrayList<>();
 		
 		try (
@@ -114,7 +114,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
 	}
     
     public void buscarContenidoxTitulo(Contenido registro){
-        String sql = "SELECT * FROM Contenido WHERE titulo = ? AND token = ?";
+        String sql = "SELECT * FROM contenido WHERE titulo = ? AND token = ?";
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, registro.getIdContenido());
             stmt.setString(2, registro.getToken());
@@ -133,7 +133,7 @@ public class ContenidoDAO extends ConexionDAO<Contenido> {
      * y al token proporcionado.
      */
     public Contenido buscarContenidoConToken(Contenido registro) {
-        String sql = "SELECT * FROM Contenido WHERE idContenido = ? and token = ?";
+        String sql = "SELECT * FROM contenido WHERE idContenido = ? and token = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, registro.getIdContenido());

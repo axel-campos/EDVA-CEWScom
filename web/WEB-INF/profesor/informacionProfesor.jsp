@@ -31,14 +31,14 @@
                         String query = "SELECT CONCAT_WS(' ',u.nombre,u.aPaterno,u.aMaterno) AS nombre, u.cedula, r.causa, r.fechaReporte, " +
                             "(SELECT COUNT(*) FROM reporte r2 WHERE r2.correo = u.correo) AS numReportes, " +
                             " '1' AS tipo " +
-                            "FROM Usuario u " +
+                            "FROM usuario u " +
                             "LEFT JOIN reporte r ON r.correo = u.correo " +
                             "WHERE u.correo = '" + correo + "' " +
                             "UNION " +
                             "SELECT CONCAT_WS(' ',u.nombre,u.aPaterno,u.aMaterno) AS nombre, u.cedula, r.causa, r.fechaReporte, " +
                             "(SELECT COUNT(*) FROM reporte r2 WHERE r2.token IN (SELECT ug.token FROM usuariogrupo ug WHERE ug.correo = '" + correo + "')) AS numReportes, " +
                             "'2' AS tipo " +
-                            "FROM Usuario u " +
+                            "FROM usuario u " +
                             "LEFT JOIN reporte r ON r.token IN (SELECT ug2.token FROM usuariogrupo ug2 WHERE ug2.correo = u.correo) " +
                             "WHERE u.correo = '" + correo + "' " +
                             "UNION " +
@@ -46,7 +46,7 @@
                             "(SELECT COUNT(*) FROM reporte r2 WHERE r2.idContenido IN " +
                             "(SELECT c2.idContenido FROM contenido c2 WHERE c2.token IN (SELECT ug2.token FROM usuariogrupo ug2 WHERE ug2.correo = '" + correo + "'))) AS numReportes, " +
                             "'3' AS tipo " +
-                            "FROM Usuario u " +
+                            "FROM usuario u " +
                             "LEFT JOIN reporte r ON r.idContenido IN " +
                             "(SELECT c.idContenido FROM contenido c WHERE c.token IN (SELECT ug2.token FROM usuariogrupo ug2 WHERE ug2.correo = '" + correo + "')) " +
                             "WHERE u.correo = '" + correo + "'";

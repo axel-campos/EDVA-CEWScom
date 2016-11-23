@@ -15,7 +15,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public void registrar(Reporte registro) {
-		String sql = "INSERT INTO Reporte VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO reporte VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
 			stmt.setString(2, registro.getCausa());
@@ -38,7 +38,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public void modificar(Reporte viejo, Reporte nuevo) {
-		String sql = "UPDATE Reporte SET idReporte = ?, causa = ?, idContenido = ?, correo = ?, token = ?, "
+		String sql = "UPDATE reporte SET idReporte = ?, causa = ?, idContenido = ?, correo = ?, token = ?, "
                 + "atendido = ?, aceptado = ?, fechaReporte = ?, correoReportando = ? WHERE idReporte = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -61,7 +61,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public void eliminar(Reporte registro) {
-		String sql = "DELETE FROM Reporte WHERE idReporte = ?";
+		String sql = "DELETE FROM reporte WHERE idReporte = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
@@ -73,7 +73,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public Reporte buscar(Reporte registro) {
-		String sql = "SELECT * FROM Reporte WHERE idReporte = ?";
+		String sql = "SELECT * FROM reporte WHERE idReporte = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdReporte());
@@ -99,7 +99,7 @@ public class ReporteDAO extends ConexionDAO<Reporte> {
 
 	@Override
 	public List<Reporte> buscarTodos() {
-		String sql = "SELECT * FROM Reporte";
+		String sql = "SELECT * FROM reporte";
 		List<Reporte> lista = new ArrayList<>();
 		
 		try (

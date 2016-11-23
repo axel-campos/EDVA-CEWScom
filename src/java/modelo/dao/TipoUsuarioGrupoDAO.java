@@ -15,7 +15,7 @@ public class TipoUsuarioGrupoDAO extends ConexionDAO<TipoUsuarioGrupo> {
 
 	@Override
 	public void registrar(TipoUsuarioGrupo registro) {
-		String sql = "INSERT INTO tipoUsuarioGrupo VALUES (?, ?, ?)";
+		String sql = "INSERT INTO tipousuariogrupo VALUES (?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdTipoUsuarioGrupo());
@@ -29,7 +29,7 @@ public class TipoUsuarioGrupoDAO extends ConexionDAO<TipoUsuarioGrupo> {
 
 	@Override
 	public void modificar(TipoUsuarioGrupo viejo, TipoUsuarioGrupo nuevo) {
-		String sql = "UPDATE tipoUsuarioGrupo SET idtipoUsuarioGrupo = ?, nombre = ?, "
+		String sql = "UPDATE tipousuariogrupo SET idtipoUsuarioGrupo = ?, nombre = ?, "
 			+ "descripcion = ? WHERE idtipoUsuarioGrupo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -45,7 +45,7 @@ public class TipoUsuarioGrupoDAO extends ConexionDAO<TipoUsuarioGrupo> {
 
 	@Override
 	public void eliminar(TipoUsuarioGrupo registro) {
-		String sql = "DELETE FROM tipoUsuarioGrupo WHERE idtipoUsuarioGrupo = ?";
+		String sql = "DELETE FROM tipousuariogrupo WHERE idtipoUsuarioGrupo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdTipoUsuarioGrupo());
@@ -57,7 +57,7 @@ public class TipoUsuarioGrupoDAO extends ConexionDAO<TipoUsuarioGrupo> {
 
 	@Override
 	public TipoUsuarioGrupo buscar(TipoUsuarioGrupo registro) {
-		String sql = "SELECT * FROM tipoUsuarioGrupo WHERE idtipoUsuarioGrupo = ?";
+		String sql = "SELECT * FROM tipousuariogrupo WHERE idtipoUsuarioGrupo = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, registro.getIdTipoUsuarioGrupo());
@@ -77,7 +77,7 @@ public class TipoUsuarioGrupoDAO extends ConexionDAO<TipoUsuarioGrupo> {
 
 	@Override
 	public List<TipoUsuarioGrupo> buscarTodos() {
-		String sql = "SELECT * FROM tipoUsuarioGrupo";
+		String sql = "SELECT * FROM tipousuariogrupo";
 		List<TipoUsuarioGrupo> lista = new ArrayList<>();
 		
 		try (

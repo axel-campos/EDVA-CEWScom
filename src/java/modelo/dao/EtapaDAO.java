@@ -15,7 +15,7 @@ public class EtapaDAO extends ConexionDAO<Etapa> {
 
 	@Override
 	public void registrar(Etapa registro) {
-		String sql = "INSERT INTO Etapa VALUES (?, ?, ?)";
+		String sql = "INSERT INTO etapa VALUES (?, ?, ?)";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setShort(1, registro.getIdEtapa());
@@ -29,7 +29,7 @@ public class EtapaDAO extends ConexionDAO<Etapa> {
 
 	@Override
 	public void modificar(Etapa viejo, Etapa nuevo) {
-		String sql = "UPDATE Etapa SET idEtapa = ?, nombre = ?, descripcion = ? "
+		String sql = "UPDATE etapa SET idEtapa = ?, nombre = ?, descripcion = ? "
 			+ "WHERE idEtapa = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -45,7 +45,7 @@ public class EtapaDAO extends ConexionDAO<Etapa> {
 
 	@Override
 	public void eliminar(Etapa registro) {
-		String sql = "DELETE FROM Etapa WHERE idEtapa = ?";
+		String sql = "DELETE FROM etapa WHERE idEtapa = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setShort(1, registro.getIdEtapa());
@@ -57,7 +57,7 @@ public class EtapaDAO extends ConexionDAO<Etapa> {
 
 	@Override
 	public Etapa buscar(Etapa registro) {
-		String sql = "SELECT * FROM Etapa WHERE idEtapa = ?";
+		String sql = "SELECT * FROM etapa WHERE idEtapa = ?";
 		
 		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setShort(1, registro.getIdEtapa());
@@ -77,7 +77,7 @@ public class EtapaDAO extends ConexionDAO<Etapa> {
 
 	@Override
 	public List<Etapa> buscarTodos() {
-		String sql = "SELECT * FROM Etapa";
+		String sql = "SELECT * FROM etapa";
 		List<Etapa> lista = new ArrayList<>();
 		
 		try (
