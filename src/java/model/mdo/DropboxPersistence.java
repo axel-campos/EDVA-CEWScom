@@ -163,6 +163,22 @@ public final class DropboxPersistence implements FilePersistence {
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
 
+    private void subirArchivoHTML(String ruta, String nombre, String contenido) throws IOException, DbxException {
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        String token = ruta.split("/")[1];
+        String tempFile = appRoot + ruta + "/" + nombre;
+        File temp = new File(tempFile);
+        FileUtils.writeStringToFile(temp, contenido, "UTF-8");
+        try (FileInputStream fis = new FileInputStream(temp)) {
+            client
+                .files()
+                .uploadBuilder(ruta + "/" + nombre)
+                .withMode(WriteMode.OVERWRITE)
+                .uploadAndFinish(fis);
+        }
+        FileUtils.deleteDirectory(new File(appRoot + token));
+    }
+
     private String descargarArchivoTexto(String ruta, String nombre) throws IOException, DbxException {
         String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
         String token = ruta.split("/")[1];
@@ -227,7 +243,8 @@ public final class DropboxPersistence implements FilePersistence {
             MDOParser parser = MDOUtil.getParser(artefactosJSON);
             List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
-            subirArchivoTexto((String) map.get("ruta"), "preview.html", template.setDetalles(detalles_contenido).generarPlantilla(generarHTMLString(artefactosMap, parser, template)));
+            subirArchivoHTML((String) map.get("ruta"), "preview.html", template.setDetalles(detalles_contenido)
+                .generarPlantilla(generarHTMLString(artefactosMap, parser, template)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -255,6 +272,7 @@ public final class DropboxPersistence implements FilePersistence {
             detalles_contenido.put("grupo_nombre", grupo.getNombre());
             detalles_contenido.put("tema", contenido.getTema());
             detalles_contenido.put("descripcion", contenido.getDescripcion());
+            detalles_contenido.put("rutaDescarga", "/" + token + "/" + idContenido);
 
             grupoDAO.desconectar();
             contenidoDAO.desconectar();
@@ -269,7 +287,8 @@ public final class DropboxPersistence implements FilePersistence {
                 HTMLbodies.addAll(generarHTMLString(artefactosMap, parser, template));
             }
 
-            subirArchivoTexto("/" + token + "/" + idContenido, "contenido_didactico_liberado.html", new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
+            subirArchivoHTML("/" + token + "/" + idContenido, "contenido_didactico_liberado.html",
+                new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
         } catch (Exception e) {
             grupoDAO.desconectar();
             contenidoDAO.desconectar();
@@ -312,11 +331,11 @@ public final class DropboxPersistence implements FilePersistence {
     }
 
     /**
-     * Regresa un mapa con el contenido del JSON dado.
+     * Edita el archivo en dropbox
      *
-     * @param oldName
-     * @param newName
-     * @param path
+     * @param oldName Nombre del archivo
+     * @param newName Nombre nuevo
+     * @param path ruta del archivo
      * @throws java.io.IOException
      * @throws com.dropbox.core.DbxException
      */
@@ -333,10 +352,10 @@ public final class DropboxPersistence implements FilePersistence {
     }
 
     /**
-     * Regresa un mapa con el contenido del JSON dado.
+     * Elimina un archivo de dropbox
      *
-     * @param fileToDelete
-     * @param path
+     * @param fileToDelete Nombre del archivo a borrar
+     * @param path Ruta del archivo en dropbox
      * @throws java.io.IOException
      * @throws com.dropbox.core.DbxException
      */

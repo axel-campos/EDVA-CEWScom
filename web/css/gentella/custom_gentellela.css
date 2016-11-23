@@ -834,7 +834,9 @@ h2 {
   white-space: nowrap; }
 
 .x_title h2 small {
-  margin-left: 10px; }
+  margin-left: 10px;
+  display: none;
+}
 
 .x_title span {
   color: #BDBDBD; }
