@@ -25,8 +25,15 @@ public class AmpliacionTemplate implements MDOTemplate {
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/preview_template.html";
             File htmlTemplateFile = new File(ruta_template);
+//            String template_string = FileUtils.readFileToString(htmlTemplateFile)
+//                .replace("$ruta",
+//                    "http://" + ServletActionContext.getRequest().getServerName()
+//                    + ":" + ServletActionContext.getRequest().getServerPort()
+//                    + ServletActionContext.getRequest().getServletContext().getContextPath());
+
+            String template_string = FileUtils.readFileToString(htmlTemplateFile)
+                .replace("$ruta", "http://" + "148.204.58.113" + ":" + "8080" + "/EDVA");            
             
-            String template_string = FileUtils.readFileToString(htmlTemplateFile).replace("$ruta","http://" + ServletActionContext.getRequest().getServerName() + ":" + ServletActionContext.getRequest().getServerPort() + ServletActionContext.getRequest().getServletContext().getContextPath());
             
             conexionDAO.conectar();
             Etapa etapa = conexionDAO.buscar(new Etapa().setIdEtapa((short) 4));

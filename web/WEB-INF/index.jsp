@@ -78,7 +78,7 @@
 				closeTogetherJS();
 			};
 		</script>
-        <style>
+<!--        <style>
             /*Center on window the Bootstrap Dialog*/
             .modal-dialog{
                 position: absolute;
@@ -90,7 +90,7 @@
                 top: 50%;
                 margin-top: -250px;
             } 
-        </style>
+        </style>-->
     </head>
     <body>
         <%@include file="header.jsp"%>
