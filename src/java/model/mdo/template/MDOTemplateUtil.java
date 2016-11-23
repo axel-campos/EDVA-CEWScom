@@ -103,7 +103,7 @@ public final class MDOTemplateUtil {
                 artifactID = "6";
             }
         } else if (template instanceof AplicacionTemplate) {
-            artifactString = "ampliacion";
+            artifactString = "aplicacion";
             if (artifact instanceof ArbolProblemas) {
                 artifactName = "Arbol de Problemas";
                 artifactID = "1";
@@ -124,7 +124,7 @@ public final class MDOTemplateUtil {
                 artifactID = "6";
             }
         } else if (template instanceof AmpliacionTemplate) {
-            artifactString = "aplicacion";
+            artifactString = "ampliacion";
             if (artifact instanceof Conferencia) {
                 artifactName = "Conferencia";
                 artifactID = "1";

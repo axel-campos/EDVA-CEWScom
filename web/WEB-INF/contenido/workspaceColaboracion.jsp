@@ -110,7 +110,7 @@
                     </div>
                     <button id="btnGuardar" class="btn btn-primary btn-block">Guardar Progreso</button>
 					<br>
-					<button id="btnTerminarColaboracion" class="btn btn-danger btn-block" onclick="cambiarContenidos('ListarContenidosGrupoAction?token=<%=token%>', '#contenido');" disabled>
+					<button id="btnTerminarColaboracion" class="btn btn-danger btn-block" onclick="cambiarContenidos('ListarContenidosGrupoAction?token=<%=token%>', '#contenido');">
 						Terminar Colaboración
 					</button>
                 </div>
