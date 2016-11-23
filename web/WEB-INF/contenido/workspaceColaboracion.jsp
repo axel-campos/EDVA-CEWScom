@@ -10,7 +10,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
     Usuario user = (Usuario) session.getAttribute("usuario");
-    String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
+    String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images" + File.separator;
     File file = new File(destPath + user.getAvatar());
     String imageDataString = "";
     

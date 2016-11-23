@@ -61,6 +61,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
                 out.flush();
             }
         }catch(RuntimeException e){
+            e.printStackTrace();
 			usuarioDAO.desconectar();
             HttpServletResponse response = ServletActionContext.getResponse();
             //Se pone el try para que el PrintWriter se cierre solito.
