@@ -42,7 +42,7 @@ public class ListarProfesores extends ActionSupport implements SessionAware{
             userSession.put("cedula", cedula);
         }
         
-        String sql = "SELECT * FROM Usuario u " + where;
+        String sql = "SELECT * FROM usuario u " + where;
         usuarios = usuarioDAO.consultaGenerica(sql);
         for(Map<String, Object> u : usuarios){
             List<String> aux = new ArrayList<>();
