@@ -233,5 +233,24 @@
         <!--Modal para el login -->
         <%@include file="login.jsp"%>
         <script src="${pageContext.request.contextPath}/js/paginas/login.js"></script>
+        
+        <s:if test="hasActionErrors()">
+            <div id="msjError" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="modal-body">
+                                <p>Su correo y/o contraseña son incorrectas. Por favor, inténtelo de nuevo.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">De acuerdo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </s:if>
+        <script src="${pageContext.request.contextPath}/js/paginas/cwescom.js"></script>
     </body>
 </html>
