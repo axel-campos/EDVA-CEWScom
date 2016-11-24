@@ -18,7 +18,7 @@ var TIPO_MENSAJE = {
 function cambiarContenidos(pagina, target){
     if (TogetherJS.running) {
         TogetherJS();
-        //TogetherJS.require("storage").tab.clear("status");
+        TogetherJS.require("storage").tab.clear("status");
         TogetherJS.on("close", function(){
             $("body").load("index.action", function(){
                 $(target).load(pagina);
