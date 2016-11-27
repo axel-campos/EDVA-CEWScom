@@ -30,7 +30,12 @@ public class ListarSolicitudesAction extends ActionSupport implements intercepto
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.conectar();
             Usuario solicitante = usuarioDAO.buscar(new Usuario().setCorreo(solicitud.getCorreo()));
-            datos.add(solicitante.getCorreo()); datos.add(solicitante.getNombre() + " " + solicitante.getAPaterno() + " " + solicitante.getAMaterno());
+            datos.add(solicitante.getCorreo()); 
+            String nombre = solicitante.getNombre() + " " + solicitante.getAPaterno();
+            if(solicitante.getAMaterno() != null){
+                nombre += " " + solicitante.getAMaterno();
+            }
+            datos.add(nombre);
             solicitantes.add(datos);
             usuarioDAO.desconectar();
         }
