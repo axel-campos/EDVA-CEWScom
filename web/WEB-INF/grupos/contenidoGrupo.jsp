@@ -66,7 +66,7 @@
                 " LEFT JOIN contenidoetapa AS ve ON ve.idContenido = con.idContenido AND ve.idEtapa = 6" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
-                " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY idContenido;";
+                " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY con.idContenido;";
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
             contenidoDAO.desconectar();
             if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
@@ -108,7 +108,7 @@
                             String titulo = (String)columna.get("titulo");
                             String tema = (String)columna.get("tema");
                             String descripcion2 = (String)columna.get("descripcion");
-                            String etapa = "El contenido no tiene etapa activa";
+                            String etapa = "<br/>El contenido no tiene etapa activa";
                             String fechaModificacion = "";
                             String fechaVotacion = "Aún no se ha llegado a la etapa de votación";
                             String idContenido = columna.get("idContenido").toString();
@@ -123,7 +123,7 @@
                                 version = columna.get("version").toString();
                             }   
                             if(columna.get("nombre") != null){
-                                etapa = (String)columna.get("nombre");
+                                etapa = "<br/>" + columna.get("nombre").toString() + " Versión " + columna.get("version").toString();
                             }
                             if(columna.get("tiempoModificacion") != null)
                             {
@@ -144,19 +144,18 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                            Contenido: <%=titulo%>
+                                            Contenido: <%=titulo%> <%=etapa%>
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="collapse<%=i%>" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        Título: <%=titulo%> <br/>
-                                        Grupo: <%=nombreGrupo%> <br/>
-                                        Tema: <%=tema%> <br/>
-                                        Descripción: <%=descripcion2%> <br/>
-                                        Etapa: <%=etapa%> <br/>
-                                        Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
-                                        Fecha votación: <%=fechaVotacion%> <br/>
+                                        <b>Título: </b><%=titulo%> <br/>
+                                        <b>Grupo: </b><%=nombreGrupo%> <br/>
+                                        <b>Tema: </b><%=tema%> <br/>
+                                        <b>Descripción: </b><%=descripcion2%> <br/>
+                                        <b>Fecha límite modificación de etapa: </b><%=fechaModificacion%> <br/>
+                                        <b>Fecha votación: </b><%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
                                             <div class="dropdown">

@@ -64,7 +64,7 @@ function intercambiarListaPorPares(lista) {
 	if (length === 0) {
 		return [];
 	} else if (length === 1) {
-		return lista[0];
+		return [lista[0]];
 	} else if (length === 2) {
 		return [lista[1], lista[0]];
 	}

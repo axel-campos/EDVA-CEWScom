@@ -29,6 +29,9 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
             usuario = usuarioDAO.buscar(new Usuario().setCorreo(correo));
 
             if(usuario == null){
+                if(fecha == null){
+                    fecha = "01/01/1970";
+                }
                 //Sí el resultado es nulo, vamos a registrar al usuario en la base de datos.
                 Date initDate = new SimpleDateFormat("MM/dd/yyyy").parse(fecha);
                 String formatter = new SimpleDateFormat("yyyy-MM-dd").format(initDate);
@@ -65,6 +68,7 @@ public class VerificarUsuarioFacebookAction extends ActionSupport {
             HttpServletResponse response = ServletActionContext.getResponse();
             //Se pone el try para que el PrintWriter se cierre solito.
             try(PrintWriter out = response.getWriter()) {
+                out.println(e);
                 out.println("Error: Hubo un error al procesar la solicitud");
                 out.flush();
             }

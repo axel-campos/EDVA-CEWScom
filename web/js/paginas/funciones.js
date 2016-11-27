@@ -43,7 +43,7 @@ function cambiarContenidos(pagina, target){
             if(pagina.toString() === "principal"){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
                         "<li><a href=\"#\">Inicio</a></li>");
-            }else if(pagina.toString() === "ListGroup"){
+            }else if(pagina.toString() === "SearchGroups"){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
                         "<li><a href=\"#\">Mis grupos</a></li>");
             }else if(pagina.toString() === "listarReportes"){
@@ -58,31 +58,31 @@ function cambiarContenidos(pagina, target){
             }else if(pagina.toString().indexOf("ListarContenidosGrupoAction") !== -1){
                 linkGrupo = pagina;
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\" >Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('SearchGroups','#contenido')\" style=\"cursor:pointer;\" >Mis grupos</a></li>" +
                         "<li><a href=\"#\">Contenidos grupo</a></li>");
             }else if(pagina.toString().indexOf("workspaceColaboracion") !== -1){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('SearchGroups','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
                         "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
                         "<li><a href=\"#\">Colaboración contenido</a></li>");
             }else if(pagina.toString().indexOf("ListRoles") !== -1){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('SearchGroups','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
                         "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
                         "<li><a href=\"#\">Roles de grupo</a></li>");
             }else if(pagina.toString().indexOf("ListSolicitudes") !== -1){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('SearchGroups','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
                         "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
                         "<li><a href=\"#\">Solicitudes de grupo</a></li>");
             }else if(pagina.toString().indexOf("ListarMiembrosAction") !== -1){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('SearchGroups','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
                         "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
                         "<li><a href=\"#\">Miembros del grupo</a></li>");
             }else if(pagina.toString().indexOf("fileList") !== -1){
                 $("#navegacion").append("<li><a href=\"#\">CWEScom</a></li>" +
-                        "<li><a href=\"#\" onclick=\"cambiarContenidos('ListGroup','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
+                        "<li><a href=\"#\" onclick=\"cambiarContenidos('SearchGroups','#contenido')\" style=\"cursor:pointer;\">Mis grupos</a></li>" +
                         "<li><a href=\"#\" onclick=\"cambiarContenidos('" + linkGrupo + "','#contenido')\" style=\"cursor:pointer;\">Contenidos grupo</a></li>" +
                         "<li><a href=\"#\">Recursos del contenido</a></li>");
             }

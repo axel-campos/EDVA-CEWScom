@@ -203,7 +203,7 @@
                         String tema = (String)columna.get("tema");
                         String descripcion = (String)columna.get("descripcion");
                         String idEtapa = columna.get("idEtapa").toString();
-                        String etapa = (String)columna.get("nombre");
+                        String etapa = "<br/>" + columna.get("nombre").toString() + " Versión " + columna.get("version").toString();
                         String version = "";
                         String nombrePanel = "default";
                         if(columna.get("version") != null){
@@ -226,18 +226,17 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                        Contenido: <%=titulo%> <br/> Grupo: <%=nombreGrupo%></a>
+                                        Contenido: <%=titulo%> <br/> Grupo: <%=nombreGrupo%> <%=etapa%></a>
                                 </h4>
                             </div>
                             <div id="collapse<%=i%>" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Título: <%=titulo%> <br/>
-                                    Grupo: <%=nombreGrupo%> <br/>
-                                    Tema: <%=tema%> <br/>
-                                    Descripción: <%=descripcion%> <br/>
-                                    Etapa: <%=etapa%> <br/>
-                                    Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
-                                    Fecha límite votación de etapa: <%=fechaVotacion%> <br/>
+                                    <b>Título: </b><%=titulo%> <br/>
+                                    <b>Grupo: </b><%=nombreGrupo%> <br/>
+                                    <b>Tema: </b><%=tema%> <br/>
+                                    <b>Descripción: </b><%=descripcion%> <br/>
+                                    <b>Fecha límite modificación de etapa: </b><%=fechaModificacion%> <br/>
+                                    <b>Fecha límite votación de etapa: </b><%=fechaVotacion%> <br/>
                                     <br/>
                                     <% if(fechaModificacion != ""){%>
 										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
