@@ -38,7 +38,11 @@ public class ListarRolesGrupo extends ActionSupport implements interceptor.Authe
             usuarioDAO.conectar();
             Usuario user = new Usuario();
             user = usuarioDAO.buscar(new Usuario().setCorreo(usergroup.getCorreo()));
-            info.add(user.getNombre() + " " + user.getAPaterno() + " " + user.getAMaterno());
+            String nombre = user.getNombre() + " " + user.getAPaterno();
+            if(user.getAMaterno() != null){
+                nombre += " " + user.getAMaterno();
+            }
+            info.add(nombre);
             info.add(user.getCorreo());
             info.add(""); info.add("");
             info.set(usergroup.getIdTipoUsuarioGrupo(), "checked");

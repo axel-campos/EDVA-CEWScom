@@ -49,7 +49,7 @@ public class Simulacion implements MDOArtifact {
             + "                                    <span class=\"section\">Simulación: <small>%s</small></span> \n"
             + "                                    <h2 class=\"StepTitle\">Temática</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                    <h2 class=\"StepTitle\">Descripcion</h2>\n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Roles</h2>\n"
             + "                                    <p>%s</p>\n"

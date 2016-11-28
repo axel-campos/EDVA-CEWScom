@@ -678,7 +678,15 @@ var MDOTimeline = (function() {
 		var _VivenciaParser = (function() {
 			function ObservacionParser(contenido) {
 				return "<li class='mdo-vivencia-observacion event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Observación</a></h2>\n\
+							<h2 class='heading'>\n\
+								<a data-toggle='collapse' href='#" + contenido.id + "'>Observación</a>\n\
+								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Observacion\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -696,7 +704,15 @@ var MDOTimeline = (function() {
 			
 			function VisitaParser(contenido) {
 				return "<li class='mdo-vivencia-visita event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Visita</a></h2>\n\
+							<h2 class='heading'>\n\
+								<a data-toggle='collapse' href='#" + contenido.id + "'>Visita</a>\n\
+								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Visita\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -716,7 +732,15 @@ var MDOTimeline = (function() {
 			
 			function DemostracionParser(contenido) {
 				return "<li class='mdo-vivencia-demostracion event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Demostración</a></h2>\n\
+							<h2 class='heading'>\n\
+								<a data-toggle='collapse' href='#" + contenido.id + "'>Demostración</a>\n\
+								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Demostracion\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -732,7 +756,15 @@ var MDOTimeline = (function() {
 			
 			function EnsayoParser(contenido) {
 				return "<li class='mdo-vivencia-ensayo event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Ensayo</a></h2>\n\
+							<h2 class='heading'>\n\
+								<a data-toggle='collapse' href='#" + contenido.id + "'>Ensayo</a>\n\
+								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Ensayo\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -750,7 +782,15 @@ var MDOTimeline = (function() {
 			
 			function SimulacionParser(contenido) {
 				return "<li class='mdo-vivencia-simulacion event'>\n\
-							<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Simulación</a></h2>\n\
+							<h2 class='heading'>\n\
+								<a data-toggle='collapse' href='#" + contenido.id + "'>Simulación</a>\n\
+								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Simulacion\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -796,7 +836,15 @@ var MDOTimeline = (function() {
 		var _ConceptualizacionParser = (function() {
 			function PreguntasParser(contenido) {
 				return "<li class='mdo-conceptualizacion-preguntas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Preguntas</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Preguntas</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Preguntas\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -812,7 +860,15 @@ var MDOTimeline = (function() {
 			
 			function TutoriaParser(contenido) {
 				return "<li class='mdo-conceptualizacion-tutoria event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Tutoría</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Tutoría</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Tutoria\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -830,7 +886,15 @@ var MDOTimeline = (function() {
 			
 			function LluviaIdeasParser(contenido) {
 				return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Lluvia de Ideas</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Lluvia de Ideas</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"LluviaIdeas\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -848,7 +912,15 @@ var MDOTimeline = (function() {
 			
 			function GrupoEstudioParser(contenido) {
 				return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Grupo de Estudio</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Grupo de Estudio</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"GrupoEstudio\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -890,7 +962,15 @@ var MDOTimeline = (function() {
 		var _DocumentacionParser = (function() {
 			function PeliculaParser(contenido) {
 				return "<li class='mdo-documentacion-pelicula event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Película</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Película</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Pelicula\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -910,7 +990,15 @@ var MDOTimeline = (function() {
 			
 			function VideoParser(contenido) {
 				return "<li class='mdo-documentacion-video event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Video</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Video</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Video\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.nombre + "' /><br>\n\
@@ -924,7 +1012,15 @@ var MDOTimeline = (function() {
 			
 			function LibroParser(contenido) {
 				return "<li class='mdo-documentacion-libro event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Libro</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Libro</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Libro\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -944,7 +1040,15 @@ var MDOTimeline = (function() {
 			
 			function ArticuloWebParser(contenido) {
 				return "<li class='mdo-documentacion-articuloweb event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Artículo Web</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Artículo Web</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ArticuloWeb\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -968,7 +1072,15 @@ var MDOTimeline = (function() {
 			
 			function ArticuloPDFParser(contenido) {
 				return "<li class='mdo-documentacion-articulopdf event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Artículo PDF</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Artículo PDF</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ArticuloPDF\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.nombre + "' /><br>\n\
@@ -982,7 +1094,15 @@ var MDOTimeline = (function() {
 			
 			function RevistaParser(contenido) {
 				return "<li class='mdo-documentacion-revista event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Revista</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Revista</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Revista\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1034,7 +1154,15 @@ var MDOTimeline = (function() {
 		var _AplicacionParser = (function() {
 			function EstudioCasoParser(contenido) {
 				return "<li class='mdo-aplicacion-estudiocaso event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Estudio de Caso</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Estudio de Caso</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"EstudioCaso\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1054,7 +1182,15 @@ var MDOTimeline = (function() {
 			
 			function MarcoLogicoParser(contenido) {
 				return "<li class='mdo-aplicacion-marcologico event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Marco Lógico</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Marco Lógico</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"MarcoLogico\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1078,7 +1214,15 @@ var MDOTimeline = (function() {
 			
 			function MapaConceptualParser(contenido) {
 				return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Mapa Conceptual</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Mapa Conceptual</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"MapaConceptual\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1094,7 +1238,15 @@ var MDOTimeline = (function() {
 			
 			function ArbolProblemasParser(contenido) {
 				return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Árbol de Problemas</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Árbol de Problemas</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ArbolProblemas\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1114,7 +1266,15 @@ var MDOTimeline = (function() {
 			
 			function ProyectoInvestigacionParser(contenido) {
 				return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Proyecto de Investigación</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Proyecto de Investigación</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ProyectoInvestigacion\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1134,7 +1294,15 @@ var MDOTimeline = (function() {
 			
 			function EjerciciosParser(contenido) {
 				return "<li class='mdo-aplicacion-ejercicios event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Ejercicios</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Ejercicios</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Ejercicios\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1180,7 +1348,15 @@ var MDOTimeline = (function() {
 		var _AmpliacionParser = (function() {
 			function ConferenciaParser(contenido) {
 				return "<li class='mdo-ampliacion-conferencia event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Conferencia</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Conferencia</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Conferencia\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1196,7 +1372,15 @@ var MDOTimeline = (function() {
 			
 			function MesaRedondaParser(contenido) {
 				return "<li class='mdo-ampliacion-mesaredonda event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Mesa Redonda</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Mesa Redonda</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"MesaRedonda\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1214,7 +1398,15 @@ var MDOTimeline = (function() {
 			
 			function PanelParser(contenido) {
 				return "<li class='mdo-ampliacion-panel event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Panel</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Panel</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Panel\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
@@ -1232,7 +1424,15 @@ var MDOTimeline = (function() {
 			
 			function SimposioParser(contenido) {
 				return "<li class='mdo-ampliacion-simposio event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + contenido.id + "'>Simposio</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + contenido.id + "'>Simposio</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Simposio\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\

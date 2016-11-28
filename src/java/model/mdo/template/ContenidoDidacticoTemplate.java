@@ -35,13 +35,13 @@ public class ContenidoDidacticoTemplate implements MDOTemplate {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/contenido_didactico_template.html";
             File htmlTemplateFile = new File(ruta_template);
 
-//            String template_string = FileUtils.readFileToString(htmlTemplateFile)
-//                .replace("$ruta",
-//                    "http://" + ServletActionContext.getRequest().getServerName()
-//                    + ":" + ServletActionContext.getRequest().getServerPort()
-//                    + ServletActionContext.getRequest().getServletContext().getContextPath());
             String template_string = FileUtils.readFileToString(htmlTemplateFile)
-                .replace("$ruta", "http://" + "148.204.58.113" + ":" + "8080" + "/EDVA");
+                .replace("$ruta",
+                    "http://" + ServletActionContext.getRequest().getServerName()
+                    + ":" + ServletActionContext.getRequest().getServerPort()
+                    + ServletActionContext.getRequest().getServletContext().getContextPath());
+//            String template_string = FileUtils.readFileToString(htmlTemplateFile)
+//                .replace("$ruta", "http://" + "148.204.58.113" + ":" + "8080" + "/EDVA");
 
             dao.conectar();
             Etapa etapa_1 = dao.buscar(new Etapa().setIdEtapa((short) 1));

@@ -36,14 +36,14 @@ $(document).ready(function(){
             success: function(data){
                 var token = $("#token").val();
                 //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
-                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                 var target = "#contenidoGrupo";
                 $(target).html(data);
             },
             error: function(data){
                 var token = $("#token").val();
                 //Se actualiza la pantalla para que ya aparezcan las opciones de establecer tiempos de modificación
-                cambiarContenidos('ListarMiembrosAction?token='+token,'#contenido');
+                cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
                 var target = "#contenidoGrupo";
                 $(target).html(data);
             }

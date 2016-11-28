@@ -72,10 +72,7 @@ function mostrarDisqus(idContenido){
             cssClass: 'btn-success', 
             autospin: false,
             action: function(dialogRef){
-                var resultado = submitForm();
-                if(resultado){//true, quiere decir que todo bien
-                    dialogRef.close();
-                }
+                dialogRef.close();
             }
         }],
         draggable: true

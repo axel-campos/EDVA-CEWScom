@@ -48,6 +48,9 @@
             Boolean cerrarDiv = false;
             if(request.getParameter("token") != null){
                 token2 = (String)request.getParameter("token");
+            }else if(session.getAttribute("token") != null){
+                token2 = (String)session.getAttribute("token");
+                session.removeAttribute("token");
             }
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();
@@ -66,7 +69,7 @@
                 " LEFT JOIN contenidoetapa AS ve ON ve.idContenido = con.idContenido AND ve.idEtapa = 6" +
                 " INNER JOIN grupo AS g ON g.token = con.token " +
                 " INNER JOIN usuariogrupo AS ug ON g.token = ug.token " +
-                " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY idContenido;";
+                " WHERE g.token ='" + token2 + "' AND con.finalizado = 0 GROUP BY con.idContenido;";
             List<Map<String, Object>> tablaContenidos = contenidoDAO.consultaGenerica(sqlContenidos);
             contenidoDAO.desconectar();
             if(tablaContenidos.isEmpty()){  //No tiene grupos asociados, o sus grupos no han comenzado a crear contenidos
@@ -108,7 +111,7 @@
                             String titulo = (String)columna.get("titulo");
                             String tema = (String)columna.get("tema");
                             String descripcion2 = (String)columna.get("descripcion");
-                            String etapa = "El contenido no tiene etapa activa";
+                            String etapa = "<br/>El contenido no tiene etapa activa";
                             String fechaModificacion = "";
                             String fechaVotacion = "Aún no se ha llegado a la etapa de votación";
                             String idContenido = columna.get("idContenido").toString();
@@ -123,7 +126,7 @@
                                 version = columna.get("version").toString();
                             }   
                             if(columna.get("nombre") != null){
-                                etapa = (String)columna.get("nombre");
+                                etapa = "<br/>" + columna.get("nombre").toString() + " Versión " + columna.get("version").toString();
                             }
                             if(columna.get("tiempoModificacion") != null)
                             {
@@ -144,19 +147,18 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                            Contenido: <%=titulo%>
+                                            Contenido: <%=titulo%> <%=etapa%>
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="collapse<%=i%>" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        Título: <%=titulo%> <br/>
-                                        Grupo: <%=nombreGrupo%> <br/>
-                                        Tema: <%=tema%> <br/>
-                                        Descripción: <%=descripcion2%> <br/>
-                                        Etapa: <%=etapa%> <br/>
-                                        Fecha límite modificación de etapa: <%=fechaModificacion%> <br/>
-                                        Fecha votación: <%=fechaVotacion%> <br/>
+                                        <b>Título: </b><%=titulo%> <br/>
+                                        <b>Grupo: </b><%=nombreGrupo%> <br/>
+                                        <b>Tema: </b><%=tema%> <br/>
+                                        <b>Descripción: </b><%=descripcion2%> <br/>
+                                        <b>Fecha límite modificación de etapa: </b><%=fechaModificacion%> <br/>
+                                        <b>Fecha votación: </b><%=fechaVotacion%> <br/>
                                         <br/>
                                         <s:if test="esAdministrador">
                                             <div class="dropdown">
@@ -181,14 +183,16 @@
                                             <!--br><br-->
                                         </s:if>      
                                             <br>
-                                        <% if(fechaModificacion != ""){%>
-                                            <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
-                                            <a onclick="cambiarContenidos('fileList?token=<%=token2%>&idContenido=<%=idContenido%>', '#contenido')" class="btn btn-primary">Administrar Recursos</a>
+                                        <% if(fechaModificacion != "") {
+											etapa = columna.get("nombre").toString();%>
+                                            <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Colaborar</a>
+                                            <a onclick="cambiarContenidos('fileList?token=<%=token2%>&idContenido=<%=idContenido%>', '#contenido')" class="btn btn-primary">Recursos</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
                                             <a onclick="mostrarVotacion('<%=idContenido%>','<%=token2%>')" class="btn btn-success">Ir a votación</a>
                                         <% } %>
                                         <a onclick="mostrarDisqus('<%=idContenido%>')" class="btn btn-info">Ver foro del contenido</a>
-                                        <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-primary">
+                                        <br><br>
+                                        <a onclick="crearReporte('1','<%=idContenido%>','<%=token2%>');" class="btn btn-warning">
                                             <span style="font-size:16px;" class="glyphicon glyphicon-warning-sign"></span> Reportar contenido
                                         </a>
                                             <br><br>

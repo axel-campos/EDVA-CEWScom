@@ -52,8 +52,6 @@ $(document).ready(function(){
                                     //cargarVersiones(etapa);
                                     //
                                     cambiarContenidos('ListarContenidosGrupoAction?token='+token,'#contenido');
-                                    /*var target = "#contenidoGrupo";
-                                    cambiarContenidos('ListarMiembrosAction?token='+token,target);*/
                                 }
 
                             });

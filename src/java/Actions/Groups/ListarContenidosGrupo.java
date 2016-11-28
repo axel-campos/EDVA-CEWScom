@@ -1,17 +1,19 @@
 package Actions.Groups;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
 import modelo.dao.UsuarioGrupoDAO;
 import modelo.pojo.Usuario;
 import modelo.pojo.UsuarioGrupo;
+import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author DanHv
  */
-public class ListarContenidosGrupo extends ActionSupport implements interceptor.AuthenticatedUser{
+public class ListarContenidosGrupo extends ActionSupport implements interceptor.AuthenticatedUser, SessionAware{
     private Usuario usuario;
-    
+    private Map<String, Object> userSession;
     private boolean esCoordinador = false;
     private boolean esAdministrador = false;
     private String token;
@@ -19,6 +21,9 @@ public class ListarContenidosGrupo extends ActionSupport implements interceptor.
     
     @Override
     public String execute() throws Exception {
+        if(userSession.get("token") != null){
+            token = userSession.get("token").toString();
+        }
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
         usuarioGrupoDAO.conectar();
         UsuarioGrupo usuariogrupo = usuarioGrupoDAO.buscar(new UsuarioGrupo().setCorreo(usuario.getCorreo()).setToken(token));
@@ -64,6 +69,11 @@ public class ListarContenidosGrupo extends ActionSupport implements interceptor.
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> userSession) {
+        this.userSession = userSession;
     }
     
     

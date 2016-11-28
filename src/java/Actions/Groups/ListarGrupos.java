@@ -40,7 +40,7 @@ public class ListarGrupos extends ActionSupport implements interceptor.Authentic
         //Vamos a obtener solo los grupos del usuario que tiene activa la sesión
         UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO(); 
         usuarioGrupoDAO.conectar();
-        if(token.trim().isEmpty() && nombre.trim().isEmpty() && rol.equals("0")){//No hubo filtros
+        if((token == null && nombre == null && rol == null) || (token.trim().isEmpty() && nombre.trim().isEmpty() && rol.equals("0"))){//No hubo filtros
             if(usuario.getTipo() == 1){
                 GrupoDAO grupoDAO = new GrupoDAO();
                 grupoDAO.conectar();

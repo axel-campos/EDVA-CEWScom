@@ -10,7 +10,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
     Usuario user = (Usuario) session.getAttribute("usuario");
-    String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images\\";
+    String destPath = ServletActionContext.getServletContext().getRealPath("/") + "images" + File.separator;
     File file = new File(destPath + user.getAvatar());
     String imageDataString = "";
     
@@ -81,6 +81,7 @@
         <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
+		<script src="${pageContext.request.contextPath}/js/collaboration/mdo-info.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/jquery-resizable.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/funciones.js"></script>
     </head>

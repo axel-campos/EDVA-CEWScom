@@ -65,7 +65,7 @@ public class MarcoLogico implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Resultados Esperados</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                    <h2 class=\"StepTitle\">Acitividades A Realizar</h2>\n"
+            + "                                    <h2 class=\"StepTitle\">Actividades A Realizar</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Indicadores</h2>\n"
             + "                                    <p>%s</p>\n"
