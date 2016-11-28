@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <!-- D&D Zone-->
                 <div id="drag-and-drop-zone" class="uploader">
-                    <div>Arrastra tus archivos multimedia</div>
+                    <div>Arrastra tus archivos</div>
                     <div class="or">-o-</div>
                     <div class="browser">
                         <label>
@@ -28,8 +28,11 @@
                     </div>
                 </div>
                 <div id="drag-and-drop-info-alert" class="alert alert-warning">
+                    <!--                    <p class="text-center">
+                                            Los archivos no deben exceder de <strong>25MB </strong>. Los archivos deben ser <strong>imágenes, videos, audios, pdfs o documentos word</strong>. Los archivos con el mismo nombre serán <strong>sobrescritos</strong>.
+                                        </p>-->
                     <p class="text-center">
-                        Los archivos no deben exceder de <strong>25MB </strong>. Los archivos deben ser <strong>imágenes, videos, audios, pdfs o documentos word</strong>. Los archivos con el mismo nombre serán <strong>sobrescritos</strong>.
+                        Los archivos no deben exceder de <strong>25MB </strong>. Los archivos con el mismo nombre serán <strong>sobrescritos</strong>.
                     </p>
                 </div>
                 <!-- /D&D Zone -->
@@ -67,7 +70,7 @@
 //                maxFiles: 10,
                 maxFileSize: 26214400, //25mb per file
                 dataType: 'json',
-                allowedTypes: '((image|audio|video)/*|application/pdf|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document|text/plain)',
+//                allowedTypes: '((image|audio|video)/*|application/pdf|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document|text/plain)',
 //                textFilter: 'jpg;png;gif',
 //                onInit: function () {
 //                 $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');

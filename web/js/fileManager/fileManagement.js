@@ -1,7 +1,83 @@
 /* global RUTA, BootstrapDialog */
 
+var dialogWait = new BootstrapDialog({
+    title: 'Realizando acción',
+    message: 'Por favor, espere...',
+    closable: false
+});
+
+window.operateEvents = {
+    'click .removeFile': function (e, value, row, index) {
+        var extension = row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
+        BootstrapDialog.show({
+            title: 'Confirmar acción',
+            type: BootstrapDialog.TYPE_WARNING,
+            message: '¿Estas seguro de eliminar el archivo: <strong>' + row.name + extension + '</strong> ?',
+            buttons: [{
+                    icon: 'glyphicon glyphicon-send',
+                    label: 'Eliminar archivo',
+                    cssClass: 'btn-warning',
+                    autospin: true,
+                    action: function (dialogRef) {
+                        dialogRef.enableButtons(false);
+                        dialogRef.setClosable(false);
+                        dialogRef.getModalBody().html('Eliminando archivo...');
+                        var data = JSON.stringify({
+                            listFilesToDelete: [row.name + extension],
+                            path: RUTA
+                        });
+                        console.log(row.name + extension);
+                        $.ajax({
+                            url: "filesJSON/deleteFiles",
+                            data: data,
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            type: 'POST',
+                            success: function (json) {
+                                $tableFiles.bootstrapTable('removeByUniqueId', row.name);
+                                dialogRef.close();
+                                showAlert(json.status, json.message);
+                            }
+                        }).fail(function () {
+                            dialogRef.close();
+                            showAlert(false, "Hubo un error al procesar su petición. Por favor, avise a los administradores.");
+                        });
+                    }
+                }, {
+                    label: 'Cancelar',
+                    action: function (dialogRef) {
+                        dialogRef.close();
+                    }
+                }]
+        });
+    },
+    'click .downloadFile': function (e, value, row, index) {
+        dialogWait.open();
+        var extension = row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
+        var data = JSON.stringify({
+            fileName: row.name + extension,
+            path: RUTA
+        });
+        console.log(row.name + extension);
+        $.ajax({
+            url: "filesJSON/downloadFile",
+            data: data,
+            dataType: 'json',
+            contentType: 'application/json',
+            type: 'POST',
+            success: function (json) {
+                window.open(json.filePreview);
+                dialogWait.close();
+            }
+        }).fail(function () {
+            showAlert(false, "Hubo un error al procesar su petición. Por favor, avise a los administradores.");
+            dialogWait.close();
+        });
+    }
+};
+
 var dialogFileUploader = new BootstrapDialog({
-    title: 'Subir Archivos',
+    title: 'Subir archivos',
     cssClass: 'best-position',
     message: function (dialog) {
         var $message = $('<div></div>');
@@ -22,12 +98,58 @@ var dialogFileUploader = new BootstrapDialog({
     }
 });
 
-var dialogWait = new BootstrapDialog({
-    title: 'Preparando archivo Zip',
-    message: 'Por favor, espere...',
-    closable: false
+var dialogResourceUploader = new BootstrapDialog({
+    title: 'Subir recurso',
+    message: 'Ingrese el link: <input type="text" class="form-control">',
+    onhide: function (dialogRef) {
+        var resourceInput = dialogRef.getModalBody().find('input').val();
+//        if ($.trim(resourceInput.toLowerCase()) !== 'banana') {
+//            alert('Need banana!');
+//            return false;
+//        }
+        $tableFiles.bootstrapTable('refresh');
+    },
+    buttons: [
+        {
+            label: 'Cerrar',
+            action: function (dialogRef) {
+                dialogRef.close();
+            }
+        }, {
+            label: 'Subir',
+            cssClass: 'btn-primary',
+            autospin: true,
+            action: function (dialogRef) {
+                dialogRef.enableButtons(false);
+                dialogRef.setClosable(false);
+                dialogRef.getModalBody().html('Subiendo recurso...');
+                var data = JSON.stringify({
+                    listFilesToDelete: idElementsArray,
+                    path: RUTA
+                });
+                console.log(idElementsArray);
+                $.ajax({
+                    url: "filesJSON/deleteFiles",
+                    data: data,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    success: function (json) {
+                        $tableFiles.bootstrapTable('remove', {
+                            field: 'name',
+                            values: idRemove
+                        });
+                        dialogRef.close();
+                        showAlert(json.status, json.message);
+                    }
+                }).fail(function () {
+                    dialogRef.close();
+                    showAlert(false, "Hubo un error al procesar su petición. Por favor, avise a los administradores.");
+                });
+            }
+        }
+    ]
 });
-
 
 var $tableFiles = $('#tabla'),
         $removeFiles = $('#remove'),
@@ -123,6 +245,12 @@ $(document).ready(function () {
                 title: 'Tipo de Archivo',
                 sortable: true,
                 align: 'center'
+            }, {
+                field: 'operate',
+                title: 'Operaciones a archivo',
+                align: 'center',
+                events: operateEvents,
+                formatter: operateFormatter
             }
         ]
     });
@@ -182,7 +310,11 @@ $(document).ready(function () {
 
     $zipFiles.click(function (e) {
         e.preventDefault();
-        window.location.href = 'zipFiles/zipMe?path='+RUTA;
+        var idElementsArray = JSON.stringify($tableFiles.bootstrapTable('getData'));
+        if (idElementsArray.length > 0)
+        {
+            window.location.href = 'zipFiles/zipMe?path=' + RUTA;
+        }
 //        dialogWait.open();
 //        $.ajax({
 //            url: "zipFiles/zipMe",
@@ -217,57 +349,16 @@ function getHeight() {
 
 function operateFormatter(value, row, index) {
     return [
-        '<a class="removeFile" href="javascript:void(0)" title="Remove">',
+        '<a class="removeFile" href="javascript:void(0)" title="Eliminar">',
         '<i class="glyphicon glyphicon-remove"></i>',
+        '</a>  ',
+        '<a class="downloadFile" href="javascript:void(0)" title="Vista Previa">',
+        '<i class="glyphicon glyphicon-eye-open"></i>',
         '</a>'
     ].join('');
 }
-window.operateEvents = {
-    'click .removeFile': function (e, value, row, index) {
-        var extension = row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
-        BootstrapDialog.show({
-            title: 'Confirmar acción',
-            type: BootstrapDialog.TYPE_WARNING,
-            message: '¿Estas seguro de eliminar el archivo: <strong>' + row.name + extension + '</strong> ?',
-            buttons: [{
-                    icon: 'glyphicon glyphicon-send',
-                    label: 'Eliminar archivo',
-                    cssClass: 'btn-warning',
-                    autospin: true,
-                    action: function (dialogRef) {
-                        dialogRef.enableButtons(false);
-                        dialogRef.setClosable(false);
-                        dialogRef.getModalBody().html('Eliminando archivo...');
-                        var data = JSON.stringify({
-                            listFilesToDelete: [row.name + extension],
-                            path: RUTA
-                        });
-                        console.log(row.name + extension);
-                        $.ajax({
-                            url: "filesJSON/deleteFiles",
-                            data: data,
-                            dataType: 'json',
-                            contentType: 'application/json',
-                            type: 'POST',
-                            success: function (json) {
-                                $tableFiles.bootstrapTable('removeByUniqueId', row.name);
-                                dialogRef.close();
-                                showAlert(json.status, json.message);
-                            }
-                        }).fail(function () {
-                            dialogRef.close();
-                            showAlert(false, "Hubo un error al procesar su petición. Por favor, avise a los administradores.");
-                        });
-                    }
-                }, {
-                    label: 'Cancelar',
-                    action: function (dialogRef) {
-                        dialogRef.close();
-                    }
-                }]
-        });
-    }
-};
+
+
 
 function showAlert(status, message) {
     if (status) {

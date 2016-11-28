@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,37 +40,33 @@ public class actionZip extends ActionSupport implements ParameterAware {
     public String execute() throws Exception {
         System.out.println("Path to download: " + path);
         String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
-        File tempDir = new File(appRoot + File.separator + path);
+
+        File appDir = new File(appRoot + File.separator + path);
+        File temporaryDir = Files.createTempDirectory(appDir.toPath(), "temp").toFile();
+
         OutputZipFileName = path.split("/")[1] + "_" + path.split("/")[2];
-        System.out.println("Writing on temp directory: " + tempDir.getPath());
+        System.out.println("Writing on temp directory: " + temporaryDir.getPath());
 
-        System.out.println("Is directory?: " + tempDir.isDirectory());
-        System.out.println("Can write?: " + tempDir.canWrite());
-        System.out.println("Can read?: " + tempDir.canRead());
-        System.out.println("Writing on temp directory: " + tempDir.getPath());
         try {
-            if (tempDir.mkdirs()) {
-                files = DP.listarArchivosDropbox(path);
+            files = DP.listarArchivosDropbox(path);
 
-                for (DropboxFile droppyFile : files) {
-                    DP.descargarArchivoGenerico(path, droppyFile.getName());
-                }
-                
-                message = "Listo, cara de pene.";
-                status = true;
-                FileZipper.zip(tempDir + File.separator, appRoot + File.separator + OutputZipFileName + ".zip");
-                zipInputStream = new FileInputStream(appRoot + File.separator + OutputZipFileName + ".zip");
-                
-            } else {
-                message = "No se pudo descagar el archivo";
-                status = false;
+            for (DropboxFile droppyFile : files) {
+                DP.descargarArchivoGenerico(path, temporaryDir, droppyFile.getName());
             }
+
+            File zipFile = File.createTempFile("files", ".zip", appDir);
+            FileZipper.zip(temporaryDir + File.separator, zipFile.getAbsolutePath());
+            zipInputStream = new FileInputStream(zipFile);
+
+            message = "Listo, mijo.";
+            status = true;
+            zipFile.deleteOnExit();
         } catch (Exception e) {
             message = "Ocurrio un error: " + e.getMessage();
             e.printStackTrace();
             status = false;
         }
-        FileUtils.deleteDirectory(new File(appRoot + File.separator + path.split("/")[1]));
+        FileUtils.deleteDirectory(temporaryDir);
         return SUCCESS;
     }
 

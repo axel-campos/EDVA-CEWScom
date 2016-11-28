@@ -44,6 +44,12 @@
                 <param name="root">filesJSONforTable</param>
             </result>
         </action>
+        <action name="resourceFiles" class="Actions.FileManagement.ResourceReference">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="root">filesJSONforWorkspace</param>
+            </result>
+        </action>
     </package>
     
     <!--    <constant name="struts.devMode" value="true" />-->
@@ -71,6 +77,16 @@
                 <param name="noCache">true</param>
                 <param name="includeProperties">
                     message,
+                    status
+                </param>
+            </result>
+        </action>
+        <action name="downloadFile" class="Actions.FileManagement.DownloadFile">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+                <param name="includeProperties">
+                    filePreview,
                     status
                 </param>
             </result>
