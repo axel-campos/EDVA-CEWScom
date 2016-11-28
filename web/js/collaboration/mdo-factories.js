@@ -15,6 +15,8 @@ var MDOFactories = (function() {
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Pregunta:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Fenómeno a observar:</label>\n\
@@ -41,6 +43,8 @@ var MDOFactories = (function() {
 						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label><br>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Lugar a visitar:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -70,6 +74,8 @@ var MDOFactories = (function() {
 						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label><br>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Objetivo:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -371,6 +377,8 @@ var MDOFactories = (function() {
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label><br>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Autor:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Año:</label>\n\
@@ -552,6 +560,8 @@ var MDOFactories = (function() {
 						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Descripción:</label><br>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Objetivo general:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
