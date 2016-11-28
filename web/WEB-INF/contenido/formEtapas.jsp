@@ -38,34 +38,9 @@
                     <button onclick="" type="button" id="btnAgregar" class="btn btn-default addButton" style="float: right; display: none"><span class="glyphicon glyphicon-plus"></span></button>
                     <!--button type="button" onclick="myfunction()" class="btn btn-default addButton" style="float: right;"><span class="glyphicon glyphicon-plus"></span></button-->
                 </div>
-                <!--div class="form-group">
-                    <label for="fecha22">Fecha:</label>
-                    <input type="text" id="fecha22" name="fecha22" class="form-control fecha"/>
-                </div-->
-                <!--div class="table-responsive">
-                    <table class='table' id="tablaVersiones">
-                        <thead>
-                            <tr>
-                                <th style="width: 30%; text-align: center;">Versión</th>
-                                <th style="width: 70%; text-align: center">Tiempo Límite Creación</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div-->
-                <!--div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4"><p align="center"><b>Versión</b></p></div>
-                        <div class="col-md-8"><p align="center"><b>Tiempo Límite Creación</b></p></div>
-                    </div>
-                </div-->
                 <div class="form-group">
                     <label class="col-md-4 control-label"><p align="center">Versión</p></label>
                     <label class="col-md-8 control-label"><p align="center">Tiempo Límite</p></label>
-                    <!--div class="col-md-6">
-                        <input type="text" id="nombre" name="nombre" class="form-control"/>
-                    </div-->
                 </div>
                 <input type="hidden" value="<s:property value="idContenido"/>" id="idContenido" name="idContenido"/> 
                 <!--Botones normales para crear -->

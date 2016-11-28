@@ -19,6 +19,11 @@
         descripcion = contenido.getDescripcion();
         competencia = contenido.getCompetencia();
     }
+    String
+    descTitulo = "Es el nombre del contenido didáctico.",
+    descTema = "Es el tema de la unidad de aprendizaje el cuál quiere desarrollar con el contenido didáctico.",
+    descDescripcion = "Es la descripción general del contenido didáctico.",
+    descCompetencia = "Es el conjunto de habilidades que el alumno desarrollará y obtendrá a lo largo del contenido didáctico.";
 %>
 <!DOCTYPE html>
 <html>
@@ -31,31 +36,47 @@
         <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    Ingrese los datos para el contenido didáctico
+                    Ingrese los datos para el contenido didáctico.
                     <form id="altaContenido" name="altaContenido" class="form-horizontal">
                         <div class="form-group has-feedback">
-                            <label for="titulo" class="col-md-4 control-label">Titulo: <span class="obligatorio"> *</span></label>
+                            <div class="col-md-4 control-label">
+                                <label for="titulo" title="<%= descTitulo%>" data-toggle="tooltip" data-placement="bottom">
+                                    Titulo: <span class="obligatorio"> *</span>
+                                </label>                            
+                            </div>
                             <div class="col-md-6">
                                 <input type="text" id="titulo" name="titulo" class="form-control" value="<%= titulo%>"/>
                                 <i class="glyphicon glyphicon-list-alt form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            <label for="tema" class="col-md-4 control-label">Tema:</label>
+                            <div class="col-md-4 control-label">
+                                <label for="tema" title="<%= descTema%>" data-toggle="tooltip" data-placement="bottom">
+                                    Tema:
+                                </label>
+                            </div>
                             <div class="col-md-6">
                                 <input type="text" id="tema" name="tema" class="form-control" value="<%= tema%>"/>
                                 <i class="glyphicon glyphicon-book form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            <label for="descripcion" class="col-md-4 control-label">Descripción</label>
+                            <div class="col-md-4 control-label">
+                                <label for="descripcion" title="<%= descDescripcion%>" data-toggle="tooltip" data-placement="bottom">
+                                    Descripción
+                                </label>
+                            </div>
                             <div class="col-md-6">
                                 <textarea id="descripcion" class="form-control" rows="5" name="descripcion" style="resize: none;"><%= descripcion%></textarea>
                                 <i class="glyphicon glyphicon-comment form-control-feedback"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            <label for="competencia" class="col-md-4 control-label">Competencia a obtener</label>
+                            <div class="col-md-4 control-label">
+                                <label for="competencia" title="<%= descCompetencia%>" data-toggle="tooltip" data-placement="bottom">
+                                    Competencia a obtener
+                                </label>
+                            </div>
                             <div class="col-md-6">
                                 <textarea id="competencia" class="form-control" rows="5" name="competencia" style="resize: none;"><%= competencia%></textarea>
                                 <i class="glyphicon glyphicon-refresh form-control-feedback"></i>
