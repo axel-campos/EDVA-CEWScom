@@ -683,6 +683,9 @@ var MDOTimeline = (function() {
 								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Observacion\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
 							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
@@ -705,6 +708,9 @@ var MDOTimeline = (function() {
 								<a data-toggle='collapse' href='#" + contenido.id + "'>Visita</a>\n\
 								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Visita\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 								</button>\n\
 							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
@@ -731,6 +737,9 @@ var MDOTimeline = (function() {
 								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Demostracion\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
 							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
@@ -751,6 +760,9 @@ var MDOTimeline = (function() {
 								<a data-toggle='collapse' href='#" + contenido.id + "'>Ensayo</a>\n\
 								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Ensayo\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 								</button>\n\
 							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
@@ -774,6 +786,9 @@ var MDOTimeline = (function() {
 								<a data-toggle='collapse' href='#" + contenido.id + "'>Simulación</a>\n\
 								<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 									<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+								</button>\n\
+								<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Simulacion\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 								</button>\n\
 							</h2>\n\
 							<div id='" + contenido.id + "' class='collapse'>\n\
@@ -826,6 +841,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Preguntas\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -847,6 +865,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Tutoria\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -870,6 +891,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"LluviaIdeas\");'>\n\
+									<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+								</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -892,6 +916,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Grupo de Estudio</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"GrupoEstudio\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -940,6 +967,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Pelicula\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -965,6 +995,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Video\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
@@ -983,6 +1016,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Libro</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Libro\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1008,6 +1044,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Artículo Web</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ArticuloWeb\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1038,6 +1077,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ArticuloPDF\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
@@ -1056,6 +1098,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Revista</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Revista\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1114,6 +1159,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"EstudioCaso\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -1138,6 +1186,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Marco Lógico</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"MarcoLogico\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1168,6 +1219,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"MapaConceptual\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -1188,6 +1242,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Árbol de Problemas</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ArbolProblemas\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1214,6 +1271,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"ProyectoInvestigacion\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -1238,6 +1298,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Ejercicios</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Ejercicios\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1290,6 +1353,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Conferencia\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -1310,6 +1376,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Mesa Redonda</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"MesaRedonda\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
@@ -1334,6 +1403,9 @@ var MDOTimeline = (function() {
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
 							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Panel\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
+							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
@@ -1356,6 +1428,9 @@ var MDOTimeline = (function() {
 							<a data-toggle='collapse' href='#" + contenido.id + "'>Simposio</a>\n\
 							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
 								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+							<button class='btn btn-info btn-xs btn-info-artefacto' onclick='MDOInfo.mostrarInfoArtefacto(\"Simposio\");'>\n\
+								<span class='glyphicon glyphicon-info-sign'></span>&nbsp;\n\
 							</button>\n\
 						</h2>\n\
 						<div id='" + contenido.id + "' class='collapse'>\n\

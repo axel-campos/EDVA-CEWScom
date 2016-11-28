@@ -81,6 +81,7 @@
         <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
+		<script src="${pageContext.request.contextPath}/js/collaboration/mdo-info.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/jquery-resizable.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/funciones.js"></script>
     </head>
