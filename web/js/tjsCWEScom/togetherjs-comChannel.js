@@ -14,7 +14,7 @@ function updateTogetherJS(container) {
 
 TogetherJS.hub.on('drop', function (msg) {
 	if (msg.sameUrl) {
-		recrearTimeline(msg.htmlcontainer, msg.idcontainer);
+		recrearTimeline(msg.htmlcontainer, msg.idcontainer, false);
 		TogetherJS.reinitialize();
 	}
 });
@@ -22,7 +22,7 @@ TogetherJS.hub.on('drop', function (msg) {
 TogetherJS.hub.on("togetherjs.init-connection", function(msg) {
 	if (msg.peerCount === 0) {
 		// Recrear Timeline desde el servidor
-		recrearTimeline(ARTEFACTOS.artefactos, "#contenidoDidacticoBody");
+		recrearTimeline(ARTEFACTOS.artefactos, "#contenidoDidacticoBody", true);
 	}
 });
 

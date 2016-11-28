@@ -180,7 +180,8 @@
                                             <!--br><br-->
                                         </s:if>      
                                             <br>
-                                        <% if(fechaModificacion != ""){%>
+                                        <% if(fechaModificacion != "") {
+											etapa = columna.get("nombre").toString();%>
                                             <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Colaborar</a>
                                             <a onclick="cambiarContenidos('fileList?token=<%=token2%>&idContenido=<%=idContenido%>', '#contenido')" class="btn btn-primary">Recursos</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>
