@@ -41,7 +41,7 @@ public class Ensayo implements MDOArtifact {
         return String.format(
             "                                <div id=\"vivencias2_%s\">\n"
             + "                                    <span class=\"section\">Ensayo: <small>%s</small></span> \n"
-            + "                                    <h2 class=\"StepTitle\">Descripcion</h2>\n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Temática</h2>\n"
             + "                                    <p>%s</p>\n"

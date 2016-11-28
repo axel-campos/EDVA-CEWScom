@@ -35,7 +35,7 @@ public class Demostracion implements MDOArtifact {
         return String.format(
             "                                <div id=\"vivencias1_%s\">\n"
             + "                                    <span class=\"section\">Demostración: <small>%s</small></span> \n"
-            + "                                    <h2 class=\"StepTitle\">Descripcion</h2>\n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Objetivo</h2>\n"
             + "                                    <p>%s</p>\n"
