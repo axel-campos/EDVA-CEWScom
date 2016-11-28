@@ -120,25 +120,21 @@ var dialogResourceUploader = new BootstrapDialog({
             cssClass: 'btn-primary',
             autospin: true,
             action: function (dialogRef) {
+                var resourceInput = dialogRef.getModalBody().find('input').val();
                 dialogRef.enableButtons(false);
                 dialogRef.setClosable(false);
                 dialogRef.getModalBody().html('Subiendo recurso...');
-                var resourceInput = dialogRef.getModalBody().find('input').val();
                 var data = JSON.stringify({
                     resourceToUpload: resourceInput,
                     path: RUTA
                 });
                 $.ajax({
-                    url: "filesJSON/deleteFiles",
+                    url: "filesJSON/resourceUploader",
                     data: data,
                     dataType: 'json',
                     contentType: 'application/json',
                     type: 'POST',
                     success: function (json) {
-                        $tableFiles.bootstrapTable('remove', {
-                            field: 'name',
-                            values: idRemove
-                        });
                         dialogRef.close();
                         showAlert(json.status, json.message);
                     }
@@ -242,12 +238,12 @@ $(document).ready(function () {
                 align: 'center'
             }, {
                 field: 'type',
-                title: 'Tipo de Archivo',
+                title: 'Tipo de recursos',
                 sortable: true,
                 align: 'center'
             }, {
                 field: 'operate',
-                title: 'Operaciones a archivo',
+                title: 'Operaciones de recursos',
                 align: 'center',
                 events: operateEvents,
                 formatter: operateFormatter

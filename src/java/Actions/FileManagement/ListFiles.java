@@ -26,7 +26,14 @@ public class ListFiles extends ActionSupport implements ParameterAware {
             System.out.println("------ Lista de archivos en directorio: " + path + " -----");
             List<DropboxFile> ListDF = DP.listarArchivosDropbox(path);
             for (DropboxFile file : ListDF) {
-                filesJSONforTable.add(file.toFileListTable());
+                if(file.getExtension().equals("Referencia"))
+                {
+                    filesJSONforTable.add(new FileListTable(file.getName(),"-","Referencia "));
+                }
+                else
+                {
+                    filesJSONforTable.add(file.toFileListTable());
+                }
             }
             System.out.println("------------------------------------------------------------");
         } catch (DbxException | IOException | NumberFormatException e) {

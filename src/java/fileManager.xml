@@ -71,7 +71,7 @@
                 </param>
             </result>
         </action>
-        <action name="resourceUploader" class="Actions.FileManagement.DeleteFiles">
+        <action name="resourceUploader" class="Actions.FileManagement.UploadResources">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
                 <param name="noCache">true</param>

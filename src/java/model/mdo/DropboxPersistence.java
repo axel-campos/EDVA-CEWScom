@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
 import java.util.ArrayList;
@@ -132,9 +134,9 @@ public final class DropboxPersistence implements FilePersistence {
         FileUtils.writeStringToFile(temp, pagina, "UTF-8");
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
-                .files()
-                .uploadBuilder(ruta + "/" + etapa + ".html")
-                .uploadAndFinish(fis);
+                    .files()
+                    .uploadBuilder(ruta + "/" + etapa + ".html")
+                    .uploadAndFinish(fis);
         }
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
@@ -156,10 +158,10 @@ public final class DropboxPersistence implements FilePersistence {
         FileUtils.writeStringToFile(temp, contenido);
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
-                .files()
-                .uploadBuilder(ruta + "/" + nombre)
-                .withMode(WriteMode.OVERWRITE)
-                .uploadAndFinish(fis);
+                    .files()
+                    .uploadBuilder(ruta + "/" + nombre)
+                    .withMode(WriteMode.OVERWRITE)
+                    .uploadAndFinish(fis);
         }
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
@@ -172,10 +174,10 @@ public final class DropboxPersistence implements FilePersistence {
         FileUtils.writeStringToFile(temp, contenido, "UTF-8");
         try (FileInputStream fis = new FileInputStream(temp)) {
             client
-                .files()
-                .uploadBuilder(ruta + "/" + nombre)
-                .withMode(WriteMode.OVERWRITE)
-                .uploadAndFinish(fis);
+                    .files()
+                    .uploadBuilder(ruta + "/" + nombre)
+                    .withMode(WriteMode.OVERWRITE)
+                    .uploadAndFinish(fis);
         }
         FileUtils.deleteDirectory(new File(appRoot + token));
     }
@@ -217,14 +219,14 @@ public final class DropboxPersistence implements FilePersistence {
      */
     private Map<String, Object> obtenerMapaDeJson(String json) {
         return ((Map<String, Map<String, Object>>) gson
-            .fromJson(json, new TypeToken<Map<String, Object>>() {
-            }.getType())).get("artefactos");
+                .fromJson(json, new TypeToken<Map<String, Object>>() {
+                }.getType())).get("artefactos");
     }
 
     private List<Map<String, Object>> obtenerArtefactosDeJson(String json) {
         return ((Map<String, List<Map<String, Object>>>) gson
-            .fromJson(json, new TypeToken<Map<String, Object>>() {
-            }.getType())).get("artefactos");
+                .fromJson(json, new TypeToken<Map<String, Object>>() {
+                }.getType())).get("artefactos");
     }
 
     @Override
@@ -245,7 +247,7 @@ public final class DropboxPersistence implements FilePersistence {
             List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
             subirArchivoHTML((String) map.get("ruta"), "preview.html", template.setDetalles(detalles_contenido)
-                .generarPlantilla(generarHTMLString(artefactosMap, parser, template)));
+                    .generarPlantilla(generarHTMLString(artefactosMap, parser, template)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -289,7 +291,7 @@ public final class DropboxPersistence implements FilePersistence {
             }
 
             subirArchivoHTML("/" + token + "/" + idContenido, "contenido_didactico_liberado.html",
-                new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
+                    new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
         } catch (Exception e) {
             grupoDAO.desconectar();
             contenidoDAO.desconectar();
@@ -324,10 +326,10 @@ public final class DropboxPersistence implements FilePersistence {
     public void subirArchivoDropbox(File localFile, String dropboxPath, String name) throws IOException, DbxException {
         try (FileInputStream fis = new FileInputStream(localFile)) {
             client
-                .files()
-                .uploadBuilder(dropboxPath + "/" + name)
-                .withMode(WriteMode.OVERWRITE)
-                .uploadAndFinish(fis);
+                    .files()
+                    .uploadBuilder(dropboxPath + "/" + name)
+                    .withMode(WriteMode.OVERWRITE)
+                    .uploadAndFinish(fis);
         }
     }
 
@@ -365,26 +367,79 @@ public final class DropboxPersistence implements FilePersistence {
     }
 
     public List<DropboxFile> listarArchivosDropbox(String path) throws DbxException, IOException {
+        List<DropboxFile> files = new ArrayList<>();
+        //Agregando los recursos a la lista
+        String nombreArchivoRecursos = "resources.edva";
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        File localResourceDir = new File(appRoot + File.separator + path + File.separator + "Recursos");
+        File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
+        
+        List<String> listaRecursos = new ArrayList<>();
+        if (resourceFile.exists()) {
+            listaRecursos = Files.readAllLines(Paths.get(resourceFile.getParent(), resourceFile.getName()));
+            for(String nombreRecurso: listaRecursos)
+            {
+                System.out.println("Referencia encontrada: " + nombreRecurso);
+                files.add(new DropboxFile(nombreRecurso,0,"Referencia", "Referencia"));
+            }
+        }
+        
         System.out.println("Requesting data to dropbox...");
         ListFolderResult result = client.files().listFolderBuilder(path)
-            .withIncludeDeleted(false)
-            .withRecursive(false)
-            .withIncludeMediaInfo(false)
-            .start();
-        List<DropboxFile> files = new ArrayList<>();
+                .withIncludeDeleted(false)
+                .withRecursive(false)
+                .withIncludeMediaInfo(false)
+                .start();
+        
         for (Metadata metadata : result.getEntries()) {
             if (metadata instanceof FileMetadata) {
                 System.out.println(metadata.getPathDisplay());
                 File file = new File(metadata.getPathDisplay());
                 files.add(new DropboxFile(
-                    file.getName(),
-                    ((FileMetadata) metadata).getSize(),
-                    FilenameUtils.getExtension(file.getName()),
-                    Files.probeContentType(file.toPath())
+                        file.getName(),
+                        ((FileMetadata) metadata).getSize(),
+                        FilenameUtils.getExtension(file.getName()),
+                        Files.probeContentType(file.toPath())
                 ));
             }
         }
         return files;
+    }
+
+    /**
+     * Lista los archivos de los recursos y nombres de el contenido.
+     *
+     * @param path Ruta del archivo en dropbox
+     * @return Lista de cadenas con los nombres de los archivos
+     * @throws java.io.IOException
+     * @throws com.dropbox.core.DbxException
+     */
+    public List<String> listarNombresArchivosRecursosDropbox(String path) throws DbxException, IOException {
+        //Agregando los recursos a la lista
+        String nombreArchivoRecursos = "resources.edva";
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        File localResourceDir = new File(appRoot + File.separator + path + File.separator + "Recursos");
+        File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
+        List<String> listaRecursosArchivos = new ArrayList<>();
+        if (!resourceFile.exists()) {
+            listaRecursosArchivos = Files.readAllLines(Paths.get(resourceFile.getParent(), resourceFile.getName()));
+        }
+
+        //Agregando nombres de archivos a la lista
+        System.out.println("Requesting data to dropbox...");
+        ListFolderResult result = client.files().listFolderBuilder(path)
+                .withIncludeDeleted(false)
+                .withRecursive(false)
+                .withIncludeMediaInfo(false)
+                .start();
+        for (Metadata metadata : result.getEntries()) {
+            if (metadata instanceof FileMetadata) {
+                System.out.println(metadata.getPathDisplay());
+                File file = new File(metadata.getPathDisplay());
+                listaRecursosArchivos.add(file.getName());
+            }
+        }
+        return listaRecursosArchivos;
     }
 
     public File descargarArchivoGenerico(String ruta, File dir, String nombre) throws IOException, DbxException {
