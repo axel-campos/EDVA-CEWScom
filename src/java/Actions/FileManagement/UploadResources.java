@@ -38,10 +38,7 @@ public class UploadResources extends ActionSupport {
             }
             
             File resourceFile = new File(localResourceDir, nombreArchivoRecursos );
-            if (resourceFile.exists())
-            {
-                
-            }
+            
 
 //            System.out.print("Archivos subidos " + files.size());
 //            for (File file : files) {
@@ -77,6 +74,13 @@ public class UploadResources extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getResourceToUpload() {
+        return resourceToUpload;
+    }
+
+    public void setResourceToUpload(String resourceToUpload) {
+        this.resourceToUpload = resourceToUpload;
+    }
 
     public void setPath(String path) {
         this.path = path;
