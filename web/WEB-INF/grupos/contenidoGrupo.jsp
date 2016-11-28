@@ -48,6 +48,9 @@
             Boolean cerrarDiv = false;
             if(request.getParameter("token") != null){
                 token2 = (String)request.getParameter("token");
+            }else if(session.getAttribute("token") != null){
+                token2 = (String)session.getAttribute("token");
+                session.removeAttribute("token");
             }
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();
@@ -180,7 +183,8 @@
                                             <!--br><br-->
                                         </s:if>      
                                             <br>
-                                        <% if(fechaModificacion != ""){%>
+                                        <% if(fechaModificacion != "") {
+											etapa = columna.get("nombre").toString();%>
                                             <a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token2%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Colaborar</a>
                                             <a onclick="cambiarContenidos('fileList?token=<%=token2%>&idContenido=<%=idContenido%>', '#contenido')" class="btn btn-primary">Recursos</a>
                                         <% }else if(columna.get("idEtapa2") != null){%>

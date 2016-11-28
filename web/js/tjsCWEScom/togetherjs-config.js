@@ -3,7 +3,7 @@
  */
 var TogetherJSConfig_siteName = "EDVA-CWEScom";
 var TogetherJSConfig_toolName = "TogetherJS";
-//var TogetherJSConfig_dontShowClicks = true;
+var TogetherJSConfig_dontShowClicks = true;
 //var TogetherJSConfig_autoStart = true;
 //var TogetherJSConfig_cloneClicks = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
