@@ -46,7 +46,7 @@ public class ArbolProblemas implements MDOArtifact {
     public String toHtml() {
         return String.format(
             "                                <div id=\"aplicacion1_%s\">\n"
-            + "                                    <span class=\"section\">Arbol de Problemas: <small>%s</small></span> \n"
+            + "                                    <span class=\"section\">Árbol de Problemas: <small>%s</small></span> \n"
             + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Problemática Principal</h2>\n"

@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var form = "#altaContenido";
     var action = "crearContenido";
-    
+    $('[data-toggle="tooltip"]').tooltip(); 
     $(form).bootstrapValidator({
         autofocus: true,
         elementClass: 'fv-form',

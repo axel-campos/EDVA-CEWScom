@@ -51,7 +51,7 @@ public class Visita implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Temática Del Lugar</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                    <h2 class=\"StepTitle\">Proposito</h2>\n"
+            + "                                    <h2 class=\"StepTitle\">Propósito</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Objetivos</h2>\n"
             + "                                    <p>%s</p>\n"

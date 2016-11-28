@@ -166,6 +166,7 @@
         </nav--> 
         <div id="contenidoGrupo">
         <button class="btn btn-link" data-toggle="modal" data-target="#myModal">Ver notificaciones</button>
+        <br/>
         <%
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();

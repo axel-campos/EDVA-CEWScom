@@ -174,7 +174,7 @@
                 <param name="actionName">ListarMiembrosAction</param>
             </result>
             <result name="contenido" type="redirectAction">
-                <param name="actionName">ListarMiembrosAction</param>
+                <param name="actionName">ListarContenidosGrupoAction</param>
             </result>
         </action>
         

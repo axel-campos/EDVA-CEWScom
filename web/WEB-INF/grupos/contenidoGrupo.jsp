@@ -48,6 +48,9 @@
             Boolean cerrarDiv = false;
             if(request.getParameter("token") != null){
                 token2 = (String)request.getParameter("token");
+            }else if(session.getAttribute("token") != null){
+                token2 = (String)session.getAttribute("token");
+                session.removeAttribute("token");
             }
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();

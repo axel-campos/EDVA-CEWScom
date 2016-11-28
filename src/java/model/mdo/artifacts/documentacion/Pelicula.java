@@ -53,7 +53,7 @@ public class Pelicula implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Productor</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                    <h2 class=\"StepTitle\">Pais</h2>\n"
+            + "                                    <h2 class=\"StepTitle\">País</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Año</h2>\n"
             + "                                    <p>%s</p>\n"
