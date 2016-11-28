@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import model.mdo.DropboxPersistence;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -29,6 +30,15 @@ public class UploadFiles extends ActionSupport {
         try {
             System.out.print("\n\n--------Archivos a subir---------------\n");
             int i = 0;
+            String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+            File localResourceDir = new File(appRoot + File.separator + path + File.separator + "Recursos");
+
+            if(!localResourceDir.exists())
+            {
+                System.out.println("Creating initial resource directory: " + localResourceDir.getPath());
+                localResourceDir.mkdirs();
+            }
+
             System.out.print("Archivos subidos " + files.size());
             for (File file : files) {
                 System.out.print("\nFile [" + i + "] ");
@@ -37,6 +47,8 @@ public class UploadFiles extends ActionSupport {
                 System.out.print("; length: " + file.length());
 
                 DP.subirArchivoDropbox(file, path, filesFileName.get(i));
+                File destFile = new File(localResourceDir, filesFileName.get(i));
+                FileUtils.copyFile(files.get(i), destFile);
                 i++;
             }
             System.out.println("\n---------------------------------------\n");

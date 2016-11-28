@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -386,13 +387,21 @@ public final class DropboxPersistence implements FilePersistence {
         return files;
     }
 
-    public File descargarArchivoGenerico(String ruta, String nombre) throws IOException, DbxException {
-        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
-        File tempFile = new File(appRoot + ruta + File.separator + nombre);
+    public File descargarArchivoGenerico(String ruta, File dir, String nombre) throws IOException, DbxException {
+        File tempFile = new File(dir, nombre);
         if (!tempFile.exists()) {
             try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(tempFile.toPath(), CREATE))) {
                 client.files().download(ruta + "/" + nombre).download(out);
             }
+        }
+        return tempFile;
+    }
+
+    public File descargarArchivoGenericoTemporal(String ruta, String nombre) throws IOException, DbxException {
+        String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+        File tempFile = File.createTempFile("preview", "." + FilenameUtils.getExtension(nombre), new File(appRoot + ruta + File.separator));
+        try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(tempFile.toPath(), CREATE))) {
+            client.files().download(ruta + "/" + nombre).download(out);
         }
         return tempFile;
     }

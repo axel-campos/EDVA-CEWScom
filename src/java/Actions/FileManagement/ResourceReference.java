@@ -14,10 +14,10 @@ import org.apache.struts2.interceptor.ParameterAware;
  *
  * @author Axel
  */
-public class ListFiles extends ActionSupport implements ParameterAware {
+public class ResourceReference extends ActionSupport implements ParameterAware {
 
     private final DropboxPersistence DP = new DropboxPersistence();
-    private final List<FileListTable> filesJSONforTable = new ArrayList<>();
+    private final List<String> filesJSONforWorkspace = new ArrayList<>();
     private String path;
 
     @Override
@@ -26,7 +26,7 @@ public class ListFiles extends ActionSupport implements ParameterAware {
             System.out.println("------ Lista de archivos en directorio: " + path + " -----");
             List<DropboxFile> ListDF = DP.listarArchivosDropbox(path);
             for (DropboxFile file : ListDF) {
-                filesJSONforTable.add(file.toFileListTable());
+                filesJSONforWorkspace.add(file.getName());
             }
             System.out.println("------------------------------------------------------------");
         } catch (DbxException | IOException | NumberFormatException e) {
@@ -36,9 +36,10 @@ public class ListFiles extends ActionSupport implements ParameterAware {
         return SUCCESS;
     }
 
-    public List<FileListTable> getFilesJSONforTable() {
-        return filesJSONforTable;
+    public List<String> getFilesJSONforWorkspace() {
+        return filesJSONforWorkspace;
     }
+    //localhost:8084/EDVA/files/resourceFiles?path=ILs101116FW0/2
 
     @Override
     public void setParameters(Map<String, String[]> maps) {

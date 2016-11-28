@@ -29,7 +29,11 @@
                 </button>
                 <button type="button" class="btn btn-default" onclick="dialogFileUploader.open();">
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span>Subir Archivos</span>
+                    <span>Subir archivos</span>
+                </button>
+                <button type="button" class="btn btn-default" onclick="dialogResourceUploader.open();">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Referenciar recurso web</span>
                 </button>
                 <button id="zipMe" type="button" class="btn btn-default">
                     <i class="glyphicon glyphicon-download"></i>
