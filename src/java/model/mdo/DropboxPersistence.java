@@ -420,10 +420,9 @@ public final class DropboxPersistence implements FilePersistence {
         String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
         File localResourceDir = new File(appRoot + File.separator + path + File.separator + "Recursos");
         File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
-        List<String> listaRecursosArchivos = new ArrayList<>();
-        if (!resourceFile.exists()) {
-            listaRecursosArchivos = Files.readAllLines(Paths.get(resourceFile.getParent(), resourceFile.getName()));
-        }
+		List<String> listaRecursosArchivos = resourceFile.exists()
+			? listaRecursosArchivos = Files.readAllLines(Paths.get(resourceFile.getParent(), resourceFile.getName()))
+			: new ArrayList<>();
 
         //Agregando nombres de archivos a la lista
         System.out.println("Requesting data to dropbox...");

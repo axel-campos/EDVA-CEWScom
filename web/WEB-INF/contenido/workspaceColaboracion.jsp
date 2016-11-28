@@ -2,8 +2,10 @@
 <%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="org.apache.tomcat.util.codec.binary.StringUtils"%>
 <%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
+<%@page import="com.google.gson.Gson"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
+<%@page import="java.util.List" %>
 <%@page import="model.mdo.DropboxPersistence"%>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -27,19 +29,21 @@
         imageDataString = sb.toString();
 
         imageInFile.close();
-    }else{
+    } else {
         imageDataString = user.getAvatar();
     }
 
     // Obteniendo el archivo JSON de Dropbox.
+	DropboxPersistence persistence = new DropboxPersistence();
     String token = request.getParameter("token");
     String idContenido = request.getParameter("idContenido");
     String idEtapa = request.getParameter("idEtapa");
     String version = request.getParameter("version");
     String ruta = String.format("/%s/%s/%s/%s", token, idContenido, idEtapa, version);
-    String json = new DropboxPersistence().descargarJson(ruta);
+    String json = persistence.descargarJson(ruta);
+	String nombresRecursos = new Gson()
+		.toJson(persistence.listarNombresArchivosRecursosDropbox(String.format("/%s/%s", token, idContenido)));
 %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,6 +63,7 @@
             var APP_BASE = "${pageContext.request.contextPath}";
             var ETAPA = "<%=request.getParameter("etapa")%>";
             var ARTEFACTOS = JSON.parse('<%=json%>');
+			var NOMBRES_RECURSOS = JSON.parse('<%=nombresRecursos%>');
             var RUTA_PERSISTENCIA = '<%=ruta%>';
             
             var TITULO = "<%=request.getParameter("titulo")%>";
