@@ -71,6 +71,16 @@
                 </param>
             </result>
         </action>
+        <action name="resourceUploader" class="Actions.FileManagement.DeleteFiles">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+                <param name="includeProperties">
+                    message,
+                    status
+                </param>
+            </result>
+        </action>
         <action name="renameFiles" class="Actions.FileManagement.RenameFiles">
             <result type="json">
                 <param name="excludeNullProperties">true</param>

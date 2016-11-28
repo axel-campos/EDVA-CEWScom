@@ -123,11 +123,11 @@ var dialogResourceUploader = new BootstrapDialog({
                 dialogRef.enableButtons(false);
                 dialogRef.setClosable(false);
                 dialogRef.getModalBody().html('Subiendo recurso...');
+                var resourceInput = dialogRef.getModalBody().find('input').val();
                 var data = JSON.stringify({
-                    listFilesToDelete: idElementsArray,
+                    resourceToUpload: resourceInput,
                     path: RUTA
                 });
-                console.log(idElementsArray);
                 $.ajax({
                     url: "filesJSON/deleteFiles",
                     data: data,
