@@ -3,15 +3,17 @@ var MDOUtil = (function() {
 		var _VivenciaParser = (function() {
 			function ObservacionParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
-				var pregunta = contenido[1].value;
-				var fenomenoAObservar = contenido[2].value;
-				var posibleExplicacion = contenido[3].value;
-				var posibleResultado = contenido[4].value;
+				var descripcion = contenido[1].value;
+				var pregunta = contenido[2].value;
+				var fenomenoAObservar = contenido[3].value;
+				var posibleExplicacion = contenido[4].value;
+				var posibleResultado = contenido[5].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					id: id,
 					titulo: titulo,
+					descripcion: descripcion,
 					pregunta: pregunta,
 					fenomenoAObservar: fenomenoAObservar,
 					posibleExplicacion: posibleExplicacion,
@@ -21,16 +23,18 @@ var MDOUtil = (function() {
 			
 			function VisitaParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
-				var lugarAVisitar = contenido[1].value;
-				var tematica = contenido[2].value;
-				var proposito = contenido[3].value;
-				var objetivos = contenido[4].value;
-				var entregables = contenido[5].value;
+				var descripcion = contenido[1].value;
+				var lugarAVisitar = contenido[2].value;
+				var tematica = contenido[3].value;
+				var proposito = contenido[4].value;
+				var objetivos = contenido[5].value;
+				var entregables = contenido[6].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					id: id,
 					titulo: titulo,
+					descripcion: descripcion,
 					lugarAVisitar: lugarAVisitar,
 					tematica: tematica,
 					proposito: proposito,
@@ -41,14 +45,16 @@ var MDOUtil = (function() {
 			
 			function DemostracionParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
-				var objetivo = contenido[1].value;
-				var materialNecesario = contenido[2].value;
-				var procedimiento = contenido[3].value;
+				var descripcion = contenido[1].value;
+				var objetivo = contenido[2].value;
+				var materialNecesario = contenido[3].value;
+				var procedimiento = contenido[4].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					id: id,
 					titulo: titulo,
+					descripcion: descripcion,
 					objetivo: objetivo,
 					materialNecesario: materialNecesario,
 					procedimiento: procedimiento
@@ -253,17 +259,19 @@ var MDOUtil = (function() {
 			
 			function LibroParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
-				var autor = contenido[1].value;
-				var anyo = contenido[2].value;
-				var ciudad = contenido[3].value;
-				var editorial = contenido[4].value;
-				var volumen = contenido[5].value;
+				var descripcion = contenido[1].value;
+				var autor = contenido[2].value;
+				var anyo = contenido[3].value;
+				var ciudad = contenido[4].value;
+				var editorial = contenido[5].value;
+				var volumen = contenido[6].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					id: id,
 					autor: autor,
 					titulo: titulo,
+					descripcion: descripcion,
 					anyo: anyo,
 					ciudad: ciudad,
 					editorial: editorial,
@@ -385,18 +393,20 @@ var MDOUtil = (function() {
 			
 			function MarcoLogicoParser(nombreArtefacto, contenido, id) {
 				var titulo = contenido[0].value;
-				var objetivoGeneral = contenido[1].value;
-				var objetivosEspecificos = contenido[2].value;
-				var resultados = contenido[3].value;
-				var actividades = contenido[4].value;
-				var indicadores = contenido[5].value;
-				var fuentesVerificacion = contenido[6].value;
-				var supuestos = contenido[7].value;
+				var descripcion = contenido[1].value;
+				var objetivoGeneral = contenido[2].value;
+				var objetivosEspecificos = contenido[3].value;
+				var resultados = contenido[4].value;
+				var actividades = contenido[5].value;
+				var indicadores = contenido[6].value;
+				var fuentesVerificacion = contenido[7].value;
+				var supuestos = contenido[8].value;
 				
 				return {
 					artefacto: nombreArtefacto,
 					id: id,
 					titulo: titulo,
+					descripcion: descripcion,
 					objetivoGeneral: objetivoGeneral,
 					objetivosEspecificos: objetivosEspecificos,
 					resultados: resultados,
@@ -690,6 +700,8 @@ var MDOTimeline = (function() {
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+								<label>Descripción:</label><br>\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
 								<label>Pregunta:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.pregunta + "' /><br>\n\
 								<label>Fenómeno a observar:</label>\n\
@@ -716,6 +728,8 @@ var MDOTimeline = (function() {
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+								<label>Descripción:</label><br>\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
 								<label>Lugar a visitar:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.lugarAVisitar + "' /><br>\n\
 								<label>Temática del lugar:</label>\n\
@@ -744,6 +758,8 @@ var MDOTimeline = (function() {
 							<div id='" + contenido.id + "' class='collapse'>\n\
 								<label>Título:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+								<label>Descripción:</label><br>\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
 								<label>Objetivo:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.objetivo + "' /><br>\n\
 								<label>Material necesario:</label>\n\
@@ -1024,6 +1040,8 @@ var MDOTimeline = (function() {
 						<div id='" + contenido.id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.titulo + "' /><br>\n\
+							<label>Descripción:</label><br>\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
 							<label>Autor:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.autor + "' /><br>\n\
 							<label>Año:</label>\n\
