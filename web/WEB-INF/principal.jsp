@@ -29,6 +29,54 @@
         </style>
     </head>
     <body>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Notificaciones</h4>
+                    </div>
+                    <div class="modal-body">
+                    <%
+                        List<String> tipo = Arrays.asList("","Coordinador","Administrador","Colaborador");
+                        UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
+                        usuarioGrupoDAO.conectar();
+                        String consulta = "SELECT ugl.*, g.nombre FROM usuariogrupo_log ugl " +
+                                           "INNER JOIN grupo AS g ON g.token = ugl.token "+
+                                           "WHERE ugl.correo = '" + usuario.getCorreo() + "'LIMIT 5;";
+                        List<Map<String, Object>> tabla1 = usuarioGrupoDAO.consultaGenerica(consulta);
+                        for(int i = 0; i < tabla1.size(); i++){
+                            out.println("<li style='padding-left: 5%; list-style-type: none;'>");
+                            Map<String, Object> columna = tabla1.get(i);
+                            if(columna.get("aceptado_nuevo") == null){
+                                out.println("Se rechazó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                            }else if(columna.get("aceptado_anterior") == null){
+                                out.println("Se envió tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                            }else{
+                                if(columna.get("aceptado_anterior") != columna.get("aceptado_nuevo")){
+                                    out.println("Se aceptó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
+                                }else{
+                                    out.println("Se rol en el grupo " + columna.get("nombre") + "(" + columna.get("token") + ") ha sido cambiado de: ");
+                                    out.println("" + tipo.get((int)columna.get("idtipoUsuarioGrupo_anterior")) + " a " + tipo.get((int)columna.get("idtipoUsuarioGrupo_nuevo")));
+                                }
+                            }
+                            out.println("</li>");
+                        }
+                        if(tabla1.size() == 0){
+                            out.println("<li style='padding-left: 5%'><p style='font-family: verdana; font-size: 10px'>");
+                            out.println("Únete a un grupo de trabajo para recibir notificaciones");
+                            out.println("</p></li>");
+                        }
+                    %>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--nav class="navbar navbar-default sidebar" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -44,38 +92,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actualizaciones de grupos <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-refresh"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
-                                <!%
-                                List<String> tipo = Arrays.asList("","Coordinador","Administrador","Colaborador");
-                                Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
-                                UsuarioGrupoDAO usuarioGrupoDAO = new UsuarioGrupoDAO();
-                                usuarioGrupoDAO.conectar();
-                                String consulta = "SELECT ugl.*, g.nombre FROM usuariogrupo_log ugl " +
-                                                   "INNER JOIN grupo AS g ON g.token = ugl.token "+
-                                                   "WHERE ugl.correo = '" + usuario.getCorreo() + "'LIMIT 10;";
-                                List<Map<String, Object>> tabla1 = usuarioGrupoDAO.consultaGenerica(consulta);
-                                for(int i = 0; i < tabla1.size(); i++){
-                                    out.println("<li style='padding-left: 5%'><p style='font-family: verdana; font-size: 8px'>");
-                                    Map<String, Object> columna = tabla1.get(i);
-                                    if(columna.get("aceptado_nuevo") == null){
-                                        out.println("Se rechazó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
-                                    }else if(columna.get("aceptado_anterior") == null){
-                                        out.println("Se envió tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
-                                    }else{
-                                        if(columna.get("aceptado_anterior") != columna.get("aceptado_nuevo")){
-                                            out.println("Se aceptó tu solicitud al grupo " + columna.get("nombre") + "(" + columna.get("token") + ")");
-                                        }else{
-                                            out.println("Se rol en el grupo " + columna.get("nombre") + "(" + columna.get("token") + ") ha sido cambiado de: ");
-                                            out.println("" + tipo.get((int)columna.get("idtipoUsuarioGrupo_anterior")) + " a " + tipo.get((int)columna.get("idtipoUsuarioGrupo_nuevo")));
-                                        }
-                                    }
-                                    out.println("</p></li>");
-                                }
-                                if(tabla1.size() == 0){
-                                    out.println("<li style='padding-left: 5%'><p style='font-family: verdana; font-size: 10px'>");
-                                    out.println("Únete a un grupo de trabajo para recibir notificaciones");
-                                    out.println("</p></li>");
-                                }
-                                %>
+                                //Aquí iba el código :D:D:D:D:D:D:D:D
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -148,6 +165,7 @@
             </div>
         </nav--> 
         <div id="contenidoGrupo">
+        <button class="btn btn-link" data-toggle="modal" data-target="#myModal">Ver notificaciones</button>
         <%
             //Buscaremos los primeros diez contenidos de los grupos de este usuario
             ContenidoDAO contenidoDAO = new ContenidoDAO();
@@ -238,7 +256,8 @@
                                     <b>Fecha límite modificación de etapa: </b><%=fechaModificacion%> <br/>
                                     <b>Fecha límite votación de etapa: </b><%=fechaVotacion%> <br/>
                                     <br/>
-                                    <% if(fechaModificacion != ""){%>
+                                    <% if(fechaModificacion != "") {
+										etapa = columna.get("nombre").toString();%>
 										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
                                         <% }else if(!fechaVotacion.equals("")){%>
                                         <a onclick="mostrarVotacion('<%=idContenido%>','<%=token%>')" class="btn btn-success">Ir a votación</a>

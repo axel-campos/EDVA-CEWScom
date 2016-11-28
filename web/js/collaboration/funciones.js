@@ -51,6 +51,36 @@ $(document).ready(function () {
 });
 
 /**
+ * Muestra un cuadro de confirmación cada vez que se intenta eliminar
+ * un artefacto del timeline
+ * 
+ * @param {Node} button El botón para eliminar el artefacto en cuestión.
+ */
+function eliminarArtefacto(button) {
+	BootstrapDialog.show({
+		title: "Eliminar artefacto",
+		message: "¿Realmente quieres eliminar este artefacto?",
+		type: BootstrapDialog.TYPE_DANGER,
+		buttons: [{
+			label: "Eliminar",
+			cssClass: "btn-danger",
+			action: function(dialog) {
+				$(button).parent().parent().remove();
+				updateTogetherJS("#contenidoDidacticoBody");
+				dialog.close();
+			}
+		}, {
+			label: "Cancelar",
+			type: "btn-success",
+			cssClass: "btn-primary",
+			action: function(dialog) {
+				dialog.close();
+			}
+		}]
+	});
+}
+
+/**
  * Intercambia los objetos de la lista de par en par. Por ejemplo, los
  * elementos de la lista [a, b, c, d, ...] quedarían ordenados
  * de la siguiente manera: [b, a, d, c, ...].
@@ -86,9 +116,15 @@ function intercambiarListaPorPares(lista) {
  * 
  * @param {array} artefactos Los artefactos recuperados del servidor.
  * @param {string} container El contenedor donde se insertarán los artefactos.
+ * @param {boolean} invertir TRUE si el timeline se recrea por primera vez (un solo profesor
+ * inicia la colaboración). Si los profesores ya están colaborando, deberá ser FALSE.
  */
-function recrearTimeline(artefactos, container) {
-    var body = intercambiarListaPorPares(MDOTimeline.obtenerNodos(artefactos)).join("");
+function recrearTimeline(artefactos, container,  invertir) {
+    var timeline = MDOTimeline.obtenerNodos(artefactos);
+	var body = invertir
+		? intercambiarListaPorPares(timeline).join("")
+		: timeline.join("");
+	
 	$(container).empty().html("<li class='year'>Inicio</li>").append(body);
 }
 
@@ -111,7 +147,7 @@ function agregarDragAndDrop(selector, nombreFabrica) {
         accepts: function (el, target) {
             return target !== document.querySelector(selector);
         },
-        removeOnSpill: true
+        removeOnSpill: false
     }).on("drag", function (el) {
         el.className = el.className.replace("ex-moved", "").trim();
         updateTogetherJS(MDOArtifactsContainer);

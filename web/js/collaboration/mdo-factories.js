@@ -3,7 +3,12 @@ var MDOFactories = (function() {
 		function Observacion() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-observacion event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Observación</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Observación</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -22,7 +27,12 @@ var MDOFactories = (function() {
 		function Visita() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-visita event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Visita</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Visita</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -43,7 +53,12 @@ var MDOFactories = (function() {
 		function Demostracion() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-demostracion event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Demostración</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Demostración</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -60,7 +75,12 @@ var MDOFactories = (function() {
 		function Ensayo() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-ensayo event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Ensayo</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Ensayo</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -79,7 +99,12 @@ var MDOFactories = (function() {
 		function Simulacion() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-vivencia-simulacion event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Simulación</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Simulación</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -132,7 +157,12 @@ var MDOFactories = (function() {
 		function Preguntas() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-preguntas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Preguntas</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Preguntas</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -149,7 +179,12 @@ var MDOFactories = (function() {
 		function Tutoria() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-tutoria event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Tutoría</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Tutoría</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -168,7 +203,12 @@ var MDOFactories = (function() {
 		function LluviaIdeas() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-lluviaideas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Lluvia de Ideas</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Lluvia de Ideas</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -187,7 +227,12 @@ var MDOFactories = (function() {
 		function GrupoEstudio() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-conceptualizacion-grupoestudio event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Grupo de Estudio</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Grupo de Estudio</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -235,7 +280,12 @@ var MDOFactories = (function() {
 		function Pelicula() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-pelicula event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Película</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Película</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -256,7 +306,12 @@ var MDOFactories = (function() {
 		function Video() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-video event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Video</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Video</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -271,7 +326,12 @@ var MDOFactories = (function() {
 		function Libro() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-libro event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Libro</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Libro</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -292,7 +352,12 @@ var MDOFactories = (function() {
 		function ArticuloWeb() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-articuloweb event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Artículo Web</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Artículo Web</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -317,7 +382,12 @@ var MDOFactories = (function() {
 		function ArticuloPDF() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-articulopdf event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Artículo PDF</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Artículo PDF</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Nombre:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -332,7 +402,12 @@ var MDOFactories = (function() {
 		function Revista() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-documentacion-revista event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Revista</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Revista</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -392,7 +467,12 @@ var MDOFactories = (function() {
 		function EstudioCaso() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-estudiocaso event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Estudio de Caso</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Estudio de Caso</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -413,7 +493,12 @@ var MDOFactories = (function() {
 		function MarcoLogico() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-marcologico event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Marco Lógico</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Marco Lógico</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -438,7 +523,12 @@ var MDOFactories = (function() {
 		function MapaConceptual() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-mapaconceptual event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Mapa Conceptual</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Mapa Conceptual</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -455,7 +545,12 @@ var MDOFactories = (function() {
 		function ArbolProblemas() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-arbolproblemas event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Árbol de Problemas</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Árbol de Problemas</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -476,7 +571,12 @@ var MDOFactories = (function() {
 		function ProyectoInvestigacion() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-proyectoinvestigacion event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Proyecto de Investigación</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Proyecto de Investigación</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -497,7 +597,12 @@ var MDOFactories = (function() {
 		function Ejercicios() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-aplicacion-ejercicios event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Ejercicios</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Ejercicios</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -551,7 +656,12 @@ var MDOFactories = (function() {
 		function Conferencia() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-conferencia event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Conferencia</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Conferencia</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -568,7 +678,12 @@ var MDOFactories = (function() {
 		function MesaRedonda() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-mesaredonda event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Mesa Redonda</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Mesa Redonda</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -587,7 +702,12 @@ var MDOFactories = (function() {
 		function Panel() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-panel event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Panel</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Panel</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
@@ -606,7 +726,12 @@ var MDOFactories = (function() {
 		function Simposio() {
 			var id = Math.random().toString(36).substring(2);
 			return "<li class='mdo-ampliacion-simposio event'>\n\
-						<h2 class='heading'><a data-toggle='collapse' href='#" + id + "'>Simposio</a></h2>\n\
+						<h2 class='heading'>\n\
+							<a data-toggle='collapse' href='#" + id + "'>Simposio</a>\n\
+							<button class='btn btn-danger btn-xs btn-eliminar-artefacto' onclick='eliminarArtefacto(this);'>\n\
+								<span class='glyphicon glyphicon-remove-circle'></span>&nbsp;\n\
+							</button>\n\
+						</h2>\n\
 						<div id='" + id + "' class='collapse'>\n\
 							<label>Título:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
