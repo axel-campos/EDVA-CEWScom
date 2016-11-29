@@ -52,13 +52,17 @@ window.operateEvents = {
         });
     },
     'click .downloadFile': function (e, value, row, index) {
+        if($.trim(row.type) == "Referencia")
+        {
+            window.open(row.name);
+            return;
+        }
         dialogWait.open();
         var extension = row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
         var data = JSON.stringify({
             fileName: row.name + extension,
             path: RUTA
         });
-        console.log(row.name + extension);
         $.ajax({
             url: "filesJSON/downloadFile",
             data: data,
@@ -149,7 +153,8 @@ var dialogResourceUploader = new BootstrapDialog({
 
 var $tableFiles = $('#tabla'),
         $removeFiles = $('#remove'),
-        $zipFiles = $('#zipMe');
+        $zipFiles = $('#zipMe'),
+        editOldValue;
 
 $(document).ready(function () {
     cargando();
@@ -197,16 +202,25 @@ $(document).ready(function () {
                 editable: {
                     type: 'text',
                     placeholder: 'Nuevo nombre...',
-                    title: 'Renombrar archivo',
+                    title: 'Renombrar recurso',
                     url: function (params) {
                         var data = $tableFiles.bootstrapTable('getData'),
                                 index = $(this).parents('tr').data('index');
                         console.log(data[index].type);
                         var typeRow = data[index].type;
-                        var extension = typeRow.substring(typeRow.indexOf("(") + 1, typeRow.indexOf(")"));
+                        var tipoRecurso = 0, extension = ""; //0 is for links
+                        if ($.trim(typeRow) != "Referencia")
+                        {
+                            tipoRecurso = 1;
+                            extension = typeRow.substring(typeRow.indexOf("(") + 1, typeRow.indexOf(")"));
+                        }
+                        
+                        console.log(params.pk.toString() + extension);
+                        console.log(params.value.toString() + extension);
                         var data = JSON.stringify({
                             fileToRename: params.pk.toString() + extension,
                             newName: params.value.toString() + extension,
+                            type: tipoRecurso,
                             path: RUTA
                         });
                         $.ajax({
@@ -222,12 +236,21 @@ $(document).ready(function () {
                     },
                     mode: "popup",
                     validate: function (value) {
-                        if (!value) {
-                            return 'El archivo no puede estar sin nombre';
+                        if ($.trim(value) == '') {
+                            return 'El recurso no puede estar sin nombre';
                         }
-                        if (!/^[^\\/:\*\?"<>\|]+$/.test(value)) {
-                            return 'Los nombres de archivos no pueden contener los siguientes caracteres: \\ / : * ? < > | ';
+                        if ($.trim(editOldValue.type) == "Referencia")
+                        {
+                            if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(value)) {
+                                return 'El recurso no es un link';
+                            }
+                        } else
+                        {
+                            if (!/^[^\\/:\*\?"<>\|]+$/.test(value)) {
+                                return 'Los nombres de archivos no pueden contener los siguientes caracteres: \\ / : * ? < > | ';
+                            }
                         }
+
                     }
                 }
             },
@@ -249,11 +272,18 @@ $(document).ready(function () {
                 formatter: operateFormatter
             }
         ]
+    }).on('editable-shown.bs.table', function (field, row, $el, editable) {
+        editOldValue = $el;
     });
 
     $removeFiles.click(function () {
         var idElementsArray = $.map($tableFiles.bootstrapTable('getSelections'), function (row) {
             return row.name + row.type.substring(row.type.indexOf("(") + 1, row.type.indexOf(")"));
+        });
+        var fileTypesArray = $.map($tableFiles.bootstrapTable('getSelections'), function (row) {
+            if ($.trim(row.type) == "Referencia")
+                return 0;
+            return 1;
         });
         var idRemove = $.map($tableFiles.bootstrapTable('getSelections'), function (row) {
             return row.name;
@@ -261,7 +291,7 @@ $(document).ready(function () {
         if (idElementsArray.length > 0)
             BootstrapDialog.show({
                 title: 'Confirmar acción',
-                message: '¿Eliminar <strong>' + idElementsArray.length + '</strong> archivo(s) seleccionado(s)?',
+                message: '¿Eliminar <strong>' + idElementsArray.length + '</strong> recurso(s) seleccionado(s)?',
                 type: BootstrapDialog.TYPE_WARNING,
                 buttons: [{
                         label: 'Confirmar',
@@ -273,9 +303,10 @@ $(document).ready(function () {
                             dialogRef.getModalBody().html('Eliminando archivos...');
                             var data = JSON.stringify({
                                 listFilesToDelete: idElementsArray,
+                                types: fileTypesArray,
                                 path: RUTA
                             });
-                            console.log(idElementsArray);
+                            console.log(data);
                             $.ajax({
                                 url: "filesJSON/deleteFiles",
                                 data: data,
@@ -311,27 +342,14 @@ $(document).ready(function () {
         {
             window.location.href = 'zipFiles/zipMe?path=' + RUTA;
         }
-//        dialogWait.open();
-//        $.ajax({
-//            url: "zipFiles/zipMe",
-//            data: $.param({path: RUTA}),
-//            type: 'POST',
-//            success: function () {
-//                dialogWait.close();
-//            }
-//        }).done(function () {
-//            alert("success");
-//        }).fail(function () {
-//            alert("error");
-//        }).always(function () {
-//            alert("complete");
-//        });
     });
 
     dialogFileUploader.realize();
     dialogWait.realize();
     finalizar();
 });
+
+// -----------------------------------------------------------------------
 function getHeight() {
     var columnas = $("#tabla tr").length;
     var y = $('.fixed-table-container');
@@ -353,8 +371,6 @@ function operateFormatter(value, row, index) {
         '</a>'
     ].join('');
 }
-
-
 
 function showAlert(status, message) {
     if (status) {

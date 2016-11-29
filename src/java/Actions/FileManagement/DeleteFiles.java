@@ -12,8 +12,10 @@ import org.apache.struts2.ServletActionContext;
  */
 public class DeleteFiles extends ActionSupport {
 
+    private final String nombreArchivoRecursos = "resources.edva";
     private final DropboxPersistence DP = new DropboxPersistence();
     private List<String> listFilesToDelete;
+    private List<Integer> types;
     private String message;
     private boolean status;
 
@@ -25,23 +27,32 @@ public class DeleteFiles extends ActionSupport {
         File localResourceDir = new File(appRoot + File.separator + path + File.separator + "Recursos");
         try {
             System.out.println(listFilesToDelete);
+            int i = 0;
             for (String fileToDelete : listFilesToDelete) {
-                System.out.println("Archivo a borrar: " + path + "/" + fileToDelete);
-                DP.eliminarArchivoDropbox(path, fileToDelete);
+                if (types.get(i) == 1) {
+                    System.out.println("Archivo a borrar: " + path + "/" + fileToDelete);
+                    DP.eliminarArchivoDropbox(path, fileToDelete);
 
-                File f = new File(localResourceDir, fileToDelete);
-                if (f.exists() && !f.isDirectory()) {
-                    if (f.delete()) {
-                        message = "Los archivos han sido eliminados.";
-                        status = true;
+                    File f = new File(localResourceDir, fileToDelete);
+                    if (f.exists() && !f.isDirectory()) {
+                        if (f.delete()) {
+                            message = "Los archivos han sido eliminados.";
+                            status = true;
+                        } else {
+                            message = "El archivo no pudo ser borrado.";
+                            status = true;
+                        }
                     } else {
-                        message = "El archivo no pudo ser borrado.";
-                        status = true;
+                        message = "El archivo " + fileToDelete + " no existe. Por favor, recarge la lista.";
+                        status = false;
                     }
-                } else {
-                    message = "El archivo " + fileToDelete + " no existe. Por favor, recarge la lista.";
-                    status = false;
                 }
+                else
+                {
+                    File tmp = File.createTempFile("resTmp", null);
+                    File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,6 +72,10 @@ public class DeleteFiles extends ActionSupport {
 
     public boolean isStatus() {
         return status;
+    }
+
+    public void setTypes(List<Integer> types) {
+        this.types = types;
     }
 
     public void setListFilesToDelete(List<String> listFilesToDelete) {

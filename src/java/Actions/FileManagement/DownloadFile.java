@@ -17,7 +17,10 @@ import org.apache.struts2.ServletActionContext;
  */
 public class DownloadFile extends ActionSupport {
 
-    private final String serverContext = "http://" + "148.204.58.113" + ":" + "8080" + ServletActionContext.getRequest().getServletContext().getContextPath();
+    private final String serverContext = 
+        "http://" + ServletActionContext.getRequest().getServerName()
+                    + ":" + ServletActionContext.getRequest().getServerPort()
+                    + ServletActionContext.getRequest().getServletContext().getContextPath();
     private String message;
     private boolean status;
     private String path;
