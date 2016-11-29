@@ -1,7 +1,7 @@
 var MDOUtil = (function() {
 	var MDOParser = (function() {
 		var _VivenciaParser = (function() {
-			function ObservacionParser(nombreArtefacto, contenido, id) {
+			function ObservacionParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var pregunta = contenido[2].value;
@@ -17,11 +17,12 @@ var MDOUtil = (function() {
 					pregunta: pregunta,
 					fenomenoAObservar: fenomenoAObservar,
 					posibleExplicacion: posibleExplicacion,
-					posibleResultado: posibleResultado
+					posibleResultado: posibleResultado,
+					recurso: recurso
 				};
 			}
 			
-			function VisitaParser(nombreArtefacto, contenido, id) {
+			function VisitaParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var lugarAVisitar = contenido[2].value;
@@ -39,11 +40,12 @@ var MDOUtil = (function() {
 					tematica: tematica,
 					proposito: proposito,
 					objetivos: objetivos,
-					entregables: entregables
+					entregables: entregables,
+					recurso: recurso
 				};
 			}
 			
-			function DemostracionParser(nombreArtefacto, contenido, id) {
+			function DemostracionParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivo = contenido[2].value;
@@ -57,11 +59,12 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					objetivo: objetivo,
 					materialNecesario: materialNecesario,
-					procedimiento: procedimiento
+					procedimiento: procedimiento,
+					recurso: recurso
 				};
 			}
 			
-			function EnsayoParser(nombreArtefacto, contenido, id) {
+			function EnsayoParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -75,11 +78,12 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					requisitos: requisitos,
-					tiempoRealizacion: tiempoRealizacion
+					tiempoRealizacion: tiempoRealizacion,
+					recurso: recurso
 				};
 			}
 			
-			function SimulacionParser(nombreArtefacto, contenido, id) {
+			function SimulacionParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var tematica = contenido[1].value;
 				var descripcion = contenido[2].value;
@@ -95,7 +99,8 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					roles: roles,
 					materialNecesario: materialNecesario,
-					procedimiento: procedimiento
+					procedimiento: procedimiento,
+					recurso: recurso
 				};
 			}
 			
@@ -104,21 +109,22 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Vivencia.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} recurso El nombre del recurso asociado al artefacto.
 			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido, id) {
+			function _parse(nombreArtefacto, contenido, recurso, id) {
 				if (nombreArtefacto.includes("observacion"))
-					return ObservacionParser(nombreArtefacto, contenido, id);
+					return ObservacionParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("visita"))
-					return VisitaParser(nombreArtefacto, contenido, id);
+					return VisitaParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("demostracion"))
-					return DemostracionParser(nombreArtefacto, contenido, id);
+					return DemostracionParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("ensayo"))
-					return EnsayoParser(nombreArtefacto, contenido, id);
+					return EnsayoParser(nombreArtefacto, contenido, recurso, id);
 				else
-					return SimulacionParser(nombreArtefacto, contenido, id);
+					return SimulacionParser(nombreArtefacto, contenido, recurso, id);
 			}
 			
 			return {
@@ -127,7 +133,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _ConceptualizacionParser = (function() {
-			function PreguntasParser(nombreArtefacto, contenido, id) {
+			function PreguntasParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -139,11 +145,12 @@ var MDOUtil = (function() {
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
-					preguntas: preguntas
+					preguntas: preguntas,
+					recurso: recurso
 				};
 			}
 			
-			function TutoriaParser(nombreArtefacto, contenido, id) {
+			function TutoriaParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -157,11 +164,12 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					objetivos: objetivos,
 					temas: temas,
-					materialApoyo: materialApoyo
+					materialApoyo: materialApoyo,
+					recurso: recurso
 				};
 			}
 			
-			function LluviaIdeasParser(nombreArtefacto, contenido, id) {
+			function LluviaIdeasParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -175,11 +183,12 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					problematica: problematica,
-					preguntasClave: preguntasClave
+					preguntasClave: preguntasClave,
+					recurso: recurso
 				};
 			}
 			
-			function GrupoEstudioParser(nombreArtefacto, contenido, id) {
+			function GrupoEstudioParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -193,7 +202,8 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					integrantes: integrantes,
-					entregables: entregables
+					entregables: entregables,
+					recurso: recurso
 				};
 			}
 			
@@ -202,19 +212,20 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Conceptualización.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} recurso El nombre del recurso asociado al artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * @param {string} id El ID del artefacto.
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido, id) {
+			function _parse(nombreArtefacto, contenido, recurso, id) {
 				if (nombreArtefacto.includes("preguntas"))
-					return PreguntasParser(nombreArtefacto, contenido, id);
+					return PreguntasParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("tutoria"))
-					return TutoriaParser(nombreArtefacto, contenido, id);
+					return TutoriaParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("lluviaideas"))
-					return LluviaIdeasParser(nombreArtefacto, contenido, id);
+					return LluviaIdeasParser(nombreArtefacto, contenido, recurso, id);
 				else
-					return GrupoEstudioParser(nombreArtefacto, contenido, id);
+					return GrupoEstudioParser(nombreArtefacto, contenido, recurso, id);
 			}
 			
 			return {
@@ -223,7 +234,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _DocumentacionParser = (function() {
-			function PeliculaParser(nombreArtefacto, contenido, id) {
+			function PeliculaParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var director = contenido[2].value;
@@ -239,11 +250,12 @@ var MDOUtil = (function() {
 					director: director,
 					productora: productora,
 					pais: pais,
-					anyo: anyo
+					anyo: anyo,
+					recurso: recurso
 				};
 			}
 			
-			function VideoParser(nombreArtefacto, contenido, id) {
+			function VideoParser(nombreArtefacto, contenido, recurso, id) {
 				var nombre = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var url = contenido[2].value;
@@ -253,11 +265,12 @@ var MDOUtil = (function() {
 					id: id,
 					nombre: nombre,
 					descripcion: descripcion,
-					url: url
+					url: url,
+					recurso: recurso
 				};
 			}
 			
-			function LibroParser(nombreArtefacto, contenido, id) {
+			function LibroParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var autor = contenido[2].value;
@@ -275,11 +288,12 @@ var MDOUtil = (function() {
 					anyo: anyo,
 					ciudad: ciudad,
 					editorial: editorial,
-					volumen: volumen
+					volumen: volumen,
+					recurso: recurso
 				};
 			}
 			
-			function ArticuloWebParser(nombreArtefacto, contenido, id) {
+			function ArticuloWebParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var autor = contenido[1].value;
 				var descripcion = contenido[2].value;
@@ -299,11 +313,12 @@ var MDOUtil = (function() {
 					anyo: anyo,
 					mes: mes,
 					dia: dia,
-					url: url
+					url: url,
+					recurso: recurso
 				};
 			}
 			
-			function ArticuloPDFParser(nombreArtefacto, contenido, id) {
+			function ArticuloPDFParser(nombreArtefacto, contenido, recurso, id) {
 				var nombre = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var url = contenido[2].value;
@@ -313,11 +328,12 @@ var MDOUtil = (function() {
 					id: id,
 					nombre: nombre,
 					descripcion: descripcion,
-					url: url
+					url: url,
+					recurso: recurso
 				};
 			}
 			
-			function RevistaParser(nombreArtefacto, contenido, id) {
+			function RevistaParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var autor = contenido[1].value;
 				var descripcion = contenido[2].value;
@@ -337,7 +353,8 @@ var MDOUtil = (function() {
 					anyo: anyo,
 					paginas: paginas,
 					volumen: volumen,
-					numero: numero
+					numero: numero,
+					recurso: recurso
 				};
 			}
 			
@@ -346,23 +363,24 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Documentación.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} recurso El nombre del recurso asociado al artefacto.
 			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido, id) {
+			function _parse(nombreArtefacto, contenido, recurso, id) {
 				if (nombreArtefacto.includes("pelicula"))
-					return PeliculaParser(nombreArtefacto, contenido, id);
+					return PeliculaParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("video"))
-					return VideoParser(nombreArtefacto, contenido, id);
+					return VideoParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("libro"))
-					return LibroParser(nombreArtefacto, contenido, id);
+					return LibroParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("articuloweb"))
-					return ArticuloWebParser(nombreArtefacto, contenido, id);
+					return ArticuloWebParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("articulopdf"))
-					return ArticuloPDFParser(nombreArtefacto, contenido, id);
+					return ArticuloPDFParser(nombreArtefacto, contenido, recurso, id);
 				else
-					return RevistaParser(nombreArtefacto, contenido, id);
+					return RevistaParser(nombreArtefacto, contenido, recurso, id);
 			}
 			
 			return {
@@ -371,7 +389,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _AplicacionParser = (function() {
-			function EstudioCasoParser(nombreArtefacto, contenido, id) {
+			function EstudioCasoParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -387,11 +405,12 @@ var MDOUtil = (function() {
 					objetivos: objetivos,
 					problematica: problematica,
 					metodosInvestigacion: metodosInvestigacion,
-					entregables: entregables
+					entregables: entregables,
+					recurso: recurso
 				};
 			}
 			
-			function MarcoLogicoParser(nombreArtefacto, contenido, id) {
+			function MarcoLogicoParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivoGeneral = contenido[2].value;
@@ -413,11 +432,12 @@ var MDOUtil = (function() {
 					actividades: actividades,
 					indicadores: indicadores,
 					fuentesVerificacion: fuentesVerificacion,
-					supuestos: supuestos
+					supuestos: supuestos,
+					recurso: recurso
 				};
 			}
 			
-			function MapaConceptualParser(nombreArtefacto, contenido, id) {
+			function MapaConceptualParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -429,11 +449,12 @@ var MDOUtil = (function() {
 					titulo: titulo,
 					descripcion: descripcion,
 					tematica: tematica,
-					entregables: entregables
+					entregables: entregables,
+					recurso: recurso
 				};
 			}
 			
-			function ArbolProblemasParser(nombreArtefacto, contenido, id) {
+			function ArbolProblemasParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var problematicaCentral = contenido[2].value;
@@ -449,11 +470,12 @@ var MDOUtil = (function() {
 					problematicaCentral: problematicaCentral,
 					causas: causas,
 					problemasSecundarios: problemasSecundarios,
-					efectos: efectos
+					efectos: efectos,
+					recurso: recurso
 				};
 			}
 			
-			function ProyectoInvestigacionParser(nombreArtefacto, contenido, id) {
+			function ProyectoInvestigacionParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -469,11 +491,12 @@ var MDOUtil = (function() {
 					objetivos: objetivos,
 					marcoTeorico: marcoTeorico,
 					hipotesis: hipotesis,
-					entregables: entregables
+					entregables: entregables,
+					recurso: recurso
 				};
 			}
 			
-			function EjerciciosParser(nombreArtefacto, contenido, id) {
+			function EjerciciosParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -487,7 +510,8 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					ejercicios: ejercicios,
-					entregables: entregables
+					entregables: entregables,
+					recurso: recurso
 				};
 			}
 			
@@ -496,23 +520,24 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Aplicación.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} recurso El nombre del recurso asociado al artefacto. * 
 			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido, id) {
+			function _parse(nombreArtefacto, contenido, recurso, id) {
 				if (nombreArtefacto.includes("estudiocaso"))
-					return EstudioCasoParser(nombreArtefacto, contenido, id);
+					return EstudioCasoParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("marcologico"))
-					return MarcoLogicoParser(nombreArtefacto, contenido, id);
+					return MarcoLogicoParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("mapaconceptual"))
-					return MapaConceptualParser(nombreArtefacto, contenido, id);
+					return MapaConceptualParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("arbolproblemas"))
-					return ArbolProblemasParser(nombreArtefacto, contenido, id);
+					return ArbolProblemasParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("proyectoinvestigacion"))
-					return ProyectoInvestigacionParser(nombreArtefacto, contenido, id);
+					return ProyectoInvestigacionParser(nombreArtefacto, contenido, recurso, id);
 				else
-					return EjerciciosParser(nombreArtefacto, contenido, id);
+					return EjerciciosParser(nombreArtefacto, contenido, recurso, id);
 			}
 			
 			return {
@@ -521,7 +546,7 @@ var MDOUtil = (function() {
 		})();
 		
 		var _AmpliacionParser = (function() {
-			function ConferenciaParser(nombreArtefacto, contenido, id) {
+			function ConferenciaParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var objetivos = contenido[2].value;
@@ -533,11 +558,12 @@ var MDOUtil = (function() {
 					titulo: titulo,
 					descripcion: descripcion,
 					objetivos: objetivos,
-					tematica: tematica
+					tematica: tematica,
+					recurso: recurso
 				};
 			}
 			
-			function MesaRedondaParser(nombreArtefacto, contenido, id) {
+			function MesaRedondaParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -551,11 +577,12 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					numeroIntegrantes: numeroIntegrantes,
-					tiempoExposicion: tiempoExposicion
+					tiempoExposicion: tiempoExposicion,
+					recurso: recurso
 				};
 			}
 			
-			function PanelParser(nombreArtefacto, contenido, id) {
+			function PanelParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -569,11 +596,12 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					numeroIntegrantes: numeroIntegrantes,
-					tiempoExposicion: tiempoExposicion
+					tiempoExposicion: tiempoExposicion,
+					recurso: recurso
 				};
 			}
 			
-			function SimposioParser(nombreArtefacto, contenido, id) {
+			function SimposioParser(nombreArtefacto, contenido, recurso, id) {
 				var titulo = contenido[0].value;
 				var descripcion = contenido[1].value;
 				var tematica = contenido[2].value;
@@ -587,7 +615,8 @@ var MDOUtil = (function() {
 					descripcion: descripcion,
 					tematica: tematica,
 					numeroIntegrantes: numeroIntegrantes,
-					tiempoExposicionPorIntegrante: tiempoExposicionPorIntegrante
+					tiempoExposicionPorIntegrante: tiempoExposicionPorIntegrante,
+					recurso: recurso
 				};
 			}
 			
@@ -596,19 +625,20 @@ var MDOUtil = (function() {
 			 * apropiado de la etapa MDO de Ampliación.
 			 * @param {string} nombreArtefacto El nombreArtefacto del artefacto.
 			 * @param {Node} contenido El nodo DOM del artefacto.
+			 * @param {string} recurso El nombre del recurso asociado al artefacto.
 			 * @param {string} id El ID del artefacto.
 			 * @returns {Object} Un objeto que contiene la información ingresada
 			 * sobre el artefacto.
 			 */
-			function _parse(nombreArtefacto, contenido, id) {
+			function _parse(nombreArtefacto, contenido, recurso, id) {
 				if (nombreArtefacto.includes("conferencia"))
-					return ConferenciaParser(nombreArtefacto, contenido, id);
+					return ConferenciaParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("mesaredonda"))
-					return MesaRedondaParser(nombreArtefacto, contenido, id);
+					return MesaRedondaParser(nombreArtefacto, contenido, recurso, id);
 				else if (nombreArtefacto.includes("ampliacion-panel"))
-					return PanelParser(nombreArtefacto, contenido, id);
+					return PanelParser(nombreArtefacto, contenido, recurso, id);
 				else
-					return SimposioParser(nombreArtefacto, contenido, id);
+					return SimposioParser(nombreArtefacto, contenido, recurso, id);
 			}
 			
 			return {
@@ -647,6 +677,7 @@ var MDOUtil = (function() {
 	function _parseNode(node) {
 		var nombreArtefacto = node.className.split(" ")[0];
 		var contenido = $(node).children("div").children("input");
+		var recurso = $(node).children("div").children("select")[0].value;
 		var id = $(node).children("div")[0].id;
 		var tipoParser;
 		
@@ -661,7 +692,7 @@ var MDOUtil = (function() {
 		else
 			tipoParser = "AmpliacionParser";
 		
-		return MDOParser[tipoParser].parse(nombreArtefacto, contenido, id);
+		return MDOParser[tipoParser].parse(nombreArtefacto, contenido, recurso, id);
 	}
 	
 	/**
@@ -709,7 +740,8 @@ var MDOTimeline = (function() {
 								<label>Posible explicación:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.posibleExplicacion + "' /><br>\n\
 								<label>Posible resultado:</label>\n\
-								<input type='text' class='form-control input-sm' value='" + contenido.posibleResultado + "' />\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.posibleResultado + "' /><br>\n\
+								<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 							</div>\n\
 						</li>";
 			}
@@ -739,7 +771,8 @@ var MDOTimeline = (function() {
 								<label>Objetivos:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
 								<label>Entregables:</label>\n\
-								<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+								<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 							</div>\n\
 						</li>";
 			}
@@ -765,7 +798,8 @@ var MDOTimeline = (function() {
 								<label>Material necesario:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.materialNecesario + "' /><br>\n\
 								<label>Procedimiento:</label>\n\
-								<input type='text' class='form-control input-sm' value='" + contenido.procedimiento + "' />\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.procedimiento + "' /><br>\n\
+								<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 							</div>\n\
 						</li>";
 			}
@@ -791,7 +825,8 @@ var MDOTimeline = (function() {
 								<label>Requisitos:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.requisitos + "' /><br>\n\
 								<label>Tiempo de realización:</label>\n\
-								<input type='text' class='form-control input-sm' value='" + contenido.tiempoRealizacion + "' />\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.tiempoRealizacion + "' /><br>\n\
+								<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 							</div>\n\
 						</li>";
 			}
@@ -819,7 +854,8 @@ var MDOTimeline = (function() {
 								<label>Material necesario:</label>\n\
 								<input type='text' class='form-control input-sm' value='" + contenido.materialNecesario + "' /><br>\n\
 								<label>Procedimiento:</label>\n\
-								<input type='text' class='form-control input-sm' value='" + contenido.procedimiento + "' />\n\
+								<input type='text' class='form-control input-sm' value='" + contenido.procedimiento + "' /><br>\n\
+								<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 							</div>\n\
 						</li>";
 			}
@@ -869,7 +905,8 @@ var MDOTimeline = (function() {
 							<label>Temática:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
 							<label>Preguntas a realizar:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.preguntas + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.preguntas + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -895,7 +932,8 @@ var MDOTimeline = (function() {
 							<label>Temas a tratar:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.temas + "' /><br>\n\
 							<label>Material de apoyo:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.materialApoyo + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.materialApoyo + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -921,7 +959,8 @@ var MDOTimeline = (function() {
 							<label>Problemática:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.problematica + "' /><br>\n\
 							<label>Preguntas clave:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.preguntasClave + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.preguntasClave + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -948,6 +987,7 @@ var MDOTimeline = (function() {
 							<input type='text' class='form-control input-sm' value='" + contenido.integrantes + "' /><br>\n\
 							<label>Entregables:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -999,7 +1039,8 @@ var MDOTimeline = (function() {
 							<label>País o región:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.pais + "' /><br>\n\
 							<label>Año:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.anyo + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.anyo + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1021,7 +1062,8 @@ var MDOTimeline = (function() {
 							<label>Descripción:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
 							<label>URL del video:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.url + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.url + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1051,7 +1093,8 @@ var MDOTimeline = (function() {
 							<label>Editorial:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.editorial + "' /><br>\n\
 							<label>Volumen:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.volumen + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.volumen + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1083,7 +1126,8 @@ var MDOTimeline = (function() {
 							<label>Día en el que se realizó la consulta:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.dia + "' /><br>\n\
 							<label>URL:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.url + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.url + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1105,7 +1149,8 @@ var MDOTimeline = (function() {
 							<label>Descripción:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.descripcion + "' /><br>\n\
 							<label>URL del artículo:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.url + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.url + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1137,7 +1182,8 @@ var MDOTimeline = (function() {
 							<label>Volumen:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.volumen + "' /><br>\n\
 							<label>Número:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.numero + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.numero + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1193,7 +1239,8 @@ var MDOTimeline = (function() {
 							<label>Métodos de investigación:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.metodosInvestigacion + "' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1225,7 +1272,8 @@ var MDOTimeline = (function() {
 							<label>Fuentes de verificación:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.fuentesVerificacion + "' /><br>\n\
 							<label>Supuestos:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.supuestos + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.supuestos + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1249,7 +1297,8 @@ var MDOTimeline = (function() {
 							<label>Temática:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1277,7 +1326,8 @@ var MDOTimeline = (function() {
 							<label>Problemas secundarios:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.problemasSecundarios + "' /><br>\n\
 							<label>Efectos:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.efectos + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.efectos + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1305,7 +1355,8 @@ var MDOTimeline = (function() {
 							<label>Hipótesis:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.hipotesis + "' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1331,7 +1382,8 @@ var MDOTimeline = (function() {
 							<label>Ejercicios:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.ejercicios + "' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.entregables + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1383,7 +1435,8 @@ var MDOTimeline = (function() {
 							<label>Objetivos:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.objetivos + "' /><br>\n\
 							<label>Temática:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tematica + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1409,7 +1462,8 @@ var MDOTimeline = (function() {
 							<label>Número de integrantes:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.numeroIntegrantes + "' /><br>\n\
 							<label>Tiempo de exposición:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicion + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicion + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1435,7 +1489,8 @@ var MDOTimeline = (function() {
 							<label>Número de integrantes:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.numeroIntegrantes + "' /><br>\n\
 							<label>Tiempo de exposición:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicion + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicion + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}
@@ -1461,7 +1516,8 @@ var MDOTimeline = (function() {
 							<label>Número de integrantes:</label>\n\
 							<input type='text' class='form-control input-sm' value='" + contenido.numeroIntegrantes + "' /><br>\n\
 							<label>Tiempo de exposición por integrante:</label>\n\
-							<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicionPorIntegrante + "' />\n\
+							<input type='text' class='form-control input-sm' value='" + contenido.tiempoExposicionPorIntegrante + "' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(contenido.recurso) + "\n\
 						</div>\n\
 					</li>";
 			}

@@ -84,6 +84,7 @@
         </script>
         <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-dialog.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/dragula.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/collaboration/recursos.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-factories.js"></script>
         <script src="${pageContext.request.contextPath}/js/collaboration/mdo-utilities.js"></script>
 		<script src="${pageContext.request.contextPath}/js/collaboration/mdo-info.js"></script>

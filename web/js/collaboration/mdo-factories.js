@@ -24,7 +24,8 @@ var MDOFactories = (function() {
 							<label>Posible explicación:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Posible resultado:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -55,7 +56,8 @@ var MDOFactories = (function() {
 							<label>Objetivos:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -82,7 +84,8 @@ var MDOFactories = (function() {
 							<label>Material necesario:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Procedimiento:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -109,7 +112,8 @@ var MDOFactories = (function() {
 							<label>Requisitos:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Tiempo de realización:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -138,7 +142,8 @@ var MDOFactories = (function() {
 							<label>Material necesario:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Procedimiento:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -195,7 +200,8 @@ var MDOFactories = (function() {
 							<label>Temática:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Preguntas a realizar:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -222,7 +228,8 @@ var MDOFactories = (function() {
 							<label>Temas a tratar:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Material de apoyo:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -249,7 +256,8 @@ var MDOFactories = (function() {
 							<label>Problemática:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Preguntas clave:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -277,6 +285,7 @@ var MDOFactories = (function() {
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Entregables:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -334,7 +343,8 @@ var MDOFactories = (function() {
 							<label>País o región:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Año:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -357,7 +367,8 @@ var MDOFactories = (function() {
 							<label>Descripción:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>URL del video:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -388,7 +399,8 @@ var MDOFactories = (function() {
 							<label>Editorial:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Volumen:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -421,7 +433,8 @@ var MDOFactories = (function() {
 							<label>Día en el que se realizó la consulta:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>URL:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -444,7 +457,8 @@ var MDOFactories = (function() {
 							<label>Descripción:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>URL del artículo:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -477,7 +491,8 @@ var MDOFactories = (function() {
 							<label>Volumen:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Número:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -541,7 +556,8 @@ var MDOFactories = (function() {
 							<label>Métodos de investigación:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -576,7 +592,8 @@ var MDOFactories = (function() {
 							<label>Fuentes de verificación:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Supuestos:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -601,7 +618,8 @@ var MDOFactories = (function() {
 							<label>Temática:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -630,7 +648,8 @@ var MDOFactories = (function() {
 							<label>Problemas secundarios:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Efectos:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -659,7 +678,8 @@ var MDOFactories = (function() {
 							<label>Hipótesis:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -686,7 +706,8 @@ var MDOFactories = (function() {
 							<label>Ejercicios:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Entregables:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -746,7 +767,8 @@ var MDOFactories = (function() {
 							<label>Objetivos:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Temática:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -773,7 +795,8 @@ var MDOFactories = (function() {
 							<label>Número de integrantes:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Tiempo de exposición:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -800,7 +823,8 @@ var MDOFactories = (function() {
 							<label>Número de integrantes:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Tiempo de exposición:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
@@ -827,7 +851,8 @@ var MDOFactories = (function() {
 							<label>Número de integrantes:</label>\n\
 							<input type='text' class='form-control input-sm' /><br>\n\
 							<label>Tiempo de exposición por integrante:</label>\n\
-							<input type='text' class='form-control input-sm' />\n\
+							<input type='text' class='form-control input-sm' /><br>\n\
+							<label>Recurso:</label>" + Recursos.obtenerSelectsDeRecursos(null) + "\n\
 						</div>\n\
 					</li>";
 		}
