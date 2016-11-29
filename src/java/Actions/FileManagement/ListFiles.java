@@ -28,7 +28,7 @@ public class ListFiles extends ActionSupport implements ParameterAware {
             for (DropboxFile file : ListDF) {
                 if(file.getExtension().equals("Referencia"))
                 {
-                    filesJSONforTable.add(new FileListTable(file.getName(),"-","Referencia "));
+                    filesJSONforTable.add(new FileListTable(file.getName(),"-","Referencia"));
                 }
                 else
                 {
