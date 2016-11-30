@@ -259,7 +259,7 @@
                                     <br/>
                                     <% if(fechaModificacion != "") {
 										etapa = columna.get("nombre").toString();%>
-										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Empezar a Colaborar</a>
+										<a onclick="cambiarContenidos('workspaceColaboracion?idRoom=<%=idRoomTogetherJS%>&etapa=<%=etapa%>&token=<%=token%>&titulo=<%=titulo%>&idContenido=<%=idContenido%>&idEtapa=<%=idEtapa%>&version=<%=version%>', '#contenido')" class="btn btn-success">Colaborar</a>
                                         <% }else if(!fechaVotacion.equals("")){%>
                                         <a onclick="mostrarVotacion('<%=idContenido%>','<%=token%>')" class="btn btn-success">Ir a votación</a>
                                     <% } %>

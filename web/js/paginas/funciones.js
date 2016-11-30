@@ -1,7 +1,19 @@
 $(document).ready(function(){
     window.location.hash="no-back-button";
-    window.location.hash="Again-No-back-button" //chrome
-    window.onhashchange=function(){window.location.hash="no-back-button";} 
+    window.location.hash="Again-No-back-button" ;//chrome
+    window.onhashchange=function(){window.location.hash="no-back-button";} ;
+    if($("#actionCargar").length > 0){//Si existe
+        var action = "establecerAction";
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: {accion: 1},
+            success: function(data){
+                //cambiarContenidos($("#actionCargar").val(), "#contenido");
+                cambiarContenidos($("#actionCargar").val(),"#contenido");
+            }
+        });
+    }
 });
 // Tipos de mensajes a mostrar
 
@@ -20,8 +32,17 @@ function cambiarContenidos(pagina, target){
         TogetherJS();
         TogetherJS.require("storage").tab.clear("status");
         TogetherJS.on("close", function(){
-            $("body").load("index.action", function(){
+            /*$("body").load("index.action", function(){
                 $(target).load(pagina);
+            });*/
+            var action = "establecerAction";
+            $.ajax({
+                type: "POST",
+                url: action,
+                data: {accion: 1, action: pagina},
+                success: function(data){
+                    location.reload();
+                }
             });
         });
     }else{

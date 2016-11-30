@@ -60,6 +60,9 @@
                 <param name="actionName">modInformacion</param>
             </result>
         </action>
+        <action name="establecerAction" class="Actions.EstablecerMostrarAction">
+            <result name="success">WEB-INF/index.jsp</result>
+        </action>
         
         <!--Acciones para el manejo de grupos -->
         <action name="ListGroup">

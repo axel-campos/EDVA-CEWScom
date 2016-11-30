@@ -106,8 +106,13 @@
             <strong>Atención!</strong> Hubo un error al procesar la solicitud, inténtelo de nuevo
         </div>
         <div class="contact" id="contenido">
-            <%@include file="principal.jsp"%>
+            <s:if test="%{#session.action == null}">
+                <%@include file="principal.jsp"%>
+            </s:if>
         </div>
         <div id="contenidos_invisibles" style="display: none"></div>
+        <s:if test="%{#session.action != null}">
+            <input type="hidden" id="actionCargar" value="<s:property value="%{#session.action}"/>">
+        </s:if>
     </body>
 </html>
