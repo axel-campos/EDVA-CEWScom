@@ -14,14 +14,6 @@
                 <param name="bufferSize">1024</param>
             </result>
         </action>
-        <action name="zipMe" class="Actions.zip.actionZipContenidoDidactico">
-            <result name="success" type="stream">
-                <param name="contentType">application/octet-stream</param>
-                <param name="inputName">zipInputStream</param>
-                <param name="contentDisposition">attachment;filename="${OutputZipFileName}.zip"</param>
-                <param name="bufferSize">1024</param>
-            </result>
-        </action>
     </package>
     
     <package name="fileManagerDropbox" namespace="/" extends="struts-default">

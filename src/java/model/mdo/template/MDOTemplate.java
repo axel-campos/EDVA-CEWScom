@@ -25,7 +25,8 @@ public interface MDOTemplate {
 	 * ya incrustados en su interior.
 	 * 
 	 * @param html Una lista de cadenas las cuales se ocuparan para substituir el body.
+     * @param resourceReference Una cadena indicando de donde se leeran los css's y js's del template.
 	 * @return Un archivo HTML en forma de cadena.
 	 */
-	String generarPlantilla(List<String> html);
+	String generarPlantilla(List<String> html, String resourceReference);
 }

@@ -35,6 +35,7 @@ import modelo.dao.GrupoDAO;
 import modelo.pojo.Contenido;
 import modelo.pojo.Grupo;
 import org.apache.commons.io.FilenameUtils;
+import zip.file.ZipUtilities;
 
 /**
  * Permite almacenar y descargar archivos desde Dropbox por medio de su API
@@ -48,6 +49,9 @@ public final class DropboxPersistence implements FilePersistence {
     private final DbxClientV2 client;
     private final Gson gson = new Gson();
     private final String realPath;
+    private final String serverReference = "http://" + ServletActionContext.getRequest().getServerName()
+        + ":" + ServletActionContext.getRequest().getServerPort()
+        + ServletActionContext.getRequest().getServletContext().getContextPath();
 
     /**
      *
@@ -252,7 +256,7 @@ public final class DropboxPersistence implements FilePersistence {
             List<Map<String, Object>> artefactosMap = (List<Map<String, Object>>) map.get("lista");
 
             subirArchivoHTML((String) map.get("ruta"), "preview.html", template.setDetalles(detalles_contenido)
-                .generarPlantilla(generarHTMLString(artefactosMap, parser, template, path, true)));
+                .generarPlantilla(generarHTMLString(artefactosMap, parser, template, path, true), serverReference));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -295,9 +299,15 @@ public final class DropboxPersistence implements FilePersistence {
 
                 HTMLbodies.addAll(generarHTMLString(artefactosMap, parser, template, path, false));
             }
-
+            //Guardar template en dropbox con referencias del servidor
             subirArchivoHTML("/" + token + "/" + idContenido, "contenido_didactico_liberado.html",
-                new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies));
+                new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies, serverReference));
+            //Guardar zip con referencias locales
+            ZipUtilities.generarZipContenidoDidactico(
+                new ContenidoDidacticoTemplate().setDetalles(detalles_contenido).generarPlantilla(HTMLbodies, "Recursos"),
+                path,
+                String.format("%s_%s",token,idContenido));
+
         } catch (Exception e) {
             grupoDAO.desconectar();
             contenidoDAO.desconectar();
@@ -305,7 +315,7 @@ public final class DropboxPersistence implements FilePersistence {
         }
     }
 
-    private List<String> generarHTMLString(List<Map<String, Object>> artefactosMap, MDOParser parser, MDOTemplate template, String path, boolean serverReference) throws DbxException, IOException {
+    private List<String> generarHTMLString(List<Map<String, Object>> artefactosMap, MDOParser parser, MDOTemplate template, String path, boolean serverReferenceFlag) throws DbxException, IOException {
         int num_paso = 1;
         StringBuilder orderHTMLcode = new StringBuilder();
         StringBuilder definitionHTMLcode = new StringBuilder();
@@ -314,7 +324,7 @@ public final class DropboxPersistence implements FilePersistence {
             orderHTMLcode.append(
                 MDOTemplateUtil.generarStepHTML(num_paso, template, artifact));
             definitionHTMLcode.append(
-                artifact.setPaso(num_paso).toHtml(MDOTemplateUtil.setReferenceResourceHTML(path, artifact.getResource(), serverReference)));
+                artifact.setPaso(num_paso).toHtml(MDOTemplateUtil.setReferenceResourceHTML(path, artifact.getResource(), serverReferenceFlag)));
             num_paso = num_paso + 1;
         }
 
@@ -373,6 +383,30 @@ public final class DropboxPersistence implements FilePersistence {
     public void eliminarArchivoDropbox(String path, String fileToDelete) throws IOException, DbxException {
         client.files().delete(path + "/" + fileToDelete);
     }
+    
+    public List<DropboxFile> listarOnlyFilesDropbox(String path) throws DbxException, IOException {
+        List<DropboxFile> files = new ArrayList<>();
+        System.out.println("Requesting data to dropbox...");
+        ListFolderResult result = client.files().listFolderBuilder(path)
+            .withIncludeDeleted(false)
+            .withRecursive(false)
+            .withIncludeMediaInfo(false)
+            .start();
+
+        for (Metadata metadata : result.getEntries()) {
+            if (metadata instanceof FileMetadata) {
+                System.out.println(metadata.getPathDisplay());
+                File file = new File(metadata.getPathDisplay());
+                files.add(new DropboxFile(
+                    file.getName(),
+                    ((FileMetadata) metadata).getSize(),
+                    FilenameUtils.getExtension(file.getName()),
+                    Files.probeContentType(file.toPath())
+                ));
+            }
+        }
+        return files;
+    }
 
     public List<DropboxFile> listarArchivosDropbox(String path) throws DbxException, IOException {
         List<DropboxFile> files = new ArrayList<>();
@@ -381,7 +415,7 @@ public final class DropboxPersistence implements FilePersistence {
         String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
         File localResourceDir = new File(appRoot + File.separator + path + File.separator + "Recursos");
         File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
-        
+
         if (resourceFile.exists()) {
             List<String> listaRecursos = Files.readAllLines(Paths.get(resourceFile.getParent(), resourceFile.getName()));
             for (String nombreRecurso : listaRecursos) {
@@ -446,7 +480,7 @@ public final class DropboxPersistence implements FilePersistence {
         }
         return listaRecursosArchivos;
     }
-    
+
     /**
      * Lista los archivos de los recursos y nombres de el contenido.
      *

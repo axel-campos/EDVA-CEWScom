@@ -83,8 +83,8 @@ public class LiberarContenido extends ActionSupport {
             contenidoEtapaDAO.desconectar();
             new DropboxPersistence().guardarHTMLContenidoDidacticoLiberado(token, idContenido, versiones);
             
-            String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
-            FileUtils.deleteDirectory(new File(appRoot + token));
+//            String appRoot = ServletActionContext.getRequest().getServletContext().getRealPath("/");
+//            FileUtils.deleteDirectory(new File(appRoot + token));
             
             contenidoDAO.conectar();
             Contenido contenido = contenidoDAO.buscar(new Contenido().setIdContenido(numIdContenido));

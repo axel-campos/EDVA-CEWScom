@@ -23,19 +23,14 @@ public class VivenciaTemplate implements MDOTemplate {
     private String version;
 
     @Override
-    public String generarPlantilla(List<String> html) {
+    public String generarPlantilla(List<String> html, String resourceReference) {
         EtapaDAO conexionDAO = new EtapaDAO();
         try {
             String ruta_template = ServletActionContext.getRequest().getServletContext().getRealPath("/") + "/templates/preview_template.html";
             File htmlTemplateFile = new File(ruta_template);
 
-                        String template_string = FileUtils.readFileToString(htmlTemplateFile)
-                .replace("$ruta",
-                    "http://" + ServletActionContext.getRequest().getServerName()
-                    + ":" + ServletActionContext.getRequest().getServerPort()
-                    + ServletActionContext.getRequest().getServletContext().getContextPath());
-//            String template_string = FileUtils.readFileToString(htmlTemplateFile)
-//                .replace("$ruta", "http://" + "148.204.58.113" + ":" + "8080" + "/EDVA");
+            String template_string = FileUtils.readFileToString(htmlTemplateFile)
+                .replace("$ruta", resourceReference);
 
             conexionDAO.conectar();
             Etapa etapa = conexionDAO.buscar(new Etapa().setIdEtapa((short) 1));
