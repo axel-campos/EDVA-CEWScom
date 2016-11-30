@@ -12,7 +12,7 @@ window.operateEvents = {
         BootstrapDialog.show({
             title: 'Confirmar acción',
             type: BootstrapDialog.TYPE_WARNING,
-            message: '¿Estas seguro de eliminar el archivo: <strong>' + row.name + extension + '</strong> ?',
+            message: '¿Estas seguro de eliminar el recurso: <strong>' + row.name + extension + '</strong> ?',
             buttons: [{
                     icon: 'glyphicon glyphicon-send',
                     label: 'Eliminar archivo',
@@ -22,11 +22,15 @@ window.operateEvents = {
                         dialogRef.enableButtons(false);
                         dialogRef.setClosable(false);
                         dialogRef.getModalBody().html('Eliminando archivo...');
+                        var tipo = 1;
+                        if ($.trim(row.type) == "Referencia")
+                            tipo = 0;
                         var data = JSON.stringify({
                             listFilesToDelete: [row.name + extension],
+                            types: [tipo],
                             path: RUTA
                         });
-                        console.log(row.name + extension);
+                        console.log(data);
                         $.ajax({
                             url: "filesJSON/deleteFiles",
                             data: data,
@@ -52,7 +56,7 @@ window.operateEvents = {
         });
     },
     'click .downloadFile': function (e, value, row, index) {
-        if($.trim(row.type) == "Referencia")
+        if ($.trim(row.type) == "Referencia")
         {
             window.open(row.name);
             return;
@@ -129,7 +133,7 @@ var dialogResourceUploader = new BootstrapDialog({
                 dialogRef.setClosable(false);
                 dialogRef.getModalBody().html('Subiendo recurso...');
                 var data = JSON.stringify({
-                    resourceToUpload: resourceInput,
+                    resourceToUpload: $.trim(resourceInput),
                     path: RUTA
                 });
                 $.ajax({
@@ -214,7 +218,7 @@ $(document).ready(function () {
                             tipoRecurso = 1;
                             extension = typeRow.substring(typeRow.indexOf("(") + 1, typeRow.indexOf(")"));
                         }
-                        
+
                         console.log(params.pk.toString() + extension);
                         console.log(params.value.toString() + extension);
                         var data = JSON.stringify({
@@ -231,6 +235,7 @@ $(document).ready(function () {
                             type: 'POST',
                             success: function (json) {
                                 showAlert(json.status, json.message);
+                                $tableFiles.bootstrapTable('refresh');
                             }
                         });
                     },
@@ -241,8 +246,46 @@ $(document).ready(function () {
                         }
                         if ($.trim(editOldValue.type) == "Referencia")
                         {
-                            if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(value)) {
-                                return 'El recurso no es un link';
+                            //var urlRegex = /\(?(?:(http|https|ftp):\/\/)?(?:((?:[^\W\s]|\.|-|[:]{1})+)@{1})?((?:www.)?(?:[^\W\s]|\.|-)+[\.][^\W\s]{2,4}|localhost(?=\/)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::(\d*))?([\/]?[^\s\?]*[\/]{1})*(?:\/?([^\s\n\?\[\]\{\}\#]*(?:(?=\.)){1}|[^\s\n\?\[\]\{\}\.\#]*)?([\.]{1}[^\s\?\#]*)?)?(?:\?{1}([^\s\n\#\[\]]*))?([\#][^\s\n]*)?\)?/gi;
+                            //var urlRegex = /(https?|ftp):\/\/(-\.)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$@iS/;
+                            var re_weburl = new RegExp(
+                                    "^" +
+                                    // protocol identifier
+                                    "(?:(?:https?|ftp)://)" +
+                                    // user:pass authentication
+                                    "(?:\\S+(?::\\S*)?@)?" +
+                                    "(?:" +
+                                    // IP address exclusion
+                                    // private & local networks
+                                    "(?!(?:10|127)(?:\\.\\d{1,3}){3})" +
+                                    "(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})" +
+                                    "(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})" +
+                                    // IP address dotted notation octets
+                                    // excludes loopback network 0.0.0.0
+                                    // excludes reserved space >= 224.0.0.0
+                                    // excludes network & broacast addresses
+                                    // (first & last IP address of each class)
+                                    "(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
+                                    "(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}" +
+                                    "(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))" +
+                                    "|" +
+                                    // host name
+                                    "(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)" +
+                                    // domain name
+                                    "(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*" +
+                                    // TLD identifier
+                                    "(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))" +
+                                    // TLD may end with dot
+                                    "\\.?" +
+                                    ")" +
+                                    // port number
+                                    "(?::\\d{2,5})?" +
+                                    // resource path
+                                    "(?:[/?#]\\S*)?" +
+                                    "$", "i"
+                                    );
+                            if (!value.match(re_weburl)) {
+                                return 'El recurso ingresado no es un link';
                             }
                         } else
                         {

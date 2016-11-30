@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
+import java.util.List;
 import model.mdo.DropboxPersistence;
 import org.apache.struts2.ServletActionContext;
 
@@ -57,11 +59,9 @@ public class RenameFiles extends ActionSupport {
             File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
             try {
                 System.out.println("Renaming resource: " + fileToRename + " to " + newName);
-                String content = new String(Files.readAllBytes(resourceFile.toPath()), StandardCharsets.UTF_8);
-                System.out.println("Old Content: " + content);
-                content = content.replace(fileToRename.trim(), newName.trim());
-                System.out.println("Updated Content: " + content);
-                Files.write(resourceFile.toPath(), content.getBytes(StandardCharsets.UTF_8));
+                List<String> resourceList = Files.readAllLines(resourceFile.toPath());
+                resourceList.set(resourceList.indexOf(fileToRename.trim()),newName.trim());
+                Files.write(resourceFile.toPath(), resourceList);
                 message = "La referencia <strong>" + fileToRename + "</strong> ha sido renombrado a <strong>" + newName + "</strong>.";
                 status = true;
             } catch (Exception e) {
