@@ -1,16 +1,11 @@
 package Actions.FileManagement;
 
-import com.dropbox.core.DbxException;
-import com.dropbox.core.v2.files.UploadErrorException;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
 import model.mdo.DropboxPersistence;
-import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
 /**
@@ -47,7 +42,7 @@ public class UploadResources extends ActionSupport {
                 }
                 if (!Files.readAllLines(resourceFile.toPath()).contains(resourceToUpload)) {
                     try (BufferedWriter output = new BufferedWriter(new FileWriter(resourceFile, true))) {
-                        output.append(resourceToUpload);
+                        output.append(resourceToUpload.trim());
                         output.newLine();
                     }
                     message = "Referencia a recurso subida correctamente.";

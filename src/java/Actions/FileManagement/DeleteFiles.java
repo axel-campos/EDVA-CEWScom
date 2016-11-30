@@ -2,6 +2,7 @@ package Actions.FileManagement;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.List;
 import model.mdo.DropboxPersistence;
 import org.apache.struts2.ServletActionContext;
@@ -46,19 +47,21 @@ public class DeleteFiles extends ActionSupport {
                         message = "El archivo " + fileToDelete + " no existe. Por favor, recarge la lista.";
                         status = false;
                     }
-                }
-                else
-                {
-                    File tmp = File.createTempFile("resTmp", null);
+                } else {
+                    System.out.println("Recurso a borrar: " + path + "/" + fileToDelete);
                     File resourceFile = new File(localResourceDir, nombreArchivoRecursos);
+                    List<String> resourceList = Files.readAllLines(resourceFile.toPath());
+                    resourceList.remove(fileToDelete);
+                    Files.write(resourceFile.toPath(), resourceList);
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
             message = "Ocurrio un error: " + e;
             status = false;
         }
+        message = "Los recursos han sido eliminados.";
+        status = true;
         return SUCCESS;
     }
 
