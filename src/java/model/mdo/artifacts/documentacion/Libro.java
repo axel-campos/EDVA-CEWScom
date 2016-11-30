@@ -11,6 +11,8 @@ public class Libro implements MDOArtifact {
     private String ciudad;
     private String editorial;
     private String volumen;
+    private String descripcion;
+    private String recurso;
 
     public Libro setAutor(String autor) {
         this.autor = autor;
@@ -41,9 +43,19 @@ public class Libro implements MDOArtifact {
         this.volumen = volumen;
         return this;
     }
+    
+    public Libro setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+    
+    public Libro setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
 
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"documentacion3_%s\">\n"
             + "                                    <span class=\"section\">Libro: <small>%s</small></span> \n"
@@ -57,6 +69,7 @@ public class Libro implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Volumen</h2>\n"
             + "                                    <p>%s</p>\n"
+                + htmlResource
             + "                                </div>", paso, titulo, autor, anyo, ciudad, editorial, volumen);
     }
 
@@ -64,5 +77,10 @@ public class Libro implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

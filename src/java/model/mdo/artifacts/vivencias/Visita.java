@@ -11,6 +11,8 @@ public class Visita implements MDOArtifact {
     private String proposito;
     private String objetivos;
     private String entregables;
+    private String descripcion;
+    private String recurso;
 
     public Visita setTitulo(String titulo) {
         this.titulo = titulo;
@@ -42,11 +44,23 @@ public class Visita implements MDOArtifact {
         return this;
     }
 
+    public Visita setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public Visita setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"vivencias5_%s\">\n"
             + "                                    <span class=\"section\">Visita: <small>%s</small></span> \n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
+            + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Lugar a Visitar</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Temática Del Lugar</h2>\n"
@@ -57,12 +71,18 @@ public class Visita implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Entregables</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                </div>", paso, titulo, lugarAVisitar, tematicaDelLugar, proposito, objetivos, entregables);
+            + htmlResource
+            + "                                </div>", paso, titulo, descripcion, lugarAVisitar, tematicaDelLugar, proposito, objetivos, entregables);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

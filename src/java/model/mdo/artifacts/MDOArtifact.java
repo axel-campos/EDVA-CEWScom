@@ -13,9 +13,10 @@ public interface MDOArtifact {
 	 * en código HTML, que puede incrustarse dentro
 	 * de una página Web.
 	 * 
+     * @param htmlResource Codigo HTML para el recurso en cuestion
 	 * @return Cadena HTML con los atributos del artefacto.
 	 */
-	String toHtml();
+	String toHtml(String htmlResource);
     
     /**
 	 * Establece el paso en el codigo HTML
@@ -25,4 +26,12 @@ public interface MDOArtifact {
      * @return La referencia a MDOArtifact.
 	 */
     MDOArtifact setPaso(int paso);
+    
+    /**
+	 * Obtiene el nombre del recurso referenciado.
+     * en el cual va a ser estructurado en la etapa.
+	 * 
+     * @return Nombre del recurso.
+	 */
+    String getResource();
 }

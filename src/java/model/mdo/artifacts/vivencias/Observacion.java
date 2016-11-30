@@ -10,6 +10,8 @@ public class Observacion implements MDOArtifact {
     private String fenomenoAObservar;
     private String posibleExplicacion;
     private String posibleResultado;
+    private String descripcion;
+    private String recurso;
 
     public Observacion setTitulo(String titulo) {
         this.titulo = titulo;
@@ -36,11 +38,23 @@ public class Observacion implements MDOArtifact {
         return this;
     }
 
+    public Observacion setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public Observacion setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"vivencias3_%s\">\n"
             + "                                    <span class=\"section\">Observación: <small>%s</small></span> \n"
+            + "                                    <h2 class=\"StepTitle\">Descripción</h2>\n"
+            + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Pregunta</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Fenómeno a Observar</h2>\n"
@@ -49,12 +63,18 @@ public class Observacion implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Posible Resultado</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                </div>", paso, titulo, pregunta, fenomenoAObservar, posibleExplicacion, posibleResultado);
+            + htmlResource
+            + "                                </div>", paso, titulo, descripcion, pregunta, fenomenoAObservar, posibleExplicacion, posibleResultado);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

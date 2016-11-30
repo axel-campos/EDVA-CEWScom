@@ -1,12 +1,17 @@
 package model.mdo.template;
 
+import com.dropbox.core.DbxException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import model.mdo.DropboxPersistence;
 import model.mdo.artifacts.MDOArtifact;
 import model.mdo.artifacts.ampliacion.*;
 import model.mdo.artifacts.conceptualizacion.*;
 import model.mdo.artifacts.aplicacion.*;
 import model.mdo.artifacts.documentacion.*;
 import model.mdo.artifacts.vivencias.*;
+import org.apache.struts2.ServletActionContext;
 
 /**
  * Clase auxiliar para la creación de las plantillas MDO.
@@ -20,6 +25,7 @@ public final class MDOTemplateUtil {
      * Regresa el generador de plantillas indicado.
      *
      * @param etapa El nombre de la etapa MDO.
+     * @return Template correspondiente a la etapa.
      */
     public static MDOTemplate getTemplate(String etapa) {
         if (etapa.contains("vivencia")) {
@@ -145,5 +151,32 @@ public final class MDOTemplateUtil {
             + "                                            <span class=\"step_no\">%s</span>\n"
             + "                                        </a>\n"
             + "                                    </li>", artifactString, artifactID, paso, artifactName);
+    }
+
+    public static String setReferenceResourceHTML(String path, String recurso, boolean serverReference) throws DbxException, IOException {
+        DropboxPersistence DP = new DropboxPersistence();
+        if ("".equals(recurso)) {
+            return "";
+        }
+        List<String> files = DP.listarRecursos(path);
+        if (files.contains(recurso)) {
+            return String.format(""
+                + "<h2 class=\"StepTitle\">Recurso</h2>\n"
+                + "<a target=\"_blank\" href=\"%s\">%s</a>\n", recurso, recurso
+            );
+        } else if (serverReference) {
+            String serverPath = "http://" + ServletActionContext.getRequest().getServerName()
+                + ":" + ServletActionContext.getRequest().getServerPort()
+                + ServletActionContext.getRequest().getServletContext().getContextPath();
+            return String.format(""
+                + "<h2 class=\"StepTitle\">Recurso</h2>\n"
+                + "<a target=\"_blank\" href=\"%s\">%s</a>\n", serverPath + path + "/Recursos/" + recurso, recurso
+            );
+        } else {
+            return String.format(""
+                + "<h2 class=\"StepTitle\">Recurso</h2>\n"
+                + "<a target=\"_blank\" href=\"Recursos/%s\">%s</a>\n", recurso, recurso
+            );
+        }
     }
 }

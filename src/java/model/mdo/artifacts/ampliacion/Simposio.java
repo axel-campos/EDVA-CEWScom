@@ -10,6 +10,7 @@ public class Simposio implements MDOArtifact {
     private String tematica;
     private String numeroDeIntegrantes;
     private String tiempoDeExposicion;
+    private String recurso;
 
     public Simposio setTitulo(String titulo) {
         this.titulo = titulo;
@@ -36,8 +37,13 @@ public class Simposio implements MDOArtifact {
         return this;
     }
 
+    public Simposio setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"ampliacion4_%s\">\n"
             + "                                    <span class=\"section\">Simposio: <small>%s</small></span> \n"
@@ -49,6 +55,7 @@ public class Simposio implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Tiempo de Exposición</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, tematica, numeroDeIntegrantes, tiempoDeExposicion);
     }
 
@@ -56,5 +63,10 @@ public class Simposio implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

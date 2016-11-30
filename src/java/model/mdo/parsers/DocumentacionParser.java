@@ -17,14 +17,16 @@ public final class DocumentacionParser implements MDOParser {
 			.setDirector((String)artefacto.get("director"))
 			.setProductora((String)artefacto.get("productora"))
 			.setPais((String)artefacto.get("pais"))
-			.setAnyo((String)artefacto.get("anyo"));
+			.setAnyo((String)artefacto.get("anyo"))
+            .setRecurso((String) artefacto.get("recurso"));
 	}
 	
 	private MDOArtifact getVideo(Map<String, Object> artefacto) {
 		return new Video()
 			.setNombre((String)artefacto.get("nombre"))
 			.setDescripcion((String)artefacto.get("descripcion"))
-			.setUrl((String)artefacto.get("url"));
+			.setUrl((String)artefacto.get("url"))
+            .setRecurso((String) artefacto.get("recurso"));
 	}
 	
 	private MDOArtifact getLibro(Map<String, Object> artefacto) {
@@ -34,7 +36,9 @@ public final class DocumentacionParser implements MDOParser {
 			.setAnyo((String)artefacto.get("anyo"))
 			.setCiudad((String)artefacto.get("ciudad"))
 			.setEditorial((String)artefacto.get("editorial"))
-			.setVolumen((String)artefacto.get("volumen"));
+			.setVolumen((String)artefacto.get("volumen"))
+            .setDescripcion((String)artefacto.get("descripcion"))
+            .setRecurso((String) artefacto.get("recurso"));
 	}
 	
 	private MDOArtifact getArticuloWeb(Map<String, Object> artefacto) {
@@ -46,14 +50,16 @@ public final class DocumentacionParser implements MDOParser {
 			.setAnyo((String)artefacto.get("anyo"))
 			.setMes((String)artefacto.get("mes"))
 			.setDia((String)artefacto.get("dia"))
-			.setUrl((String)artefacto.get("url"));
+			.setUrl((String)artefacto.get("url"))
+            .setRecurso((String) artefacto.get("recurso"));
 	}
 	
 	private MDOArtifact getArticuloPDF(Map<String, Object> artefacto) {
 		return new ArticuloPDF()
 			.setNombre((String)artefacto.get("nombre"))
 			.setDescripcion((String)artefacto.get("descripcion"))
-			.setUrl((String)artefacto.get("url"));
+			.setUrl((String)artefacto.get("url"))
+            .setRecurso((String) artefacto.get("recurso"));
 	}
 	
 	private MDOArtifact getRevista(Map<String, Object> artefacto) {
@@ -65,7 +71,8 @@ public final class DocumentacionParser implements MDOParser {
 			.setAnyo((String)artefacto.get("anyo"))
 			.setPaginas((String)artefacto.get("paginas"))
 			.setVolumen((String)artefacto.get("volumen"))
-			.setNumero((String)artefacto.get("numero"));
+			.setNumero((String)artefacto.get("numero"))
+            .setRecurso((String) artefacto.get("recurso"));
 	}
 	
 	@Override

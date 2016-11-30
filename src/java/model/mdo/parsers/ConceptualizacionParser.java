@@ -16,7 +16,8 @@ public class ConceptualizacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setIntegrantesPorGrupo((String) artefacto.get("integrantes"))
-            .setEntregables((String) artefacto.get("entregables"));
+            .setEntregables((String) artefacto.get("entregables"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getLluviaIdeas(Map<String, Object> artefacto) {
@@ -25,7 +26,8 @@ public class ConceptualizacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setProblematica((String) artefacto.get("problematica"))
-            .setPreguntasClave((String) artefacto.get("preguntasClave"));
+            .setPreguntasClave((String) artefacto.get("preguntasClave"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getPreguntas(Map<String, Object> artefacto) {
@@ -33,7 +35,8 @@ public class ConceptualizacionParser implements MDOParser {
             .setTitulo((String) artefacto.get("titulo"))
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
-            .setPreguntasARealizar((String) artefacto.get("preguntas"));
+            .setPreguntasARealizar((String) artefacto.get("preguntas"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getTutoria(Map<String, Object> artefacto) {
@@ -42,7 +45,8 @@ public class ConceptualizacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("pregunta"))
             .setObjetivos((String) artefacto.get("objetivos"))
             .setTemasATratar((String) artefacto.get("temas"))
-            .setMaterialDeApoyo((String) artefacto.get("materialApoyo"));
+            .setMaterialDeApoyo((String) artefacto.get("materialApoyo"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
 	@Override

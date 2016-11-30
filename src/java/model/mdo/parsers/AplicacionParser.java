@@ -17,7 +17,8 @@ public class AplicacionParser implements MDOParser {
             .setObjetivos((String) artefacto.get("objetivos"))
             .setProblematica((String) artefacto.get("problematica"))
             .setMetodosDeInvestigacion((String) artefacto.get("metodosInvestigacion"))
-            .setEntregables((String) artefacto.get("entregables"));
+            .setEntregables((String) artefacto.get("entregables"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     private MDOArtifact getMarcoLogico(Map<String, Object> artefacto) {
@@ -29,7 +30,9 @@ public class AplicacionParser implements MDOParser {
             .setActividadesARealizar((String) artefacto.get("actividades"))
             .setIndicadores((String) artefacto.get("indicadores"))
             .setFuentesDeVerificacion((String) artefacto.get("fuentesVerificacion"))
-            .setSupuestos((String) artefacto.get("supuestos"));
+            .setSupuestos((String) artefacto.get("supuestos"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     private MDOArtifact getMapaConceptual(Map<String, Object> artefacto) {
@@ -37,7 +40,8 @@ public class AplicacionParser implements MDOParser {
             .setTitulo((String) artefacto.get("titulo"))
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
-            .setEntregables((String) artefacto.get("entregables"));
+            .setEntregables((String) artefacto.get("entregables"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     private MDOArtifact getArbolProblemas(Map<String, Object> artefacto) {
@@ -47,7 +51,8 @@ public class AplicacionParser implements MDOParser {
             .setProblematicaPrincipal((String) artefacto.get("problematicaCentral"))
             .setCausas((String) artefacto.get("causas"))
             .setProblemasSecundarios((String) artefacto.get("problemasSecundarios"))
-            .setEfectos((String) artefacto.get("efectos"));
+            .setEfectos((String) artefacto.get("efectos"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     private MDOArtifact getProyectoInvestigacion(Map<String, Object> artefacto) {
@@ -57,7 +62,8 @@ public class AplicacionParser implements MDOParser {
             .setObjetivos((String) artefacto.get("objetivos"))
             .setMarcoTeorico((String) artefacto.get("marcoTeorico"))
             .setHipotesis((String) artefacto.get("hipotesis"))
-            .setEntregables((String) artefacto.get("entregables"));
+            .setEntregables((String) artefacto.get("entregables"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     private MDOArtifact getEjercicios(Map<String, Object> artefacto) {
@@ -66,7 +72,8 @@ public class AplicacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setEjercicios((String) artefacto.get("ejercicios"))
-            .setEntregables((String) artefacto.get("entregables"));
+            .setEntregables((String) artefacto.get("entregables"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     @Override

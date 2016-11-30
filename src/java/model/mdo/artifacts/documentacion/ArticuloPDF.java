@@ -8,6 +8,7 @@ public class ArticuloPDF implements MDOArtifact {
     private String nombre;
     private String descripcion;
     private String url;
+    private String recurso;
 
     public ArticuloPDF setNombre(String nombre) {
         this.nombre = nombre;
@@ -24,8 +25,13 @@ public class ArticuloPDF implements MDOArtifact {
         return this;
     }
 
+    public ArticuloPDF setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"documentacion1_%s\">\n"
             + "                                    <span class=\"section\">Artículo PDF: <small>%s</small></span> \n"
@@ -33,6 +39,7 @@ public class ArticuloPDF implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">URL</h2>\n"
             + "                                    <a href='%s'>%s</a>\n"
+            + htmlResource
             + "                                </div>", paso, nombre, descripcion, url, url);
     }
 
@@ -40,5 +47,10 @@ public class ArticuloPDF implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

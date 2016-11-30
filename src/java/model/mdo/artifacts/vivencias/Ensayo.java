@@ -10,6 +10,7 @@ public class Ensayo implements MDOArtifact {
     private String tematica;
     private String requisitos;
     private String tiempoDeRealizacion;
+    private String recurso;
 
     public Ensayo setTitulo(String titulo) {
         this.titulo = titulo;
@@ -35,9 +36,14 @@ public class Ensayo implements MDOArtifact {
         this.tiempoDeRealizacion = tiempoDeRealizacion;
         return this;
     }
+    
+    public Ensayo setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
 
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"vivencias2_%s\">\n"
             + "                                    <span class=\"section\">Ensayo: <small>%s</small></span> \n"
@@ -49,6 +55,7 @@ public class Ensayo implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Tiempo de realización</h2>\n"
             + "                                    <p>%s</p>\n"
+                + htmlResource
             + "                                </div>", paso, titulo, descripcion, tematica, requisitos, tiempoDeRealizacion);
     }
 
@@ -56,5 +63,10 @@ public class Ensayo implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+    
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

@@ -13,6 +13,8 @@ public class MarcoLogico implements MDOArtifact {
     private String indicadores;
     private String fuentesDeVerificacion;
     private String supuestos;
+    private String descripcion;
+    private String recurso;
 
     public MarcoLogico setTitulo(String titulo) {
         this.titulo = titulo;
@@ -54,11 +56,23 @@ public class MarcoLogico implements MDOArtifact {
         return this;
     }
 
+    public MarcoLogico setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public MarcoLogico setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"aplicacion5_%s\">\n"
             + "                                    <span class=\"section\">Marco Lógico: <small>%s</small></span> \n"
+            + "                                    <h2 class=\"StepTitle\">Descripcion</h2>\n"
+            + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Objetivo General</h2>\n"
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Objetivos Específicos</h2>\n"
@@ -73,12 +87,18 @@ public class MarcoLogico implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Supuestos</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                </div>", paso, titulo, objetivoGeneral, objetivosEspecificos, resultadosEsperados, actividadesARealizar, indicadores, fuentesDeVerificacion, supuestos);
+            + htmlResource
+            + "                                </div>", paso, titulo, descripcion, objetivoGeneral, objetivosEspecificos, resultadosEsperados, actividadesARealizar, indicadores, fuentesDeVerificacion, supuestos);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

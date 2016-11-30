@@ -25,7 +25,7 @@ import zip.file.*;
  *
  * @author Christian Campos
  */
-public class actionZip extends ActionSupport implements ParameterAware {
+public class actionZipRecursos extends ActionSupport implements ParameterAware {
 
     private String message;
     private boolean status;

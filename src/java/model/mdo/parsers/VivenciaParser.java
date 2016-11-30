@@ -16,7 +16,9 @@ public class VivenciaParser implements MDOParser {
             .setPregunta((String) artefacto.get("pregunta"))
             .setFenomenoAObservar((String) artefacto.get("fenomenoAObservar"))
             .setPosibleExplicacion((String) artefacto.get("posibleExplicacion"))
-            .setPosibleResultado((String) artefacto.get("posibleResultado"));
+            .setPosibleResultado((String) artefacto.get("posibleResultado"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     private MDOArtifact getDemostracion(Map<String, Object> artefacto) {
@@ -24,7 +26,9 @@ public class VivenciaParser implements MDOParser {
             .setTitulo((String) artefacto.get("titulo"))
             .setObjetivo((String) artefacto.get("objetivo"))
             .setMaterialNecesario((String) artefacto.get("materialNecesario"))
-            .setProcedimiento((String) artefacto.get("procedimiento"));
+            .setProcedimiento((String) artefacto.get("procedimiento"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getSimulacion(Map<String, Object> artefacto) {
@@ -34,7 +38,8 @@ public class VivenciaParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setRoles((String) artefacto.get("roles"))
             .setMaterialNecesario((String) artefacto.get("materialNecesario"))
-            .setProcedimiento((String) artefacto.get("procedimiento"));
+            .setProcedimiento((String) artefacto.get("procedimiento"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getVisita(Map<String, Object> artefacto) {
@@ -44,7 +49,9 @@ public class VivenciaParser implements MDOParser {
             .setTematicaDelLugar((String) artefacto.get("tematica"))
             .setProposito((String) artefacto.get("proposito"))
             .setObjetivos((String) artefacto.get("objetivos"))
-            .setEntregables((String) artefacto.get("entregables"));
+            .setEntregables((String) artefacto.get("entregables"))
+            .setDescripcion((String) artefacto.get("descripcion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getEnsayo(Map<String, Object> artefacto) {
@@ -53,7 +60,8 @@ public class VivenciaParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setRequisitos((String) artefacto.get("requisitos"))
-            .setTiempoDeRealizacion((String) artefacto.get("tiempoRealizacion"));
+            .setTiempoDeRealizacion((String) artefacto.get("tiempoRealizacion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
 
     @Override

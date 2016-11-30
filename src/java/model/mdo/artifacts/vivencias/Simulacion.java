@@ -11,6 +11,7 @@ public class Simulacion implements MDOArtifact {
     private String roles;
     private String materialNecesario;
     private String procedimiento;
+    private String recurso;
 
     public Simulacion setTitulo(String titulo) {
         this.titulo = titulo;
@@ -42,8 +43,13 @@ public class Simulacion implements MDOArtifact {
         return this;
     }
 
+    public Simulacion setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"vivencias4_%s\">\n"
             + "                                    <span class=\"section\">Simulación: <small>%s</small></span> \n"
@@ -57,6 +63,7 @@ public class Simulacion implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Procedimiento</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, tematica, descripcion, roles, materialNecesario, procedimiento);
     }
 
@@ -64,6 +71,11 @@ public class Simulacion implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 
 }

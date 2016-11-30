@@ -15,7 +15,8 @@ public class AmpliacionParser implements MDOParser {
             .setTitulo((String) artefacto.get("titulo"))
             .setDescripcion((String) artefacto.get("descripcion"))
             .setObjetivos((String) artefacto.get("objetivos"))
-            .setTematica((String) artefacto.get("tematica"));
+            .setTematica((String) artefacto.get("tematica"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getMesaRedonda(Map<String, Object> artefacto) {
@@ -24,7 +25,8 @@ public class AmpliacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setNumeroDeIntegrantes((String) artefacto.get("numeroIntegrantes"))
-            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicion"));
+            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getPanel(Map<String, Object> artefacto) {
@@ -33,7 +35,8 @@ public class AmpliacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setNumeroDeIntegrantes((String) artefacto.get("numeroIntegrantes"))
-            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicion"));
+            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicion"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
     private MDOArtifact getSimposio(Map<String, Object> artefacto) {
@@ -42,7 +45,8 @@ public class AmpliacionParser implements MDOParser {
             .setDescripcion((String) artefacto.get("descripcion"))
             .setTematica((String) artefacto.get("tematica"))
             .setNumeroDeIntegrantes((String) artefacto.get("numeroIntegrantes"))
-            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicionPorIntegrante"));
+            .setTiempoDeExposicion((String) artefacto.get("tiempoExposicionPorIntegrante"))
+            .setRecurso((String) artefacto.get("recurso"));
     }
     
 	@Override

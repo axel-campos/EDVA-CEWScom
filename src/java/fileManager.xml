@@ -6,7 +6,15 @@
 
 <struts>
     <package name="zipFiles" namespace="/zipFiles" extends="struts-default">
-        <action name="zipMe" class="Actions.zip.actionZip">
+        <action name="zipMe" class="Actions.zip.actionZipRecursos">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">zipInputStream</param>
+                <param name="contentDisposition">attachment;filename="${OutputZipFileName}.zip"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+        <action name="zipMe" class="Actions.zip.actionZipContenidoDidactico">
             <result name="success" type="stream">
                 <param name="contentType">application/octet-stream</param>
                 <param name="inputName">zipInputStream</param>

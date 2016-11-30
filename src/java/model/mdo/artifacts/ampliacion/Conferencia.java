@@ -9,6 +9,7 @@ public class Conferencia implements MDOArtifact {
     private String descripcion;
     private String objetivos;
     private String tematica;
+    private String recurso;
 
     public Conferencia setTitulo(String titulo) {
         this.titulo = titulo;
@@ -30,8 +31,13 @@ public class Conferencia implements MDOArtifact {
         return this;
     }
 
+    public Conferencia setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"ampliacion1_%s\">\n"
             + "                                    <span class=\"section\">Conferencia: <small>%s</small></span> \n"
@@ -41,6 +47,7 @@ public class Conferencia implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Temática</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, objetivos, tematica);
     }
 
@@ -48,5 +55,10 @@ public class Conferencia implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

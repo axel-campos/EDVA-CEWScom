@@ -9,6 +9,7 @@ public class Preguntas implements MDOArtifact {
     private String descripcion;
     private String tematica;
     private String preguntasARealizar;
+    private String recurso;
 
     public Preguntas setTitulo(String titulo) {
         this.titulo = titulo;
@@ -30,8 +31,13 @@ public class Preguntas implements MDOArtifact {
         return this;
     }
 
+    public Preguntas setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"conceptualizacion3_%s\">\n"
             + "                                    <span class=\"section\">Preguntas: <small>%s</small></span>\n"
@@ -41,6 +47,7 @@ public class Preguntas implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Preguntas A Realizar</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, tematica, preguntasARealizar);
     }
 
@@ -48,5 +55,10 @@ public class Preguntas implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

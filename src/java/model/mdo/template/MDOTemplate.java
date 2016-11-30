@@ -24,7 +24,7 @@ public interface MDOTemplate {
 	 * Genera un archivo HTML completo con los artefactos MDO
 	 * ya incrustados en su interior.
 	 * 
-	 * @param html Una lista de cadenas las cuales se ocuparan para substituir el body (Primer el orden de los pasos y despues su definicion).
+	 * @param html Una lista de cadenas las cuales se ocuparan para substituir el body.
 	 * @return Un archivo HTML en forma de cadena.
 	 */
 	String generarPlantilla(List<String> html);

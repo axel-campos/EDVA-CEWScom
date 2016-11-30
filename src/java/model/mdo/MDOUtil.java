@@ -37,12 +37,12 @@ public final class MDOUtil {
 	 * @return Lista de cadenas, cada una con el HTML correspondiente de los
 	 * artefactos.
 	 */
-	public static List<String> parseMDOArtifacts(List<MDOArtifact> list) {
-		return list
-			.stream()
-			.map(e -> e.toHtml())
-			.collect(Collectors.toCollection(ArrayList::new));
-	}
+//	public static List<String> parseMDOArtifacts(List<MDOArtifact> list) {
+//		return list
+//			.stream()
+//			.map(e -> e.toHtml())
+//			.collect(Collectors.toCollection(ArrayList::new));
+//	}
 	
 	
 	/**

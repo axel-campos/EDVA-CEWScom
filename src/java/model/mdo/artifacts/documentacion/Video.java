@@ -8,6 +8,7 @@ public class Video implements MDOArtifact {
     private String nombre;
     private String descripcion;
     private String url;
+    private String recurso;
 
     public Video setNombre(String nombre) {
         this.nombre = nombre;
@@ -24,8 +25,17 @@ public class Video implements MDOArtifact {
         return this;
     }
 
+    public Video setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
+    public String getRecurso() {
+        return recurso;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"documentacion6_%s\">\n"
             + "                                    <span class=\"section\">Video: <small>%s</small></span> \n"
@@ -33,12 +43,18 @@ public class Video implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">URL</h2>\n"
             + "                                    <a href=\"%s\">%s</a>\n"
-            + "                                </div>",paso, nombre, descripcion, url, url);
+            + htmlResource
+            + "                                </div>", paso, nombre, descripcion, url, url);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

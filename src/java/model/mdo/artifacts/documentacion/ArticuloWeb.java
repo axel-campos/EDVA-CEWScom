@@ -13,6 +13,7 @@ public class ArticuloWeb implements MDOArtifact {
     private String mes;
     private String dia;
     private String url;
+    private String recurso;
 
     public ArticuloWeb setAutor(String autor) {
         this.autor = autor;
@@ -54,8 +55,13 @@ public class ArticuloWeb implements MDOArtifact {
         return this;
     }
 
+    public ArticuloWeb setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"documentacion2_%s\">\n"
             + "                                    <span class=\"section\">Artículo Web: <small>%s</small></span> \n"
@@ -73,12 +79,18 @@ public class ArticuloWeb implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">URL</h2>\n"
             + "                                    <a href='%s'>%s</a>\n"
-            + "                                </div>",paso, titulo, autor, descripcion, nombre, anyo, mes, dia, url, url);
+            + htmlResource
+            + "                                </div>", paso, titulo, autor, descripcion, nombre, anyo, mes, dia, url, url);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

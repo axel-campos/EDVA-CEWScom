@@ -10,6 +10,7 @@ public class GrupoEstudio implements MDOArtifact {
     private String tematica;
     private String integrantesPorGrupo;
     private String entregables;
+    private String recurso;
 
     public GrupoEstudio setTitulo(String titulo) {
         this.titulo = titulo;
@@ -36,8 +37,13 @@ public class GrupoEstudio implements MDOArtifact {
         return this;
     }
 
+    public GrupoEstudio setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"conceptualizacion1_%s\">\n"
             + "                                    <span class=\"section\">Grupo de Estudio: <small>%s</small></span> \n"
@@ -49,6 +55,7 @@ public class GrupoEstudio implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "									<h2 class=\"StepTitle\">Entregables</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, tematica, integrantesPorGrupo, entregables);
     }
 
@@ -56,5 +63,10 @@ public class GrupoEstudio implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

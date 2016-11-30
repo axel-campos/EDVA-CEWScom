@@ -11,6 +11,7 @@ public class EstudioCaso implements MDOArtifact {
     private String problematica;
     private String metodosDeInvestigacion;
     private String entregables;
+    private String recurso;
 
     public EstudioCaso setTitulo(String titulo) {
         this.titulo = titulo;
@@ -42,8 +43,13 @@ public class EstudioCaso implements MDOArtifact {
         return this;
     }
 
+    public EstudioCaso setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"aplicacion3_%s\">\n"
             + "                                    <span class=\"section\">Estudio de Caso: <small>%s</small></span> \n"
@@ -57,6 +63,7 @@ public class EstudioCaso implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Entregables</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, objetivos, problematica, metodosDeInvestigacion, entregables);
     }
 
@@ -64,5 +71,10 @@ public class EstudioCaso implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

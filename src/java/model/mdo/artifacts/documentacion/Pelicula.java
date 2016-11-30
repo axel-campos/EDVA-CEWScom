@@ -11,6 +11,7 @@ public class Pelicula implements MDOArtifact {
     private String productora;
     private String pais;
     private String anyo;
+    private String recurso;
 
     public Pelicula setTitulo(String titulo) {
         this.titulo = titulo;
@@ -42,8 +43,13 @@ public class Pelicula implements MDOArtifact {
         return this;
     }
 
+    public Pelicula setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"documentacion4_%s\">\n"
             + "                                    <span class=\"section\">Película: <small>%s</small></span> \n"
@@ -57,6 +63,7 @@ public class Pelicula implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Año</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, director, productora, pais, anyo);
     }
 
@@ -64,5 +71,10 @@ public class Pelicula implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

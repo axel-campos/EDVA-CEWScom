@@ -11,6 +11,7 @@ public class ArbolProblemas implements MDOArtifact {
     private String causas;
     private String problemasSecundarios;
     private String efectos;
+    private String recurso;
 
     public ArbolProblemas setTitulo(String titulo) {
         this.titulo = titulo;
@@ -42,8 +43,13 @@ public class ArbolProblemas implements MDOArtifact {
         return this;
     }
 
+    public ArbolProblemas setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"aplicacion1_%s\">\n"
             + "                                    <span class=\"section\">Árbol de Problemas: <small>%s</small></span> \n"
@@ -57,12 +63,18 @@ public class ArbolProblemas implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Efectos</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                </div>", paso, titulo, descripcion, problematicaPrincipal, causas, problemasSecundarios,efectos);
+            + htmlResource
+            + "                                </div>", paso, titulo, descripcion, problematicaPrincipal, causas, problemasSecundarios, efectos);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

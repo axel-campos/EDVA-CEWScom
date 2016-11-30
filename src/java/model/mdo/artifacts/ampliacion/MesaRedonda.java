@@ -10,6 +10,7 @@ public class MesaRedonda implements MDOArtifact {
     private String tematica;
     private String numeroDeIntegrantes;
     private String tiempoDeExposicion;
+    private String recurso;
 
     public MesaRedonda setTitulo(String titulo) {
         this.titulo = titulo;
@@ -37,8 +38,13 @@ public class MesaRedonda implements MDOArtifact {
         return this;
     }
 
+    public MesaRedonda setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"ampliacion2_%s\">\n"
             + "                                    <span class=\"section\">Mesa Redonda: <small>%s</small></span> \n"
@@ -50,12 +56,18 @@ public class MesaRedonda implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Tiempo De Exposición</h2>\n"
             + "                                    <p>%s</p>\n"
-            + "                                </div>",paso,titulo,descripcion,tematica,numeroDeIntegrantes,tiempoDeExposicion);
+            + htmlResource
+            + "                                </div>", paso, titulo, descripcion, tematica, numeroDeIntegrantes, tiempoDeExposicion);
     }
 
     @Override
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

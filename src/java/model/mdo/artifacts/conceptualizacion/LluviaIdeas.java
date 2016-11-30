@@ -10,6 +10,7 @@ public class LluviaIdeas implements MDOArtifact {
     private String tematica;
     private String problematica;
     private String preguntasClave;
+    private String recurso;
 
     public LluviaIdeas setTitulo(String titulo) {
         this.titulo = titulo;
@@ -36,8 +37,13 @@ public class LluviaIdeas implements MDOArtifact {
         return this;
     }
 
+    public LluviaIdeas setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"conceptualizacion2_%s\">\n"
             + "                                    <span class=\"section\">Lluvia de Ideas: <small>%s</small></span> \n"
@@ -49,6 +55,7 @@ public class LluviaIdeas implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Preguntas Clave</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, tematica, problematica, preguntasClave);
     }
 
@@ -56,5 +63,10 @@ public class LluviaIdeas implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

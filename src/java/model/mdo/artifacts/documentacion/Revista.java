@@ -13,6 +13,7 @@ public class Revista implements MDOArtifact {
     private String paginas;
     private String volumen;
     private String numero;
+    private String recurso;
 
     public Revista setAutor(String autor) {
         this.autor = autor;
@@ -53,9 +54,14 @@ public class Revista implements MDOArtifact {
         this.numero = numero;
         return this;
     }
+    
+    public Revista setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
 
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"documentacion5_%s\">\n"
             + "                                    <span class=\"section\">Revista: <small>%s</small></span> \n"
@@ -73,6 +79,7 @@ public class Revista implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Número</h2>\n"
             + "                                    <p>%s</p>\n"
+                + htmlResource
             + "                                </div>", paso, titulo, autor, descripcion, nombre, anyo, paginas, volumen, numero);
     }
 
@@ -80,5 +87,10 @@ public class Revista implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }

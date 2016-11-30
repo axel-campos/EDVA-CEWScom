@@ -10,6 +10,7 @@ public class Tutoria implements MDOArtifact {
     private String objetivos;
     private String temasATratar;
     private String materialDeApoyo;
+    private String recurso;
 
     public Tutoria setTitulo(String titulo) {
         this.titulo = titulo;
@@ -36,8 +37,13 @@ public class Tutoria implements MDOArtifact {
         return this;
     }
 
+    public Tutoria setRecurso(String recurso) {
+        this.recurso = recurso;
+        return this;
+    }
+
     @Override
-    public String toHtml() {
+    public String toHtml(String htmlResource) {
         return String.format(
             "                                <div id=\"conceptualizacion4_%s\">\n"
             + "                                    <span class=\"section\">Tutoría <small>%s</small></span> \n"
@@ -49,6 +55,7 @@ public class Tutoria implements MDOArtifact {
             + "                                    <p>%s</p>\n"
             + "                                    <h2 class=\"StepTitle\">Maerial de Apoyo</h2>\n"
             + "                                    <p>%s</p>\n"
+            + htmlResource
             + "                                </div>", paso, titulo, descripcion, objetivos, temasATratar, materialDeApoyo);
     }
 
@@ -56,5 +63,10 @@ public class Tutoria implements MDOArtifact {
     public MDOArtifact setPaso(int paso) {
         this.paso = paso;
         return this;
+    }
+
+    @Override
+    public String getResource() {
+        return this.recurso;
     }
 }
