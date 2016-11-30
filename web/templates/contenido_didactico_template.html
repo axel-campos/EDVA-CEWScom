@@ -31,14 +31,11 @@
                     <!-- Detalles Panel -->
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2><i class="fa fa-bars"></i> Detalles <small>Datos sobre &eacute;ste contenido did&aacute;ctico</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                            </ul>
+                            <h2><i class="fa fa-bars"></i> <a class="collapse-link" href="#">Detalles </a><small>Datos sobre &eacute;ste contenido did&aacute;ctico</small></h2>
+                            
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content">
+                        <div class="x_content" id="datosGenerales">
                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                     <li role="presentation" class="active">
@@ -63,8 +60,8 @@
 
                     <!-- Vivencias Panel -->
                     <div id="vivencias_panel" class="x_panel">
-                        <div class="x_title">
-                            <h2>1. %s <small>%s</small></h2>
+                        <div class="x_title ">
+                            <h2><a href="#" class="collapse-link">1. %s </a><small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepVivencias();" class="fa fa-chevron-circle-left"></i></a>
@@ -72,13 +69,10 @@
                                 <li>
                                     <a><i onclick="nextStepVivencias();" class="fa fa-chevron-circle-right"></i></a>
                                 </li>
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content" style="display: none;"> 
+                        <div class="x_content" > 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_vivencias" class="form_wizard wizard_verticle">
                                 <!-- StepsOrder -->
@@ -98,7 +92,7 @@
                     <!-- Conceptualizacion Panel -->
                     <div id="conceptualizacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>2. %s <small>%s</small></h2>
+                            <h2><a href="#" class="collapse-link">2. %s </a><small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepConceptualizacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -106,13 +100,10 @@
                                 <li>
                                     <a><i onclick="nextStepConceptualizacion();" class="fa fa-chevron-circle-right"></i></a>
                                 </li>
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content" style="display: none;"> 
+                        <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_conceptualizacion" class="form_wizard wizard_verticle">
                                 <!-- StepsOrder -->
@@ -132,7 +123,7 @@
                     <!-- Documentacion Panel -->
                     <div id="documentacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>3. %s <small>%s</small></h2>
+                            <h2><a href="#" class="collapse-link">3. %s </a><small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepDocumentacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -140,13 +131,10 @@
                                 <li>
                                     <a><i onclick="nextStepDocumentacion();" class="fa fa-chevron-circle-right"></i></a>
                                 </li>
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content" style="display: none;"> 
+                        <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_documentacion" class="form_wizard wizard_verticle">
                                 <!-- StepsOrder -->
@@ -166,7 +154,7 @@
                     <!-- Ampliacion Panel -->
                     <div id="ampliacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>4. %s <small>%s</small></h2>
+                            <h2><a href="#" class="collapse-link">4. %s </a><small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepAmpliacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -174,14 +162,11 @@
                                 <li>
                                     <a><i onclick="nextStepAmpliacion();" class="fa fa-chevron-circle-right"></i></a>
                                 </li>
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
 
-                        <div class="x_content" style="display: none;"> 
+                        <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_ampliacion" class="form_wizard wizard_verticle">
                                 <!-- StepsOrder -->
@@ -201,7 +186,7 @@
                     <!-- Aplicacion Panel -->
                     <div id="aplicacion_panel" class="x_panel">
                         <div class="x_title">
-                            <h2>5. %s <small>%s</small></h2>
+                            <h2><a href="#" class="collapse-link">5. %s </a><small>%s</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a><i onclick="backStepAplicacion();" class="fa fa-chevron-circle-left"></i></a>
@@ -209,14 +194,11 @@
                                 <li>
                                     <a><i onclick="nextStepAplicacion();" class="fa fa-chevron-circle-right"></i></a>
                                 </li>
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
 
-                        <div class="x_content" style="display: none;"> 
+                        <div class="x_content"> 
                             <!-- Wizard verticle tabs -->
                             <div id="wizard_verticle_aplicacion" class="form_wizard wizard_verticle">
                                 <!-- StepsOrder -->
@@ -317,6 +299,9 @@
 
                                             $('.buttonNext').addClass('fa fa-chevron-circle-right');
                                             $('.buttonPrevious').addClass('fa fa-chevron-circle-left');
+                                            
+                                            $(".x_content").hide();
+                                            $("#datosGenerales").show();
                                         });
                                         function nextStepVivencias() {
                                             $('#wizard_verticle_vivencias').smartWizard('goForward');
