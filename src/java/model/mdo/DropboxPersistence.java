@@ -138,7 +138,8 @@ public final class DropboxPersistence implements FilePersistence {
                     .uploadBuilder(ruta + "/" + etapa + ".html")
                     .uploadAndFinish(fis);
         }
-        FileUtils.deleteDirectory(new File(appRoot + token));
+        temp.delete();
+        //FileUtils.deleteDirectory(new File(appRoot + token));
     }
 
     /**
@@ -163,7 +164,8 @@ public final class DropboxPersistence implements FilePersistence {
                     .withMode(WriteMode.OVERWRITE)
                     .uploadAndFinish(fis);
         }
-        FileUtils.deleteDirectory(new File(appRoot + token));
+        temp.delete();
+        //FileUtils.deleteDirectory(new File(appRoot + token));
     }
 
     private void subirArchivoHTML(String ruta, String nombre, String contenido) throws IOException, DbxException {
@@ -179,7 +181,8 @@ public final class DropboxPersistence implements FilePersistence {
                     .withMode(WriteMode.OVERWRITE)
                     .uploadAndFinish(fis);
         }
-        FileUtils.deleteDirectory(new File(appRoot + token));
+        temp.delete();
+        //FileUtils.deleteDirectory(new File(appRoot + token));
     }
 
     private String descargarArchivoTexto(String ruta, String nombre) throws IOException, DbxException {
@@ -192,10 +195,10 @@ public final class DropboxPersistence implements FilePersistence {
         try (FileOutputStream fos = new FileOutputStream(temp)) {
             client.files().download(ruta + "/" + nombre).download(fos);
         }
-
-        String file = FileUtils.readFileToString(temp);
-        FileUtils.deleteDirectory(new File(appRoot + token));
-        return file;
+        String fileContent = FileUtils.readFileToString(temp);
+        temp.delete();
+        //FileUtils.deleteDirectory(new File(appRoot + token));
+        return fileContent;
     }
 
     public File descargarArchivoHTML(String ruta, String nombre) throws IOException, DbxException {
